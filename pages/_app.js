@@ -3,7 +3,6 @@ import { useApollo } from '../lib/apolloClient'
 
 import 'antd/dist/antd.css'
 import '../static/scss/main.scss'
-import '../static/customizedAntd/global.css'
 
 function FloevFrontApp({ Component, pageProps }) {
 
