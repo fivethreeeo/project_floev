@@ -1,0 +1,78 @@
+/* Webfont - Radikal
+@font-face {
+  font-family: "Radikal W01 Bold";
+  src: url("static/fonts/5fc0c107-b2d4-4a0c-bdc5-158ec3e3a50e.eot?#iefix");
+  src: url("static/fonts/5fc0c107-b2d4-4a0c-bdc5-158ec3e3a50e.eot?#iefix")
+      format("eot"),
+    url("static/fonts/237e7a51-7fe7-4228-879f-ee12be361e89.woff2")
+      format("woff2"),
+    url("static/fonts/c599e32d-4281-4f4b-915f-1785ffa4fcaa.woff") format("woff"),
+    url("static/onts/36296a6f-7cf1-42a4-8635-9fcd10dc0a7d.ttf")
+      format("truetype");
+}
+*/
+
+@font-face {
+  font-family: "Radikal";
+  src: url("/static/font/Radikal/Radikal.eot") format("embedded-opentype"),
+    url("/static/font/Radikal/Radikal.woff2") format("woff2"),
+    url("/static/font/Radikal/Radikal.woff") format("woff"),
+    url("/static/font/Radikal/Radikal.otf") format("opentype");
+  font-weight: 400;
+}
+@font-face {
+    font-family: "Radikal";
+    src: url("/static/font/Radikal/Radikal-Thin.eot") format("embedded-opentype"),
+      url("/static/font/Radikal/Radikal-Thin.woff2") format("woff2"),
+      url("/static/font/Radikal/Radikal-Thin.woff") format("woff"),
+      url("/static/font/Radikal/Radikal-Thin.otf") format("opentype");
+    font-weight: 100;
+  }
+  @font-face {
+    font-family: "Radikal";
+    src: url("/static/font/Radikal/Radikal-Light.eot") format("embedded-opentype"),
+      url("/static/font/Radikal/Radikal-Light.woff2") format("woff2"),
+      url("/static/font/Radikal/Radikal-Light.woff") format("woff"),
+      url("/static/font/Radikal/Radikal-Light.otf") format("opentype");
+    font-weight: 300;
+  }
+  @font-face {
+    font-family: "Radikal";
+    src: url("/static/font/Radikal/Radikal-Medium.eot") format("embedded-opentype"),
+      url("/static/font/Radikal/Radikal-Medium.woff2") format("woff2"),
+      url("/static/font/Radikal/Radikal-Medium.woff") format("woff"),
+      url("/static/font/Radikal/Radikal-Medium.otf") format("opentype");
+    font-weight: 500;
+  }
+@font-face {
+  font-family: "Radikal";
+  src: url("/static/font/Radikal/Radikal-Bold.eot") format("embedded-opentype"),
+    url("/static/font/Radikal/Radikal-Bold.woff2") format("woff2"),
+    url("/static/font/Radikal/Radikal-Bold.woff") format("woff"),
+    url("/static/font/Radikal/Radikal-Bold.otf") format("opentype");
+  font-weight: 700;
+}
+
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
+body,
+th,
+td,
+input,
+select,
+textarea,
+button,
+a {
+  font-family: "Radikal", "Spoqa Han Sans Neo", "Apple SD Gothic Neo",
+    "Apple SD 산돌고딕 Neo", "NanumBarunGothic", "나눔바른고딕", "Malgun Gothic",
+    "맑은 고딕", sans-serif;
+}
+
+
+
+.test0 {font-size:40px}
+.test1 {font-size:40px;font-weight:100}
+.test2 {font-size:40px;font-weight:300}
+.test3 {font-size:40px;font-weight:400}
+.test4 {font-size:40px;font-weight:500}
+.test5 {font-size:40px;font-weight:700}
