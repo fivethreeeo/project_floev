@@ -1,9 +1,2 @@
-$backgroundColor: #2ecc71;
-
-.app {
-  background-color: $backgroundColor;
-}
-
-.ant-btn-primary {
-  background: #000000;
-}
+@import "base/reset";
+@import "base/typography"
