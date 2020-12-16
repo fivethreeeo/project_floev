@@ -1,2 +1,14 @@
+// *** base *** 프로젝트용 표준 문안 포함.
 @import "base/reset";
-@import "base/typography"
+@import "base/typography";
+
+// *** utilities *** 모든 전역 변수, 함수, 믹스인, 플레이스홀더를 포함.
+
+// *** vendors *** 외부 라이브러리 또는 프레임워크 의 override를 위함.
+
+// *** components *** 컴포넌트
+
+// *** layout *** 레이아웃에 기여하는 모든 것을 포함. _header, _footer, _grid 등
+
+// *** pages *** 페이지에 특정화된 스타일을 포함. 페이지명과 파일명을 일치. _home, _mypage 등
+@import "pages/index.scss";
