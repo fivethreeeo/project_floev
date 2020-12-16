@@ -1,16 +1,16 @@
 import Layout from '../layout/DefaultLayout'
 import HelloWorld from '../components/Helloworld'
-
-import { Button } from 'antd'
+import { Button } from 'antd-mobile'
 
 const IndexPage = () => (
   <Layout title="Floev New Front">
     <div className="app">
       <HelloWorld />
     </div>
-    <Button type="primary" block>
+    <Button>
       Primary
     </Button>
+    
   </Layout>
 )
 
