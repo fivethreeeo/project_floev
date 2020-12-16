@@ -2,4 +2,294 @@
   margin: 0 auto;
   width: 100%;
   max-width: 640px;
+  color:#33343a;
+}
+
+.top {
+  margin: 0 0 84px;
+  .banner {
+    background: #64433f;
+    a {
+      display: block;
+      height: 40px;
+      line-height: 41px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 400;
+      color: #fff;
+    }
+  }
+  .inner {
+    padding: 0 24px;
+    height: 86vh;
+    background: url(/static/img/newLanding/top_12.jpg) center center / cover
+      no-repeat;
+    .txt {
+      padding: 144px 0 0 0;
+      color: #fff;
+      font-size: 30px;
+      font-weight: 700;
+    }
+    .cta {
+      display: inline;
+      margin: 16px 0 0;
+      padding: 14px 24px 10px;
+      background: #c3512a;
+      border-radius: 32px;
+      font-size: 16px;
+      color: #fff;
+    }
+    @include responsive("desktop") {
+      padding: 140px 64px 0;
+      height:640px;
+    }
+  }
+  .scroll-arrow {
+    margin: 0 auto;
+    width: 21px;
+    margin-top: -64px;
+    @include responsive("desktop") {
+      opacity: 0;
+    }
+  }
+}
+
+.middle {
+  .sec {
+    margin: 0 0 120px;
+    padding: 0 24px;
+    &__name {
+      margin: 0 0 40px;
+      p {
+        margin: 0 auto;
+        margin-bottom: 12px;
+        font-size: 20px;
+        font-weight: 700;
+        color: #c3512a;
+        text-align: center;
+      }
+      .underline {
+        margin: 0 auto;
+        width: 20px;
+        height: 2px;
+        background: #c3512a;
+      }
+    }
+  }
+
+  .pod {
+    p {
+      color: #64433f;
+    }
+    p:nth-child(1) {
+      width: 270px;
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.13;
+      word-break: keep-all;
+    }
+    p:nth-child(2) {
+      margin: 16px 0 0;
+      width: 230px;
+      font-size: 16px;
+      font-weight: 300;
+    }
+    @include responsive("desktop") {
+      p:nth-child(1), p:nth-child(2) {
+        margin: 0 auto 8px;
+        width: 512px;
+        line-height:1.5;
+      }
+    }
+  }
+
+  .story {
+    overflow:hidden;
+    .inner {padding:0 0 10px}
+    .cardStory {
+      width:240px;padding:48px 24px 32px;border-radius:8px;background:#fff;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.30);
+      .customer {
+        margin-bottom:32px;font-size:12px;color:#858789;text-align:center;
+        span {padding-left:8px}
+      }
+      .main {
+        margin-bottom:16px;font-size:14px;font-weight:700;line-height:22px;text-align:center;
+      }
+      .sub {
+        margin-bottom:20px;font-size:12px;font-weight:400;line-height:22px;
+      }
+      .img {margin:0 auto 8px;width:105px;height:64px;background:#f7f7f7}
+      .brand {margin-bottom:4px;font-size:12px;color:#64433F;text-align:center}
+      .model {font-size:12px;color:#64433F;text-align:center}
+    }
+  }
+
+  .service {
+    padding: 0 0 0 24px;
+    @include responsive("desktop") {
+      padding: 0 24px;
+    }
+    .descWrap {
+      margin: 0 0 64px;
+    }
+    .imgWrap {
+      margin: 0 0 20px 0;
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      width: 100%;
+      -webkit-overflow-scrolling: touch;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      .img {
+        width: 260px;
+        flex: 0 0 auto;
+        overflow: hidden;
+        &:nth-child(1) {
+          margin: 0 8px 0 0;
+        }
+        &:nth-child(2) {
+          width: 284px;
+          height: 200px;
+          img {
+            width: 260px;
+          }
+        }
+      }
+      @include responsive("desktop") {
+        display:block;
+        .img {
+          float:left;
+          width:calc(50% - 4px);
+          &:nth-child(2) {
+            width:calc(50% - 4px);
+            height: auto;
+            img {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+    .txtWrap {
+      padding: 0 24px 0 16px;
+      p {
+        font-size: 16px;
+        font-weight: 700;
+        &:nth-child(1) {
+          margin: 0 0 12px 2px;
+        }
+        &:nth-child(2) {
+          margin: 0 0 16px;
+          font-size: 20px;
+          line-height: 28px;
+          word-break: keep-all;
+        }
+        &:nth-child(3) {
+          font-weight: 300;
+          line-height: 26px;
+        }
+      }
+    }
+
+  }
+
+  .message {
+    .fontR {
+      font-size: 20px;
+      font-weight: 700;
+      color: #c3512a;
+      text-align: center;
+    }
+    .desc {
+      margin: 24px auto 0;
+      width: 244px;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 27px;
+    }
+    @include responsive("desktop") {
+      .fontR {
+        font-size: 24px;
+      }
+      .desc {
+        width:304px;
+        font-size: 20px;
+        line-height:34px;
+      }
+    }
+  }
+
+  .lounge {
+    overflow: hidden;
+    .cardLounge {
+      width: 100%;
+      height: 156px;
+      border-radius: 4px;
+      overflow: hidden;
+      a {
+        display: block;
+        height: 156px;
+      }
+      p {
+        padding-top: 63px;
+        font-size: 20px;
+        font-weight: 400;
+        text-align: center;
+        color: #fff;
+        line-height: 30px;
+      }
+      &.one {
+        background: url(/static/img/newLanding/lounge_2.jpg) center center /
+          cover no-repeat;
+      }
+      &.two {
+        background: url(/static/img/newLanding/lounge_5.jpg) center center /
+          cover no-repeat;
+      }
+    }
+  }
+}
+
+.bottom {
+  .con {
+    margin: 0 0 64px;
+    height: 480px;
+    .inner {
+      padding: 210px 0 0;
+      width: 100%;
+      height: 100%;
+      background: url(/static/img/newLanding/bottom_4.jpg) center center / cover
+        no-repeat;
+      text-align: center;
+      .cta {
+        display: inline-block;
+        padding: 16px 32px;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 400;
+        border-radius: 32px;
+        background: #c3512a;
+        text-align: center;
+      }
+      @include responsive("desktop") {
+        border-radius: 4px;
+      }
+    }
+  }
+  .footer {
+    padding:0 24px 64px;
+    p {font-size:16px;font-weight:500}
+    ul {margin:20px 0 0;padding:0 0 16px 0;border-bottom:1px solid #d6d7d8}
+    li {
+      font-size:12px;padding:5px 0;
+      span:nth-child(2) {
+        padding-left:10px;color:#858789
+      }
+    }
+    a {margin:12px 0 8px;line-height:12px;display:inline-block;font-size:12px;height:14px;padding:0 8px;vertical-align:middle;color:#33343a;}
+  }
 }
