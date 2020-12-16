@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { ApolloProvider } from '@apollo/client'
 import { useApollo } from '../lib/apolloClient'
 
