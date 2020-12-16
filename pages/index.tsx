@@ -1,9 +1,4 @@
 import Layout from '../layout/DefaultLayout'
-<<<<<<< HEAD
-=======
-import HelloWorld from '../components/Helloworld'
-import { Button } from 'antd-mobile'
->>>>>>> master
 
 const IndexPage = () => (
   <Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스">
@@ -198,13 +193,7 @@ const IndexPage = () => (
                 </div>
               </div>
     </div>
-<<<<<<< HEAD
-=======
-    <Button>
-      Primary
-    </Button>
-    
->>>>>>> master
+
   </Layout>
 )
 
