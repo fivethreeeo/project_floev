@@ -7,9 +7,7 @@ const IndexPage = () => (
     <div className="indexWrap">
 
       <div className="top">
-        <div className="banner">
-          <a href="/2020-winter-event">[안경 기부 이벤트] 최대 8만원 할인 혜택 중</a>
-        </div>
+        <div className="banner">[안경 기부 이벤트] 최대 8만원 할인 혜택 중</div>
         <div className="con">
           <div className="inner">
             <p className="txt">나의 눈을 위한<br/>안경 큐레이션 서비스</p>

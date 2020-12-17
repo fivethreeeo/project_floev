@@ -2,22 +2,19 @@
   margin: 0 auto;
   width: 100%;
   max-width: 640px;
-  color:#33343a;
+  color: #33343a;
 }
 
 .top {
   margin: 0 0 84px;
   .banner {
     background: #64433f;
-    a {
-      display: block;
-      height: 40px;
-      line-height: 41px;
-      text-align: center;
-      font-size: 14px;
-      font-weight: 400;
-      color: #fff;
-    }
+    height: 40px;
+    line-height: 41px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
   }
   .inner {
     padding: 0 24px;
@@ -41,7 +38,7 @@
     }
     @include responsive("desktop") {
       padding: 140px 64px 0;
-      height:640px;
+      height: 640px;
     }
   }
   .scroll-arrow {
@@ -95,32 +92,65 @@
       font-weight: 300;
     }
     @include responsive("desktop") {
-      p:nth-child(1), p:nth-child(2) {
+      p:nth-child(1),
+      p:nth-child(2) {
         margin: 0 auto 8px;
         width: 512px;
-        line-height:1.5;
+        line-height: 1.5;
       }
     }
   }
 
   .story {
-    overflow:hidden;
-    .inner {padding:0 0 10px}
+    overflow: hidden;
+    .inner {
+      padding: 0 0 10px;
+    }
     .cardStory {
-      width:240px;padding:48px 24px 32px;border-radius:8px;background:#fff;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.30);
+      width: 240px;
+      padding: 48px 24px 32px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
       .customer {
-        margin-bottom:32px;font-size:12px;color:#858789;text-align:center;
-        span {padding-left:8px}
+        margin-bottom: 32px;
+        font-size: 12px;
+        color: #858789;
+        text-align: center;
+        span {
+          padding-left: 8px;
+        }
       }
       .main {
-        margin-bottom:16px;font-size:14px;font-weight:700;line-height:22px;text-align:center;
+        margin-bottom: 16px;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 22px;
+        text-align: center;
       }
       .sub {
-        margin-bottom:20px;font-size:12px;font-weight:400;line-height:22px;
+        margin-bottom: 20px;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 22px;
       }
-      .img {margin:0 auto 8px;width:105px;height:64px;background:#f7f7f7}
-      .brand {margin-bottom:4px;font-size:12px;color:#64433F;text-align:center}
-      .model {font-size:12px;color:#64433F;text-align:center}
+      .img {
+        margin: 0 auto 8px;
+        width: 105px;
+        height: 64px;
+        background: #f7f7f7;
+      }
+      .brand {
+        margin-bottom: 4px;
+        font-size: 12px;
+        color: #64433f;
+        text-align: center;
+      }
+      .model {
+        font-size: 12px;
+        color: #64433f;
+        text-align: center;
+      }
     }
   }
 
@@ -160,12 +190,12 @@
         }
       }
       @include responsive("desktop") {
-        display:block;
+        display: block;
         .img {
-          float:left;
-          width:calc(50% - 4px);
+          float: left;
+          width: calc(50% - 4px);
           &:nth-child(2) {
-            width:calc(50% - 4px);
+            width: calc(50% - 4px);
             height: auto;
             img {
               width: 100%;
@@ -194,7 +224,6 @@
         }
       }
     }
-
   }
 
   .message {
@@ -216,9 +245,9 @@
         font-size: 24px;
       }
       .desc {
-        width:304px;
+        width: 304px;
         font-size: 20px;
-        line-height:34px;
+        line-height: 34px;
       }
     }
   }
@@ -281,15 +310,33 @@
     }
   }
   .footer {
-    padding:0 24px 64px;
-    p {font-size:16px;font-weight:500}
-    ul {margin:20px 0 0;padding:0 0 16px 0;border-bottom:1px solid #d6d7d8}
+    padding: 0 24px 64px;
+    p {
+      font-size: 16px;
+      font-weight: 500;
+    }
+    ul {
+      margin: 20px 0 0;
+      padding: 0 0 16px 0;
+      border-bottom: 1px solid #d6d7d8;
+    }
     li {
-      font-size:12px;padding:5px 0;
+      font-size: 12px;
+      padding: 5px 0;
       span:nth-child(2) {
-        padding-left:10px;color:#858789
+        padding-left: 10px;
+        color: #858789;
       }
     }
-    a {margin:12px 0 8px;line-height:12px;display:inline-block;font-size:12px;height:14px;padding:0 8px;vertical-align:middle;color:#33343a;}
+    a {
+      margin: 12px 0 8px;
+      line-height: 12px;
+      display: inline-block;
+      font-size: 12px;
+      height: 14px;
+      padding: 0 8px;
+      vertical-align: middle;
+      color: #33343a;
+    }
   }
 }
