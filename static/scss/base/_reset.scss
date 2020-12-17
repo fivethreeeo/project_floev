@@ -99,22 +99,27 @@ input[type="image"],
 button,
 select {
   -webkit-appearance: none;
+  -moz-appearance:none;
   appearance: none;
 }
 input[type="text"],
 input[type="tel"],
 input[type="password"],
-textarea {
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+textarea,
+select {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   outline: none;
 }
 textarea,
 select {
   font-size: 1em;
+}
+select::-ms-expand {
+  display: none;
 }
 textarea {
   resize: none;

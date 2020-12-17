@@ -340,3 +340,41 @@
     }
   }
 }
+
+.modalWrap {
+  background: #f7f7f7;
+  .modalDesc {
+    padding:48px 20px 0;width:100%;border-radius:20px 20px 0 0!important;
+    .main {font-size:20px;font-weight:300;line-height:30px;text-align:center}
+    .sub {margin:24px 0 0;font-size:16px;font-weight:300;text-align:center;line-height:27px}
+  } 
+  .kakaoForm {
+    margin:24px 0 0;padding:0 20px;
+    input {
+      padding:0 0 0 12px;width:100%;height:40px;border:1px solid #ccc;border-radius:6px;background:#fff;font-size:15px;
+      &:focus {border:1px solid #33343a}
+      &::placeholder {color:#999}
+    }
+    select {
+      padding:0 0 0 12px;width:calc(50% - 4px);height:40px;border:1px solid #ccc;border-radius:6px;background:#fff;font-size:15px;
+      &:required:invalid {color:#999}
+      &:focus {border:1px solid #33343a!important}
+    }
+    option {
+      &:focus {border:1px solid #33343a}
+      &[value=""][disabled] {display:none}
+    }
+    button {
+      width:100%;height:48px;background:#c3512a;font-size:16px;color:#fff;border-radius:6px;
+      &.disabled {background:#E7B9AA}
+    }
+    .name {margin:0 0 8px}
+    .birthyear {margin:0 8px 0 0}
+    .tel {margin:8px 0 24px}
+  }
+}
+.modalWrap.kakao__2 {
+  .sub {font-size:16px;font-weight:400;margin:24px 0 8px}
+  .sub__2 {font-size:14px;text-align:center}
+  button {display:block;margin:48px auto;width:calc(100% - 40px);height:48px;background:#33343a;font-size:16px;color:#fff;border-radius:6px}
+}
