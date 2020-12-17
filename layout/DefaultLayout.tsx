@@ -15,8 +15,8 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <meta property="og:title" content="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" />
       <meta property="og:description" content="좋은 품질의 안경, 전문적인 검안과 서비스를 제공합니다." />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="" />
-      <meta property="og:image" content="" />
+      <meta property="og:url" content="https://floev.com" />
+      <meta property="og:image" content="https://floev.com/static/img/newLanding/og.jpg" />
     </Head>
     <header>
     </header>
