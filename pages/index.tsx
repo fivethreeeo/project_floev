@@ -239,6 +239,40 @@ const IndexPage = () => (
         </div>
       </div>
 
+      <div className="modalWrap kakao__1">
+        <div className="modalDesc">
+          <p className="main">내 안경이 불편한 이유<br/>안경은 나에게 어울리지 않는다는 편견,<br/><strong>어떤 안경 고민을 가지고 계시나요?</strong></p>
+          <p className="sub">나의 안경에 대해 알아가는 첫걸음을<br/><u>플로브 안경 카운셀러</u>와 시작하세요.</p>
+        </div>
+        <div className="kakaoForm">
+          <input className="name" type="text" name="name" placeholder={'이름'} maxLength="20"/>
+          <select className="birthyear" name="birthyear" required>
+            <option value="" selected disabled>출생연도 선택</option>
+            <option value="19">2001</option>
+            <option value="19">2002</option>
+            <option value="19">2003</option>
+          </select>
+          <select className="gender" name="gender" required>
+            <option value="" selected disabled>성별 선택</option>
+            <option value="male">남</option>
+            <option value="female">여</option>
+          </select>
+          <input className="tel" type="tel" name="phoneNumber" placeholder={'휴대폰 번호 (  \'-\' 없이 숫자만 입력 )'} maxLength="11" />
+          <button className="disabled">안경 무료상담 받기</button>
+          <button>안경 무료상담 받기</button>
+        </div>
+      </div>
+
+      <div className="modalWrap kakao__2">
+        <div className="modalDesc">
+          <p className="main">플로브의 안경 카운셀러와<br />카카오톡 상담이 시작됩니다.<br /><strong>카카오톡 어플을 확인해주세요!</strong></p>
+          <p className="sub"><u>상담시간 : 오전 9시 ~ 오후 7시</u></p>
+          <p className="sub__2">*상담 시간 이외에 접수된 신청은<br />순차적으로 상담 가능 시간에 연락을 드립니다.</p>
+        </div>
+        <button type="button">확인</button>
+      </div>
+
+
     </div>
 
   </Layout>
