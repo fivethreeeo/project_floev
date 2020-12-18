@@ -64,7 +64,7 @@ class IndexPage extends React.Component {
       <div className="con">
         <div className="inner">
           <p className="txt">나의 눈을 위한<br/>안경 큐레이션 서비스</p>
-          <button className="cta" onClick={this.showModal('modal2')}>언경 무료상담 받기</button>
+          <button className="cta" onClick={this.showModal('modal2')}>안경 무료상담 받기</button>
         </div>
         <div className="scroll-arrow"><div className="img"><img src="/static/img/newLanding/vv_w.png" alt="" /></div></div>
       </div>
@@ -273,7 +273,7 @@ class IndexPage extends React.Component {
     <div className="bottom">
       <div className="con">
         <div className="inner">
-          <button className="cta" onClick={this.showModal('modal2')}>언경 무료상담 받기</button>
+          <button className="cta" onClick={this.showModal('modal2')}>안경 무료상담 받기</button>
         </div>
       </div>
       <div className="footer">
@@ -299,7 +299,7 @@ class IndexPage extends React.Component {
         <p className="sub"><u>상담시간 : 오전 9시 ~ 오후 7시</u></p>
         <p className="sub__2">*상담 시간 이외에 접수된 신청은<br />순차적으로 상담 가능 시간에 연락을 드립니다.</p>
       </div>
-      <button type="button">확인</button>
+      <button type="button" onClick={this.onClose('modal2')}>확인</button>
     </div>
 
 
