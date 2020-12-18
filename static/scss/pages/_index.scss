@@ -341,15 +341,24 @@
   }
 }
 
+.am-modal-wrap.am-modal-wrap-popup {margin:0 auto;width:100%;max-width:480px}
+.am-modal.am-modal-popup.am-modal-popup-slide-up {width:100%;max-width:480px;height:80vh;max-height:580px;overflow: hidden;border-radius: 20px 20px 0 0!important;background:#fff}
+
 .modalWrap {
-  background: #f7f7f7;
+  position: relative;
   .modalDesc {
-    padding:48px 20px 0;width:100%;border-radius:20px 20px 0 0!important;
+    padding:48px 20px 0;width:100%;color:#33343a;
     .main {font-size:20px;font-weight:300;line-height:30px;text-align:center}
     .sub {margin:24px 0 0;font-size:16px;font-weight:300;text-align:center;line-height:27px}
+    @include responsive("desktop") {
+      padding: 64px 20px 0;
+    }
   } 
   .kakaoForm {
     margin:24px 0 0;padding:0 20px;
+    @include responsive("desktop") {
+      padding: 0 40px;
+    }
     input {
       padding:0 0 0 12px;width:100%;height:40px;border:1px solid #ccc;border-radius:6px;background:#fff;font-size:15px;
       &:focus {border:1px solid #33343a}
@@ -365,12 +374,22 @@
       &[value=""][disabled] {display:none}
     }
     button {
-      width:100%;height:48px;background:#c3512a;font-size:16px;color:#fff;border-radius:6px;
+      width:100%;height:44px;background:#c3512a;font-size:16px;color:#fff;border-radius:6px;
       &.disabled {background:#E7B9AA}
     }
     .name {margin:0 0 8px}
     .birthyear {margin:0 8px 0 0}
-    .tel {margin:8px 0 24px}
+    .tel {margin:8px 0 16px}
+  }
+  .closeBtn {
+    display: none;
+    position: absolute;
+    top:32px;
+    right:32px;
+    width:20px;
+    @include responsive("desktop") {
+      display: block;
+    }
   }
 }
 .modalWrap.kakao__2 {

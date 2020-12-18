@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { ApolloProvider } from '@apollo/client'
 import { useApollo } from '../lib/apolloClient'
 
-import 'antd/dist/antd.css'
+import 'antd-mobile/dist/antd-mobile.css'
 import '../static/scss/main.scss'
 
 function FloevFrontApp({ Component, pageProps }) {
