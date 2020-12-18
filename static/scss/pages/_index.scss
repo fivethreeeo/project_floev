@@ -310,7 +310,7 @@
     }
   }
   .footer {
-    padding: 0 24px 64px;
+    padding: 0 24px 24px;
     p {
       font-size: 16px;
       font-weight: 500;
@@ -343,7 +343,10 @@
 
 .slider-decorator-0 {bottom:-39px!important}
 .am-modal-wrap.am-modal-wrap-popup {margin:0 auto;width:100%;max-width:480px}
-.am-modal.am-modal-popup.am-modal-popup-slide-up {width:100%;max-width:480px;height:80vh;max-height:580px;overflow: hidden;border-radius: 20px 20px 0 0!important;background:#fff}
+.am-modal.am-modal-popup.am-modal-popup-slide-up {width:100%;max-width:480px;height:85vh;max-height:640px;overflow: hidden;border-radius: 20px 20px 0 0!important;background:#fff}
+.am-accordion::before, .am-accordion-header::after {display:none!important}
+.am-accordion-header {height:40px!important;line-height:40px!important;cursor: pointer;padding-left:8px!important;text-align:left;font-size:14px!important;text-decoration: underline;color:#33343a!important}
+.am-accordion-header i {top:11px!important;left:168px!important;right:auto!important;width:14px!important;height:14px!important}
 
 .modalWrap {
   position: relative;
@@ -356,7 +359,7 @@
     }
   } 
   .kakaoForm {
-    margin:24px 0 0;padding:0 20px;
+    margin:24px 0 0;padding:0 20px 0;
     @include responsive("desktop") {
       padding: 0 40px;
     }
@@ -378,9 +381,25 @@
       width:100%;height:44px;background:#c3512a;font-size:16px;color:#fff;border-radius:6px;
       &.disabled {background:#E7B9AA}
     }
-    .name {margin:0 0 8px}
-    .birthyear {margin:0 8px 0 0}
+    .birthyear {margin:8px 8px 0 0}
+    .gender {margin:8px 0 0 0}
     .tel {margin:8px 0 16px}
+
+    .policy {
+      .inner {
+        height:80px;
+        overflow-y: scroll;
+        padding: 0 8px 16px;
+        text-align: left;
+        font-size:12px;
+        font-weight:300;
+        color:#666;
+        p:nth-child(2) {font-weight:500;margin:16px 0 6px}
+        @include responsive("desktop") {
+          height:auto;
+        }
+      }
+    }
   }
   .closeBtn {
     display: none;

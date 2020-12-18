@@ -1,12 +1,11 @@
 import Layout from '../layout/DefaultLayout'
 import React from 'react'
-import { Modal, Button, WingBlank, Carousel } from 'antd-mobile'
+import { Modal, WingBlank, Carousel, Accordion } from 'antd-mobile'
 
 class IndexPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal1: false,
       modal2: false,
     };
   }
@@ -31,13 +30,16 @@ class IndexPage extends React.Component {
         onClose={this.onClose('modal2')}
         animationType="slide-up"
       >
+
         <div className="modalWrap kakao__1">
+          <button className="closeBtn" onClick={this.onClose('modal2')}><img src="/static/img/newLanding/close-btn.png" alt="" /></button>
           <div className="modalDesc">
             <p className="main">내 안경이 불편한 이유<br/>안경은 나에게 어울리지 않는다는 편견,<br/><strong>어떤 안경 고민을 가지고 계시나요?</strong></p>
-            <p className="sub">나의 안경에 대해 알아가는 첫걸음을<br/><u>플로브 안경 카운셀러</u>와 시작하세요.</p>
+            <p className="sub">나의 안경에 대해 알아가는 첫걸음을<br/><strong>플로브 안경 카운셀러</strong>와 시작하세요.</p>
           </div>
           <div className="kakaoForm">
             <input className="name" type="text" name="name" placeholder={'이름'} maxLength="20"/>
+            {/*
             <select className="birthyear" name="birthyear" required>
               <option value="" selected disabled>출생연도 선택</option>
               <option value="19">2001</option>
@@ -49,12 +51,37 @@ class IndexPage extends React.Component {
               <option value="male">남</option>
               <option value="female">여</option>
             </select>
+            */}
             <input className="tel" type="tel" name="phoneNumber" placeholder={'휴대폰 번호 (  \'-\' 없이 숫자만 입력 )'} maxLength="11" />
             <button className="disabled">안경 무료상담 받기</button>
-            <button>안경 무료상담 받기</button>
+            {/*<button>안경 무료상담 받기</button>*/}
+            <div className="policy">
+              <Accordion className="my-accordion" >
+                <Accordion.Panel header="개인정보 수집·이용 동의함">
+                  <div className="inner">
+                    <p>본 상담 신청 고객은 개인정보 수집·이용에 대하여 동의를 거부할 권리를 가지고 있으며, 미 동의 시 상담를 신청하실 수 없습니다.</p>
+                    <p>개인정보 수집·이용에 대한 동의</p>
+                    <p> - 목적: 상담 신청 시 본인 확인 및 개별 연락</p>
+                    <p> - 항목: 이름, 휴대전화 번호</p>
+                    <p> - 보유기간: 동의(신청) 시점 후 180일</p>
+                  </div>
+                </Accordion.Panel>
+              </Accordion>
+            </div>
           </div>
+        </div>
+        {/*
+        <div className="modalWrap kakao__2">
+          <div className="modalDesc">
+            <p className="main">플로브의 안경 카운셀러와<br />카카오톡 상담이 시작됩니다.<br /><strong>카카오톡 어플을 확인해주세요!</strong></p>
+            <p className="sub"><u>상담시간 : 오전 9시 ~ 오후 7시</u></p>
+            <p className="sub__2">*상담 시간 이외에 접수된 신청은<br />순차적으로 상담 가능 시간에 연락을 드립니다.</p>
+          </div>
+          <button className="confirm" type="button" onClick={this.onClose('modal2')}>확인</button>
           <button className="closeBtn" onClick={this.onClose('modal2')}><img src="/static/img/newLanding/close-btn.png" alt="" /></button>
         </div>
+        */}
+
       </Modal>
 
   <div className="indexWrap">
@@ -291,18 +318,6 @@ class IndexPage extends React.Component {
         </div>
       </div>
     </div>
-
-
-    <div className="modalWrap kakao__2">
-      <div className="modalDesc">
-        <p className="main">플로브의 안경 카운셀러와<br />카카오톡 상담이 시작됩니다.<br /><strong>카카오톡 어플을 확인해주세요!</strong></p>
-        <p className="sub"><u>상담시간 : 오전 9시 ~ 오후 7시</u></p>
-        <p className="sub__2">*상담 시간 이외에 접수된 신청은<br />순차적으로 상담 가능 시간에 연락을 드립니다.</p>
-      </div>
-      <button className="confirm" type="button" onClick={this.onClose('modal2')}>확인</button>
-      <button className="closeBtn" onClick={this.onClose('modal2')}><img src="/static/img/newLanding/close-btn.png" alt="" /></button>
-    </div>
-
 
   </div>
 
