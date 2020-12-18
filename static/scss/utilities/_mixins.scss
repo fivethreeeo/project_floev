@@ -1,0 +1,15 @@
+/* responsive width */
+$max-mobile: 639px;
+$min-desktop: 640px;
+
+@mixin responsive($device) {
+  @if $device == "desktop" {
+    @media screen and (min-width: $min-desktop) {
+      @content;
+    }
+  } @else if $device == "mobile" {
+    @media screen and (max-width: $max-mobile) {
+      @content;
+    }
+  }
+}
