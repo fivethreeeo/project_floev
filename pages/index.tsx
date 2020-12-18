@@ -299,7 +299,8 @@ class IndexPage extends React.Component {
         <p className="sub"><u>상담시간 : 오전 9시 ~ 오후 7시</u></p>
         <p className="sub__2">*상담 시간 이외에 접수된 신청은<br />순차적으로 상담 가능 시간에 연락을 드립니다.</p>
       </div>
-      <button type="button" onClick={this.onClose('modal2')}>확인</button>
+      <button className="confirm" type="button" onClick={this.onClose('modal2')}>확인</button>
+      <button className="closeBtn" onClick={this.onClose('modal2')}><img src="/static/img/newLanding/close-btn.png" alt="" /></button>
     </div>
 
 

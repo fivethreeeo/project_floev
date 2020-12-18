@@ -104,7 +104,7 @@
   .story {
     overflow: hidden;
     .inner {
-      padding: 0 0 10px;
+      padding: 0 0 39px;
     }
     .cardStory {
       width: 240px;
@@ -341,6 +341,7 @@
   }
 }
 
+.slider-decorator-0 {bottom:-39px!important}
 .am-modal-wrap.am-modal-wrap-popup {margin:0 auto;width:100%;max-width:480px}
 .am-modal.am-modal-popup.am-modal-popup-slide-up {width:100%;max-width:480px;height:80vh;max-height:580px;overflow: hidden;border-radius: 20px 20px 0 0!important;background:#fff}
 
@@ -395,5 +396,5 @@
 .modalWrap.kakao__2 {
   .sub {font-size:16px;font-weight:400;margin:24px 0 8px}
   .sub__2 {font-size:14px;text-align:center}
-  button {display:block;margin:48px auto;width:calc(100% - 40px);height:44px;background:#33343a;font-size:16px;color:#fff;border-radius:6px}
+  .confirm {display:block;margin:48px auto;width:calc(100% - 40px);height:44px;background:#33343a;font-size:16px;color:#fff;border-radius:6px}
 }
