@@ -27,12 +27,12 @@ const IndexPage = () => {
 
   useEffect(() => {
     if (phn.length === 10) {
-      setPhn(phn.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'));
+      setPhn(phn.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'))
     }
     if (phn.length === 13) {
-      setPhn(phn.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'));
+      setPhn(phn.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'))
     }
-  }, [phn]);
+  }, [phn])
 
   return(
     <Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스">
@@ -42,22 +42,22 @@ const IndexPage = () => {
         onClose={()=>{setModalView(false)}}
         animationType="slide-up"
       >
-        <form
-            onSubmit={e => {
-              e.preventDefault()
-              createUser({ variables: { name: name, phn: phn } })
-              setName('')
-              setPhn('')
-              setCompleted(true)
-            }}
-          >
-            {completed === false ? (
-              <div className="modalWrap kakao__1">
-                <button className="closeBtn" onClick={()=>{setModalView(false)}}><img src="/static/img/newLanding/close-btn.png" alt="" /></button>
-                <div className="modalDesc">
-                  <p className="main">내 안경이 불편한 이유<br/>안경은 나에게 어울리지 않는다는 편견,<br/><strong>어떤 안경 고민을 가지고 계시나요?</strong></p>
-                  <p className="sub">나의 안경에 대해 알아가는 첫걸음을<br/><strong>플로브 안경 카운셀러</strong>와 시작하세요.</p>
-                </div>
+          {completed === false ? (
+            <div className="modalWrap kakao__1">
+              <button className="closeBtn" onClick={()=>{setModalView(false)}}><img src="/static/img/newLanding/close-btn.png" alt="" /></button>
+              <div className="modalDesc">
+                <p className="main">내 안경이 불편한 이유<br/>안경은 나에게 어울리지 않는다는 편견,<br/><strong>어떤 안경 고민을 가지고 계시나요?</strong></p>
+                <p className="sub">나의 안경에 대해 알아가는 첫걸음을<br/><strong>플로브 안경 카운셀러</strong>와 시작하세요.</p>
+              </div>
+              <form
+                onSubmit={e => {
+                  e.preventDefault()
+                  createUser({ variables: { name: name, phn: phn } })
+                  setName('')
+                  setPhn('')
+                  setCompleted(true)
+                }}
+              >
                 <div className="kakaoForm">
                   <input className="name" type="text" name="name" placeholder={'이름'} maxLength={20} value={name} onChange={onChangeName}/>
                   <input className="tel" type="tel" name="phoneNumber" placeholder={'휴대폰 번호 (  \'-\' 없이 숫자만 입력 )'} maxLength={13} value={phn} onChange={onChangePhn}/>
@@ -80,23 +80,19 @@ const IndexPage = () => {
                     </Accordion>
                   </div>
                 </div>
+              </form>
+            </div>
+          ):(
+            <div className="modalWrap kakao__2">
+              <div className="modalDesc">
+                <p className="main">플로브의 안경 카운셀러와<br />카카오톡 상담이 시작됩니다.<br /><strong>카카오톡 어플을 확인해주세요!</strong></p>
+                <p className="sub"><u>상담시간 : 오전 10시 ~ 오후 7시</u></p>
+                <p className="sub__2">*상담 시간 이외에 접수된 신청은<br />순차적으로 상담 가능 시간에 연락을 드립니다.</p>
               </div>
-            ):(
-              <div className="modalWrap kakao__2">
-                <div className="modalDesc">
-                  <p className="main">플로브의 안경 카운셀러와<br />카카오톡 상담이 시작됩니다.<br /><strong>카카오톡 어플을 확인해주세요!</strong></p>
-                  <p className="sub"><u>상담시간 : 오전 10시 ~ 오후 7시</u></p>
-                  <p className="sub__2">*상담 시간 이외에 접수된 신청은<br />순차적으로 상담 가능 시간에 연락을 드립니다.</p>
-                </div>
-                <button className="confirm" type="button" onClick={()=>{setModalView(false)}}>확인</button>
-                <button className="closeBtn" onClick={()=>{setModalView(false)}}><img src="/static/img/newLanding/close-btn.png" alt="" /></button>
-              </div>
-            )}
-          </form>
-        
-
-        
-
+              <button className="confirm" type="button" onClick={()=>{setModalView(false)}}>확인</button>
+              <button className="closeBtn" onClick={()=>{setModalView(false)}}><img src="/static/img/newLanding/close-btn.png" alt="" /></button>
+            </div>
+          )}
       </Modal>
 
       <div className="indexWrap">
