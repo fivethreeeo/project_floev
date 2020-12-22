@@ -77,7 +77,7 @@ const IndexPage = () => {
               <div className="modalWrap kakao__2">
                 <div className="modalDesc">
                   <p className="main">플로브의 안경 카운셀러와<br />카카오톡 상담이 시작됩니다.<br /><strong>카카오톡 어플을 확인해주세요!</strong></p>
-                  <p className="sub"><u>상담시간 : 오전 9시 ~ 오후 7시</u></p>
+                  <p className="sub"><u>상담시간 : 오전 10시 ~ 오후 7시</u></p>
                   <p className="sub__2">*상담 시간 이외에 접수된 신청은<br />순차적으로 상담 가능 시간에 연락을 드립니다.</p>
                 </div>
                 <button className="confirm" type="button" onClick={()=>{setModalView(false)}}>확인</button>
