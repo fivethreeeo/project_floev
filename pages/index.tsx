@@ -1,6 +1,5 @@
 import Layout from '../layout/DefaultLayout'
-import React, { useEffect, useState } from 'react'
-import { withApollo } from 'react-apollo'
+import React, { useState } from 'react'
 import { Modal, WingBlank, Carousel, Accordion } from 'antd-mobile'
 import { gql, useMutation } from '@apollo/client'
 
