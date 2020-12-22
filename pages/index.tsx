@@ -1,5 +1,5 @@
 import Layout from '../layout/DefaultLayout'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Modal, WingBlank, Carousel, Accordion } from 'antd-mobile'
 import { gql, useMutation } from '@apollo/client'
 
@@ -25,6 +25,15 @@ const IndexPage = () => {
     setPhn(e.target.value)
   }
 
+  useEffect(() => {
+    if (phn.length === 10) {
+      setPhn(phn.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'));
+    }
+    if (phn.length === 13) {
+      setPhn(phn.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'));
+    }
+  }, [phn]);
+
   return(
     <Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스">
       <Modal
@@ -33,44 +42,43 @@ const IndexPage = () => {
         onClose={()=>{setModalView(false)}}
         animationType="slide-up"
       >
-        <div className="modalWrap kakao__1">
-          <button className="closeBtn" onClick={()=>{setModalView(false)}}><img src="/static/img/newLanding/close-btn.png" alt="" /></button>
-          <div className="modalDesc">
-            <p className="main">내 안경이 불편한 이유<br/>안경은 나에게 어울리지 않는다는 편견,<br/><strong>어떤 안경 고민을 가지고 계시나요?</strong></p>
-            <p className="sub">나의 안경에 대해 알아가는 첫걸음을<br/><strong>플로브 안경 카운셀러</strong>와 시작하세요.</p>
-          </div>
-          <form
+        <form
             onSubmit={e => {
               e.preventDefault()
-              console.log('work')
               createUser({ variables: { name: name, phn: phn } })
-              console.log('work2')
               setName('')
               setPhn('')
               setCompleted(true)
             }}
           >
             {completed === false ? (
-              <div className="kakaoForm">
-                <input className="name" type="text" name="name" placeholder={'이름'} maxLength={20} value={name} onChange={onChangeName}/>
-                <input className="tel" type="tel" name="phoneNumber" placeholder={'휴대폰 번호 (  \'-\' 없이 숫자만 입력 )'} maxLength={11} value={phn} onChange={onChangePhn}/>
-                {phn.length === 11 ? (
-                  <button type="submit">안경 무료상담 받기</button>
-                ):(
-                  <button className="disabled">안경 무료상담 받기</button>
-                )}
-                <div className="policy">
-                  <Accordion className="my-accordion" >
-                    <Accordion.Panel header="개인정보 수집·이용 동의함">
-                      <div className="inner">
-                        <p>본 상담 신청 고객은 개인정보 수집·이용에 대하여 동의를 거부할 권리를 가지고 있으며, 미 동의 시 상담를 신청하실 수 없습니다.</p>
-                        <p>개인정보 수집·이용에 대한 동의</p>
-                        <p> - 목적: 상담 신청 시 본인 확인 및 개별 연락</p>
-                        <p> - 항목: 이름, 휴대전화 번호</p>
-                        <p> - 보유기간: 동의(신청) 시점 후 180일</p>
-                      </div>
-                    </Accordion.Panel>
-                  </Accordion>
+              <div className="modalWrap kakao__1">
+                <button className="closeBtn" onClick={()=>{setModalView(false)}}><img src="/static/img/newLanding/close-btn.png" alt="" /></button>
+                <div className="modalDesc">
+                  <p className="main">내 안경이 불편한 이유<br/>안경은 나에게 어울리지 않는다는 편견,<br/><strong>어떤 안경 고민을 가지고 계시나요?</strong></p>
+                  <p className="sub">나의 안경에 대해 알아가는 첫걸음을<br/><strong>플로브 안경 카운셀러</strong>와 시작하세요.</p>
+                </div>
+                <div className="kakaoForm">
+                  <input className="name" type="text" name="name" placeholder={'이름'} maxLength={20} value={name} onChange={onChangeName}/>
+                  <input className="tel" type="tel" name="phoneNumber" placeholder={'휴대폰 번호 (  \'-\' 없이 숫자만 입력 )'} maxLength={13} value={phn} onChange={onChangePhn}/>
+                  {phn.length >= 12 && name !=='' ? (
+                    <button type="submit">안경 무료상담 받기</button>
+                  ):(
+                    <button className="disabled" disabled>안경 무료상담 받기</button>
+                  )}
+                  <div className="policy">
+                    <Accordion className="my-accordion" >
+                      <Accordion.Panel header="개인정보 수집·이용 동의함">
+                        <div className="inner">
+                          <p>본 상담 신청 고객은 개인정보 수집·이용에 대하여 동의를 거부할 권리를 가지고 있으며, 미 동의 시 상담를 신청하실 수 없습니다.</p>
+                          <p>개인정보 수집·이용에 대한 동의</p>
+                          <p> - 목적: 상담 신청 시 본인 확인 및 개별 연락</p>
+                          <p> - 항목: 이름, 휴대전화 번호</p>
+                          <p> - 보유기간: 동의(신청) 시점 후 180일</p>
+                        </div>
+                      </Accordion.Panel>
+                    </Accordion>
+                  </div>
                 </div>
               </div>
             ):(
@@ -85,7 +93,7 @@ const IndexPage = () => {
               </div>
             )}
           </form>
-        </div>
+        
 
         
 
