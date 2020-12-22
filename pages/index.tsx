@@ -1,97 +1,105 @@
 import Layout from '../layout/DefaultLayout'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { withApollo } from 'react-apollo'
 import { Modal, WingBlank, Carousel, Accordion } from 'antd-mobile'
+import { gql, useMutation } from '@apollo/client'
 
-class IndexPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modal2: false,
-    };
+const CREATE_USER_MUTATION = gql`
+  mutation signUpUser2($name: String, $phn: String) {
+    signUpUser2(name: $name, phn: $phn) {
+      id
+    }
   }
-  showModal = key => (e) => {
-    e.preventDefault();
-    this.setState({
-      [key]: true,
-    });
+`
+
+const IndexPage = () => {
+  const [modalView, setModalView] = useState(false)
+  const [name, setName] = useState('')
+  const [phn, setPhn] = useState('')
+  const [completed, setCompleted] = useState(false)
+  const [createUser, { data }] = useMutation(CREATE_USER_MUTATION);
+
+  const onChangeName = e => {
+    setName(e.target.value)
   }
-  onClose = key => () => {
-    this.setState({
-      [key]: false,
-    });
+  const onChangePhn = e => {
+    setPhn(e.target.value)
   }
 
-  render(){
-    return(
-      <Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스">
+  return(
+    <Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스">
       <Modal
         popup
-        visible={this.state.modal2}
-        onClose={this.onClose('modal2')}
+        visible={modalView}
+        onClose={()=>{setModalView(false)}}
         animationType="slide-up"
       >
-
         <div className="modalWrap kakao__1">
-          <button className="closeBtn" onClick={this.onClose('modal2')}><img src="/static/img/newLanding/close-btn.png" alt="" /></button>
+          <button className="closeBtn" onClick={()=>{setModalView(false)}}><img src="/static/img/newLanding/close-btn.png" alt="" /></button>
           <div className="modalDesc">
             <p className="main">내 안경이 불편한 이유<br/>안경은 나에게 어울리지 않는다는 편견,<br/><strong>어떤 안경 고민을 가지고 계시나요?</strong></p>
             <p className="sub">나의 안경에 대해 알아가는 첫걸음을<br/><strong>플로브 안경 카운셀러</strong>와 시작하세요.</p>
           </div>
-          <div className="kakaoForm">
-            <input className="name" type="text" name="name" placeholder={'이름'} maxLength="20"/>
-            {/*
-            <select className="birthyear" name="birthyear" required>
-              <option value="" selected disabled>출생연도 선택</option>
-              <option value="19">2001</option>
-              <option value="19">2002</option>
-              <option value="19">2003</option>
-            </select>
-            <select className="gender" name="gender" required>
-              <option value="" selected disabled>성별 선택</option>
-              <option value="male">남</option>
-              <option value="female">여</option>
-            </select>
-            */}
-            <input className="tel" type="tel" name="phoneNumber" placeholder={'휴대폰 번호 (  \'-\' 없이 숫자만 입력 )'} maxLength="11" />
-            <button className="disabled">안경 무료상담 받기</button>
-            {/*<button>안경 무료상담 받기</button>*/}
-            <div className="policy">
-              <Accordion className="my-accordion" >
-                <Accordion.Panel header="개인정보 수집·이용 동의함">
-                  <div className="inner">
-                    <p>본 상담 신청 고객은 개인정보 수집·이용에 대하여 동의를 거부할 권리를 가지고 있으며, 미 동의 시 상담를 신청하실 수 없습니다.</p>
-                    <p>개인정보 수집·이용에 대한 동의</p>
-                    <p> - 목적: 상담 신청 시 본인 확인 및 개별 연락</p>
-                    <p> - 항목: 이름, 휴대전화 번호</p>
-                    <p> - 보유기간: 동의(신청) 시점 후 180일</p>
-                  </div>
-                </Accordion.Panel>
-              </Accordion>
-            </div>
-          </div>
+          <form
+            onSubmit={e => {
+              e.preventDefault()
+              console.log('work')
+              createUser({ variables: { name: name, phn: phn } })
+              console.log('work2')
+              setName('')
+              setPhn('')
+              setCompleted(true)
+            }}
+          >
+            {completed === false ? (
+              <div className="kakaoForm">
+                <input className="name" type="text" name="name" placeholder={'이름'} maxLength="20" value={name} onChange={onChangeName}/>
+                <input className="tel" type="tel" name="phoneNumber" placeholder={'휴대폰 번호 (  \'-\' 없이 숫자만 입력 )'} maxLength="11" value={phn} onChange={onChangePhn}/>
+                {phn.length === 11 ? (
+                  <button type="submit">안경 무료상담 받기</button>
+                ):(
+                  <button className="disabled">안경 무료상담 받기</button>
+                )}
+                <div className="policy">
+                  <Accordion className="my-accordion" >
+                    <Accordion.Panel header="개인정보 수집·이용 동의함">
+                      <div className="inner">
+                        <p>본 상담 신청 고객은 개인정보 수집·이용에 대하여 동의를 거부할 권리를 가지고 있으며, 미 동의 시 상담를 신청하실 수 없습니다.</p>
+                        <p>개인정보 수집·이용에 대한 동의</p>
+                        <p> - 목적: 상담 신청 시 본인 확인 및 개별 연락</p>
+                        <p> - 항목: 이름, 휴대전화 번호</p>
+                        <p> - 보유기간: 동의(신청) 시점 후 180일</p>
+                      </div>
+                    </Accordion.Panel>
+                  </Accordion>
+                </div>
+              </div>
+            ):(
+              <div className="modalWrap kakao__2">
+                <div className="modalDesc">
+                  <p className="main">플로브의 안경 카운셀러와<br />카카오톡 상담이 시작됩니다.<br /><strong>카카오톡 어플을 확인해주세요!</strong></p>
+                  <p className="sub"><u>상담시간 : 오전 9시 ~ 오후 7시</u></p>
+                  <p className="sub__2">*상담 시간 이외에 접수된 신청은<br />순차적으로 상담 가능 시간에 연락을 드립니다.</p>
+                </div>
+                <button className="confirm" type="button" onClick={()=>{setModalView(false)}}>확인</button>
+                <button className="closeBtn" onClick={()=>{setModalView(false)}}><img src="/static/img/newLanding/close-btn.png" alt="" /></button>
+              </div>
+            )}
+          </form>
         </div>
-        {/*
-        <div className="modalWrap kakao__2">
-          <div className="modalDesc">
-            <p className="main">플로브의 안경 카운셀러와<br />카카오톡 상담이 시작됩니다.<br /><strong>카카오톡 어플을 확인해주세요!</strong></p>
-            <p className="sub"><u>상담시간 : 오전 9시 ~ 오후 7시</u></p>
-            <p className="sub__2">*상담 시간 이외에 접수된 신청은<br />순차적으로 상담 가능 시간에 연락을 드립니다.</p>
-          </div>
-          <button className="confirm" type="button" onClick={this.onClose('modal2')}>확인</button>
-          <button className="closeBtn" onClick={this.onClose('modal2')}><img src="/static/img/newLanding/close-btn.png" alt="" /></button>
-        </div>
-        */}
+
+        
 
       </Modal>
 
-  <div className="indexWrap">
+      <div className="indexWrap">
 
     <div className="top">
       <div className="banner">[안경 기부 이벤트] 최대 8만원 할인 혜택 중</div>
       <div className="con">
         <div className="inner">
           <p className="txt">나의 눈을 위한<br/>안경 큐레이션 서비스</p>
-          <button className="cta" onClick={this.showModal('modal2')}>안경 무료상담 받기</button>
+          <button className="cta" onClick={()=>{setModalView(true)}}>안경 무료상담 받기</button>
         </div>
         <div className="scroll-arrow"><div className="img"><img src="/static/img/newLanding/vv_w.png" alt="" /></div></div>
       </div>
@@ -300,7 +308,7 @@ class IndexPage extends React.Component {
     <div className="bottom">
       <div className="con">
         <div className="inner">
-          <button className="cta" onClick={this.showModal('modal2')}>안경 무료상담 받기</button>
+          <button className="cta" onClick={()=>{setModalView(true)}}>안경 무료상담 받기</button>
         </div>
       </div>
       <div className="footer">
@@ -321,9 +329,8 @@ class IndexPage extends React.Component {
 
   </div>
 
-</Layout>
-    )
-  }
+      </Layout>
+  )
 }
 
 export default IndexPage
