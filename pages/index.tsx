@@ -16,12 +16,12 @@ const IndexPage = () => {
   const [name, setName] = useState('')
   const [phn, setPhn] = useState('')
   const [completed, setCompleted] = useState(false)
-  const [createUser, { data }] = useMutation(CREATE_USER_MUTATION);
+  const [createUser] = useMutation(CREATE_USER_MUTATION);
 
-  const onChangeName = e => {
+  const onChangeName = (e:any) => {
     setName(e.target.value)
   }
-  const onChangePhn = e => {
+  const onChangePhn = (e:any) => {
     setPhn(e.target.value)
   }
 
@@ -52,8 +52,8 @@ const IndexPage = () => {
           >
             {completed === false ? (
               <div className="kakaoForm">
-                <input className="name" type="text" name="name" placeholder={'이름'} maxLength="20" value={name} onChange={onChangeName}/>
-                <input className="tel" type="tel" name="phoneNumber" placeholder={'휴대폰 번호 (  \'-\' 없이 숫자만 입력 )'} maxLength="11" value={phn} onChange={onChangePhn}/>
+                <input className="name" type="text" name="name" placeholder={'이름'} maxLength={20} value={name} onChange={onChangeName}/>
+                <input className="tel" type="tel" name="phoneNumber" placeholder={'휴대폰 번호 (  \'-\' 없이 숫자만 입력 )'} maxLength={11} value={phn} onChange={onChangePhn}/>
                 {phn.length === 11 ? (
                   <button type="submit">안경 무료상담 받기</button>
                 ):(
