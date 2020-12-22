@@ -343,7 +343,12 @@
 
 .slider-decorator-0 {bottom:-39px!important}
 .am-modal-wrap.am-modal-wrap-popup {margin:0 auto;width:100%;max-width:480px}
-.am-modal.am-modal-popup.am-modal-popup-slide-up {width:100%;max-width:480px;height:85vh;max-height:524px;overflow: hidden;border-radius: 20px 20px 0 0!important;background:#fff}
+.am-modal.am-modal-popup.am-modal-popup-slide-up {
+  width:100%;max-width:480px;height:85vh;max-height:524px;overflow: hidden;border-radius: 20px 20px 0 0!important;background:#fff;
+  @include responsive("desktop") {
+    max-height:620px;
+  }
+}
 .am-accordion::before, .am-accordion-header::after {display:none!important}
 .am-accordion-header {height:40px!important;line-height:40px!important;cursor: pointer;padding-left:8px!important;text-align:left;font-size:14px!important;text-decoration: underline;color:#33343a!important}
 .am-accordion-header i {top:11px!important;left:168px!important;right:auto!important;width:14px!important;height:14px!important}
@@ -351,7 +356,7 @@
 .modalWrap {
   position: relative;
   .modalDesc {
-    padding:48px 20px 0;width:100%;color:#33343a;
+    padding:64px 20px 0;width:100%;color:#33343a;
     .main {font-size:20px;font-weight:300;line-height:30px;text-align:center}
     .sub {margin:24px 0 0;font-size:16px;font-weight:300;text-align:center;line-height:27px}
     @include responsive("desktop") {
@@ -402,13 +407,14 @@
     }
   }
   .closeBtn {
-    display: none;
     position: absolute;
-    top:32px;
-    right:32px;
-    width:20px;
+    top:24px;
+    right:24px;
+    width:16px;
     @include responsive("desktop") {
       display: block;
+      top:32px;
+      right:32px;
     }
   }
 }
