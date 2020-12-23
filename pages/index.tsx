@@ -124,7 +124,7 @@ const IndexPage = () => {
                   <input className="name" type="text" name="name" placeholder={'이름'} maxLength={20} value={name} onChange={onChangeName} />
                   <input className="tel" type="tel" name="phoneNumber" placeholder={'휴대폰 번호 (  \'-\' 없이 숫자만 입력 )'} maxLength={13} value={phn} onChange={onChangePhn} />
                   {phn.length >= 12 && name !== '' ? (
-                    <button /* type="submit" */ onClick={() => { handleGtag2() }}>안경 무료상담 받기</button>
+                    <button className="gtm-033" onClick={() => { handleGtag2() }}>안경 무료상담 받기</button>
                   ) : (
                       <button className="disabled" disabled>안경 무료상담 받기</button>
                     )}
@@ -152,7 +152,7 @@ const IndexPage = () => {
                   <p className="sub__2">*상담 시간 이외에 접수된 신청은<br />순차적으로 상담 가능 시간에 연락을 드립니다.</p>
                 </div>
                 <button className="confirm" type="button" onClick={() => { setModalView(false) }}>확인</button>
-                <button className="closeBtn" onClick={() => { setModalView(false) }}><img src="/static/img/newLanding/close-btn.png" alt="" /></button>
+                <button className="gtm-034 closeBtn" onClick={() => { setModalView(false) }}><img src="/static/img/newLanding/close-btn.png" alt="" /></button>
               </div>
             )}
         </Modal>
@@ -169,7 +169,7 @@ const IndexPage = () => {
             <div className="con">
               <div className="inner">
                 <p className="txt">나의 눈을 위한<br />안경 큐레이션 서비스</p>
-                <button className="cta" onClick={() => {
+                <button className="gtm-001 cta" onClick={() => {
                   setModalView(true)
                   handleGtag1()
                 }}>안경 무료상담 받기</button>
