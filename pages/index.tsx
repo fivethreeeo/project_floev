@@ -163,7 +163,7 @@ const IndexPage = () => {
           <div className="kakaoLinkWrap">
             <div id="plusfriend-chat-button" className="kakaoBtn">
               {/* <div id="kakao-talk-channel-chat-button" className="kakaoBtn"> */}
-              <img src="/static/img/newlanding/kakao.png" alt="" />
+              <img src="/static/img/newLanding/kakao.png" alt="" />
             </div>
           </div>
 
