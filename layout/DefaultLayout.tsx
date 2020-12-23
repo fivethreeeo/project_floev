@@ -25,16 +25,12 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
     </footer>
     <style global jsx>{`
 
-      /* kakao channel button */
-      #kakao-talk-channel-chat-button a img {display:none}
+      /* kakao plusFriend button */
+      #plusfriend-chat-button a img {display:none}
       .kakaoLinkWrap {position:fixed;bottom:0;width:100%;max-width:640px;z-index:5000}
       .kakaoBtn {position:absolute;right:16px;bottom:16px;width:48px;height:48px}
       .kakaoBtn a {position:relative;width:48px;height:48px;display:block;margin-top:-48px}
       .kakaoBtn img {position:relative;width:100%}
-      #kakao-talk-channel-chat-button.btnAsk a {position:static;display:block;height:48px;margin-top:-48px}
-
-      /* kakao channel button */
-      #plusfriend-chat-button a img {display:none}
       #plusfriend-chat-button.btnAsk a {position:static;display:block;height:48px;margin-top:-48px}
 
     `}</style>
