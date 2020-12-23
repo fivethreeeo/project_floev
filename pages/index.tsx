@@ -157,13 +157,16 @@ const IndexPage = () => {
             )}
         </Modal>
 
-        <div className="kakaoLinkWrap">
-          <div id="plusfriend-chat-button" className="kakaoBtn">
-            {/* <div id="kakao-talk-channel-chat-button" className="kakaoBtn"> */}
-            <img src="/static/new/kakao.png" alt="" />
-          </div>
-        </div>
+
         <div className="indexWrap">
+
+          <div className="kakaoLinkWrap">
+            <div id="plusfriend-chat-button" className="kakaoBtn">
+              {/* <div id="kakao-talk-channel-chat-button" className="kakaoBtn"> */}
+              <img src="/static/img/newlanding/kakao.png" alt="" />
+            </div>
+          </div>
+
           <div className="top">
             <div className="banner">[안경 기부 이벤트] 최대 8만원 할인 혜택 중</div>
             <div className="con">
