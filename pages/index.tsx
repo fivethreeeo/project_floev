@@ -316,6 +316,7 @@ const IndexPage = () => {
                     <p className="fontR">01</p>
                     <p>설문을 통해 준비된 추천 안경테</p>
                     <p>설문을 통해 라이프 스타일, 시력 문제, 평소의 고민을 알려주세요.<br />플로브와 약속한 시간에 라운지에 방문하시면 설문을 바탕으로 추천된 16개의 브랜드 안경테를 받아볼 수 있습니다.</p>
+                    <div className="brandLink"><a className="gtm-004" href="/brand">플로브 <span className="fontR">MD</span>가 선택한 브랜드 &#xE001;</a></div>
                   </div>
                 </div>
                 <div className="descWrap">
