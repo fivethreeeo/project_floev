@@ -439,3 +439,28 @@
       .goBackBtnWrap .goBackBtn {cursor:pointer;float:left;margin:20px 0 0 20px;width:40px;height:40px;background:url(/static/img/newLanding/goBackBtn.png) center center / cover no-repeat;border-radius:100%}
       .goBackBtnWrap .goBackBtn a {display:block;height:40px}
       .headroom {display:block;content:'';clear:both;height:80px}
+      /* 브랜드 페이지 */
+      .brandWrap .titWrap, .brandWrap .infoWrap, .brandWrap .descWrap {margin-bottom:40px}
+      .brandWrap .caption {font-size:20px;font-weight:bold;margin:24px 0;padding:0 20px}
+      .brandWrap .titWrap .titImg img, .brandWrap .descWrap .mainImg img, .brandWrap .descWrap .subImg img {width:100%}
+      .brandWrap .titWrap {position:relative}
+      .brandWrap .titWrap .titTxt {position:absolute;z-index:910;bottom:24px;left:24px;right:24px}
+      .brandWrap .titWrap .en, .titWrap .ko {color:#fff;font-weight:700}
+      .brandWrap .titWrap .en {font-size:24px}
+      .brandWrap .titWrap .ko {font-size:32px;margin:4px 0 0}
+      .brandWrap .titWrap .bgBk {position:absolute;top:0;left:0;bottom:0;right:0;background:rgba(0,0,0,0.3);z-index:900}
+      .brandWrap .descWrap {padding:0 0 64px}
+      .brandWrap .descWrap .mainTxt, .brandWrap .descWrap .mainDesc, .brandWrap .descWrap .subTxt, .brandWrap .descWrap .subDesc {padding:0 20px}
+      .brandWrap .descWrap .mainTxt {margin:20px 0 0;font-size:18px;font-weight:bold;line-height:28px;word-break:keep-all}
+      .brandWrap .descWrap .mainDesc, .brandWrap .descWrap .subDesc {margin:16px 0 0;font-size:17px;line-height:28px}
+      .brandWrap .descWrap .subImg {margin:48px 0 0}
+      .brandWrap .descWrap .subTxt {margin:20px 0 0;font-size:18px;font-weight:bold;word-break:keep-all}
+      .brandWrap .specTable {padding:0 20px}
+      .brandWrap .specTable li {border-bottom:1px solid #eceeef}
+      .brandWrap .specTable li:nth-child(1) {padding:0 16px;height:48px;font-size:13px;font-weight:bold;line-height:44px;border-top:2px solid #ADAFB0;border-bottom:2px solid #ADAFB0}
+      .brandWrap .specTable li:nth-child(n+2) {padding:10px 16px;font-size:13px}
+      .brandWrap .specTable li:last-child {border-bottom:2px solid #ADAFB0}
+      .brandWrap .specTable li:after {display:block;clear:both;content:''}
+      .brandWrap .specTable li span {float:left}
+      .brandWrap .specTable li span:nth-child(1) {width:50%}
+      .brandWrap .specTable li span:nth-child(2) {width:50%;text-align:right;word-break:break-all}

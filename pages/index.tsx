@@ -390,7 +390,7 @@ const IndexPage = () => {
                 <li><span>개인정보책임자</span><span>엄태산</span></li>
               </ul>
               <div>
-                <a href="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=6998601370" target="_blank">사업자정보확인</a>
+                <a href="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=6998601370" target="_blank">사업자정보확인</a>|<a href="/service-policy"><span>서비스 정책 안내</span></a>
               </div>
             </div>
           </div>
