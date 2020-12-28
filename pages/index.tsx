@@ -96,6 +96,11 @@ const IndexPage = () => {
         }
       `}}
         />
+        {/* Kakao Pixel */}
+        <script type="text/javascript" charSet="UTF-8" src="//t1.daumcdn.net/adfit/static/kp.js"></script>
+        <script type="text/javascript">
+          kakaoPixel('784604748053330030').pageView('arrivehome');
+        </script>
       </Head>
       <Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스">
         <Modal
