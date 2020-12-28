@@ -386,7 +386,7 @@ const IndexPage = () => {
           <div className="bottom">
             <div className="con">
               <div className="inner">
-                <button className="cta" onClick={() => { setModalView(true) }}>플로브 시작하기</button>
+                <button className="gtm-034 cta" onClick={() => { setModalView(true) }}>플로브 시작하기</button>
               </div>
             </div>
             <div className="footer">
