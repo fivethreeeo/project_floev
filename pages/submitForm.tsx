@@ -60,12 +60,6 @@ const IndexPage = () => {
     }
   }, [phn])
 
-  const handleGtag1 = () => {
-    if (process.browser) {
-      gtag_button1()
-    }
-  }
-
   const handleGtag2 = () => {
     if (process.browser) {
       gtag_button2()
@@ -161,8 +155,7 @@ const IndexPage = () => {
                   <p className="sub"><u>상담시간 : 오전 10시 ~ 오후 7시</u></p>
                   <p className="sub__2">*상담 시간 이외에 접수된 신청은<br />순차적으로 상담 가능 시간에 연락을 드립니다.</p>
                 </div>
-                <button className="confirm" type="button" onClick={() => { setModalView(false) }}>확인</button>
-                <button className="closeBtn" onClick={() => { setModalView(false) }}><img src="/static/img/newLanding/close-btn.png" alt="" /></button>
+                <a href="/" className="confirm" style={{display:'block',lineHeight:'44px'}} type="button">확인</a>
               </div>
             )}
         </Modal>
