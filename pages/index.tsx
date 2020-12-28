@@ -121,8 +121,8 @@ const IndexPage = () => {
                 }}
               >
                 <div className="kakaoForm">
-                  <input className="name" type="text" name="name" placeholder={'이름'} maxLength={20} value={name} onChange={onChangeName} />
-                  <input className="tel" type="tel" name="phoneNumber" placeholder={'휴대폰 번호 (  \'-\' 없이 숫자만 입력 )'} maxLength={13} value={phn} onChange={onChangePhn} />
+                  <input className="name data-hj-allow" type="text" name="name" placeholder={'이름'} maxLength={20} value={name} onChange={onChangeName} />
+                  <input className="tel data-hj-allow" type="tel" name="phoneNumber" placeholder={'휴대폰 번호 (  \'-\' 없이 숫자만 입력 )'} maxLength={13} value={phn} onChange={onChangePhn} />
                   {phn.length >= 12 && name !== '' ? (
                     <button className="gtm-033" onClick={() => { handleGtag2() }}>안경 무료상담 받기</button>
                   ) : (
