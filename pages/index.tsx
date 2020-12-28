@@ -119,6 +119,10 @@ const IndexPage = () => {
               <form
                 onSubmit={e => {
                   e.preventDefault()
+                  window.analytics.identify({
+                    name: name,
+                    phn: phn,
+                  })
                   createUser({ variables: { name: name, phn: phn } })
                   setName('')
                   setPhn('')
@@ -129,7 +133,7 @@ const IndexPage = () => {
                   <input className="name data-hj-allow" type="text" name="name" placeholder={'이름'} maxLength={20} value={name} onChange={onChangeName} />
                   <input className="tel data-hj-allow" type="tel" name="phoneNumber" placeholder={'휴대폰 번호 (  \'-\' 없이 숫자만 입력 )'} maxLength={13} value={phn} onChange={onChangePhn} />
                   {phn.length >= 12 && name !== '' ? (
-                    <button className="gtm-033" onClick={() => { handleGtag2() }}>안경 무료상담 받기</button>
+                    <button type="submit" className="gtm-033" onClick={() => { handleGtag2() }}>안경 무료상담 받기</button>
                   ) : (
                       <button className="disabled" disabled>안경 무료상담 받기</button>
                     )}
