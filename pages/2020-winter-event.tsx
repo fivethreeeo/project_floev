@@ -7,7 +7,7 @@ const EventPage = () => {
     return (
         <Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스">
         <div className="global640"><div className="goBackBtnWrap"><div className="goBackBtn" onClick={() => Router.back()}></div></div></div>
-        <div className="wrap">
+        <div className="wrap global640">
           <div className="event event__1">
             <div className="title"><strong>EVENT 1</strong></div>
             <div className="h1">첫눈을 기다리는 마음<br/>안경을 기부하세요.</div>

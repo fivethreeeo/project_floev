@@ -7,15 +7,20 @@
 
 .top {
   margin: 0 0 84px;
-  .banner a {
-    display:block;
-    background: #64433f;
-    height: 40px;
-    line-height: 41px;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 400;
-    color: #fff;
+  .banner {
+    position: fixed;
+    width:100%;
+    max-width:640px;
+    a {
+     display:block;
+     background: #64433f;
+     height: 40px;
+     line-height: 41px;
+     text-align: center;
+     font-size: 14px;
+     font-weight: 400;
+     color: #fff;
+   }
   }
   .inner {
     padding: 0 24px;

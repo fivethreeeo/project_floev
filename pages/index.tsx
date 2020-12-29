@@ -374,8 +374,8 @@ const IndexPage = () => {
                     cellSpacing={8}
                     slideWidth={0.9}
                   >
-                    <div className="cardLounge one"><a className="gtm-006" target="_blank" href="https://m.map.naver.com/search2/site.nhn?query=%EC%97%AD%EC%82%BC%20%ED%94%8C%EB%A1%9C%EB%B8%8C&sm=hty&style=v5&code=1175801694"><p className="gtm-006">라운지 역삼성당 &#xE001;</p></a></div>
-                    <div className="cardLounge two"><a target="_blank" href="https://m.map.naver.com/search2/site.nhn?query=%ED%94%8C%EB%A1%9C%EB%B8%8C&sm=hty&style=v5&code=1814217589"><p className="gtm-006">라운지 강남 &#xE001;</p></a></div>
+                    <div className="cardLounge one"><a href="/lounge/yeoksam"><p className="gtm-006">라운지 역삼성당 &#xE001;</p></a></div>
+                    <div className="cardLounge two"><a href="/lounge/gangnam"><p className="gtm-006">라운지 강남 &#xE001;</p></a></div>
                   </Carousel>
                 </WingBlank>
               </div>
