@@ -31,6 +31,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <script src="https://www.googleoptimize.com/optimize.js?id=OPT-PLBBV7J"></script>
           <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
           <script dangerouslySetInnerHTML={{ __html: this.renderSnippet() }} />
           <script async src="https://www.googletagmanager.com/gtag/js?id=AW-738487034"></script>
