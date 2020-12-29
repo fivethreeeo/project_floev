@@ -176,7 +176,7 @@ const IndexPage = () => {
                 <button className="gtm-001 cta" onClick={() => {
                   setModalView(true)
                   handleGtag1()
-                }}>플로브 시작하기</button>
+                }}>안경 무료상담 받기</button>
               </div>
               <div className="scroll-arrow"><div className="img"><img src="/static/img/newLanding/vv_w.png" alt="" /></div></div>
             </div>
@@ -386,7 +386,7 @@ const IndexPage = () => {
           <div className="bottom">
             <div className="con">
               <div className="inner">
-                <button className="gtm-002 cta" onClick={() => { setModalView(true) }}>플로브 시작하기</button>
+                <button className="gtm-002 cta" onClick={() => { setModalView(true) }}>안경 무료상담 받기</button>
               </div>
             </div>
             <div className="footer">
