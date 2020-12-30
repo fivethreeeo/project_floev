@@ -11,8 +11,8 @@ const BrandPage = () => {
 
         <div className="brandList">
             <div className="top">
-              <p>안경브랜드</p>
-              <p>내구성이 좋은 소재, 디자인 디테일, 마감의 완성도, 브랜드 철학에 따라 엄선한 브랜드리스트 입니다.</p>
+              <p>플로브 추천 안경</p>
+              <p>2년 이상 튼튼하게 사용할 수 있는 품질, 내 얼굴에 딱 맞춰 편하게 사용할 수 있는 구조적 견고함, 딱 봐도 끌리는 디자인을 가진 안경 브랜드를 플로브에서 만날 수 있어요.</p>
             </div>
             <div className="listWrap">
               <ul>
@@ -126,7 +126,7 @@ const BrandPage = () => {
           .brandList {padding:64px 24px 80px}
           .brandList .top {margin:32px 0 24px}
           .brandList .top p:first-child {font-size:24px;font-weight:bold}
-          .brandList .top p:last-child {font-size:15px;margin-top:16px;line-height:24px;word-break:keep-all}
+          .brandList .top p:last-child {font-size:16px;margin-top:16px;line-height:28px;word-break:keep-all}
           .listWrap li {padding:12px 8px;border-bottom:1px solid #d6d7d8}
           .listWrap li:after {display:block;clear:both;content:''}
           .listWrap .img {float:left;width:80px;height:80px;background:#000}

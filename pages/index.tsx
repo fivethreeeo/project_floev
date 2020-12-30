@@ -185,8 +185,8 @@ const IndexPage = () => {
           <div className="middle">
 
             <div className="sec pod">
-              <p>we care. we listen. we recommend.</p>
-              <p>수많은 안경 속, 나에게 맞는 안경은 어떤 것일까 고민한 적 있으신가요?<br />눈 건강과 라이프스타일을 반영한 플로브 큐레이션을 경험하세요.</p>
+              <p>we listen. we recommend. we care.</p>
+              <p>수많은 안경 속, 나에게 맞는 안경은 어떤 것일까 고민한 적 있으신가요?<br />나의 불편함을 해결하고 나의 이미지와 취향에 맞는 안경을 큐레이션 받으세요.</p>
             </div>
 
             <div className="sec story">
