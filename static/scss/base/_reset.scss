@@ -9,7 +9,6 @@ html {
   overflow-y: scroll;
 }
 body {
-  background-color:#fff;
   margin: 0;
   font-size: 0.75em;
   line-height: 1.5;
@@ -141,7 +140,6 @@ pre {
 }
 a:link,
 a:visited {
-  color: blue;
   text-decoration: none;
 }
 ul,
@@ -155,10 +153,6 @@ dd {
 ul,
 li {
   list-style: none;
-}
-img {
-  width:100%;
-  vertical-align: top;
 }
 strong {
   font-weight: bold;

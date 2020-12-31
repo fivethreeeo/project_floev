@@ -22,14 +22,14 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
     </header>
     {children}
     <footer>
-    </footer>
-    <div className="global640">
+      <div className="global1280">
       <div className="kakaoLinkWrap">
         <div id="plusfriend-chat-button" className="kakaoBtn">
           <img src="/static/img/newLanding/kakao.png" alt="" />
         </div>
       </div>
-    </div>
+      </div>
+    </footer>
   </div>
 )
 export default Layout
