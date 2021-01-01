@@ -30,7 +30,6 @@
 		}
 		&__nav {
 			float:right;
-			ul {}
 			
 			li {
 				display:inline-block;
@@ -266,9 +265,6 @@
 				span {display:block;}
 			}
 		}
-		&__carousel {
-
-		}
 		&__card {
 			@include flexbox(nowrap);
 			padding: 64px 64px 96px;
@@ -279,9 +275,6 @@
 				display:block;
 				padding:24px 24px 0;
 			}
-		}
-		&__img-wrap {
-
 		}
 		&__img {
 			width:280px;
@@ -346,9 +339,6 @@
 			@include responsive("mobile") {
 				position: static!important;
 			}
-		}
-		.slider-slide {
-
 		}
 		.btn-carousel-wrap {
 			position: absolute;
