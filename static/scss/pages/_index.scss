@@ -49,7 +49,7 @@
 	}
 
 	.main-visual {
-		@include el-size(100%,86vh);
+		@include el-size(100%,88vh);
 		max-height:560px;
 		background:#fff9e7;
 		@include responsive("mobile") {
@@ -102,6 +102,11 @@
 			width:100%!important;
 			max-width:484px;
 			overflow:hidden;
+			img {
+				@include responsive("mobile") {
+					margin-top:-32px;
+				  }
+			}
 			@include responsive("mobile") {
 				max-width:320px;
 				margin: 0 auto;
