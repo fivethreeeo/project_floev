@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Layout from '../layout/DefaultLayout'
 import React, { useEffect, useState } from 'react'
-import { Modal, WingBlank, Carousel, Accordion, Button } from 'antd-mobile'
+import { Modal, Carousel, Accordion } from 'antd-mobile'
 import { gql, useMutation } from '@apollo/client'
 
 const CREATE_USER_MUTATION = gql`
@@ -183,11 +183,8 @@ const IndexPage = () => {
 						<Carousel className="main-visual__img"
 							vertical
 							dots={false}
-							dragging={false}
-							swiping={false}
-							autoplay
+							autoplay={false}
 							infinite
-							speed={1500}
 						>
 							<div><img src="/static/img/newLanding/counselor_w.gif" alt="메인 비주얼 이미지1"/></div>
 							<div><img src="/static/img/newLanding/counselor_m.gif" alt="메인 비주얼 이미지2"/></div>
@@ -198,11 +195,8 @@ const IndexPage = () => {
 							<Carousel className="main-visual__title"
 								vertical
 								dots={false}
-								dragging={false}
-								swiping={false}
-								autoplay
+								autoplay={false}
 								infinite
-								speed={1500}
 							>
 								<p className=""><strong>나에게 맞는 안경</strong>을 찾는 것,<br/>플로브에서는 쉬워요.</p>
 								<p className=""><strong>나만의 안경 찾기,</strong><br/>쉽고 정확한 안경 큐레이션</p>
