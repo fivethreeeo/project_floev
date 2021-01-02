@@ -180,14 +180,7 @@ const IndexPage = () => {
 			<div className="main-visual">
 				<div className="main-visual__inner">
 					<div className="main-visual__img-wrap">
-						<Carousel className="main-visual__img"
-							vertical
-							dots={false}
-							autoplay={false}
-							infinite
-						>
 							<div><img src="/static/img/newLanding/counselor_w.gif" alt="메인 비주얼 이미지1"/></div>s
-						</Carousel>
 					</div>
 					<div className="main-visual__desc-wrap">
 						<div className="desc-wrap__inner">
