@@ -195,7 +195,7 @@ const IndexPage = () => {
 							<Carousel className="main-visual__title"
 								vertical
 								dots={false}
-								autoplay={false}
+								autoplay
 								infinite
 							>
 								<p className=""><strong>나에게 맞는 안경</strong>을 찾는 것,<br/>플로브에서는 쉬워요.</p>
