@@ -241,7 +241,7 @@ const IndexPage = () => {
 									<div className="find-story__tag">고도근시</div>
 								</div>
 								<div className="find-story__story-title">안경테 디자인은 항상 비슷하게, 렌즈는 n번 압축 정도?</div>
-								<div className="find-story__story-content">지금껏 안경을 맞출 땐 주위가 시끌벅적하고 계속 손님들이 오는 상황에서 급하게 맞추었어요. 안경테 디자인은 항상 쓰던 것과 비슷하게, 렌즈는 안과 검진표대로, 렌즈 선택은 n번 압축 정도?<br/>플로브는 정밀한 검사와 디자인 추천까지, 또 양쪽 눈 중 어느 쪽을 더 많이 사용하는지 등 하나하나 설명과 함께 나와 어울리는 안경을 찾을 수 있도록 상담해 주셔서 너무 좋았습니다.</div>
+								<div className="find-story__story-content">지금껏 안경을 맞출 땐 주위가 시끌벅적하고 계속 손님들이 오는 상황에서 급하게 맞추었어요. 안경테 디자인은 항상 쓰던 것과 비슷하게, 렌즈는 안과 검진표대로, 렌즈 선택은 n번 압축 정도?<br/>플로브는 정밀한 검사와 디자인 추천까지, 또 양쪽 눈 중 어느 쪽을 더 많이 사용하는지 등 하나하나 설명과 함께 나와 어울리는 안경을 찾을 수 있도록 상담해 주셔서 너무 좋았습니다.<br/></div>
 								<div className="find-story__customer">김** 님</div>
 							</div>
 						</div>
@@ -255,7 +255,7 @@ const IndexPage = () => {
 									<div className="find-story__tag">시각불편</div>
 								</div>
 								<div className="find-story__story-title">안과나 안경점에 갈 정도는 아니라고 생각했지만..</div>
-								<div className="find-story__story-content">눈이 쉽게 피로가 오고, 항상 컴퓨터 업무를 하다 보니 앞이 갑자기 잘 안 보일 때가 있었는데요 안과나 안경점에 갈 정도는 아니라고 생각했지만..<br/> 서비스를 받고 나서 제 눈에 대해서 이해할 수 있었고 디자인 예쁜 안경을 맞출 수 있어서 외모가 더 빛을 발하는 것 같네요! 제가 좋아서 남자친구도 플로브에서 맞추게 했는데 이전 안경에서 있던 묘한 두통이 사라졌다고 하네요!</div>
+								<div className="find-story__story-content">눈이 쉽게 피로가 오고, 항상 컴퓨터 업무를 하다 보니 앞이 갑자기 잘 안 보일 때가 있었는데요 안과나 안경점에 갈 정도는 아니라고 생각했지만..<br/> 서비스를 받고 나서 제 눈에 대해서 이해할 수 있었고 디자인 예쁜 안경을 맞출 수 있어서 외모가 더 빛을 발하는 것 같네요! 제가 좋아서 남자친구도 플로브에서 맞추게 했는데 이전 안경에서 있던 묘한 두통이 사라졌다고 하네요!<br/></div>
 								<div className="find-story__customer">김** 님</div>
 							</div>
 						</div>
@@ -269,7 +269,7 @@ const IndexPage = () => {
 									<div className="find-story__tag">라섹/라식</div>
 								</div>
 								<div className="find-story__story-title">라섹을 했기 때문에 보는 것에는 문제가 없지만,</div>
-								<div className="find-story__story-content">이직을 준비하며 컴퓨터를 사용하는 경우가 많아져서 그런지 눈이 많이 피로하다는 것이 느껴졌어요. 사실 라섹을 했기 때문에 보는 것에는 문제가 없지만 여자친구의 추천으로 데이트 겸 플로브에 갔어요.<br/>저만을 위해 다양한 안경테를 추천해 줘서 선택의 폭이 넓었다는 게 좋았습니다. 다양한 느낌을 재미있게 착용해보니 나에게 잘 어울리는 안경이 어떤 건지 알겠더라구요!</div>
+								<div className="find-story__story-content">이직을 준비하며 컴퓨터를 사용하는 경우가 많아져서 그런지 눈이 많이 피로하다는 것이 느껴졌어요. 사실 라섹을 했기 때문에 보는 것에는 문제가 없지만 여자친구의 추천으로 데이트 겸 플로브에 갔어요.<br/>저만을 위해 다양한 안경테를 추천해 줘서 선택의 폭이 넓었다는 게 좋았습니다. 다양한 느낌을 재미있게 착용해보니 나에게 잘 어울리는 안경이 어떤 건지 알겠더라구요!<br/></div>
 								<div className="find-story__customer">김** 님</div>
 							</div>
 						</div>
@@ -284,7 +284,7 @@ const IndexPage = () => {
 									<div className="find-story__tag">테불편</div>
 								</div>
 								<div className="find-story__story-title">안경을 쓰면 하염없이 못생겨지는 사람</div>
-								<div className="find-story__story-content">시력이 많이 나빠서 안경을 쓰면 하염없이 못생겨지는 사람이라 오랜 시간 일회용 콘택트렌즈를 착용했어요. 이마저도 요즘은 안구 건조증으로 힘들어져서 그나마 덜 못생겨지는 안경테를 추천해달라고 적었는데 테, 렌즈, 코 받침 높이까지 꼼꼼하게 따져서 추천해 주셨어요. 덕분에 안경을 잘 쓰고 다닙니다!</div>
+								<div className="find-story__story-content">시력이 많이 나빠서 안경을 쓰면 하염없이 못생겨지는 사람이라 오랜 시간 일회용 콘택트렌즈를 착용했어요. 이마저도 요즘은 안구 건조증으로 힘들어져서 그나마 덜 못생겨지는 안경테를 추천해달라고 적었는데 테, 렌즈, 코 받침 높이까지 꼼꼼하게 따져서 추천해 주셨어요. 덕분에 안경을 잘 쓰고 다닙니다!<br/></div>
 								<div className="find-story__customer">김** 님</div>
 							</div>
 						</div>
@@ -298,7 +298,7 @@ const IndexPage = () => {
 									<div className="find-story__tag">테불편</div>
 								</div>
 								<div className="find-story__story-title">막연하게 안경 취향을 찾고 싶었는데</div>
-								<div className="find-story__story-content">직장 생활을 시작하고 안경을 늘 착용하게 되며 안경은 ‘인상’과 ‘개성’을 드러내는 물건이 되었어요. 그래서 막연하게 안경 취향을 찾고 싶었는데 플로브 큐레이션으로 표현하고 싶었던 ‘이미지’, 금속 알레르기를 유발하지 않는 ‘소재’, 끌리는 이야기를 가진 ‘브랜드’, 이 3가지의 요건을 모두 충족하는 안경을 고를 수 있었습니다. 좋아하는 옷을 입고 집 밖을 나갈 때의 설렘처럼 좋아하는 안경을 착용하니 볼 때마다 기분이 좋네요.</div>
+								<div className="find-story__story-content">직장 생활을 시작하고 안경을 늘 착용하게 되며 안경은 ‘인상’과 ‘개성’을 드러내는 물건이 되었어요. 그래서 막연하게 안경 취향을 찾고 싶었는데 플로브 큐레이션으로 표현하고 싶었던 ‘이미지’, 금속 알레르기를 유발하지 않는 ‘소재’, 끌리는 이야기를 가진 ‘브랜드’, 이 3가지의 요건을 모두 충족하는 안경을 고를 수 있었습니다. 좋아하는 옷을 입고 집 밖을 나갈 때의 설렘처럼 좋아하는 안경을 착용하니 볼 때마다 기분이 좋네요.<br/></div>
 								<div className="find-story__customer">김** 님</div>
 							</div>
 						</div>
@@ -312,7 +312,7 @@ const IndexPage = () => {
 									<div className="find-story__tag">테불편</div>
 								</div>
 								<div className="find-story__story-title">항상 값싼 안경만 찾아 쓰면서 고생했을 내 눈</div>
-								<div className="find-story__story-content">직장을 그만두고 공시생의 길로 들어선 제 자신에게 선물을 주고 싶었어요. 항상 값싼 안경만 찾아 쓰면서 고생했을 제 눈에게 안경은 소중한 선물이라고 생각해요. 착용 중 A/S가 필요했는데 그 과정이 정말 친절했어요! 구매한지 5개월 정도 지났는데 정말 후회 없습니다!</div>
+								<div className="find-story__story-content">직장을 그만두고 공시생의 길로 들어선 제 자신에게 선물을 주고 싶었어요. 항상 값싼 안경만 찾아 쓰면서 고생했을 제 눈에게 안경은 소중한 선물이라고 생각해요. 착용 중 A/S가 필요했는데 그 과정이 정말 친절했어요! 구매한지 5개월 정도 지났는데 정말 후회 없습니다!<br/></div>
 								<div className="find-story__customer">김** 님</div>
 							</div>
 						</div>
@@ -326,7 +326,7 @@ const IndexPage = () => {
 									<div className="find-story__tag">테불편</div>
 								</div>
 								<div className="find-story__story-title">평소 호피나 골드브라운 계열의 콤비만 착용했었는데,</div>
-								<div className="find-story__story-content">노안이 시작되어서 독서용 안경을 맞추게 되었는데 가볍고 편안해서 더 자주 쓰고 있어요. 안경테도 평소 호피나 골드브라운 계열의 콤비만 착용했었는데 안경테 추천해 주실 때 꼼꼼하게 봐주셔서 이번에는 그레이 계열의 스틸 안경테를 시도해봤어요! 그리고 대만족이에요🤗</div>
+								<div className="find-story__story-content">노안이 시작되어서 독서용 안경을 맞추게 되었는데 가볍고 편안해서 더 자주 쓰고 있어요. 안경테도 평소 호피나 골드브라운 계열의 콤비만 착용했었는데 안경테 추천해 주실 때 꼼꼼하게 봐주셔서 이번에는 그레이 계열의 스틸 안경테를 시도해봤어요! 그리고 대만족이에요🤗<br/></div>
 								<div className="find-story__customer">김** 님</div>
 							</div>
 						</div>
