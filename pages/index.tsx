@@ -186,8 +186,7 @@ const IndexPage = () => {
 							autoplay={false}
 							infinite
 						>
-							<div><img src="/static/img/newLanding/counselor_w.gif" alt="메인 비주얼 이미지1"/></div>
-							<div><img src="/static/img/newLanding/counselor_m.gif" alt="메인 비주얼 이미지2"/></div>
+							<div><img src="/static/img/newLanding/counselor_w.gif" alt="메인 비주얼 이미지1"/></div>s
 						</Carousel>
 					</div>
 					<div className="main-visual__desc-wrap">
