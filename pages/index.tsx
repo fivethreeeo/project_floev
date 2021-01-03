@@ -204,7 +204,11 @@ const IndexPage = () => {
 				<div className="banner-event__inner">
 					<a href="/2020-winter-event">
 						
-						<div className="event-desc"><span className="event-tag">안경 기부 이벤트</span><span className="event-text">안쓰는 안경 기부하면 안경 구매시</span> <strong>최대 8만원 할인 혜택! &#xE001;</strong></div>
+						<div className="event-desc">
+							<span className="event-tag">안경 기부 이벤트</span>
+							<span className="event-text">안쓰는 안경 기부하면 안경 구매시</span>
+							<strong>최대 8만원 할인 혜택! &#xE001;</strong>
+						</div>
 					</a>
 				</div>
 			</div>

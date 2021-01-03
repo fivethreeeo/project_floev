@@ -1,10 +1,15 @@
 /* responsive width */
 $max-mobile: 841px;
 $min-desktop: 641px;
+$min-desktopp: 842px;
 
 @mixin responsive($device) {
   @if $device == "desktop" {
     @media screen and (min-width: $min-desktop) {
+      @content;
+    }
+  } @else if $device == "desktopp" {
+    @media screen and (min-width: $min-desktopp) {
       @content;
     }
   } @else if $device == "mobile" {
