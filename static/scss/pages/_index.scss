@@ -137,9 +137,14 @@
 			background: $fv-sienna;
 			border-radius: 8px;
 			font-size:18px;
-			&:hover {
+			@media (hover: hover) {
+				&:hover{
 				background: #b73e15;
 			}
+			}
+			//&:hover {
+			//	background: #b73e15;
+			//}
 			@include responsive("mobile") {
 				margin-top:24px;
 				font-size:16px;
