@@ -400,6 +400,7 @@
 		}
 		&__thumb {
 			font-size:18px;
+			margin-bottom:16px;
 			p {
 				margin-top:8px;
 			}
@@ -408,6 +409,7 @@
 			}
 			div {
 				overflow: hidden;
+				border-radius: 8px;
 			}
 			img {
 				overflow: hidden;

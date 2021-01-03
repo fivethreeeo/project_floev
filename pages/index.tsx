@@ -229,7 +229,7 @@ const IndexPage = () => {
 					arrows
                     className="find-story__carousel"
                     selectedIndex={0}
-					autoplay={false}
+					autoplay
 					infinite
 					>
 						<div className="find-story__card">
