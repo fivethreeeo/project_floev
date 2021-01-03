@@ -11,7 +11,7 @@
 	.header {
 		@include po-fix(0,0,auto,0,900);
 		@include el-size(100%,72px);
-		background:#fff;
+		background:$fv-white;
 		border-bottom:1px solid $fv-gray-3;
 		&__inner {
 			@include vw-mx-w(1280px);
@@ -140,14 +140,6 @@
 			background: $fv-sienna;
 			border-radius: 8px;
 			font-size:18px;
-			@media (hover: hover) {
-				&:hover{
-					background: #b73e15;
-				}
-			}
-			//&:hover {
-			//	background: #b73e15;
-			//}
 			@include responsive("mobile") {
 				margin-top:24px;
 				font-size:16px;
@@ -255,6 +247,7 @@
 			font-weight:300;
 			@include responsive("mobile") {
 				font-size:16px;
+				font-weight:400;
 			}
 		}
 	}
@@ -268,7 +261,7 @@
 		}
 		&__inner {
 			position: relative;
-			background:#fff;
+			background:$fv-white;
 			border:1px solid $fv-gray-3;
 			@include responsive("mobile") {
 				padding-bottom:16px;
@@ -415,7 +408,6 @@
 		}
 		&__thumb {
 			font-size:16px;
-			margin-bottom:16px;
 			@include responsive("desktopp") {
 				float:left;
 				width:calc(50% - 12px);
@@ -457,14 +449,60 @@
 		}
 	}
 
+	.banner-brand {
+		@include el-size (100%,80px);
+		background:$fv-gray-0;
+		margin: 120px 0;
+		border:1px solid $fv-gray-5;
+		background: $fv-white;
+		@include responsive("mobile") {
+			margin: 64px 0;
+		  }
+		&__inner {
+			@include vw-mx-w(1280px);
+			@extend %padding-d;
+			@include responsive("mobile") {
+				padding: 0 0;
+			  }
+		}
+		a {
+			display: block;
+		}
+		.event-desc {
+			@include flexbox(nowrap);
+			justify-content: center;
+			height:80px;
+			text-align: center;
+			font-size:17px;
+			line-height:80px;
+			font-weight:400;
+			@include responsive("mobile") {
+				padding-top:16px;
+				display:block;
+				font-size:16px;
+				line-height:1.5;
+			}
+		}
+		.event-text {
+			display: block;
+		}
+		strong {
+			display: block;
+			color:$fv-sienna;
+			margin-left:24px;
+			@include responsive("mobile") {
+				margin-left:0;
+			}
+		}
+
+	}
+
 	.bottom-cta {
 		@include vw-mx-w(1280px);
 		@include el-size(100%,560px);
 		@extend %padding-d;
-		margin-top:200px;
 		margin-bottom:80px;
 		@include responsive("mobile") {
-			margin-top:80px;
 			margin-bottom: 48px;
 			padding:0;
 			height:400px;
@@ -487,11 +525,6 @@
 			background: $fv-sienna;
 			border-radius: 12px;
 			font-size:18px;
-			@media (hover: hover) {
-				&:hover{
-					background: #b73e15;
-				}
-			}
 			@include responsive("mobile") {
 				
 				padding:12px 26px 10px;
@@ -510,7 +543,7 @@
 			margin:0 auto;
 			width:100%;
 			max-width: 560px;
-			padding: 0 0;
+			padding: 0 24px;
 			padding-bottom:64px;
 		  }
 		&__name {
@@ -655,22 +688,32 @@
 
 .am-modal-wrap.am-modal-wrap-popup {margin:0 auto;width:100%;max-width:480px}
 .am-modal.am-modal-popup.am-modal-popup-slide-up {
-  width:100%;max-width:480px;height:85vh;max-height:540px;overflow: hidden;border-radius: 20px 20px 0 0!important;background:#fff;
+  width:100%;max-width:480px;height:85vh;max-height:540px;overflow: hidden;border-radius: 20px 20px 0 0!important;background:$fv-white;
   @include responsive("desktop") {
     max-height:620px;
   }
 }
 .am-modal.am-modal-popup.am-modal-popup-slide-down {height:100%}
 .am-accordion::before, .am-accordion-header::after {display:none!important}
-.am-accordion-header {height:40px!important;line-height:40px!important;cursor: pointer;padding-left:8px!important;text-align:left;font-size:14px!important;text-decoration: underline;color:#33343a!important}
+.am-accordion-header {height:40px!important;line-height:40px!important;cursor: pointer;padding-left:8px!important;text-align:left;font-size:14px!important;text-decoration: underline;color:$fv-gray-9!important}
 .am-accordion-header i {top:11px!important;left:168px!important;right:auto!important;width:14px!important;height:14px!important}
 
 .modalWrap {
   position: relative;
   .modalDesc {
-    padding:64px 20px 0;width:100%;color:#33343a;
-    .main {font-size:20px;font-weight:300;line-height:30px;text-align:center}
-    .sub {margin:24px 0 0;font-size:16px;font-weight:300;text-align:center;line-height:27px}
+    padding:64px 20px 0;width:100%;color:$fv-gray-9;
+    .main {
+		font-size:20px;font-weight:300;line-height:30px;text-align:center;
+		@include responsive("mobile") {
+			font-weight:400;
+		  }
+	}
+    .sub {
+		margin:24px 0 0;font-size:16px;font-weight:300;text-align:center;line-height:27px;
+		@include responsive("mobile") {
+			font-weight:400;
+		  }
+	}
     @include responsive("desktop") {
       padding: 64px 20px 0;
     }
@@ -681,21 +724,21 @@
       padding: 0 40px;
     }
     input {
-      padding:0 0 0 12px;width:100%;height:40px;border:1px solid #ccc;border-radius:6px;background:#fff;font-size:15px;
-      &:focus {border:1px solid #33343a}
-      &::placeholder {color:#999}
+      padding:0 0 0 12px;width:100%;height:40px;border:1px solid $fv-gray-3;border-radius:6px;background:$fv-white;font-size:15px;
+      &:focus {border:1px solid $fv-gray-9}
+      &::placeholder {color:$fv-gray-6}
     }
     select {
-      padding:0 0 0 12px;width:calc(50% - 4px);height:40px;border:1px solid #ccc;border-radius:6px;background:#fff;font-size:15px;
-      &:required:invalid {color:#999}
-      &:focus {border:1px solid #33343a!important}
+      padding:0 0 0 12px;width:calc(50% - 4px);height:40px;border:1px solid $fv-gray-3;border-radius:6px;background:$fv-white;font-size:15px;
+      &:required:invalid {color:$fv-gray-6}
+      &:focus {border:1px solid $fv-gray-9!important}
     }
     option {
-      &:focus {border:1px solid #33343a}
+      &:focus {border:1px solid $fv-gray-9}
       &[value=""][disabled] {display:none}
     }
     button {
-      width:100%;height:44px;background:#c3512a;font-size:16px;color:#fff;border-radius:6px;
+      width:100%;height:44px;background:$fv-sienna;font-size:16px;color:$fv-white;border-radius:6px;
       &.disabled {background:#E7B9AA}
     }
     .birthyear {margin:8px 8px 0 0}
@@ -710,7 +753,7 @@
         text-align: left;
         font-size:12px;
         font-weight:300;
-        color:#666;
+        color:$fv-gray-7;
         p:nth-child(2) {font-weight:500;margin:16px 0 6px}
         @include responsive("desktop") {
           height:auto;
@@ -734,7 +777,7 @@
 .modalWrap.kakao__2 {
   .sub {font-size:16px;font-weight:400;margin:24px 0 8px}
   .sub__2 {font-size:14px;text-align:center}
-  .confirm {display:block;margin:48px auto;width:calc(100% - 40px);height:44px;background:#33343a;font-size:16px;color:#fff;border-radius:6px}
+  .confirm {display:block;margin:48px auto;width:calc(100% - 40px);height:44px;background:$fv-gray-9;font-size:16px;color:$fv-white;border-radius:6px}
 }
 
 .find-story__customer {display:none}

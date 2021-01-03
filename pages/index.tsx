@@ -393,6 +393,16 @@ const IndexPage = () => {
 				</div>
 			</div>
 
+			<div className="banner-brand">
+				<div className="banner-brand__inner">
+					<a href="/brand">
+						<div className="event-desc">
+							<span className="event-text">어떤 안경을 추천받을지 궁금하신가요?</span>
+							<strong>플로브 추천 안경 브랜드 바로가기 &#xE001;</strong>
+						</div>
+					</a>
+				</div>
+			</div>	
 
 			<div className="bottom-cta">
 				<div className="bottom-cta__inner">
