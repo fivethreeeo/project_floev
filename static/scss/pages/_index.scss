@@ -38,8 +38,10 @@
 			}
 			a {
 				display:block;
-				&:hover {
-					color:$fv-sienna;
+				@media (hover: hover) {
+					&:hover{
+						color: $fv-sienna;
+					}
 				}
 			}
 		}
@@ -139,8 +141,8 @@
 			font-size:18px;
 			@media (hover: hover) {
 				&:hover{
-				background: #b73e15;
-			}
+					background: #b73e15;
+				}
 			}
 			//&:hover {
 			//	background: #b73e15;
@@ -421,9 +423,11 @@
 				border-radius: 8px;
 				@include scale-up(1);
 			}
-			:hover {
-				img {
-					@include scale-up(1.1);
+			@media (hover: hover) {
+				&:hover{
+					img {
+						@include scale-up(1.1);
+					}
 				}
 			}
 			@include responsive("mobile") {
@@ -465,8 +469,10 @@
 			background: $fv-sienna;
 			border-radius: 12px;
 			font-size:20px;
-			&:hover {
-				background: #b73e15;
+			@media (hover: hover) {
+				&:hover{
+					background: #b73e15;
+				}
 			}
 			@include responsive("mobile") {
 				
