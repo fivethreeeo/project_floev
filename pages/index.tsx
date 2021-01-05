@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import Layout from '../layout/DefaultLayout'
 import React, { useEffect, useState } from 'react'
-import { Modal, Carousel, Accordion } from 'antd-mobile'
+// import { Modal, Carousel, Accodion } from 'antd-mobile'
+import { Modal, Carousel, Collapse } from 'antd'
 import { gql, useMutation } from '@apollo/client'
 
 const CREATE_USER_MUTATION = gql`
@@ -64,6 +65,10 @@ const IndexPage = () => {
 		}
 	}
 
+	const collapseCallback = (key: any) => {
+		console.log("collapse key: " + key)
+	}
+
 	return (
 		<>
 			{/* Google Pixel: index.js -> survey.js */}
@@ -71,23 +76,23 @@ const IndexPage = () => {
 				<script
 					dangerouslySetInnerHTML={{
 						__html: `
-        function gtag_button1() {
-          console.log("gtag_button1 START")
-          gtag('event', 'conversion', {
-              'send_to': 'AW-738487034/sJQHCJqHhuIBEPrVkeAC',
-          });
-          console.log("gtag_button1 END")
-          return false;
-        }
-        function gtag_button2() {
-          console.log("gtag_button2 START")
-          gtag('event', 'conversion', {
-              'send_to': 'AW-738487034/xtCNCOqDhuIBEPrVkeAC',
-          });
-          console.log("gtag_button2 END")
-          return false;
-        }
-      `,
+						function gtag_button1() {
+						console.log("gtag_button1 START")
+						gtag('event', 'conversion', {
+							'send_to': 'AW-738487034/sJQHCJqHhuIBEPrVkeAC',
+						});
+						console.log("gtag_button1 END")
+						return false;
+						}
+						function gtag_button2() {
+						console.log("gtag_button2 START")
+						gtag('event', 'conversion', {
+							'send_to': 'AW-738487034/xtCNCOqDhuIBEPrVkeAC',
+						});
+						console.log("gtag_button2 END")
+						return false;
+						}
+					`,
 					}}
 				/>
 				{/* Kakao Pixel */}
@@ -96,12 +101,12 @@ const IndexPage = () => {
 			</Head>
 			<Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스">
 				<Modal
-					popup
+					// popup
 					visible={modalView}
-					onClose={() => {
+					onCancel={() => {
 						setModalView(false);
 					}}
-					animationType="slide-up"
+				// animationType="slide-up"
 				>
 					{completed === false ? (
 						<div className="modalWrap kakao__1">
@@ -132,8 +137,8 @@ const IndexPage = () => {
 											<button className="disabled" disabled>안경 무료상담 받기</button>
 										)}
 									<div className="policy">
-										<Accordion className="my-accordion">
-											<Accordion.Panel header="개인정보 수집·이용 동의함">
+										<Collapse className="my-accordion" onChange={collapseCallback} ghost>
+											<Collapse.Panel header="개인정보 수집·이용 동의함" key="1">
 												<div className="inner">
 													<p>본 상담 신청 고객은 개인정보 수집·이용에 대하여 동의를 거부할 권리를 가지고 있으며, 미 동의 시상담를 신청하실 수 없습니다.</p>
 													<p>개인정보 수집·이용에 대한 동의</p>
@@ -141,8 +146,8 @@ const IndexPage = () => {
 													<p> - 항목: 이름, 휴대전화 번호</p>
 													<p> - 보유기간: 동의(신청) 시점 후 180일</p>
 												</div>
-											</Accordion.Panel>
-										</Accordion>
+											</Collapse.Panel>
+										</Collapse>
 									</div>
 								</div>
 							</form>
@@ -230,7 +235,7 @@ const IndexPage = () => {
 							<Carousel
 								arrows
 								className="find-story__carousel"
-								selectedIndex={0}
+								// selectedIndex={0}
 								autoplay
 								infinite
 							>
