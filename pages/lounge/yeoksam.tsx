@@ -17,7 +17,7 @@ const yeoksamPage = () => {
     <p>라운지</p>
     <p>역삼성당</p>
     <p>큰 창 너머 붉은 벽돌의 역삼성당이 아름다운<br/>플로브 라운지 역삼성당 입니다.</p>
-    <div className="map"><p><a className="gtm-010" target="_blank" href="https://m.map.naver.com/search2/site.nhn?query=%EC%97%AD%EC%82%BC%20%ED%94%8C%EB%A1%9C%EB%B8%8C&sm=hty&style=v5&code=1175801694">라운지 위치보기 &#xE001;</a></p></div>
+    <div className="map"><p><a className="gtm-010" target="_blank" href="http://naver.me/xH2We7TP">라운지 위치보기 &#xE001;</a></p></div>
   </div>
 </div>
 

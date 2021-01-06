@@ -17,7 +17,7 @@ const gangnamPage = () => {
     <p>라운지</p>
     <p>강남</p>
     <p>복잡한 강남 가운데서 담백하게 쉼을 제안하는 곳,<br/>플로브 라운지 강남입니다.</p>
-    <div className="map"><p><a className="gtm-010" target="_blank" href="https://m.map.naver.com/search2/site.nhn?query=%ED%94%8C%EB%A1%9C%EB%B8%8C&sm=hty&style=v5&code=1814217589">라운지 위치보기 &#xE001;</a></p></div>
+    <div className="map"><p><a className="gtm-010" target="_blank" href="http://naver.me/xfa1CFMZ">라운지 위치보기 &#xE001;</a></p></div>
   </div>
 </div>
 
