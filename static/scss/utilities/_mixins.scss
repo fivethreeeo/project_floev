@@ -1,9 +1,9 @@
 /* responsive width */
+@mixin responsive($device) {
 $max-mobile: 841px;
 $min-desktop: 641px;
 $min-desktopp: 842px;
 
-@mixin responsive($device) {
   @if $device == "desktop" {
     @media screen and (min-width: $min-desktop) {
       @content;

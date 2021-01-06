@@ -2,10 +2,13 @@
 @import "base/reset";
 @import "base/typography";
 
+
 @import "utilities/variables";
 @import "utilities/placeholders";
 @import "utilities/mixins";
+@import "utilities/normalize";
 
-@import "base/normalize";
+@import "layout/header";
 
 @import "pages/index.scss";
+@import "pages/login.scss";

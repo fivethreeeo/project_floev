@@ -8,47 +8,6 @@
 		  }
 	}
 
-	.header {
-		@include po-fix(0,0,auto,0,900);
-		@include el-size(100%,72px);
-		background:$fv-white;
-		border-bottom:1px solid $fv-gray-3;
-		&__inner {
-			@include vw-mx-w(1280px);
-			@extend %padding-d;
-			padding-top: 25px;
-			&::after {
-				@extend %clearfix;
-			}
-		}
-		&__logo {
-			float:left;
-			width: 91px;
-			a {
-				display: block;
-			}
-		}
-		&__nav {
-			float:right;
-			@include flexbox(nowrap);
-			span {
-				font-size: 16px;
-				line-height: 28px;
-				margin-left:40px;
-			}
-			a {
-				@media (hover: hover) {
-					&:hover{
-						color: $fv-sienna;
-					}
-				}
-			}
-		}
-		@include responsive("mobile") {
-			display:none;
-		  }
-	}
-
 	.main-visual {
 		@include el-size(100%,88vh);
 		max-height:560px;
