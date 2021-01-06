@@ -429,7 +429,15 @@ const IndexPage = () => {
 					</div>
 
 				</div>
-
+				<div className="font-test-10">폰트사이즈 12px - 0.5em</div>
+				<div className="font-test-12">폰트사이즈 12px - 0.75em</div>
+				<div className="font-test-14">폰트사이즈 14px - 0.875em</div>
+				<div className="font-test-16">폰트사이즈 16px - 1em</div>
+				<div className="font-test-18">폰트사이즈 18px - 1.125em</div>
+				<div className="font-test-20">폰트사이즈 20px - 1.25em</div>
+				<div className="font-test-24">폰트사이즈 24px - 1.5em</div>
+				<div className="font-test-28">폰트사이즈 28px - 1.75em</div>
+				<div className="font-test-32">폰트사이즈 32px - 2.em</div>
 			</Layout>
 		</>
 	);
