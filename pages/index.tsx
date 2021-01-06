@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Layout from '../layout/DefaultLayout'
 import React, { useEffect, useState } from 'react'
-// import { Modal, Carousel, Accodion } from 'antd-mobile'
 import { Modal, Carousel, Collapse } from 'antd'
 import { gql, useMutation } from '@apollo/client'
 
@@ -166,20 +165,6 @@ const IndexPage = () => {
 				</Modal>
 
 				<div className="indexPage">
-
-					<header className="header">
-						<div className="header__inner">
-							<div className="header__logo"><a href="/"><img src="/static/img/newLanding/fv_logo_bk.svg" alt="" /></a></div>
-							<nav className="header__nav">
-								<span><a href="/lounge/yeoksam">라운지 역삼성당</a></span>
-								<span><a href="/lounge/gangnam">라운지 강남</a></span>
-								<span><a href="/brand">플로브 추천 안경</a></span>
-								<span><a href="/service-policy">서비스 정책 안내</a></span>
-								<span><a href="https://www.instagram.com/floev_official/" target="_blank"><img src="/static/img/newLanding/i_insta.svg" alt="" /></a></span>
-							</nav>
-						</div>
-					</header>
-
 					<div className="main-visual">
 						<div className="main-visual__inner">
 							<div className="main-visual__img-wrap">

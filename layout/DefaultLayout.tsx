@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
 import Head from 'next/head'
+import Header from './Header'
 
 type Props = {
   children?: ReactNode
@@ -18,8 +19,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <meta property="og:url" content="https://floev.com" />
       <meta property="og:image" content="https://floev.com/static/img/newLanding/og.jpg" />
     </Head>
-    <header>
-    </header>
+    <Header></Header>
     {children}
     <footer>
       <div className="global1280">
