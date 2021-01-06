@@ -23,6 +23,7 @@
             button {
                 @include el-size(100%,48px);
                 display:block;
+                &.disabled {background:#E7B9AA;}
             }
         }
 
