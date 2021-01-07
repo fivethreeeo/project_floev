@@ -1,32 +1,45 @@
 .header {
+    @include responsive("mobile") {
+        display:none;
+      }
+
     @include po-fix(0,0,auto,0,900);
-    @include el-size(100%,72px);
+    @include el-size(100%,56px);
     background:$fv-white;
-    border-bottom:1px solid $fv-gray-3;
+    box-shadow: 0px 2px 5px rgba($color: $fv-gray-9, $alpha: 0.2);
     &__inner {
         @include vw-mx-w(1280px);
         @extend %padding-d;
-        padding-top: 25px;
+        padding-top: 17px;
         &::after {
             @extend %clearfix;
         }
     }
     &__logo {
         float:left;
-        width: 91px;
+        margin-right:40px;
+        width: 80px;
+        img {
+            width:80px;
+        }
         a {
             display: block;
         }
     }
     &__nav {
-        float:right;
+        float:left;
+        padding-top:3px;
         @include flexbox(nowrap);
         span {
-            font-size: 16px;
-            line-height: 28px;
-            margin-left:40px;
+            display: block;
+            font-size: 15px;
+            margin-right:24px;
+            &:last-child {
+                margin-right:0;
+            }
         }
         a {
+            display: block;
             @media (hover: hover) {
                 &:hover{
                     color: $fv-sienna;
@@ -34,7 +47,39 @@
             }
         }
     }
-    @include responsive("mobile") {
-        display:none;
-      }
+
+    &__nav--sub {
+        float:right;
+        @include flexbox(nowrap);
+
+        span {
+            display: block;
+            font-size: 14px;
+            margin-left:12px;
+        }
+        .hr {
+            font-size: 18px;
+            font-weight: 300;
+            margin: 0 8px 0 20px;
+        }
+        .link-ico {
+            margin-left:0;
+            @include el-size(24px,24px);
+
+        }
+        .link-text {
+            padding-top:3px;
+        }
+        a {
+            display: block;
+            @media (hover: hover) {
+                &:hover{
+                    color: $fv-sienna;
+                }
+            }
+        }
+    }
+
+
+
 }

@@ -2,7 +2,7 @@
 	
 	&::before {
 		@extend %clearfix;
-		height:72px;
+		height:56px;
 		@include responsive("mobile") {
 			display:none;
 		  }
@@ -76,7 +76,7 @@
 			font-size:32px;
 			font-weight:300;
 			@include responsive("mobile") {
-				font-weight:400;
+				font-weight:300;
 				margin-top:24px;
 				font-size:22px;
 			  }
@@ -86,7 +86,7 @@
 			font-weight:300;
 			margin-top:16px;
 			@include responsive("mobile") {
-				font-weight:400;
+				font-weight:300;
 				margin-top:12px;
 				font-size:14px;
 			  }
@@ -109,8 +109,8 @@
 	}
 
 	.banner-event {
-		@include el-size (100%,80px);
-		background:$fv-gray-0;
+		@include el-size (100%,64px);
+		background:$fv-gray-1;
 		@include responsive("mobile") {
 			height:56px;
 		  }
@@ -122,50 +122,54 @@
 			display: block;
 		}
 		.event-desc {
-			height:80px;
+			height:64px;
 			@include flexbox(nowrap);
 			justify-content: center;
 			text-align: center;
-			font-size:18px;
+			font-size:16px;
 			font-weight:400;
 			@include responsive("mobile") {
 				font-size:14px;
+				height:56px;
 			}
 		}
 		.event-tag {
-			margin-top:25px;
+			margin-top:18px;
 			margin-right:16px;
-			height:29px;
+			height:28px;
 			color:$fv-white;
-			padding: 5px 8px 3px;
+			padding: 4px 10px 3px;
 			font-size:14px;
 			font-weight:500;
 			background:$fv-gray-8;
 			border-radius: 6px;
 			@include responsive("mobile") {
-				margin-top:17px;
+				margin-top:16px;
 				margin-right:12px;
 				height:24px;
 				font-size:12px;
-				padding:3px 6px 1px;
-				border:1px solid $fv-gray-5;
+				padding:4px 6px 2px;
 				border-radius: 4px;
-				background: $fv-white;
-				color:$fv-gray-9;
 			}
 		}
 		.event-text {
-			margin-top:27px;
+			margin-top:21px;
 			margin-right:8px;
 			@include responsive("mobile") {
 				display:none;
 			}
 		}
 		strong {
-			margin-top:27px;
+			margin-top:21px;
 			margin-right:8px;
 			@include responsive("mobile") {
-				margin-top:20px;
+				margin-top:18px;
+			}
+		}
+		.event-strong-m-only {
+			display:none;
+			@include responsive("mobile") {
+				display:inline;
 			}
 		}
 
@@ -212,7 +216,7 @@
 	}
 
 	.find-story {
-
+		display: none;
 		@include vw-mx-w(1280px);
 		@extend %padding-d;
 		@include responsive("mobile") {
@@ -409,19 +413,18 @@
 	}
 
 	.banner-brand {
-		@include el-size (100%,80px);
-		background:$fv-gray-0;
-		margin: 120px 0;
-		border:1px solid $fv-gray-5;
-		background: $fv-white;
+		@include el-size (100%,64px);
+		margin: 120px 0 0;
+		background:$fv-gray-1;
 		@include responsive("mobile") {
-			margin: 64px 0;
+			margin: 64px 0 0;
 		  }
 		&__inner {
 			@include vw-mx-w(1280px);
 			@extend %padding-d;
 			@include responsive("mobile") {
-				padding: 0 0;
+				@include vw-mx-w(480px);
+				padding: 0 24px;
 			  }
 		}
 		a {
@@ -430,40 +433,33 @@
 		.event-desc {
 			@include flexbox(nowrap);
 			justify-content: center;
-			height:80px;
+			height:64px;
 			text-align: center;
 			font-size:17px;
-			line-height:80px;
+			line-height:64px;
 			font-weight:400;
 			@include responsive("mobile") {
-				height:56px;
-				padding-top:20px;
+				text-align: left;
 				display:block;
-				font-size:15px;
+				padding-top:14px;
+				font-size:13px;
 				line-height:1.5;
 			}
 		}
 		.event-text {
 			display: block;
+			margin-right:24px;
 		}
 		strong {
 			display: block;
 			color:$fv-sienna;
-			margin-left:24px;
-			@include responsive("mobile") {
-				margin-left:0;
-			}
 		}
 
 	}
 
 	.bottom-cta {
-		@include vw-mx-w(1280px);
 		@include el-size(100%,560px);
-		@extend %padding-d;
-		margin-bottom:80px;
 		@include responsive("mobile") {
-			margin-bottom: 48px;
 			padding:0;
 			height:400px;
 		  }
@@ -473,7 +469,6 @@
 			justify-content: center;
 			align-items: center;
 			background: url(/static/img/newLanding/bottom-8.png) center center / cover no-repeat;
-			border-radius: 12px;
 			@include responsive("mobile") {
 				border-radius: 0;
 			  }
@@ -496,47 +491,42 @@
 
 
 	.company {
-		@include vw-mx-w(1280px);
 		@extend %padding-d;
-		padding-bottom:120px;
+		background: $fv-gray-9;
+		color:$fv-gray-3;
+		padding-top: 64px;
+		padding-bottom:64px;
 		@include responsive("mobile") {
 			margin:0 auto;
 			width:100%;
-			max-width: 560px;
-			padding: 0 24px;
+			padding:48px 24px 64px;
 			padding-bottom:64px;
 		  }
+
+		&__inner {
+			@include vw-mx-w(1280px);
+		}
+
 		&__name {
-			margin-left:20px;
 			font-size: 16px;
-			font-weight: 500;
-			@include responsive("mobile") {
-				margin-left:0;
-			  }
+			font-weight: 400;
 		}
 		&__info {
 			margin: 20px 0 0;
 			padding: 0 0 16px 0;
-			border-bottom: 1px solid $fv-gray-3;
+			border-bottom: 1px solid $fv-gray-7;
 		}
 		li {
 			font-size: 12px;
 			padding: 5px 0;
-			margin-left:20px;
 			span:nth-child(2) {
 				padding-left: 10px;
 				color: $fv-gray-6;
 			}
-			@include responsive("mobile") {
-				margin-left:0;
-			  }
 		}
 		&__link {
-			margin-left:12px;
-			@include responsive("mobile") {
-				margin-left:0;
-			  }
 			a {
+				color:$fv-gray-3;
 				margin: 12px 0 8px;
 				line-height: 12px;
 				display: inline-block;
@@ -643,35 +633,65 @@
 
 
 
-
-
-
-.am-modal-wrap.am-modal-wrap-popup {margin:0 auto;width:100%;max-width:480px}
-.am-modal.am-modal-popup.am-modal-popup-slide-up {
-  width:100%;max-width:480px;height:85vh;max-height:540px;overflow: hidden;border-radius: 20px 20px 0 0!important;background:$fv-white;
-  @include responsive("desktop") {
-    max-height:620px;
-  }
+/* -------- 모달 --------- */
+body{ overflow:scroll!important}
+.ant-modal {
+	max-width: 520px;
+	padding-bottom: 0;
+	@include responsive("mobile") {
+		margin: 0px auto!important;
+		vertical-align: bottom!important;
+	}
+	&-content {
+		border-radius: 20px;
+		@include responsive("mobile") {
+			border-radius: 20px 20px 0 0;
+		}
+	}
+	&-close, &-footer {
+		display:none;
+	}
+	&-body {
+		padding:0;
+	}
 }
-.am-modal.am-modal-popup.am-modal-popup-slide-down {height:100%}
-.am-accordion::before, .am-accordion-header::after {display:none!important}
-.am-accordion-header {height:40px!important;line-height:40px!important;cursor: pointer;padding-left:8px!important;text-align:left;font-size:14px!important;text-decoration: underline;color:$fv-gray-9!important}
-.am-accordion-header i {top:11px!important;left:168px!important;right:auto!important;width:14px!important;height:14px!important}
+/* -------- 모달 콜랩스 --------- */
+.ant-collapse {
+	.ant-collapse-header {
+		padding:8px 8px!important;
+	}
+	.ant-collapse-content-box {
+		padding:0 8px!important;
+		.inner {
+			padding:0!important;
+		}
+	}
+	.anticon.anticon-right.ant-collapse-arrow {
+		right:auto!important;
+		left:166px!important;
+		padding:6px 0!important;
+		transform: rotate(90deg)!important;
+	}
+}
 
 .modalWrap {
   position: relative;
   .modalDesc {
-    padding:64px 20px 0;width:100%;color:$fv-gray-9;
+	padding:64px 20px 0;width:100%;color:$fv-gray-9;
+	@include responsive("mobile") {
+		padding:56px 20px 0;
+	  }
     .main {
 		font-size:20px;font-weight:300;line-height:30px;text-align:center;
 		@include responsive("mobile") {
-			font-weight:400;
+			font-weight:300;
 		  }
 	}
     .sub {
 		margin:24px 0 0;font-size:16px;font-weight:300;text-align:center;line-height:27px;
 		@include responsive("mobile") {
-			font-weight:400;
+			font-weight:300;
+			margin:20px 0 0;
 		  }
 	}
     @include responsive("desktop") {
@@ -681,8 +701,11 @@
   .kakaoForm {
     margin:24px 0 0;padding:0 20px 0;
     @include responsive("desktop") {
-      padding: 0 40px;
-    }
+      padding: 0 40px 40px;
+	}
+	@include responsive("mobile") {
+		padding-bottom:24px;
+	  }
     input {
       padding:0 0 0 12px;width:100%;height:40px;border:1px solid $fv-gray-3;border-radius:6px;background:$fv-white;font-size:15px;
       &:focus {border:1px solid $fv-gray-9}
@@ -734,20 +757,15 @@
     }
   }
 }
+
 .modalWrap.kakao__2 {
+	padding-bottom:48px;
   .sub {font-size:16px;font-weight:400;margin:24px 0 8px}
   .sub__2 {font-size:14px;text-align:center}
-  .confirm {display:block;margin:48px auto;width:calc(100% - 40px);height:44px;background:$fv-gray-9;font-size:16px;color:$fv-white;border-radius:6px}
+  .confirm {
+	  display:block;margin:48px auto 0;width:calc(100% - 64px);height:44px;background:$fv-gray-9;font-size:16px;color:$fv-white;border-radius:6px;
+	  @include responsive("mobile") {
+		width:calc(100% - 40px);
+	  }
+	}
 }
-
-.find-story__customer {display:none}
-
-.font-test-10 {font-size:0.5em}
-.font-test-12 {font-size:0.75em}
-.font-test-14 {font-size:0.875em}
-.font-test-16 {font-size:1em}
-.font-test-18 {font-size:1.125em}
-.font-test-20 {font-size:1.25em}
-.font-test-24 {font-size:1.5em}
-.font-test-28 {font-size:1.75em}
-.font-test-32 {font-size:2em}

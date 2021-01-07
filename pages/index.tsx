@@ -100,12 +100,12 @@ const IndexPage = () => {
 			</Head>
 			<Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스">
 				<Modal
-					// popup
+					centered
+					width="100%"
 					visible={modalView}
 					onCancel={() => {
 						setModalView(false);
 					}}
-				// animationType="slide-up"
 				>
 					{completed === false ? (
 						<div className="modalWrap kakao__1">
@@ -136,7 +136,7 @@ const IndexPage = () => {
 											<button className="disabled" disabled>안경 무료상담 받기</button>
 										)}
 									<div className="policy">
-										<Collapse className="my-accordion" onChange={collapseCallback} ghost>
+										<Collapse className="my-accordion" onChange={collapseCallback} expandIconPosition={'right'} ghost>
 											<Collapse.Panel header="개인정보 수집·이용 동의함" key="1">
 												<div className="inner">
 													<p>본 상담 신청 고객은 개인정보 수집·이용에 대하여 동의를 거부할 권리를 가지고 있으며, 미 동의 시상담를 신청하실 수 없습니다.</p>
@@ -195,9 +195,9 @@ const IndexPage = () => {
 							<a href="/2020-winter-event">
 
 								<div className="event-desc">
-									<span className="event-tag">안경 기부 이벤트</span>
+									<span className="event-tag">이벤트</span>
 									<span className="event-text">안쓰는 안경 기부하면 안경 구매시</span>
-									<strong>최대 8만원 할인 혜택! &#xE001;</strong>
+									<strong><span className="event-strong-m-only">안경기부, </span>최대 8만원 할인 혜택! &#xE001;</strong>
 								</div>
 							</a>
 						</div>
@@ -388,7 +388,7 @@ const IndexPage = () => {
 							<a href="/brand">
 								<div className="event-desc">
 									<span className="event-text">어떤 안경을 추천받을지 궁금하신가요?</span>
-									<strong>플로브 추천 안경 브랜드 바로가기 &#xE001;</strong>
+									<strong>플로브 추천 안경 브랜드 보러가기</strong>
 								</div>
 							</a>
 						</div>
@@ -401,19 +401,22 @@ const IndexPage = () => {
 					</div>
 
 					<div className="company">
-						<p className="company__name">(주)씨에이치스퀘어</p>
-						<ul className="company__info">
-							<li><span>대표자명</span><span>천영환</span></li>
-							<li><span>사업자등록번호</span><span>699-86-01370</span></li>
-							<li><span>통신판매업신고</span><span>2019-서울강남-02689</span></li>
-							<li><span>주소</span><span>서울시 강남구 테헤란로4길 38-5, 6층</span></li>
-							<li><span>전화/이메일</span><span>1544-8767 | contact@floev.com</span></li>
-							<li><span>개인정보책임자</span><span>엄태산</span></li>
-						</ul>
-						<div className="company__link"><a href="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=6998601370" target="_blank">사업자정보확인</a> | <a href="/service-policy"><span>서비스 정책 안내</span></a> | <a href="https://www.instagram.com/floev_official/" target="_blank">instagram</a></div>
+						<div className="company__inner">
+							<p className="company__name">(주)씨에이치스퀘어</p>
+							<ul className="company__info">
+								<li><span>대표자명</span><span>천영환</span></li>
+								<li><span>사업자등록번호</span><span>699-86-01370</span></li>
+								<li><span>통신판매업신고</span><span>2019-서울강남-02689</span></li>
+								<li><span>주소</span><span>서울시 강남구 테헤란로4길 38-5, 6층</span></li>
+								<li><span>전화/이메일</span><span>1544-8767 | contact@floev.com</span></li>
+								<li><span>개인정보책임자</span><span>엄태산</span></li>
+							</ul>
+							<div className="company__link"><a href="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=6998601370" target="_blank">사업자정보확인</a> | <a href="/service-policy"><span>서비스 정책 안내</span></a> | <a href="https://www.instagram.com/floev_official/" target="_blank">instagram</a></div>
+						</div>
 					</div>
 
 				</div>
+				{/*
 				<div className="font-test-10">폰트사이즈 12px - 0.5em</div>
 				<div className="font-test-12">폰트사이즈 12px - 0.75em</div>
 				<div className="font-test-14">폰트사이즈 14px - 0.875em</div>
@@ -423,6 +426,7 @@ const IndexPage = () => {
 				<div className="font-test-24">폰트사이즈 24px - 1.5em</div>
 				<div className="font-test-28">폰트사이즈 28px - 1.75em</div>
 				<div className="font-test-32">폰트사이즈 32px - 2.em</div>
+				*/}
 			</Layout>
 		</>
 	);

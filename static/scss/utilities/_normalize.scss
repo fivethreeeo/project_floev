@@ -10,6 +10,9 @@ img {
 
 a {
 	color: $fv-gray-9;
+	&:hover {
+		color: $fv-gray-9;
+	}
 }
 
 .clearfix {
