@@ -1,0 +1,47 @@
+.signupPage {
+
+    .signup {
+        @include el-size(400px,560px);
+        margin:80px;
+        position: relative;
+
+        &__title {
+            text-align: center;
+            font-size:16px;
+            font-weight:700;
+        }
+
+        &__form {
+            margin-top:40px;
+        }
+
+        &__btn--submit {
+            @include el-size(100%,48px);
+            margin-top: 48px;
+            border-radius: 8px;
+            overflow: hidden;
+            color:$fv-white;
+            button {
+                @include el-size(100%,48px);
+                display:block;
+                background-color: $fv-sienna;
+                &.btn--disabled {
+                    opacity: 0.4;
+                }
+            }
+        }
+
+        .input-box {
+            margin-bottom: 48px;
+            &__input {
+                &::placeholder {
+                    font-size: 16px;
+                    color: $fv-gray-4;
+                }
+            }
+        }
+
+    }
+
+}
+

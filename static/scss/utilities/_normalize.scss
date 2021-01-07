@@ -1,20 +1,124 @@
 body {
-  background-color: $fv-white;
-  color: $fv-gray-9;
+	background-color: $fv-white;
+	color: $fv-gray-9;
 }
 
 img {
-  width:100%;
-  vertical-align: top;
+	width:100%;
+	vertical-align: top;
 }
 
 a {
-  color: $fv-gray-9;
+	color: $fv-gray-9;
 }
 
 .clearfix {
-  clear:both;display:block;content:'';
+	clear: both;
+	display: block;
+	content: '';
 }
+
+/* Input-box */
+.input-box {
+	@include el-size(100%,40px);
+	position: relative;
+	background-color: $fv-white;
+
+	input:focus+label {
+		font-size: 14px;
+		color: $fv-gray-9;
+	}
+
+	&__input {
+		@include el-size(100%,40px);
+		padding: 0 8px;
+		border: none;
+		border-bottom: 1px solid $fv-gray-4;
+		font-size: 16px;
+		color: $fv-gray-9;
+		&:focus {
+			border-bottom: 1px solid $fv-gray-9;
+		}
+		&::placeholder {
+			font-size: 16px;
+			color: $fv-gray-6;
+		}
+		&--err {
+			border-bottom: 1px solid $fv-sienna;
+			&:focus {
+				border-bottom: 1px solid $fv-sienna;
+			}
+		}
+	}
+
+	&__label {
+		position: absolute;
+		top: -21px;
+		left: 8px;
+		font-size: 14px;
+		color: $fv-gray-6;
+	}
+
+	&__btn-wrap {
+		display: flex;
+		position: absolute;
+		top: 8px;
+		right: 8px;
+	}
+
+	&__btn-erase {
+		@include el-size(24px,24px);
+		background: $fv-gray-4;
+	}
+
+	&__btn-display {
+		margin-left: 8px;
+		color: $fv-sienna;
+	}
+
+	&__btn-ckeck-double {
+		margin-left: 8px;
+		font-size: 12px;
+		color: $fv-gray-7;
+		background: $fv-white;    
+		border: 1px solid $fv-gray-4;
+		border-radius: 4px;
+	}
+
+	&__btn-ckeck-double--done {
+		background: $fv-gray-1;    
+		border: 1px solid $fv-gray-1;
+	}
+
+	&__ico-check {
+		@include el-size(24px,24px);
+		background: $fv-gray-5;
+		cursor: default;
+	}
+
+	&__ico-check--done {
+		background: blue;
+	}
+
+	&__ico-check--err {
+		background: red;
+	}
+
+	&__msg-wrap {
+		position: absolute;
+		bottom: -22px;
+	}
+
+	&__msg {
+		font-size: 12px;
+	}
+
+	&__msg.input-box__msg--err {
+		color: $fv-sienna;
+	}
+
+}
+
 
 /* kakao plusFriend button */
 .global640 {display:block;width:100%;max-width:640px;margin:0 auto}
