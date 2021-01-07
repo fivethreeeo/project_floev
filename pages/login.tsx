@@ -106,7 +106,7 @@ const LoginPage = () => {
 									type={showPassword ? "text" : "password"} placeholder="비밀번호"
 									value={password} onFocus={() => setIsPassword(true)} onChange={e => setPassword(e.target.value)} tabIndex={2} />
 								<div className="input-box__btn-wrap">
-									{!isPassword && (
+									{password.length > 0 && (
 										<>
 											<span className="input-box__btn-erase" onClick={() => setPassword('')}>X</span>
 											<span className="input-box__btn-display" onClick={() => setShowPassword(!showPassword)}>{showPassword ? `가리기` : `표시`}</span>
@@ -122,9 +122,6 @@ const LoginPage = () => {
 
 							<div className="login__btn--submit">
 								<button type="submit" tabIndex={3}>로그인</button>
-								{(isEmail && email.length > 0) && (isPassword && password.length > 0) ? (<button type="submit">로그인</button>) : (
-									<button className="disabled" disabled>로그인</button>
-								)}
 							</div>
 							<div className="login__msg-wrap">
 								{!isSignedUp ? (
