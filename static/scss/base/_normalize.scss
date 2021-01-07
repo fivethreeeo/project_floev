@@ -24,7 +24,7 @@ a {
 .kakaoLinkWrap a img {display:none}
 .kakaoBtn {position:absolute;right:48px;bottom:24px;width:48px;height:48px}
 .kakaoBtn img {position:relative;width:100%}
-#plusfriend-chat-button.btnAsk a {position:static;display:block;height:48px;margin-top:-48px}
+#create-channel-add-button.btnAsk a {position:static;display:block;height:48px;margin-top:-48px}
 @include responsive("mobile") {
   .kakaoBtn {position:absolute;right:16px;bottom:16px;width:48px;height:48px}
 }

@@ -23,11 +23,11 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
     {children}
     <footer>
       <div className="global1280">
-      <div className="kakaoLinkWrap">
-        <div id="plusfriend-chat-button" className="kakaoBtn">
-          <img src="/static/img/newLanding/kakao.png" alt="" />
+        <div className="kakaoLinkWrap">
+          <div id="create-channel-add-button" className="kakaoBtn">
+            <img src="/static/img/newLanding/kakao.png" alt="" />
+          </div>
         </div>
-      </div>
       </div>
     </footer>
   </div>

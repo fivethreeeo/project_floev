@@ -45,9 +45,13 @@ const IndexPage = () => {
     if (!window.Kakao.isInitialized()) {
       window.Kakao.init('12cae5545ba9f2d8993ff4d8b45478de')
     }
-    window.Kakao.PlusFriend.createChatButton({
-      container: '#plusfriend-chat-button',
-      plusFriendId: '_qxajuT' // 플러스친구 홈 URL에 명시된 id로 설정합니다.
+    // window.Kakao.PlusFriend.createChatButton({
+    //   container: '#plusfriend-chat-button',
+    //   plusFriendId: '_qxajuT' // 플러스친구 홈 URL에 명시된 id로 설정합니다.
+    // })
+    window.Kakao.Channel.createAddChannelButton({
+      container: '#create-channel-add-button',
+      channelPublicId: '_xcLqmC',
     })
   })
 
@@ -155,7 +159,7 @@ const IndexPage = () => {
                   <p className="sub"><u>상담시간 : 오전 10시 ~ 오후 7시</u></p>
                   <p className="sub__2">*상담 시간 이외에 접수된 신청은<br />순차적으로 상담 가능 시간에 연락을 드립니다.</p>
                 </div>
-                <a href="/" className="confirm" style={{display:'block',lineHeight:'44px'}} type="button">확인</a>
+                <a href="/" className="confirm" style={{ display: 'block', lineHeight: '44px' }} type="button">확인</a>
               </div>
             )}
         </Modal>
