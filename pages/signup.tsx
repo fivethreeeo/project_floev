@@ -214,7 +214,7 @@ const SignUp = () => {
                                 </div>
 
                                 <div className="signup__btn--submit">
-                                    <button className="btn--disabled" disabled>회원가입</button>
+                                    <button className="btn--disabled" disabled>회원가입</button>{/* 로그인 된 채로 홈화면으로 이동 */}
                                     {/*<button
                                         onClick={() => signUpUser({
                                             variables: {
