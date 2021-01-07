@@ -54,14 +54,14 @@ const LoginPage = () => {
 		}
 	});
 
-	useEffect(() => {
-		const tempCookie = cookie.parse(document.cookie)
-		if (tempCookie !== null) {
-			if (tempCookie.token !== '') {
-				router.push('/')
-			}
-		}
-	})
+	// useEffect(() => {
+	// 	const tempCookie = cookie.parse(document.cookie)
+	// 	if (tempCookie !== null) {
+	// 		if (tempCookie.token !== '') {
+	// 			router.push('/')
+	// 		}
+	// 	}
+	// })
 
 	return (
 		<Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스">
