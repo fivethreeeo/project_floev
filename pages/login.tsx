@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { gql, useMutation } from '@apollo/client'
 import Link from 'next/link'
+import { Divider } from 'antd'
 
 const SIGN_IN_USER = gql`
   mutation signInUser($email: String!, $password: String!) {
@@ -104,38 +105,55 @@ const LoginPage = () => {
 							});
 						}}>
 							<div className="input-box">
-								<input className="input-box__input" type="text" placeholder="이메일" value={email} onChange={e => handleChangeEmail(e)} required />
+								<input className={(email.length == 0) ? `input-box__input input-box__input--err` : `input-box__input`} type="text" placeholder="이메일" value={email} onChange={e => handleChangeEmail(e)} tabIndex={1}/>
 								<div className="input-box__btn-wrap">
-									<button className="input-box__btn-erase" onClick={() => setEmail('')}>X</button>
+									{(email.length > 0) ? (
+										<span className="input-box__btn-erase" onClick={() => setEmail('')}>X</span>
+									) : (
+										''
+									)}
 								</div>
-								{!isEmail && (
-									<div className="input-box__msg-wrap">
-										<span className="input-box__msg input-box__msg--err">유효하지 않은 이메일입니다.</span>
-									</div>)}
+
+								<div className="input-box__msg-wrap">
+									{(email.length == 0) && (
+										<span className="input-box__msg input-box__msg--err">이메일을 입력해주세요.</span>
+									)}
+								</div>
 							</div>
 
 							<div className="input-box">
-								<input className="input-box__input"
+								<input className={(password.length == 0) ? `input-box__input input-box__input--err` : `input-box__input`}
 									type={showPassword ? "text" : "password"} placeholder="비밀번호"
-									value={password} onChange={e => handlePassword(e)} required />
+									value={password} onChange={e => handlePassword(e)} tabIndex={2} />
 								<div className="input-box__btn-wrap">
-									<button className={!showPassword ? `input-box__btn-display` : `input-box__btn-erase`} onClick={() => setShowPassword(!showPassword)}>{showPassword ? `X` : `표시`}</button>
+									{(password.length > 0) ? (
+										<>
+											<span className="input-box__btn-erase" onClick={() => setPassword('')}>X</span>
+											<span className="input-box__btn-display" onClick={() => setShowPassword(!showPassword)}>{showPassword ? `가리기` : `표시`}</span>
+										</>
+									) : (
+										''
+									)}
 								</div>
-								{!isPassword && (<div className="input-box__msg-wrap">
-									<div className="input-box__msg input-box__msg--err">비밀번호는 6자 이상입니다.</div>
-								</div>)}
+								<div className="input-box__msg-wrap">
+									{(password.length == 0) && (
+										<span className="input-box__msg input-box__msg--err">비밀번호를 입력해주세요.</span>
+									)}
+								</div>
 							</div>
 
 							<div className="login__btn--submit">
+							<button type="submit" tabIndex={3}>로그인</button>
 								{(isEmail && email.length > 0) && (isPassword && password.length > 0) ? (<button type="submit">로그인</button>) : (
 									<button className="disabled" disabled>로그인</button>
 								)}
 							</div>
-							{!valid && (
-								<div className="login__msg-wrap">
-									<div className="login__msg login__msg--err">계정정보가 일치하지 않습니다.</div>
-								</div>
-							)}
+							<div className="login__msg-wrap">
+								{!valid && (
+									<div className="login__msg login__msg--err">등록되지 않은 이메일입니다.</div>
+									//<div className="login__msg login__msg--err">비밀번호가 일치하지 않습니다.</div>
+								)}
+							</div>
 
 						</form>
 					</div>

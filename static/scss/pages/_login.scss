@@ -23,7 +23,6 @@
             button {
                 @include el-size(100%,48px);
                 display:block;
-                &.disabled {background:#E7B9AA;}
             }
         }
 
@@ -46,55 +45,62 @@
             }
         }
     }
-}
 
-.input-box {
-    @include el-size(100%,40px);
-    margin-bottom: 24px;
-    position: relative;
-    background-color: $fv-white;
-    outline-color: red;
-
-    &__input {
+    .input-box {
         @include el-size(100%,40px);
-        padding: 0 8px;
-        border: none;
-        border-bottom: 1px solid $fv-gray-4;
-        font-size:16px;
-        color:$fv-gray-9;
-        &:focus {
-            border-bottom: 1px solid $fv-gray-9;
-        }
-        &::placeholder {
-            font-size: 16px;
-            color: $fv-gray-6;
-        }
-    }
-
-    &__btn-wrap {
-        position: absolute;
-        top: 8px;
-        right:8px;
-    }
-
-    &__btn-erase {
-        @include el-size(24px,24px);
-        background: $fv-gray-4;
-    }
-
-    &__btn-display {
-        margin-left: 8px;
-        color: $fv-sienna;
-    }
+        margin-bottom: 24px;
+        position: relative;
+        background-color: $fv-white;
+        outline-color: red;
     
-    &__msg-wrap {
-        position: absolute;
-        bottom: -22px;
+        &__input {
+            @include el-size(100%,40px);
+            padding: 0 8px;
+            border: none;
+            border-bottom: 1px solid $fv-gray-4;
+            font-size:16px;
+            color:$fv-gray-9;
+            &:focus {
+                border-bottom: 1px solid $fv-gray-9;
+            }
+            &::placeholder {
+                font-size: 16px;
+                color: $fv-gray-6;
+            }
+            &--err {
+                border-bottom: 1px solid $fv-sienna;
+                &:focus {
+                    border-bottom: 1px solid $fv-sienna;
+                }
+            }
+        }
+    
+        &__btn-wrap {
+            position: absolute;
+            top: 8px;
+            right:8px;
+        }
+    
+        &__btn-erase {
+            @include el-size(24px,24px);
+            background: $fv-gray-4;
+        }
+    
+        &__btn-display {
+            margin-left: 8px;
+            color: $fv-sienna;
+        }
+        
+        &__msg-wrap {
+            position: absolute;
+            bottom: -22px;
+        }
+    
+        &__msg {
+            display:block;
+            font-size: 12px;
+            color: $fv-sienna;
+        }
+    
     }
-
-    &__msg {
-        font-size: 12px;
-        color: $fv-sienna;
-    }
-
 }
