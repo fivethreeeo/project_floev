@@ -344,7 +344,7 @@
 			padding-top:24px;
 			@extend %padding-d;
 			@include responsive("mobile") {
-				padding: 0 24px;
+				padding: 0 0;
 				margin:0 auto;
 				width:100%;
 				max-width: 560px;
@@ -417,7 +417,7 @@
 			padding: 80px 0;
 			@include responsive("mobile") {
 				display:block!important;
-				padding: 32px 0 48px;
+				padding: 32px 24px 48px;
 			}
 			.content-txt, .content-img {
 				width: 50%;
@@ -552,7 +552,7 @@
 			.ant-collapse-header {
 				padding:19px 56px 15px 64px;
 				font-size: 17px;
-				font-weight: 500;
+				font-weight: 700;
 				word-break: keep-all;
 				&::after {
 					content:'Q.';
@@ -566,8 +566,8 @@
 					  }
 				}
 				@include responsive("mobile") {
-					padding:14px 40px 13px 12px;
-					font-size:14px;
+					padding:16px 40px 13px 16px;
+					font-size:15px;
 				  }
 			}
 			.ant-collapse-content-box {
