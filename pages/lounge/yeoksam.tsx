@@ -54,7 +54,7 @@ const yeoksamPage = () => {
           strong {color:#64433F}
           .newColor {color:#C3512A}
 
-          .loungeWrap {padding-bottom:80px}
+          .loungeWrap {padding-bottom:80px;margin-top:48px;}
           .section .imgWrap {float:none;width:100%;margin:0 0 16px 0;}
           .section .imgWrap img {width:100%}
 

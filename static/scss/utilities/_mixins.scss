@@ -43,8 +43,8 @@ $min-desktopp: 842px;
 }
 
 /* background-image */
-@mixin bg-img($img-url, $position-x, $position-y, $size-w, $size-h) {
-  background-image: $img-url;
+@mixin bg-img($position-x, $position-y, $size-w, $size-h) {
+  background-image: url(/static/img/img-wrap.jpg);
   background-repeat: no-repeat;
   background-position: $position-x $position-y;
   background-size: $size-w $size-h;

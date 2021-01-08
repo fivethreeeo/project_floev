@@ -118,7 +118,7 @@ const LoginPage = ({
 									onChange={e => setEmail(e.target.value)} tabIndex={1} />
 								<div className="input-box__btn-wrap">
 									{email.length > 0 && (
-										<span className="input-box__btn-erase" onClick={() => setEmail('')}>X</span>
+										<span className="input-box__btn-erase" onClick={() => setEmail('')}></span>
 									)}
 								</div>
 
@@ -139,7 +139,7 @@ const LoginPage = ({
 								<div className="input-box__btn-wrap">
 									{password.length > 0 && (
 										<>
-											<span className="input-box__btn-erase" onClick={() => setPassword('')}>X</span>
+											<span className="input-box__btn-erase" onClick={() => setPassword('')}></span>
 											<span className="input-box__btn-display" onClick={() => setShowPassword(!showPassword)}>{showPassword ? `가리기` : `표시`}</span>
 										</>
 									)}
@@ -152,7 +152,7 @@ const LoginPage = ({
 							</div>
 
 							<div className="login__btn--submit">
-								<button type="submit" tabIndex={3}>로그인</button>
+								<button type="submit" tabIndex={3}>로그인하기</button>
 							</div>
 							<div className="login__msg-wrap">
 								{!validEmail ? (

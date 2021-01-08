@@ -100,7 +100,7 @@ const policyPage = () => {
 
 <style jsx>{`
 
-.wrap {width:100%;max-width:640px;margin:0 auto}
+.wrap {width:100%;max-width:640px;margin:0 auto;margin-top:56px;}
 .pageTitle {font-size: 20px;font-weight: bold;text-align: center;margin-bottom: 40px;}
 
 strong {color:#C3512A}

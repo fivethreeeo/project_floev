@@ -71,12 +71,14 @@ a {
 
 	&__btn-erase {
 		@include el-size(24px,24px);
-		background: $fv-gray-4;
+		@include bg-img(-82px,-10px,400px,400px);
+		cursor:pointer;
 	}
 
 	&__btn-display {
 		margin-left: 8px;
 		color: $fv-sienna;
+		cursor:pointer;
 	}
 
 	&__btn-ckeck-double {
@@ -95,16 +97,16 @@ a {
 
 	&__ico-check {
 		@include el-size(24px,24px);
-		background: $fv-gray-5;
+		@include bg-img(-34px,-10px,400px,400px);
 		cursor: default;
 	}
 
 	&__ico-check--done {
-		background: blue;
+		@include bg-img(-10px,-10px,400px,400px);
 	}
 
 	&__ico-check--err {
-		background: red;
+		@include bg-img(-58px,-10px,400px,400px);
 	}
 
 	&__msg-wrap {
@@ -121,7 +123,6 @@ a {
 	}
 
 }
-
 
 /* kakao plusFriend button */
 .global640 {display:block;width:100%;max-width:640px;margin:0 auto}
@@ -142,6 +143,7 @@ a {
 .goBackBtnWrap .goBackBtn a {display:block;height:40px}
 .headroom {display:block;content:'';clear:both;height:80px}
 /* 브랜드 페이지 */
+.brandWrap {margin-top:48px;}
 .brandWrap .titWrap, .brandWrap .infoWrap, .brandWrap .descWrap {margin-bottom:40px}
 .brandWrap .caption {font-size:20px;font-weight:bold;margin:24px 0;padding:0 20px}
 .brandWrap .titWrap .titImg img, .brandWrap .descWrap .mainImg img, .brandWrap .descWrap .subImg img {width:100%}

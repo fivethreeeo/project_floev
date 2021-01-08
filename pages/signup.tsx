@@ -121,14 +121,14 @@ const SignUp = ({
     const emailInputIcon = () => {
         let icon
         if (emailState === 0) {
-            icon = <span className="input-box__ico-check">v</span>
+            icon = <span className="input-box__ico-check"></span>
         } else if (emailState === 1) {
-            icon = <span className="input-box__ico-check input-box__ico-check--err">v</span>
+            icon = <span className="input-box__ico-check input-box__ico-check--err"></span>
         } else if (emailState === 2) {
             if (dupEmail < 2) {
-                icon = <span className="input-box__ico-check input-box__ico-check--err">v</span>
+                icon = <span className="input-box__ico-check input-box__ico-check--err"></span>
             } else {
-                icon = <span className="input-box__ico-check input-box__ico-check--done">v</span>
+                icon = <span className="input-box__ico-check input-box__ico-check--done"></span>
             }
         }
         // else if (emailState === 3) {
@@ -192,11 +192,11 @@ const SignUp = ({
     const passwordInputIcon = () => {
         let icon
         if (passwordState === 0) {
-            icon = <span className="input-box__ico-check">v</span>
+            icon = <span className="input-box__ico-check"></span>
         } else if (passwordState === 1) {
-            icon = <span className="input-box__ico-check input-box__ico-check--err">v</span>
+            icon = <span className="input-box__ico-check input-box__ico-check--err"></span>
         } else if (passwordState === 2) {
-            icon = <span className="input-box__ico-check input-box__ico-check--done">v</span>
+            icon = <span className="input-box__ico-check input-box__ico-check--done"></span>
         }
         // else if (passwordState === 3) {
         //     icon = <span className="input-box__btn-erase" onClick={() => setPassword('')}>X</span>
@@ -231,11 +231,11 @@ const SignUp = ({
     const nameInputIcon = () => {
         let icon
         if (nameState === 0) {
-            icon = <span className="input-box__ico-check">v</span>
+            icon = <span className="input-box__ico-check"></span>
         } else if (nameState === 1) {
-            icon = <span className="input-box__ico-check input-box__ico-check--err">v</span>
+            icon = <span className="input-box__ico-check input-box__ico-check--err"></span>
         } else if (nameState === 2) {
-            icon = <span className="input-box__ico-check input-box__ico-check--done">v</span>
+            icon = <span className="input-box__ico-check input-box__ico-check--done"></span>
         }
         // else if (nameState === 3) {
         //     icon = <span className="input-box__btn-erase" onClick={() => setName('')}>X</span>
@@ -267,11 +267,11 @@ const SignUp = ({
     const phoneNumberInputIcon = () => {
         let icon
         if (phoneNumberState === 0) {
-            icon = <span className="input-box__ico-check">v</span>
+            icon = <span className="input-box__ico-check"></span>
         } else if (phoneNumberState === 1) {
-            icon = <span className="input-box__ico-check input-box__ico-check--err">v</span>
+            icon = <span className="input-box__ico-check input-box__ico-check--err"></span>
         } else if (phoneNumberState === 2) {
-            icon = <span className="input-box__ico-check input-box__ico-check--done">v</span>
+            icon = <span className="input-box__ico-check input-box__ico-check--done"></span>
         }
         // else if (nameState === 3) {
         //     icon = <span className="input-box__btn-erase" onClick={() => setPhoneNumber('')}>X</span>
@@ -322,7 +322,7 @@ const SignUp = ({
                 <div className="signupPage">
                     <div className="signup">
                         <h2 className="signup__title">회원가입</h2>
-                        <div className="signup_form">
+                        <div className="signup__form">
 
                             <form onSubmit={(e) => handleSubmit(e)}>
 
@@ -360,7 +360,9 @@ const SignUp = ({
                                     <label className="input-box__label" htmlFor="input-label--pw">비밀번호</label>
                                     <div className="input-box__btn-wrap">
                                         {passwordInputIcon()}
-                                        <span className="input-box__btn-display" onClick={() => setShowPassword(!showPassword)}>{showPassword ? `숨김` : `표시`}</span>
+                                        {password.length > 0 && (
+											<span className="input-box__btn-display" onClick={() => setShowPassword(!showPassword)}>{showPassword ? `가리기` : `표시`}</span>
+									    )}
                                     </div>
                                     <div className="input-box__msg-wrap">
                                         {passwordInputMessage()}
@@ -396,7 +398,7 @@ const SignUp = ({
                                         onBlur={() => handleBlurPhoneNumber()}
                                         onChange={e => setPhoneNumber(e.target.value)}
                                         type="text"
-                                        placeholder="' - ' 제외 ex) 01012341234"
+                                        placeholder="ex) 01012341234"
                                         id="input-label--phone"
                                         tabIndex={4}
                                     />
@@ -410,7 +412,7 @@ const SignUp = ({
                                 </div>
 
                                 <div className="signup__btn--submit">
-                                    <button type="submit" tabIndex={3}>플로브 회원가입</button>
+                                    <button type="submit" tabIndex={5}>회원가입하기</button>
                                 </div>
                             </form>
                         </div>

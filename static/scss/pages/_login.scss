@@ -1,10 +1,20 @@
 .loginPage {
-
+    &::before {
+		@extend %clearfix;
+		height:56px;
+		@include responsive("mobile") {
+			height:48px;
+		  }
+	}
     .login {
-        @include el-size(400px,400px);
-        margin:80px;
+        max-width:400px;
+        max-height:400px;
         position: relative;
-
+        margin: 120px auto;
+        @include responsive("mobile") {
+            padding:0 24px;
+            margin: 40px auto;
+        }
         &__title {
             text-align: center;
             font-size:16px;
