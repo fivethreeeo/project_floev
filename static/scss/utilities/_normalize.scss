@@ -129,7 +129,7 @@ a {
 .kakaoLinkWrap {position:fixed;bottom:0;width:100%;max-width:1280px;z-index:800}
 .kakaoLinkWrap a {display:block;position: absolute; bottom:0;right:0;width:48px;height:48px;z-index: 5000;}
 .kakaoLinkWrap a img {display:none}
-.kakaoBtn {position:absolute;right:48px;bottom:24px;width:48px;height:48px}
+.kakaoBtn {position:absolute;right:24px;bottom:24px;width:48px;height:48px}
 .kakaoBtn img {position:relative;width:100%}
 #plusfriend-chat-button.btnAsk a {position:static;display:block;height:48px;margin-top:-48px}
 @include responsive("mobile") {

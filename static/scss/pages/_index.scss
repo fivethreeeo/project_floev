@@ -335,6 +335,269 @@
 		}
 	}
 
+	.service {
+		@include el-size(100%,100%);
+		background: $fv-gray-0;
+
+		&__inner {
+			@include vw-mx-w(1280px);
+			padding-top:24px;
+			@extend %padding-d;
+			@include responsive("mobile") {
+				padding: 0 24px;
+				margin:0 auto;
+				width:100%;
+				max-width: 560px;
+			}
+		}
+		&__tabs {
+			@include flexbox(nowrap);
+			@include responsive("mobile") {
+				display:none;
+			}
+		}
+		&__tab {
+			@include el-size(25%,64px);
+			text-align: center;
+			line-height: 64px;
+			font-size: 16px;
+			font-weight: 500;
+			color: $fv-gray-7;
+			border-bottom: 1px solid $fv-gray-4;
+			cursor: pointer;
+		}
+		&__tab--selected {
+			font-size: 18px;
+			font-weight: 700;
+			color: $fv-sienna;
+			border-bottom: 2px solid $fv-sienna;
+		}
+		&__carousel {
+			.slick-dots.slick-dots-bottom {
+				bottom:20px;
+				li {
+					width:8px!important;
+					height:8px!important;
+					border-radius:10px;
+					background: $fv-gray-3!important;
+					cursor:pointer;
+					button {
+						height:8px!important;
+						background:none;
+					}
+					@include responsive("desktopp") {
+						background: $fv-gray-0!important;
+					}
+				}
+				li.slick-active {
+					background: $fv-gray-5!important;
+					@include responsive("desktopp") {
+						background: $fv-gray-0!important;
+					}
+				}
+			}
+			.slick-arrow.slick-prev, .slick-arrow.slick-next {
+				z-index:850;
+				top:40%!important;
+				background:$fv-gray-3;
+				width:48px;
+				height:48px;
+				border-radius: 48px;
+				//box-shadow: 0px 2px 4px rgba($color: $fv-gray-9, $alpha: 0.2)!important;
+				@include responsive("mobile") {
+					display:none!important;
+				}
+			}
+			.slick-arrow.slick-next {
+
+			}
+		}
+		&__slide {
+			display: flex!important;
+			padding: 80px 0;
+			@include responsive("mobile") {
+				display:block!important;
+				padding: 32px 0 48px;
+			}
+			.content-txt, .content-img {
+				width: 50%;
+				@include responsive("mobile") {
+					width: 100%;
+				}
+			}
+
+			.content-txt {
+				@include flexbox(nowrap);
+				justify-content: center;
+				align-items: center;
+				@include responsive("mobile") {
+					display: block;
+					text-align: center;
+				}
+				&__inner {
+					margin: 0 auto;
+					padding-bottom: 16px;
+					padding-left: 64px;
+					max-width: 400px;
+					@include responsive("mobile") {
+						padding-left: 0;
+						padding-bottom: 0;
+					}
+
+					.tabname {
+						display: block;
+						font-size: 13px;
+						font-weight: 700;
+						color: $fv-sienna;
+						text-decoration: underline;
+					}
+					.title {
+						margin-bottom: 24px;
+						font-size: 28px;
+						font-weight: 700;
+						color: $fv-gray-9;
+						@include responsive("mobile") {
+							margin: 40px 0 24px;
+							font-size: 24px;
+						}
+					}
+					.caption {
+						font-size: 16px;
+						color: $fv-gray-7;
+						word-break: keep-all;
+						@include responsive("mobile") {
+							margin-bottom: 32px;
+							font-size: 15px;
+						}
+					}
+				}
+				
+			}
+
+			.content-img {
+				padding-right: 88px;
+				@include responsive("mobile") {
+					padding-right: 0;
+				}
+				&__inner {
+					margin: 0 auto;
+					width: 100%;
+					max-width: 400px;
+					border-radius: 16px;
+					overflow: hidden;
+				}
+			}
+		}
+	}
+
+	.faq {
+		margin: 160px 0 0;
+		padding: 64px 0;
+		background: $fv-gray-0;
+		&__title {
+			margin:0 auto;
+			@include vw-mx-w(1280px);
+			@extend %padding-d;
+			font-size: 22px;
+			@include responsive("mobile") {
+				padding: 0 24px;
+				width:100%;
+				max-width: 584px;
+				font-size:20px;
+				span {display:block}
+			  }
+		}
+		&__caption {
+			margin:0 auto;
+			@include vw-mx-w(1280px);
+			@extend %padding-d;
+			margin-top: 8px;
+			margin-bottom: 32px;
+			font-size:16px;
+			@include responsive("mobile") {
+				padding: 0 24px;
+				margin: 8px auto 24px;
+				width:100%;
+				max-width: 584px;
+				font-size:15px;
+			  }
+		}
+		&__collapse {
+
+			@include vw-mx-w(1280px);
+			margin: 0 auto;
+			margin-top: 32px;
+			@extend %padding-d;
+			@include responsive("mobile") {
+				margin:0 auto;
+				margin-top: 32px;
+				max-width:560px;
+				padding: 0 12px;
+			  }
+
+			.ant-collapse-item {
+				margin-bottom:12px;
+				border:1px solid $fv-gray-4;
+				border-radius: 8px;
+				background: $fv-white;
+				@include responsive("mobile") {
+					margin-bottom: 8px;
+					border-radius: 4px;
+				  }
+			}
+			.ant-collapse-item-active {
+				//background: $fv-gray-0;
+				box-shadow: 0px 2px 4px rgba($color: $fv-gray-9, $alpha: 0.2)!important;
+			}
+			.ant-collapse-header {
+				padding:19px 56px 15px 64px;
+				font-size: 17px;
+				font-weight: 500;
+				word-break: keep-all;
+				&::after {
+					content:'Q.';
+					position: absolute;
+					top: 18px;
+					left: 24px;
+					font-size: 18px;
+					font-weight: 700;
+					@include responsive("mobile") {
+						display: none;
+					  }
+				}
+				@include responsive("mobile") {
+					padding:14px 40px 13px 12px;
+					font-size:14px;
+				  }
+			}
+			.ant-collapse-content-box {
+				border-top: 1px solid $fv-gray-3;
+				padding:24px 56px 40px 64px!important;
+				@include responsive("mobile") {
+					padding: 16px 16px 24px 16px!important;
+				  }
+			}
+			.anticon.anticon-right.ant-collapse-arrow {
+				top:18px;
+				right:24px;
+				width:24px;
+				height:24px;
+				background: gray;
+				@include responsive("mobile") {
+					top:12px;
+					right:12px;
+				  }
+			}
+		}
+
+		&__answer {
+			font-size: 16px;
+			line-height:1.7;
+			@include responsive("mobile") {
+				font-size:14px;
+			  }
+		}
+	}
 
 	.lounge {
 		@include vw-mx-w(1280px);
@@ -373,17 +636,24 @@
 			font-size:16px;
 			@include responsive("desktopp") {
 				float:left;
-				width:calc(50% - 12px);
+				width:33.3%;
 				font-size:18px;
 				&:first-child {
-					margin-right:24px;
+					padding-right:16px;
+				}
+				&:nth-child(2) {
+					padding:0 8px;
+				}
+				&:last-child {
+					padding-left:16px;
 				}
 			}
 			@include responsive("mobile") {
 				margin: 0 auto;
 				max-width:560px;
-				&:first-child {
-					margin-bottom:16px;
+				margin-bottom:16px;
+				&:last-child {
+					display:none;
 				}
 			}
 			p {
@@ -542,98 +812,12 @@
 
 
 
-  .service__title {
-		@include vw-mx-w(1280px);
-		margin-top:160px;
-		@extend %padding-d;
-		margin-bottom:40px;
-		font-size: 22px;
-		@include responsive("mobile") {
-			width:100%;
-			max-width:560px;
-			margin-top:80px;
-			margin-bottom:16px;
-			padding:0 24px;
-			font-size:20px;
-			span {display:block;}
-		}
-	}
-  .service {
-	  .inner {
-		  margin-left:24px;
-	  }
-
-	@include vw-mx-w(640px);
-    .descWrap {
-      margin: 0 0 64px;
-    }
-    .imgWrap {
-      margin: 0 0 20px 0;
-      display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      width: 100%;
-      -webkit-overflow-scrolling: touch;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-      &::-webkit-scrollbar {
-        display: none;
-      }
-      .img {
-        width: 260px;
-        flex: 0 0 auto;
-        overflow: hidden;
-        &:nth-child(1) {
-          margin: 0 8px 0 0;
-        }
-        &:nth-child(2) {
-          width: 284px;
-          height: 200px;
-          img {
-            width: 260px;
-          }
-        }
-      }
-      @include responsive("desktop") {
-        display: block;
-        .img {
-          float: left;
-          width: calc(50% - 4px);
-          &:nth-child(2) {
-            width: calc(50% - 4px);
-            height: auto;
-            img {
-              width: 100%;
-            }
-          }
-        }
-      }
-    }
-    .txtWrap {
-      padding: 0 24px 0 16px;
-      p {
-        font-size: 16px;
-        font-weight: 700;
-        &:nth-child(1) {
-          margin: 0 0 12px 2px;
-        }
-        &:nth-child(2) {
-          margin: 0 0 16px;
-          font-size: 20px;
-          line-height: 1.5;
-          word-break: keep-all;
-        }
-        &:nth-child(3) {
-          font-weight: 400;
-          line-height: 1.7;
-        }
-      }
-    }
-  }
+ 
 
 
 
 /* -------- 모달 --------- */
+
 body{ overflow:scroll!important}
 .ant-modal {
 	max-width: 520px;
@@ -656,21 +840,23 @@ body{ overflow:scroll!important}
 	}
 }
 /* -------- 모달 콜랩스 --------- */
-.ant-collapse {
-	.ant-collapse-header {
-		padding:8px 8px!important;
-	}
-	.ant-collapse-content-box {
-		padding:0 8px!important;
-		.inner {
-			padding:0!important;
+.modalWrap{
+	.ant-collapse {
+		.ant-collapse-header {
+			padding:8px 8px!important;
 		}
-	}
-	.anticon.anticon-right.ant-collapse-arrow {
-		right:auto!important;
-		left:166px!important;
-		padding:6px 0!important;
-		transform: rotate(90deg)!important;
+		.ant-collapse-content-box {
+			padding:0 8px!important;
+			.inner {
+				padding:0!important;
+			}
+		}
+		.anticon.anticon-right.ant-collapse-arrow {
+			right:auto!important;
+			left:166px!important;
+			padding:6px 0!important;
+			transform: rotate(90deg)!important;
+		}
 	}
 }
 
