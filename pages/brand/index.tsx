@@ -122,7 +122,7 @@ const BrandPage = () => {
           </div>
 
           <style jsx>{`
-          .wrap {width:100%;max-width:640px;margin:0 auto}
+          .wrap {width:100%;max-width:640px;margin:0 auto;margin-top:56px;}
           .brandList {padding:64px 24px 80px}
           .brandList .top {margin:32px 0 24px}
           .brandList .top p:first-child {font-size:24px;font-weight:bold}

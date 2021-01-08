@@ -1,0 +1,117 @@
+.header {
+    @include responsive("mobile") {
+        height:48px;
+      }
+
+    @include po-fix(0,0,auto,0,999);
+    @include el-size(100%,56px);
+    background:$fv-white;
+    box-shadow: 0px 2px 5px rgba($color: $fv-gray-9, $alpha: 0.2);
+    &__inner {
+        @include vw-mx-w(1280px);
+        @extend %padding-d;
+        padding-top: 17px;
+        &::after {
+            @extend %clearfix;
+        }
+        @include responsive("mobile") {
+            padding:0 24px;
+            padding-top:14px;
+          }
+    }
+    &__logo {
+        float:left;
+        margin-right:40px;
+        width: 80px;
+        @include responsive("mobile") {
+            width: 72px!important;
+            img {
+                width: 72px!important;
+            }
+          }
+        img {
+            width:80px;
+        }
+        a {
+            display: block;
+        }
+    }
+    &__nav {
+        float:left;
+        padding-top:3px;
+        @include flexbox(nowrap);
+        span {
+            display: block;
+            font-size: 15px;
+            margin-right:24px;
+            &:last-child {
+                margin-right:0;
+            }
+        }
+        a {
+            display: block;
+            @media (hover: hover) {
+                &:hover{
+                    color: $fv-sienna;
+                }
+            }
+        }
+        @include responsive("mobile") {
+            display:none;
+          }
+    }
+
+    &__nav--sub {
+        float:right;
+        @include flexbox(nowrap);
+        @include responsive("mobile") {
+            margin-top:-2px;
+          }
+        span {
+            display: block;
+            font-size: 14px;
+            margin-left:12px;
+            @include responsive("mobile") {
+                display:none;
+              }
+        }
+        .hr {
+            font-size: 18px;
+            font-weight: 300;
+            margin: 0 8px 0 20px;
+            @include responsive("mobile") {
+                display:none;
+              }
+        }
+        .link-ico {
+            @include bg-img(-10px,-34px,400px,400px);
+            &:hover {
+                @include bg-img(-34px,-34px,400px,400px);
+            }
+            margin-left:0;
+            @include el-size(24px,24px);
+            a {
+                @include el-size(24px,24px);
+            }
+            @include responsive("mobile") {
+                display:block;
+              }
+            
+
+        }
+        .link-text {
+            padding-top:3px;
+        }
+        a {
+            display: block;
+            @media (hover: hover) {
+                &:hover{
+                    color: $fv-sienna;
+                }
+            }
+        }
+    }
+
+
+
+}

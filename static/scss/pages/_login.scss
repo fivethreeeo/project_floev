@@ -1,0 +1,64 @@
+.loginPage {
+    &::before {
+		@extend %clearfix;
+		height:56px;
+		@include responsive("mobile") {
+			height:48px;
+		  }
+	}
+    .login {
+        max-width:400px;
+        max-height:400px;
+        position: relative;
+        margin: 120px auto;
+        @include responsive("mobile") {
+            padding:0 24px;
+            margin: 40px auto;
+        }
+        &__title {
+            text-align: center;
+            font-size:16px;
+            font-weight:700;
+        }
+        &__form {
+            margin-top:40px;
+        }
+
+        &__btn--submit {
+            @include el-size(100%,48px);
+            margin-top: 40px;
+            border-radius: 8px;
+            background-color: $fv-sienna;
+            color:$fv-white;
+            button {
+                @include el-size(100%,48px);
+                display:block;
+            }
+        }
+
+        &__msg-wrap {
+            position: absolute;
+            top:40px;
+            width:100%;
+            text-align: center;
+            font-size:12px;
+            color:$fv-sienna;
+        }
+
+        &__link {
+            margin-top:24px;
+            font-size:14px;
+            text-align: center;
+            a {
+                padding-left: 8px;
+                color: $fv-sienna;
+            }
+        }
+
+        .input-box {
+            margin-bottom: 24px;
+        }
+
+    }
+    
+}
