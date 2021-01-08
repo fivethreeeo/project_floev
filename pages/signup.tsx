@@ -1,8 +1,10 @@
 import Layout from '../layout/DefaultLayout'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { gql, useMutation } from '@apollo/client'
 import cookie from 'cookie'
+import { GetServerSideProps } from 'next'
+import { createApolloClient } from '../lib/apolloClient'
 
 const SIGN_UP_USER = gql`
   mutation signUpUser($email: String!, $password: String!, $name: String!, $phoneNumber: String!) {
@@ -20,8 +22,19 @@ const CHECK_EMAIL_DUP = gql`
     checkEmailDup(email: $email)
   }
 `
+const CHECKUP_USER = gql`
+	query checkUpUser{
+		checkUpUser{
+			name
+		}
+	}
+`
 
-const SignUp = () => {
+const SignUp = ({
+    user
+}: {
+    user: any
+}) => {
     const router = useRouter();
 
     //email
@@ -78,6 +91,12 @@ const SignUp = () => {
             }
         }
     });
+
+    useEffect(() => {
+        if (user) {
+            router.push('/')
+        }
+    }, [user])
 
     const handleFocusEmail = () => {
         setIsEmail(true)
@@ -402,6 +421,27 @@ const SignUp = () => {
             </Layout>
         </>
     )
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => { //{ req }: { req: any }
+    const client = createApolloClient(context)
+    const { user } = await client.query({ query: CHECKUP_USER })
+        .then(({ data }) => {
+            return { user: data.checkUpUser };
+        })
+        .catch((error) => {
+            console.error(error.message)
+            // Fail gracefully
+            return { user: null };
+        });
+
+    return {
+        props: {
+            // this hydrates the clientside Apollo cache in the `withApollo` HOC
+            apolloStaticCache: client.cache.extract(),
+            user
+        },
+    }
 }
 
 export default SignUp

@@ -2,12 +2,15 @@ import React, { ReactNode } from 'react'
 import Head from 'next/head'
 import Header from './Header'
 
-type Props = {
+const Layout = ({
+  children,
+  title = 'This is the default title',
+  name
+}: {
   children?: ReactNode
   title?: string
-}
-
-const Layout = ({ children, title = 'This is the default title' }: Props) => (
+  name?: string
+}) => (
   <div>
     <Head>
       <title>{title}</title>
@@ -19,15 +22,15 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <meta property="og:url" content="https://floev.com" />
       <meta property="og:image" content="https://floev.com/static/img/newLanding/og.jpg" />
     </Head>
-    <Header></Header>
+    <Header name={name}></Header>
     {children}
     <footer>
       <div className="global1280">
-      <div className="kakaoLinkWrap">
-        <div id="plusfriend-chat-button" className="kakaoBtn">
-          <img src="/static/img/newLanding/kakao.png" alt="" />
+        <div className="kakaoLinkWrap">
+          <div id="plusfriend-chat-button" className="kakaoBtn">
+            <img src="/static/img/newLanding/kakao.png" alt="" />
+          </div>
         </div>
-      </div>
       </div>
     </footer>
   </div>

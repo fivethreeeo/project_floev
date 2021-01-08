@@ -1,9 +1,12 @@
 import Head from 'next/head'
 import Layout from '../layout/DefaultLayout'
 import React, { useEffect, useState } from 'react'
-import { Modal, Carousel, Collapse, Tabs } from 'antd'
+import { useRouter } from 'next/router'
+import { Modal, Carousel, Collapse } from 'antd'
 import { gql, useMutation } from '@apollo/client'
-import CollapsePanel from 'antd/lib/collapse/CollapsePanel'
+import { GetServerSideProps } from 'next'
+import { createApolloClient } from '../lib/apolloClient'
+// import CollapsePanel from 'antd/lib/collapse/CollapsePanel'
 
 const CREATE_USER_MUTATION = gql`
   mutation createUser($name: String!, $phn: String!) {
@@ -11,6 +14,13 @@ const CREATE_USER_MUTATION = gql`
       id
     }
   }
+`
+const CHECKUP_USER = gql`
+	query checkUpUser{
+		checkUpUser{
+			name
+		}
+	}
 `
 
 // 타입 정의
@@ -29,7 +39,12 @@ declare var process: Process
 declare function gtag_button1(): void;
 declare function gtag_button2(): void;
 
-const IndexPage = () => {
+const IndexPage = ({
+	user
+}: {
+	user: any
+}) => {
+	const router = useRouter()
 	const [modalView, setModalView] = useState(false)
 	const [tabIdx, setTabIdx] = useState(0)
 
@@ -53,6 +68,12 @@ const IndexPage = () => {
 			plusFriendId: '_qxajuT' // 플러스친구 홈 URL에 명시된 id로 설정합니다.
 		})
 	})
+
+	useEffect(() => {
+		if (user) {
+			router.push('/')
+		}
+	}, [user])
 
 
 	const handleGtag1 = () => {
@@ -176,7 +197,7 @@ const IndexPage = () => {
 				<script type="text/javascript" charSet="UTF-8" src="//t1.daumcdn.net/adfit/static/kp.js"></script>
 				<script type="text/javascript">kakaoPixel('784604748053330030').pageView('arrivehome');</script>
 			</Head>
-			<Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스">
+			<Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" name={user ? user.name : null}>
 				<Modal
 					centered
 					width="100%"
@@ -516,6 +537,26 @@ const IndexPage = () => {
 			</Layout>
 		</>
 	);
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => { //{ req }: { req: any }
+	const client = createApolloClient(context)
+	const { user } = await client.query({ query: CHECKUP_USER })
+		.then(({ data }) => {
+			return { user: data.checkUpUser };
+		})
+		.catch(() => {
+			// Fail gracefully
+			return { user: null };
+		});
+
+	return {
+		props: {
+			// this hydrates the clientside Apollo cache in the `withApollo` HOC
+			apolloStaticCache: client.cache.extract(),
+			user
+		},
+	}
 }
 
 export default IndexPage

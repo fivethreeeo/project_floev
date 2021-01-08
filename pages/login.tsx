@@ -1,9 +1,11 @@
 import Layout from '../layout/DefaultLayout'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { gql, useMutation } from '@apollo/client'
 import Link from 'next/link'
 import cookie from 'cookie'
+import { GetServerSideProps } from 'next'
+import { createApolloClient } from '../lib/apolloClient'
 
 const SIGN_IN_USER = gql`
   mutation signInUser($email: String!, $password: String!) {
@@ -16,8 +18,19 @@ const SIGN_IN_USER = gql`
     }
   }
 `
+const CHECKUP_USER = gql`
+	query checkUpUser{
+		checkUpUser{
+			name
+		}
+	}
+`
 
-const LoginPage = () => {
+const LoginPage = ({
+	user
+}: {
+	user: any
+}) => {
 	const router = useRouter();
 	const [email, setEmail] = useState('');
 	const [isEmail, setIsEmail] = useState(true)
@@ -26,6 +39,13 @@ const LoginPage = () => {
 	const [isPassword, setIsPassword] = useState(true);
 	const [showPassword, setShowPassword] = useState(false);
 	const [validPassword, setValidPassword] = useState(true)
+
+	useEffect(() => {
+		if (user) {
+			router.push('/')
+		}
+	}, [user])
+
 	const [signInUser] = useMutation(SIGN_IN_USER, {
 		variables: {
 			email: email, password: password
@@ -33,14 +53,13 @@ const LoginPage = () => {
 		onCompleted(data) {
 			if (data) {
 				const token = data.signInUser.token
-				console.log('token in completed: ' + token)
 				document.cookie = cookie.serialize("token", token, {
 					maxAge: 12 * 60 * 60
 				})
 				window.analytics.identify({
 					email: email,
 				});
-				router.push('/test')
+				router.push('/')
 			}
 		},
 		onError(error) {
@@ -153,6 +172,27 @@ const LoginPage = () => {
 			</div>
 		</Layout>
 	)
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => { //{ req }: { req: any }
+	const client = createApolloClient(context)
+	const { user } = await client.query({ query: CHECKUP_USER })
+		.then(({ data }) => {
+			return { user: data.checkUpUser };
+		})
+		.catch((error) => {
+			console.error(error.message)
+			// Fail gracefully
+			return { user: null };
+		});
+
+	return {
+		props: {
+			// this hydrates the clientside Apollo cache in the `withApollo` HOC
+			apolloStaticCache: client.cache.extract(),
+			user
+		},
+	}
 }
 
 export default LoginPage
