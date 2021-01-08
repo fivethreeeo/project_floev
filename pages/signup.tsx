@@ -79,7 +79,6 @@ const SignUp = ({
         onCompleted(data: any) {
             if (data) {
                 const token = data.signUpUser.token
-                console.log('token in completed: ' + token)
                 document.cookie = cookie.serialize("token", token, {
                     maxAge: 12 * 60 * 60
                 })
