@@ -21,7 +21,7 @@ const LoginPage = () => {
 	const router = useRouter();
 	const [email, setEmail] = useState('');
 	const [isEmail, setIsEmail] = useState(true)
-	const [isSignedUp, setIsSignedUp] = useState(true)
+	const [validEmail, setValidEmail] = useState(true)
 	const [password, setPassword] = useState('');
 	const [isPassword, setIsPassword] = useState(true);
 	const [showPassword, setShowPassword] = useState(false);
@@ -40,19 +40,33 @@ const LoginPage = () => {
 				window.analytics.identify({
 					email: email,
 				});
-				router.push('/')
+				router.push('/test')
 			}
 		},
 		onError(error) {
+			console.error(error.message)
 			// 유저가 없을 때
 			if (error.message === "No User") {
-				setIsSignedUp(false)
+				setValidEmail(false)
 			}// 비밀번호가 일치하지 않을 때
 			else if (error.message === "Not valid password") {
+				setValidEmail(true)
 				setValidPassword(false)
 			}
 		}
 	});
+
+	const handleBlurEmail = () => {
+		if (email.length === 0) {
+			setIsEmail(false)
+		}
+	}
+
+	const handleBlurPassword = () => {
+		if (password.length === 0) {
+			setIsPassword(false)
+		}
+	}
 
 	const handleSubmit = (e: any) => {
 		e.preventDefault();
@@ -80,7 +94,9 @@ const LoginPage = () => {
 
 						<form onSubmit={(e) => handleSubmit(e)}>
 							<div className="input-box">
-								<input className={!isEmail ? `input-box__input input-box__input--err` : `input-box__input`} type="text" placeholder="이메일" value={email} onFocus={() => setIsEmail(true)} onChange={e => setEmail(e.target.value)} tabIndex={1} />
+								<input className={!isEmail ? `input-box__input input-box__input--err` : `input-box__input`} type="text" placeholder="이메일" value={email} onFocus={() => setIsEmail(true)}
+									onBlur={() => handleBlurEmail()}
+									onChange={e => setEmail(e.target.value)} tabIndex={1} />
 								<div className="input-box__btn-wrap">
 									{email.length > 0 && (
 										<span className="input-box__btn-erase" onClick={() => setEmail('')}>X</span>
@@ -97,7 +113,10 @@ const LoginPage = () => {
 							<div className="input-box">
 								<input className={!isPassword ? `input-box__input input-box__input--err` : `input-box__input`}
 									type={showPassword ? "text" : "password"} placeholder="비밀번호"
-									value={password} onFocus={() => setIsPassword(true)} onChange={e => setPassword(e.target.value)} tabIndex={2} />
+									value={password}
+									onFocus={() => setIsPassword(true)}
+									onBlur={() => handleBlurPassword()}
+									onChange={e => setPassword(e.target.value)} tabIndex={2} />
 								<div className="input-box__btn-wrap">
 									{password.length > 0 && (
 										<>
@@ -117,7 +136,7 @@ const LoginPage = () => {
 								<button type="submit" tabIndex={3}>로그인</button>
 							</div>
 							<div className="login__msg-wrap">
-								{!isSignedUp ? (
+								{!validEmail ? (
 									<div className="login__msg login__msg--err">등록되지 않은 이메일입니다.</div>) : (!validPassword ? (<div className="login__msg login__msg--err">비밀번호가 일치하지 않습니다.</div>) : (''))
 								}
 							</div>
