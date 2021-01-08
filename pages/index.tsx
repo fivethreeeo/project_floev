@@ -640,7 +640,7 @@ const IndexPage = ({
 						<div className="lounge__list">
 							<div className="lounge__thumb"><a href="/lounge/yeoksam"><div><img src="/static/img/home/lounge_y_0.jpg" alt="" /></div><p>라운지 역삼성당</p></a></div>
 							<div className="lounge__thumb"><a href="/lounge/gangnam"><div><img src="/static/img/home/lounge_g_0.jpg" alt="" /></div><p>라운지 강남</p></a></div>
-							<div className="lounge__thumb"><div><img src="/static/img/home/lounge_g_0.jpg" alt="" /></div></div>
+							<div className="lounge__thumb"><div><img src="/static/img/home/new_lounge.jpg" alt="" /></div></div>
 						</div>
 					</div>
 
