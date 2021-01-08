@@ -1,5 +1,5 @@
 import Layout from '../layout/DefaultLayout'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import { gql, useMutation } from '@apollo/client'
 import Link from 'next/link'
@@ -54,14 +54,22 @@ const LoginPage = () => {
 		}
 	});
 
-	// useEffect(() => {
-	// 	const tempCookie = cookie.parse(document.cookie)
-	// 	if (tempCookie !== null) {
-	// 		if (tempCookie.token !== '') {
-	// 			router.push('/')
-	// 		}
-	// 	}
-	// })
+	const handleSubmit = (e: any) => {
+		e.preventDefault();
+		let isMutate: boolean = true
+
+		if (email.length === 0) {
+			setIsEmail(false)
+			isMutate = false
+		}
+		if (password.length === 0) {
+			setIsPassword(false)
+			isMutate = false
+		}
+		if (isMutate) {
+			signInUser();
+		}
+	}
 
 	return (
 		<Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스">
@@ -70,22 +78,7 @@ const LoginPage = () => {
 					<h2 className="login__title">로그인</h2>
 					<div className="login__form">
 
-						<form onSubmit={(e) => {
-							e.preventDefault();
-							let isMutate: boolean = true
-
-							if (email.length === 0) {
-								setIsEmail(false)
-								isMutate = false
-							}
-							if (password.length === 0) {
-								setIsPassword(false)
-								isMutate = false
-							}
-							if (isMutate) {
-								signInUser();
-							}
-						}}>
+						<form onSubmit={(e) => handleSubmit(e)}>
 							<div className="input-box">
 								<input className={!isEmail ? `input-box__input input-box__input--err` : `input-box__input`} type="text" placeholder="이메일" value={email} onFocus={() => setIsEmail(true)} onChange={e => setEmail(e.target.value)} tabIndex={1} />
 								<div className="input-box__btn-wrap">
