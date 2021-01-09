@@ -804,6 +804,9 @@
 		}
 		&__thumb {
 			font-size:16px;
+			&:last-child {
+				display:none;
+			}
 			@include responsive("desktopp") {
 				float:left;
 				width:33.3%;
@@ -822,9 +825,7 @@
 				margin: 0 auto;
 				max-width:560px;
 				margin-bottom:16px;
-				&:last-child {
-					display:none;
-				}
+
 			}
 			p {
 				margin-top:8px;
