@@ -661,12 +661,14 @@
 	.faq {
 		margin: 160px 0 0;
 		padding: 64px 0;
-		background: $fv-gray-0;
+		background: $fv-gray-9;
 		&__title {
 			margin:0 auto;
 			@include vw-mx-w(1280px);
 			@extend %padding-d;
 			font-size: 22px;
+			font-weight:500;
+			color:$fv-gray-0;
 			@include responsive("mobile") {
 				padding: 0 24px;
 				width:100%;
@@ -682,6 +684,7 @@
 			margin-top: 8px;
 			margin-bottom: 32px;
 			font-size:16px;
+			color:$fv-gray-0;
 			@include responsive("mobile") {
 				padding: 0 24px;
 				margin: 8px auto 24px;
@@ -705,9 +708,8 @@
 
 			.ant-collapse-item {
 				margin-bottom:12px;
-				border:1px solid $fv-gray-4;
 				border-radius: 8px;
-				background: $fv-white;
+				background: $fv-gray-8;
 				@include responsive("mobile") {
 					margin-bottom: 8px;
 					border-radius: 4px;
@@ -719,8 +721,9 @@
 			}
 			.ant-collapse-header {
 				padding:19px 56px 15px 64px;
+				color:$fv-gray-3;
 				font-size: 17px;
-				font-weight: 700;
+				font-weight: 500;
 				word-break: keep-all;
 				&::after {
 					content:'Q.';
@@ -739,7 +742,7 @@
 				  }
 			}
 			.ant-collapse-content-box {
-				border-top: 1px solid $fv-gray-3;
+				border-top: 1px solid $fv-gray-7;
 				padding:24px 56px 40px 64px!important;
 				@include responsive("mobile") {
 					padding: 16px 16px 24px 16px!important;
@@ -768,11 +771,15 @@
 					top:8px;
 					right:12px;
 				  }
+				  svg {
+					  color:$fv-gray-6;
+				  }
 			}
 		}
 
 		&__answer {
 			font-size: 16px;
+			color:$fv-gray-3;
 			line-height:1.7;
 			@include responsive("mobile") {
 				font-size:14px;
