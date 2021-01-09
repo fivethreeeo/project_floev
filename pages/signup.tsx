@@ -44,9 +44,7 @@ const SignUp = ({
     const [dupEmail, setDupEmail] = useState(0) // 0: 초기상태, 1: 중복됨, 2: 중복안됨
     const [checkEmailDup] = useMutation(CHECK_EMAIL_DUP, {
         onCompleted(data: any) {
-            const dupResult: boolean = data.checkEmailDup // false: 중복유저 없음
-            console.log("data.checkEmailDup: " + JSON.stringify(data.checkEmailDup))
-
+            const dupResult: boolean = data.checkEmailDup
             if (dupResult) { // true: 중복유저 있음
                 setDupEmail(1)
                 // 훗날 로그인페이지로 이동하겠냐는 alert 창 띄우고 이동 버튼 만들기
@@ -184,7 +182,6 @@ const SignUp = ({
         if (password.length >= 8 && password.length < 25) {
             setPasswordState(2) // 정상
         } else {
-            console.log('test')
             setPasswordState(1) // 비정상
         }
     }
@@ -361,8 +358,8 @@ const SignUp = ({
                                     <div className="input-box__btn-wrap">
                                         {passwordInputIcon()}
                                         {password.length > 0 && (
-											<span className="input-box__btn-display" onClick={() => setShowPassword(!showPassword)}>{showPassword ? `가리기` : `표시`}</span>
-									    )}
+                                            <span className="input-box__btn-display" onClick={() => setShowPassword(!showPassword)}>{showPassword ? `가리기` : `표시`}</span>
+                                        )}
                                     </div>
                                     <div className="input-box__msg-wrap">
                                         {passwordInputMessage()}
