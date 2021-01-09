@@ -18,7 +18,7 @@ export default function Header({
 						<div className="header__btn-back">
 
 						</div>
-						)}
+					)}
 					<div className="header__logo"><a href="/"><img src="/static/img/newLanding/fv_logo_bk.svg" alt="" /></a></div>
 					<nav className="header__nav">
 						<span><a href="/lounge/yeoksam">라운지 역삼성당</a></span>
@@ -43,7 +43,7 @@ export default function Header({
 			</header>
 			<div className="global1280">
 				<div className="kakaoLinkWrap">
-					<div id="plusfriend-chat-button" className="kakaoBtn">
+					<div id="create-channel-add-button" className="kakaoBtn">
 						<img src="/static/img/newLanding/kakao.png" alt="" />
 					</div>
 				</div>

@@ -27,7 +27,7 @@ const Layout = ({
     <footer>
       <div className="global1280">
         <div className="kakaoLinkWrap">
-          <div id="plusfriend-chat-button" className="kakaoBtn">
+          <div id="create-channel-add-button" className="kakaoBtn">
             <img src="/static/img/newLanding/kakao.png" alt="" />
           </div>
         </div>
