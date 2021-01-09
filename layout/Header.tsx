@@ -37,18 +37,9 @@ export default function Header({
 								<span className="link-text">{name}</span>
 								<span className="link-text" onClick={() => logout()}><a href="/">로그아웃</a></span>
 							</>}
-
 					</nav>
 				</div>
 			</header>
-			<div className="global1280">
-				<div className="kakaoLinkWrap">
-					<div id="create-channel-add-button" className="kakaoBtn">
-						<img src="/static/img/newLanding/kakao.png" alt="" />
-					</div>
-				</div>
-			</div>
 		</>
-
 	)
 }

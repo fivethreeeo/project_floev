@@ -41,19 +41,6 @@ const IndexPage = () => {
   const onChangePhn = (e: any) => {
     setPhn(e.target.value)
   }
-  useEffect(() => {
-    if (!window.Kakao.isInitialized()) {
-      window.Kakao.init('12cae5545ba9f2d8993ff4d8b45478de')
-    }
-    // window.Kakao.PlusFriend.createChatButton({
-    //   container: '#plusfriend-chat-button',
-    //   plusFriendId: '_qxajuT' // 플러스친구 홈 URL에 명시된 id로 설정합니다.
-    // })
-    window.Kakao.Channel.createAddChannelButton({
-      container: '#create-channel-add-button',
-      channelPublicId: '_xcLqmC',
-    })
-  })
 
   useEffect(() => {
     if (phn.length === 10) {

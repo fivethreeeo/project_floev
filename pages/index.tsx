@@ -60,26 +60,12 @@ const IndexPage = ({
 	const onChangePhn = (e: any) => {
 		setPhn(e.target.value)
 	}
-	useEffect(() => {
-		if (!window.Kakao.isInitialized()) {
-			window.Kakao.init('12cae5545ba9f2d8993ff4d8b45478de')
-		}
-		// window.Kakao.PlusFriend.createChatButton({
-		// 	container: '#plusfriend-chat-button',
-		// 	plusFriendId: '_qxajuT' // 플러스친구 홈 URL에 명시된 id로 설정합니다.
-		// })
-		window.Kakao.Channel.createAddChannelButton({
-			container: '#create-channel-add-button',
-			channelPublicId: '_xcLqmC',
-		})
-	})
 
 	useEffect(() => {
 		if (user) {
 			router.push('/')
 		}
 	}, [user])
-
 
 	const handleGtag1 = () => {
 		if (process.browser) {
@@ -565,7 +551,7 @@ const IndexPage = ({
 						</div>
 					</div>
 					<div className="service service__2">
- 						<div className="service__inner">
+						<div className="service__inner">
 
 							<Carousel
 								arrows
@@ -575,14 +561,14 @@ const IndexPage = ({
 								<div className="service__slide">
 									<div className="content-txt">
 										<div className="content-txt__inner">
-										<div className="tabname">무료 상담, 무료 추천</div>
-											<div className="title">안경상담부터 추천<br/>큐레이션까지 모두 무료!</div>
+											<div className="tabname">무료 상담, 무료 추천</div>
+											<div className="title">안경상담부터 추천<br />큐레이션까지 모두 무료!</div>
 											<div className="caption">카톡 안경 상담, 라운지 안경 큐레이션 서비스까지 모두 무료로 체험할 수 있어요.</div>
 										</div>
 									</div>
 									<div className="content-img">
 										<div className="content-img__inner">
-											<img src="/static/img/home/home_service_1.jpg" alt=""/>
+											<img src="/static/img/home/home_service_1.jpg" alt="" />
 										</div>
 									</div>
 								</div>
@@ -590,13 +576,13 @@ const IndexPage = ({
 									<div className="content-txt">
 										<div className="content-txt__inner">
 											<div className="tabname">맞춤 안경박스</div>
-											<div className="title">고민이 사라지는<br/>맞춤 안경박스</div>
+											<div className="title">고민이 사라지는<br />맞춤 안경박스</div>
 											<div className="caption">나에게 맞춘 16개의 안경이 담긴 안경박스를 플로브 라운지에서 즐겨보세요.</div>
 										</div>
 									</div>
 									<div className="content-img">
 										<div className="content-img__inner">
-											<img src="/static/img/home/home_service_2.jpg" alt=""/>
+											<img src="/static/img/home/home_service_2.jpg" alt="" />
 										</div>
 									</div>
 								</div>
@@ -604,13 +590,13 @@ const IndexPage = ({
 									<div className="content-txt">
 										<div className="content-txt__inner">
 											<div className="tabname">안경 카운셀러</div>
-											<div className="title">안경 카운셀러와<br/>쉽고 정확한 안경 찾기</div>
+											<div className="title">안경 카운셀러와<br />쉽고 정확한 안경 찾기</div>
 											<div className="caption">읽어주는 검안으로 쉬워지는 렌즈, 시각문제, 스타일까지 안경 카운셀러가 대신 고민하고 추천해드려요.</div>
 										</div>
 									</div>
 									<div className="content-img">
 										<div className="content-img__inner">
-											<img src="/static/img/home/home_service_3.jpg" alt=""/>
+											<img src="/static/img/home/home_service_3.jpg" alt="" />
 										</div>
 									</div>
 								</div>
@@ -618,19 +604,19 @@ const IndexPage = ({
 									<div className="content-txt">
 										<div className="content-txt__inner">
 											<div className="tabname">렌즈 무료 교환</div>
-											<div className="title">실패 없는 안경<br/>렌즈 2회 무료 교환</div>
-											<div className="caption">교정시력에 딱 맞춰볼까?<br/>불편한 렌즈는 한달 이내 무료로 2회 교환이 가능해요.</div>
+											<div className="title">실패 없는 안경<br />렌즈 2회 무료 교환</div>
+											<div className="caption">교정시력에 딱 맞춰볼까?<br />불편한 렌즈는 한달 이내 무료로 2회 교환이 가능해요.</div>
 										</div>
 									</div>
 									<div className="content-img">
 										<div className="content-img__inner">
-											<img src="/static/img/home/home_service_4.jpg" alt=""/>
+											<img src="/static/img/home/home_service_4.jpg" alt="" />
 										</div>
 									</div>
 								</div>
 							</Carousel>
- 						</div>
- 					</div>
+						</div>
+					</div>
 
 
 
@@ -645,49 +631,49 @@ const IndexPage = ({
 					</div>
 
 					<div className="faq">
-								<div className="faq__title"><strong><p>플로브 서비스, 이런 점이 궁금해요!</p></strong></div>
-								<div className="faq__caption"><p>궁금한 내용을 클릭하시면 내용을 확인할 수 있습니다.</p></div>
-							<div className="faq__collapse">
-								<Collapse
-									className="my-accordion"
-									accordion
-									onChange={collapseCallback}
-									expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 270 : 90} />}
-									expandIconPosition={'right'}
-									ghost
-								>
-									<Collapse.Panel header="상담을 받고 구매하지 않아도 되나요?" key="1">
-										<div className="faq__answer">네 구매하지 않으셔도 됩니다.<br />안경 상담 비용은 모두 무료이며 부담 없이 플로브 서비스를 체험할 수 있어요.</div>
-									</Collapse.Panel>
-									<Collapse.Panel header="받을 수 있는 가격 할인 혜택이 있나요?" key="2">
-										<div className="faq__answer">기본적으로 안경테는 정가에서 10~20% / 안경 렌즈는 브랜드사와 관계없이 20% 할인된 플로브 정책 가로 판매하고 있어요.<br />또한 상시로 진행하는 플로브 이벤트를 통해 최소 3만 원의 할인 혜택을 추가로 받을 수 있어요.</div>
-									</Collapse.Panel>
-									<Collapse.Panel header="오늘 예약하고 바로 방문할 수 있나요?" key="3">
-										<div className="faq__answer">네 가능해요. 안경 추천을 위해 카톡 상담은 필수이며 상담원에게 '당일 예약'을 요청해 주세요.</div>
-									</Collapse.Panel>
-									<Collapse.Panel header="친구와 함께 상담하고 구매할 수 있나요?" key="4">
-										<div className="faq__answer">동시 상담은 최대 2명까지 가능해요.<br />예약 시간을 100분 연속으로 제공하며 검안과 추천 상담을 모두 함께 받으실 수 있습니다. 카톡 상담은 필수이며 상담원에게 '2인 동시 상담'을 요청해 주세요.</div>
-									</Collapse.Panel>
-									<Collapse.Panel header="부모님 혹은 연인에게 선물하고 싶은데, 어떻게 예약해야 하나요?" key="5">
-										<div className="faq__answer">카톡 상담을 신청한 후, 선물하고 싶은 분의 추천 관련 정보를 카톡 상담원에게 알려주세요. 막막한 안경 선물을 센스 있게 도와드려요.</div>
-									</Collapse.Panel>
-									<Collapse.Panel header="구매한 안경을 당일에 받을 수 있나요?" key="6">
-										<div className="faq__answer">선택한 렌즈 사양과 방문하신 라운지의 가공 상황에 따라 달라져요.<br />렌즈의 경우 선택하신 브랜드와 기능에 따라 주문이 필요할 수 있기에 정확한 안내가 어려워요.</div>
-									</Collapse.Panel>
-									<Collapse.Panel header="카톡 상담은 필수인가요? 방문 예약을 상담 없이 바로 할 수 있나요?" key="7">
-										<div className="faq__answer">카톡 상담은 필수에요.<br />라운지에서 나에게 맞춘 최상의 큐레이션을 만날 수 있도록 나의 안경을 발견하는 여정, 카톡 상담으로 시작하세요!</div>
-									</Collapse.Panel>
-									<Collapse.Panel header="안경을 원래 쓰지 않는데, 방문해도 되나요?" key="8">
-										<div className="faq__answer">네 가능해요.<br />내 눈에 대한 고민은 시력적인 불편함뿐만 아니라 보호하고 싶은 걱정스러운 마음도 포함됩니다.</div>
-									</Collapse.Panel>
-									<Collapse.Panel header="수리/피팅 등 구매 후 서비스도 예약해야 하나요?" key="9">
-										<div className="faq__answer">플로브 카카오톡 채널로 문의해 주시면 접수가 가능한 링크를 보내드립니다.<br />구매한 안경과 검안 정보를 확인하여 편안한 수리/피팅 서비스를 맞춤으로 준비하기 위해 예약은 필수에요.</div>
-									</Collapse.Panel>
-									<Collapse.Panel header="맞춘 렌즈에 적응이 어려운데, 교환이 가능한가요?" key="10">
-										<div className="faq__answer">네 가능해요.<br />불편함을 해소하기 위해 한 달 이내 2회까지 동급 렌즈로 무상 교환해드려요.</div>
-									</Collapse.Panel>
-								</Collapse>
-							</div>
+						<div className="faq__title"><strong><p>플로브 서비스, 이런 점이 궁금해요!</p></strong></div>
+						<div className="faq__caption"><p>궁금한 내용을 클릭하시면 내용을 확인할 수 있습니다.</p></div>
+						<div className="faq__collapse">
+							<Collapse
+								className="my-accordion"
+								accordion
+								onChange={collapseCallback}
+								expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 270 : 90} />}
+								expandIconPosition={'right'}
+								ghost
+							>
+								<Collapse.Panel header="상담을 받고 구매하지 않아도 되나요?" key="1">
+									<div className="faq__answer">네 구매하지 않으셔도 됩니다.<br />안경 상담 비용은 모두 무료이며 부담 없이 플로브 서비스를 체험할 수 있어요.</div>
+								</Collapse.Panel>
+								<Collapse.Panel header="받을 수 있는 가격 할인 혜택이 있나요?" key="2">
+									<div className="faq__answer">기본적으로 안경테는 정가에서 10~20% / 안경 렌즈는 브랜드사와 관계없이 20% 할인된 플로브 정책 가로 판매하고 있어요.<br />또한 상시로 진행하는 플로브 이벤트를 통해 최소 3만 원의 할인 혜택을 추가로 받을 수 있어요.</div>
+								</Collapse.Panel>
+								<Collapse.Panel header="오늘 예약하고 바로 방문할 수 있나요?" key="3">
+									<div className="faq__answer">네 가능해요. 안경 추천을 위해 카톡 상담은 필수이며 상담원에게 '당일 예약'을 요청해 주세요.</div>
+								</Collapse.Panel>
+								<Collapse.Panel header="친구와 함께 상담하고 구매할 수 있나요?" key="4">
+									<div className="faq__answer">동시 상담은 최대 2명까지 가능해요.<br />예약 시간을 100분 연속으로 제공하며 검안과 추천 상담을 모두 함께 받으실 수 있습니다. 카톡 상담은 필수이며 상담원에게 '2인 동시 상담'을 요청해 주세요.</div>
+								</Collapse.Panel>
+								<Collapse.Panel header="부모님 혹은 연인에게 선물하고 싶은데, 어떻게 예약해야 하나요?" key="5">
+									<div className="faq__answer">카톡 상담을 신청한 후, 선물하고 싶은 분의 추천 관련 정보를 카톡 상담원에게 알려주세요. 막막한 안경 선물을 센스 있게 도와드려요.</div>
+								</Collapse.Panel>
+								<Collapse.Panel header="구매한 안경을 당일에 받을 수 있나요?" key="6">
+									<div className="faq__answer">선택한 렌즈 사양과 방문하신 라운지의 가공 상황에 따라 달라져요.<br />렌즈의 경우 선택하신 브랜드와 기능에 따라 주문이 필요할 수 있기에 정확한 안내가 어려워요.</div>
+								</Collapse.Panel>
+								<Collapse.Panel header="카톡 상담은 필수인가요? 방문 예약을 상담 없이 바로 할 수 있나요?" key="7">
+									<div className="faq__answer">카톡 상담은 필수에요.<br />라운지에서 나에게 맞춘 최상의 큐레이션을 만날 수 있도록 나의 안경을 발견하는 여정, 카톡 상담으로 시작하세요!</div>
+								</Collapse.Panel>
+								<Collapse.Panel header="안경을 원래 쓰지 않는데, 방문해도 되나요?" key="8">
+									<div className="faq__answer">네 가능해요.<br />내 눈에 대한 고민은 시력적인 불편함뿐만 아니라 보호하고 싶은 걱정스러운 마음도 포함됩니다.</div>
+								</Collapse.Panel>
+								<Collapse.Panel header="수리/피팅 등 구매 후 서비스도 예약해야 하나요?" key="9">
+									<div className="faq__answer">플로브 카카오톡 채널로 문의해 주시면 접수가 가능한 링크를 보내드립니다.<br />구매한 안경과 검안 정보를 확인하여 편안한 수리/피팅 서비스를 맞춤으로 준비하기 위해 예약은 필수에요.</div>
+								</Collapse.Panel>
+								<Collapse.Panel header="맞춘 렌즈에 적응이 어려운데, 교환이 가능한가요?" key="10">
+									<div className="faq__answer">네 가능해요.<br />불편함을 해소하기 위해 한 달 이내 2회까지 동급 렌즈로 무상 교환해드려요.</div>
+								</Collapse.Panel>
+							</Collapse>
+						</div>
 					</div>
 
 					<div className="banner-brand">

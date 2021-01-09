@@ -2,6 +2,15 @@ import React, { ReactNode } from 'react'
 import Head from 'next/head'
 import Header from './Header'
 
+const addChannel = () => {
+  if (!window.Kakao.isInitialized()) {
+    window.Kakao.init('12cae5545ba9f2d8993ff4d8b45478de')
+  }
+  window.Kakao.Channel.addChannel({
+    channelPublicId: '_xcLqmC',
+  })
+}
+
 const Layout = ({
   children,
   title = 'This is the default title',
@@ -27,7 +36,7 @@ const Layout = ({
     <footer>
       <div className="global1280">
         <div className="kakaoLinkWrap">
-          <div id="create-channel-add-button" className="kakaoBtn">
+          <div id="channel-add-button" className="kakaoBtn" onClick={() => addChannel()}>
             <img src="/static/img/newLanding/kakao.png" alt="" />
           </div>
         </div>
