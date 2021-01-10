@@ -1,6 +1,6 @@
-const withCSS = require('@zeit/next-css')
-const withSass = require('@zeit/next-sass')
-const withBundleAnalyzer = require('@next/bundle-analyzer')
+import withCSS from '@zeit/next-css'
+import withSass from '@zeit/next-sass'
+import withBundleAnalyzer from '@next/bundle-analyzer'
 
 // module.exports = withCSS({
 //   webpack: (config, { isServer }) => {
@@ -28,12 +28,12 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')
 //   },
 // })
 
-module.exports = withCSS(
+export default withCSS(
   withSass({
     cssModules: true
   })
 )
 
-module.exports = withBundleAnalyzer({
+export default withBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true'
 })
