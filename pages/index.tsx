@@ -289,6 +289,7 @@ const IndexPage = ({
 
 					<div className="score">
 						<div className="score__inner">
+						<div className="score__date">(2020/12/31 기준)</div>
 							<div className="score__title">플로브에서 <span className="num">1,644명</span>이 <span className="br"></span><span>안경 추천상담</span>을 받았어요.</div>
 							<div className="score__board">
 								<div className="score__each">

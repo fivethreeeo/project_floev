@@ -15,6 +15,19 @@ a {
 	}
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px $fv-white inset;
+  box-shadow: 0 0 0px 1000px $fv-white inset;
+}
+
 .clearfix {
 	clear: both;
 	display: block;
@@ -82,12 +95,16 @@ a {
 	}
 
 	&__btn-ckeck-double {
+		margin-top: -3px;
+		margin-right:-8px;
 		margin-left: 8px;
+		padding: 6px 8px 4px;
 		font-size: 12px;
 		color: $fv-gray-7;
 		background: $fv-white;    
 		border: 1px solid $fv-gray-4;
 		border-radius: 4px;
+		cursor: pointer;
 	}
 
 	&__btn-ckeck-double--done {
