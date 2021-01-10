@@ -24,12 +24,14 @@
     "cookie": "^0.4.1",
     "cross-env": "^7.0.3",
     "graphql": "^15.4.0",
+    "html2canvas": "^1.0.0-rc.7",
     "next": "^10.0.3",
     "nextjs-redirect": "^5.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-signature-canvas": "^1.0.3",
-    "sass": "^1.30.0"
+    "sass": "^1.30.0",
+    "use-react-screenshot": "^1.0.2"
   },
   "devDependencies": {
     "@types/cookie": "^0.4.0",
