@@ -2,7 +2,6 @@
   "name": "floev_front",
   "version": "1.0.0",
   "author": "sanscreate",
-  "type": "module",
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
