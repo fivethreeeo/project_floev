@@ -19,7 +19,6 @@
     "@zeit/next-sass": "^1.0.1",
     "antd": "^4.9.2",
     "antd-mobile": "^2.3.4",
-    "axios": "^0.21.1",
     "babel-plugin-import": "^1.13.3",
     "cookie": "^0.4.1",
     "cross-env": "^7.0.3",
@@ -29,8 +28,8 @@
     "nextjs-redirect": "^5.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-signature-canvas": "^1.0.3",
     "sass": "^1.30.0",
+    "react-signature-canvas": "^1.0.3",
     "use-react-screenshot": "^1.0.2"
   },
   "devDependencies": {
