@@ -218,7 +218,7 @@ const IndexPage = ({
 								}}
 							>
 								<div className="kakaoForm">
-									<input className="name" type="text" name="name" placeholder={"이름"} maxLength={10} value={name} onChange={onChangeName} tabIndex={1} />
+									<input className="name" type="text" name="name" placeholder={"이름"} maxLength={10} value={name} onChange={onChangeName} tabIndex={1} autoFocus/>
 									<input className="tel" type="tel" name="phoneNumber" placeholder={"휴대폰 번호 (  '-' 없이 숫자만 입력 )"} maxLength={11} value={phn} onChange={onChangePhn} tabIndex={2} />
 									{phn.length >= 11 && name !== "" ? (
 										<button type="submit" className="gtm-033" onClick={() => { handleGtag2(); }}>안경 무료상담 받기</button>
