@@ -7,7 +7,7 @@ const addChannel = () => {
     window.Kakao.init('12cae5545ba9f2d8993ff4d8b45478de')
   }
   window.Kakao.Channel.addChannel({
-    channelPublicId: '_xcLqmC',
+    channelPublicId: '_qxajuT',
   })
 }
 
