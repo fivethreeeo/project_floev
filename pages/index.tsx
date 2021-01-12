@@ -690,7 +690,7 @@ const IndexPage = ({
 
 					<div className="bottom-cta">
 						<div className="bottom-cta__inner">
-							<button className="gtm-002 btn-cta" onClick={() => { setModalView(true); }}>안경추천 시작하기</button>
+							<button className="gtm-002 btn-cta" onClick={() => { setModalView(true); }}> <span>추천서비스 신청하기</span></button>
 						</div>
 					</div>
 
