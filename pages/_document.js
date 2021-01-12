@@ -42,6 +42,7 @@ class MyDocument extends Document {
               gtag('config', 'AW-738487034');
             `}}
           />
+          <script src="https://www.googleoptimize.com/optimize.js?id=GTM-K2ZP9MN"></script>
           <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
           <script dangerouslySetInnerHTML={{
             __html: `
