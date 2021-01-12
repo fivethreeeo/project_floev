@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Layout from '../layout/DefaultLayout'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Modal } from 'antd'
 import { gql, useMutation } from '@apollo/client'
 
