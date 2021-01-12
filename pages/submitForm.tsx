@@ -42,15 +42,6 @@ const IndexPage = () => {
     setPhn(e.target.value)
   }
 
-  useEffect(() => {
-    if (phn.length === 10) {
-      setPhn(phn.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'))
-    }
-    if (phn.length === 13) {
-      setPhn(phn.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'))
-    }
-  }, [phn])
-
   const handleGtag2 = () => {
     if (process.browser) {
       gtag_button2()
@@ -118,9 +109,9 @@ const IndexPage = () => {
                   }}
                 >
                   <div className="kakaoForm">
-                    <input className="name data-hj-allow" type="text" name="name" placeholder={'이름'} maxLength={20} value={name} onChange={onChangeName} />
-                    <input className="tel data-hj-allow" type="tel" name="phoneNumber" placeholder={'휴대폰 번호 (  \'-\' 없이 숫자만 입력 )'} maxLength={13} value={phn} onChange={onChangePhn} />
-                    {phn.length >= 12 && name !== '' ? (
+                    <input className="name data-hj-allow" type="text" name="name" placeholder={'이름'} maxLength={20} value={name} onChange={onChangeName} tabIndex={1} />
+                    <input className="tel data-hj-allow" type="tel" name="phoneNumber" placeholder={'휴대폰 번호 (  \'-\' 없이 숫자만 입력 )'} maxLength={11} value={phn} onChange={onChangePhn} tabIndex={2} />
+                    {phn.length >= 11 && name !== '' ? (
                       <button type="submit" className="gtm-035" onClick={() => { handleGtag2() }}>안경 무료상담 받기</button>
                     ) : (
                         <button className="disabled" disabled>안경 무료상담 받기</button>
@@ -144,7 +135,7 @@ const IndexPage = () => {
                     <p className="sub"><u>상담시간 : 오전 10시 ~ 오후 7시</u></p>
                     <p className="sub__2">*상담 시간 이외에 접수된 신청은<br />순차적으로 상담 가능 시간에 연락을 드립니다.</p>
                   </div>
-                  <a href="/" className="confirm" style={{ display: 'block', lineHeight: '44px' }} type="button">확인</a>
+                  <a href="/" className="confirm" style={{ display: 'block', lineHeight: '44px', textAlign:'center' }} type="button">확인</a>
                 </div>
               )}
           </Modal>
