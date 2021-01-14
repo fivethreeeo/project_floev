@@ -34,6 +34,8 @@ class MyDocument extends Document {
           <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
           <script dangerouslySetInnerHTML={{ __html: this.renderSnippet() }} />
           <script async src="https://www.googletagmanager.com/gtag/js?id=AW-738487034"></script>
+          <script async src="https://unpkg.com/survey-react"></script>
+          <link href="https://unpkg.com/survey-react/survey.min.css" type="text/css" rel="stylesheet" />
           <script dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
