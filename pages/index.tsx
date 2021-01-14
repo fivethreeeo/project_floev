@@ -564,7 +564,7 @@ const IndexPage = ({
 										<div className="content-txt__inner">
 											<div className="tabname">무료 상담, 무료 추천</div>
 											<div className="title">안경상담부터 추천<br />큐레이션까지 모두 무료!</div>
-											<div className="caption">카톡 안경 상담, 라운지 안경 큐레이션 서비스까지 모두 무료로 체험할 수 있어요.</div>
+											<div className="caption">홈페이지 설문, 더 디테일한 카톡 상담, 라운지 안경 큐레이션 서비스까지 모두 무료로 체험할 수 있어요.</div>
 										</div>
 									</div>
 									<div className="content-img">
@@ -656,13 +656,13 @@ const IndexPage = ({
 									<div className="faq__answer">네 함께 추천받을 수 있어요.<br />동시 서비스는 최대 2명까지 가능하고 총 서비스 시간은 100분입니다.</div>
 								</Collapse.Panel>
 								<Collapse.Panel header="안경을 선물하고 싶은데, 어떻게 예약해야 하나요?" key="5">
-									<div className="faq__answer">성공적인 선물을 위한 상담을 카카오톡으로 진행해요.<br/>플로브의 완벽한 가이드로 막막한 안경 선물을 센스 있게 도와드려요.</div>
+									<div className="faq__answer">성공적인 선물을 위한 상담을 카카오톡으로 진행해요.<br/>홈페이지 설문이 아닌 플로브 카카오톡 채널로 문의해주세요!</div>
 								</Collapse.Panel>
 								<Collapse.Panel header="구매한 안경을 당일에 받을 수 있나요?" key="6">
 									<div className="faq__answer">선택한 렌즈 사양에 따라 달라져요.<br />렌즈 브랜드 및 추가하는 옵션에 따라 렌즈 주문이 필요할 수 있어요. 이 경우 수령 날짜를 라운지에서 안내받을 수 있습니다.</div>
 								</Collapse.Panel>
 								<Collapse.Panel header="예약 없이 방문할 수 있나요?" key="7">
-									<div className="faq__answer">플로브는 100% 예약제로 운영됩니다.<br/>플로브는 일반적인 안경원이 아니에요. 안경을 구매하는 새로운 방식을 제안합니다. 나만을 위한 안경박스를 추천받기 위해서 카카오톡을 통해 예약 상담을 꼭 진행해 주세요!</div>
+									<div className="faq__answer">플로브는 100% 예약제로 운영됩니다.<br/>플로브는 일반적인 안경원과 달라요. 안경을 구매하는 새로운 방식을 제안합니다. 나만을 위한 안경박스를 추천받기 위해서 홈페이지 설문을 꼭 진행해 주세요!</div>
 								</Collapse.Panel>
 								<Collapse.Panel header="안경을 원래 쓰지 않는데, 방문해도 되나요?" key="8">
 									<div className="faq__answer">네 가능해요.<br />내 눈에 대한 고민은 시력적인 불편함뿐만 아니라 보호하고 싶은 걱정스러운 마음도 포함됩니다.</div>
