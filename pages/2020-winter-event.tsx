@@ -29,6 +29,7 @@ const EventPage = () => {
             <div className="h6">*할인은 결제액의 30%까지 적용가능합니다.<br/>*네이버맵/카카오맵 동시 참여 가능합니다.<br/>*1인 1회에 한해 참여 가능합니다.<br/>*해당 이벤트는 사전 고지 없이 종료될 수 있습니다.<br/>*이벤트 1과 2는 중복 참여 가능합니다.</div>
           </div>
           <style jsx>{`
+                    .wrap {padding-bottom:80px;margin-top:48px;}
           .event {color:#fff;text-align:center}
           .event__1 {padding:64px 0 48px;background:#B0453A}
           .event__2 {padding:48px 0;background:#64433F}
@@ -45,9 +46,6 @@ const EventPage = () => {
           .title2 {margin:0 auto 32px;padding:7px 0 5px;width:80px;border-radius:20px;font-size:11px;font-weight:bold;background:rgba(51,52,58,0.8)}
           .h5 {margin:0 auto 24px;width:277px;text-align:left;font-size:14px;font-weight:500}
           .h6 {margin:0 auto;width:277px;text-align:left;font-size:11px;line-height:18px}
-          @media (min-width:641px) {
-            .wrap {padding:0 100px}
-          }
         `}</style>
         </div>
         </Layout>
