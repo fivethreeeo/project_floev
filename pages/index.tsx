@@ -67,13 +67,13 @@ const IndexPage = ({
 			router.push('/')
 		}
 	}, [user])
-
+  /*
 	const handleGtag1 = () => {
 		if (process.browser) {
 			gtag_button1()
 		}
 	}
-
+  */
 	const handleGtag2 = () => {
 		if (process.browser) {
 			gtag_button2()
