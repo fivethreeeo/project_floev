@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { Modal, Carousel, Collapse } from 'antd'
 import { gql, useMutation } from '@apollo/client'
 import { GetServerSideProps } from 'next'
+import Link from 'next/link'
 import { createApolloClient } from '../lib/apolloClient'
 // import CollapsePanel from 'antd/lib/collapse/CollapsePanel'
 import { CaretRightOutlined } from '@ant-design/icons'
@@ -267,7 +268,7 @@ const IndexPage = ({
 									</div>
 									<p className="main-visual__caption">안경 고민을 설문하세요.<br />판매가 아닌 추천에 충실한 안경테 체험</p>
 									<div className="main-visual__btn">
-										<button className="gtm-001 btn-cta" onClick={() => { setModalView(true); handleGtag1(); }}><span>시작하기</span></button>
+										<button className="gtm-001 btn-cta"><Link href="https://service.floev.com/survey"><span>시작하기</span></Link></button>
 									</div>
 								</div>
 							</div>
@@ -690,7 +691,7 @@ const IndexPage = ({
 
 					<div className="bottom-cta">
 						<div className="bottom-cta__inner">
-							<button className="gtm-002 btn-cta" onClick={() => { setModalView(true); }}> <span>시작하기</span></button>
+              <button className="gtm-001 btn-cta"><Link href="https://service.floev.com/survey"><span>시작하기</span></Link></button>
 						</div>
 					</div>
 
