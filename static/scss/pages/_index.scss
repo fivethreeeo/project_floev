@@ -9,6 +9,22 @@
 	}
 
 	.main-visual {
+		&.bg-test {
+			.main-visual__img-wrap {
+				background: url(/static/img/home/top-2.jpg) center center / cover no-repeat;
+			}
+			.main-visual__img {
+				display:none;
+			}
+			@include responsive("mobile") {
+				background: url(/static/img/home/top-2.jpg) center center / cover no-repeat;
+				.main-visual__title {padding-top:320px;color:$fv-white;margin-top:0;
+					p {text-shadow: 1px 1px 1px rgba($color: $fv-gray-9, $alpha: 0.4);}
+				}
+				.main-visual__caption {color:$fv-white;text-shadow: 1px 1px 1px rgba($color: $fv-gray-9, $alpha: 0.4);}
+				.main-visual__img {display:none}
+			  }
+		}
 		@include el-size(100%,88vh);
 		max-height:560px;
 		background:#fff9e7;

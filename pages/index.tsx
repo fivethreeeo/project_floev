@@ -263,11 +263,11 @@ const IndexPage = ({
 							<div className="main-visual__desc-wrap">
 								<div className="desc-wrap__inner">
 									<div className="main-visual__title">
-										<p className=""><strong>이것저것 안경을 바꿔봤는데<br />아직도 잘 모르겠어요.</strong></p>
+										<p className=""><strong>어떤 안경을 써야할지 모르는<br />사람들을 위한 안경 추천 서비스</strong></p>
 									</div>
-									<p className="main-visual__caption">나에게 어울리는 안경을 찾는 가장 쉬운방법,<br />플로브 안경 추천 서비스로 고민을 해결해요.</p>
+									<p className="main-visual__caption">안경 고민을 설문하세요.<br />판매가 아닌 추천에 충실한 안경테 체험</p>
 									<div className="main-visual__btn">
-										<button className="gtm-001 btn-cta" onClick={() => { setModalView(true); handleGtag1(); }}><span>추천서비스 신청하기</span></button>
+										<button className="gtm-001 btn-cta" onClick={() => { setModalView(true); handleGtag1(); }}><span>시작하기</span></button>
 									</div>
 								</div>
 							</div>
@@ -690,7 +690,7 @@ const IndexPage = ({
 
 					<div className="bottom-cta">
 						<div className="bottom-cta__inner">
-							<button className="gtm-002 btn-cta" onClick={() => { setModalView(true); }}> <span>추천서비스 신청하기</span></button>
+							<button className="gtm-002 btn-cta" onClick={() => { setModalView(true); }}> <span>시작하기</span></button>
 						</div>
 					</div>
 
