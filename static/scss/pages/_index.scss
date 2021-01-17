@@ -128,14 +128,16 @@
 			  }
 			&.btn-test {
 				@include responsive("mobile") {
+					a {
+						padding: 16px 16px 13px;
+					}
 					margin-top:0;
-					padding: 16px 16px 13px;
 					position: absolute;
 					left:0;
 					right:0;
 					bottom:0;
 					width:100%;
-					max-width:640px;
+					max-width:841px;
 					z-index:700;
 					border-radius:0;
 				}
