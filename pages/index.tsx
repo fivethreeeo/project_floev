@@ -268,7 +268,7 @@ const IndexPage = ({
 									</div>
 									<p className="main-visual__caption">안경 고민을 설문하세요.<br />판매가 아닌 추천에 충실한 안경테 체험</p>
 									<div className="main-visual__btn">
-										<button className="gtm-001 btn-cta"><Link href="https://service.floev.com/survey"><span>시작하기</span></Link></button>
+										<button className="gtm-001 btn-cta"><a href="https://service.floev.com/survey">시작하기</a></button>
 									</div>
 								</div>
 							</div>
