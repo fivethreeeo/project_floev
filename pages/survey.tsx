@@ -30,6 +30,7 @@ const max = steps.length
 // 타입 정의
 declare global {
     interface Schedule {
+        [x: string]: any
         date: string
         lounge: number
     }
@@ -44,7 +45,13 @@ declare global {
         painDegree: number, painDegreeEtc: string
         painTypes: string[], painTypesEtc: string
         prefer: string
+        size: string
+        lounge: number
+        reservationDate: string
+        reservationTime: string
         name: string
+        phoneNumber: string
+        authNumber: string
     }
 }
 
@@ -59,7 +66,13 @@ const SurveyPage = () => {
         painDegree: -1, painDegreeEtc: "",
         painTypes: [], painTypesEtc: "",
         prefer: "",
-        name: ""
+        size: "",
+        lounge: 0,
+        reservationDate: "",
+        reservationTime: "",
+        name: "",
+        phoneNumber: "",
+        authNumber: ""
     });
 
     function handleAnswersUpdate(answersParam: Answers) {

@@ -40,8 +40,6 @@ export default function Q0Start(props: {
             <p style={{ fontWeight: 300 }}>
                 <strong>1시간 오프라인 큐레이션 서비스</strong>로 고민을 해결합니다.</p>
 
-            {/* <p>{props.schedule[0].date}</p> */}
-
         </div>
         <div className="start btnWrap">
             {/* ga event 2 */}
