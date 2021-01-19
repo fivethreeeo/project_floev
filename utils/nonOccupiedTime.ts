@@ -16,16 +16,19 @@ export function availableDate(period: number) {
     return availableDateList
 }
 
-export function availableTime(targetDate: string, loungeCode: number, inputTime: Schedule[]) {
-    const occupiedTimeArray: Schedule[] = inputTime[0].filter((item: Schedule) => item.date.slice(0, 10) === targetDate && item.lounge === loungeCode)
-    let occupiedTime: any[] = []
-    occupiedTimeArray.forEach(element => {
-        occupiedTime.push(element.date.slice(11, 16))
+export function availableTime(targetDate: string, targetLounge: number, inputTime: Schedule[]) {
+    // 해당 날짜에 예약된 스케쥴 골라내기
+    const occupiedTimeArray: Schedule[] = inputTime.filter((item: Schedule) => item.date.slice(0, 10) === targetDate && item.lounge === targetLounge)
+
+    // 시간 발라내기
+    let occupiedTime: string[] = []
+    occupiedTimeArray.forEach(item => {
+        occupiedTime.push(item.date.slice(11, 16))
     })
-    let dupCheck = (arr: any[]) => arr.filter((item, index) => arr.indexOf(item) != index)
+    let dupCheck = (arr: string[]) => arr.filter((item, index) => arr.indexOf(item) != index)
 
     let nonOccupiedList: { label: string; value: string; }[] = [] // initialize
-    if (loungeCode === 2) {
+    if (targetLounge === 2) {
         let occupiedTimeToRemove = dupCheck(occupiedTime)
         nonOccupiedList = [
             { label: "11:00 ~ 12:00", value: "11:00" },
@@ -40,7 +43,7 @@ export function availableTime(targetDate: string, loungeCode: number, inputTime:
             { label: "20:00 ~ 21:00", value: "20:00" }
         ]
         nonOccupiedList = nonOccupiedList.filter(item => !occupiedTimeToRemove.includes(item.value))
-    } else if (loungeCode === 1) {
+    } else if (targetLounge === 1) {
         nonOccupiedList = [
             { label: "11:00 ~ 12:00", value: "11:00" },
             { label: "12:00 ~ 13:00", value: "12:00" },

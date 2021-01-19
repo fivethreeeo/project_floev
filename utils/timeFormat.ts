@@ -41,20 +41,15 @@ export function get12hours(time: string) {
     }
 }
 
-export function getDayDate(period: number) {
+export function getDayDate(period: number, from: number) {
     let timeData = []
-    for (let i = 1; i <= period; i++) {
-        let now = moment().add(i * 24 - 9, 'hours').format()
-        let now2 = new Date(Date.now() + (i * 24 - 9) * 60 * 60 * 1000)
+    for (let i = from; i <= period; i++) {
+        let now = moment().add(i * 24 - 8, 'hours').format()
+        let now2 = moment().add(i * 24 - 8, 'hours').day()
         let temp = { date: "", day: "" }
         temp['date'] = now.slice(0, 4) + '-' + now.slice(5, 7) + '-' + now.slice(8, 10)
-        temp['day'] = getDay(now2.getDay())
+        temp['day'] = getDay(now2)
         timeData.push(temp)
-        {/*
-        if(temp['day']!=='금'){
-            timeData.push(temp)
-        }
-        */}
     }
     return timeData
 }

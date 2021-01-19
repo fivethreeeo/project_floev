@@ -21,7 +21,7 @@ export default function SurveyHeader(props: {
                 <p className="orderNum">{props.currentStep} of {props.max - 1}</p>
                 <div className="clearfix"></div>
             </div>
-            <Progress percent={((props.currentStep) / props.max) * 100} status="active" />
+            <Progress percent={((props.currentStep) / props.max) * 100} />
         </div>
     )
 }

@@ -97,7 +97,7 @@ export default function Q7PainDegree(props: {
             </div>
         </div>
         <div className="btnWrap">
-            {painDegree < 0 && painDegreeEtc === '' ?
+            {painDegree < 0 ?
                 (<button className="btnNext disabled" type="button" disabled>다음</button>) :
                 (<button className="btnNext gtm-020" type="button" onClick={() => props.onNext()}>다음</button>)}
         </div>

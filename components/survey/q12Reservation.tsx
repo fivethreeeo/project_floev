@@ -7,7 +7,7 @@ const loungeList = [
     { 'name': '역삼성당', 'code': 1 }
 ]
 
-const fromToday = getDayDate(14)
+const fromToday = getDayDate(13, 0)
 const now = new Date(Date.now());
 
 export default function Q12Reservation(props: {
@@ -19,9 +19,12 @@ export default function Q12Reservation(props: {
     onPrev: () => void
     onNext: () => void
 }) {
-    const [lounge, setLounge] = useState<number>(props.oldAnswers.lounge) // 1: 역삼성당, 2: 강남
-    const [reservationDate, setReservationDate] = useState<string>(props.oldAnswers.reservationDate)
-    const [reservationTime, setReservationTime] = useState<string>(props.oldAnswers.reservationTime)
+    // const [lounge, setLounge] = useState<number>(props.oldAnswers.loungeCode) // 1: 역삼성당, 2: 강남
+    // const [reservationDate, setReservationDate] = useState<string>(props.oldAnswers.reservationDate)
+    // const [reservationTime, setReservationTime] = useState<string>(props.oldAnswers.reservationTime)
+    const [lounge, setLounge] = useState<number>(2) // 1: 역삼성당, 2: 강남
+    const [reservationDate, setReservationDate] = useState<string>("2021-01-19")
+    const [reservationTime, setReservationTime] = useState<string>("11:00")
 
     function handleChangeLounge(e: any) {
         const newLounge = parseInt(e.target.value)
@@ -30,7 +33,7 @@ export default function Q12Reservation(props: {
         setReservationTime('')
 
         let answersParam: Answers = props.oldAnswers
-        answersParam.lounge = newLounge
+        answersParam.loungeCode = newLounge
         answersParam.reservationDate = ''
         answersParam.reservationTime = ''
         props.answersUpdate(answersParam)
@@ -41,7 +44,7 @@ export default function Q12Reservation(props: {
         localStorage.removeItem('floev[reservationTime]')
 
         props.schedule.map((item: Schedule) => {
-            console.log(item.date)
+            console.log("lounge: " + item.loungeCode + " , date: " + item.date)
         })
     }
 
@@ -49,6 +52,12 @@ export default function Q12Reservation(props: {
         const newReservationDate = fromToday[e.currentTarget.id].date
         setReservationDate(newReservationDate)
         setReservationTime('')
+
+        console.log(getOnlyDate(reservationDate) === String(now.getDate()))
+        // console.log(parseInt(item.value.slice(0, 2)) < (now.getHours() + 4))
+        // (parseInt(item.value.slice(0, 2)) < (now.getHours() + 4) ||
+        //     now.getHours() >= 15) ? ''
+        // test()
 
         let answersParam: Answers = props.oldAnswers
         answersParam.reservationDate = newReservationDate
@@ -75,6 +84,12 @@ export default function Q12Reservation(props: {
     }
 
     const availableTimes = availableTime(reservationDate, lounge, props.schedule)
+
+    // const test = () => {
+    //     availableTimes.map((item: { label: string; value: string; }) => {
+    //         console.log("label: " + item.label + " , value: " + item.value)
+    //     })
+    // }
     return (<>
         <div className="contentWrap reservedTime">
             <p className="qDesc">방문 가능한 날짜와 시간을 확인하고 예약해주세요.</p>
@@ -122,24 +137,27 @@ export default function Q12Reservation(props: {
                         <p className="optionTitle">시간 선택</p>
                         <div className="innerLineWrap"><div className="innerLine"></div></div>
                         <ul className="optionList">
-                            {!(reservationDate === "2021-01-15" && lounge === 1) &&
-                                !(reservationDate == "2021-01-21" && lounge === 1) &&
+                            {availableTimes.map((item, index) => {
+                                <li key={index}>{item.value}</li>
+                            })}
+                            {/* {!(reservationDate == "2021-01-21" && lounge === 1) &&
                                 !(reservationDate == "2021-01-22" && lounge === 1) &&
                                 !(reservationDate == "2021-01-28" && lounge === 1) &&
                                 !(reservationDate == "2021-01-29" && lounge === 1) &&
-                                reservationDate !== null && availableTimes.map(
+                                reservationDate !== '' && availableTimes.map(
                                     (item, index) => (
                                         // 오늘 현재시간 4시간 이후부터 예약 가능하나 3시 이후에는 예약 불가능
-                                        (getOnlyDate(reservationDate) == String(now.getDate()) &&
+                                        (getOnlyDate(reservationDate) === String(now.getDate()) &&
                                             (parseInt(item.value.slice(0, 2)) < (now.getHours() + 4) ||
                                                 now.getHours() >= 15) ? '' :
-                                            (<li id={index.toString()} value={item.value.replace(':', '')} onClick={(e) => handleChangeTime(e)}>
+                                            (<li key={index} id={index.toString()} value={item.value.replace(':', '')} onClick={(e) => handleChangeTime(e)}>
                                                 <button className={item.value == reservationTime ? "selected gtm-033" : "gtm-033"}>{item.value}</button>
                                             </li>))
-                                    ))}
+                                    ))} */}
                             <div className="clearfix"></div>
 
-                            {(reservationDate && availableTimes.length === 0) && (<p className="inputCheck" style={{ color: '#C3512A', paddingBottom: '16px' }}>죄송해요. 선택하신 날짜의 예약은 마감되었습니다.</p>)}
+                            {(reservationDate && availableTimes.length === 0) &&
+                                (<p className="inputCheck" style={{ color: '#C3512A', paddingBottom: '16px' }}>죄송해요. 선택하신 날짜의 예약은 마감되었습니다.</p>)}
                         </ul>
                     </div>
                 </div>

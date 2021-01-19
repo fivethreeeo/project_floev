@@ -9,7 +9,6 @@ export default function Q11Size(props: {
     onPrev: () => void
     onNext: () => void
 }) {
-
     const [size, setSize] = useState<string>(props.oldAnswers.size)
 
     function handleChange(newSize: string) {

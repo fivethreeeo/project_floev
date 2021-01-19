@@ -8,10 +8,10 @@ import { gql, useMutation } from '@apollo/client'
 const MAKE_SURVEY_RESERVATION = gql`
   mutation makeSurveyReservation(
         $customer: Int!, $birth: Int!, $gender: String!, $hasWorn: Int!,
-        $purpose: [String!], $purposeEtc: String!,
-        $painDegree: Int, $painDegreeEtc: String,
+        $purpose: [String!], $purposeEtc: String,
+        $painDegree: Int!, $painDegreeEtc: String,
         $painTypes: [String!], $painTypesEtc: String,
-        $prefer: String!, $size: String,
+        $prefer: String!, $size: String, $loungeCode: Int!,
         $reservationDate: String!, $reservationTime: String!,
         $name: String!, $phoneNumber: String!, $authNumber: String!) {
     makeSurveyReservation(
@@ -19,7 +19,7 @@ const MAKE_SURVEY_RESERVATION = gql`
         purpose: $purpose, purposeEtc: $purposeEtc,
         painDegree: $painDegree, painDegreeEtc: $painDegreeEtc,
         painTypes: $painTypes, painTypesEtc: $painTypesEtc,
-        prefer: $prefer, size: $size,
+        prefer: $prefer, size: $size, loungeCode: $loungeCode
         reservationDate: $reservationDate, reservationTime: $reservationTime,
         name: $name, phoneNumber: $phoneNumber, authNumber: $authNumber) {
     token
@@ -85,7 +85,6 @@ export default function Q12NamePhoneNumber(props: {
             // 백엔드 에러와 일치시키기
             if (error.message === "not valid") {
                 setIsError(true)
-                setIsSentAuth(true)
                 setAuthNumber('')
             }// 백엔드 에러와 일치시키기
             else if (error.message === "Duplicated") {
@@ -206,15 +205,15 @@ export default function Q12NamePhoneNumber(props: {
 
                 // 인증번호 보낸 후
                 (<div>
-                    <input className="inp01" type="text" name="authNumber" placeholder={'인증번호 4자리'} value={authNumber} onChange={e => handleChangeAuthNumber(e)} disabled={isAuthenticated} maxLength={4} />
-                    {!isAuthenticated ?
+                    <input className="inp01" type="text" name="authNumber" placeholder={'인증번호 4자리'} value={authNumber} onChange={e => handleChangeAuthNumber(e)} maxLength={4} />
+                    {isAuthenticated ?
                         (<button className="btn btn02 btnResend gtm-test-resend" onClick={() => requestAuthNumber()}>재전송</button>) :
                         (<button className="btn btn02 btnResend">재전송</button>)}
 
                     {leftSecond <= 180 ?
-                        <div style={{ position: 'absolute', top: '11px', right: '76px', fontSize: '12px' }}>{parseSecondToMinute(leftSecond)}</div> :
+                        <div>{parseSecondToMinute(leftSecond)}</div> :
                         leftSecond === 181 ?
-                            <div style={{ position: 'absolute', top: '11px', right: '76px', fontSize: '12px', color: '#C3512A' }}>만료</div> :
+                            <div>만료</div> :
                             leftSecond === 182 ?
                                 <span className="time"></span> :
                                 <div className="txtWarning">인증번호가 일치하지 않습니다. 다시 확인해주세요.</div>}
@@ -231,6 +230,7 @@ export default function Q12NamePhoneNumber(props: {
                             onClick={() => makeSurveyReservation()}>인증하고 예약완료하기</button>) :
                         (<Spin size="large" tip="잠시만 기다려주세요.." />))
                 }
+                {isActive ? 'true' : 'false'}
             </div>)
         }
     </>)

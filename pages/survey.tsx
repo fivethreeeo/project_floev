@@ -28,7 +28,7 @@ declare global {
     interface Schedule {
         [x: string]: any
         date: string
-        lounge: number
+        loungeCode: number
     }
     // 설문, 예약 답변 양식
     interface Answers {
@@ -42,7 +42,7 @@ declare global {
         painTypes: string[], painTypesEtc: string
         prefer: string
         size: string
-        lounge: number
+        loungeCode: number
         reservationDate: string
         reservationTime: string
         name: string
@@ -56,7 +56,8 @@ const steps = [
     Q1Customer, Q2CustomerWith, Q3CustomerOther,
     Q4BirthGender, Q5HasWorn, Q6Purpose,
     Q7PainDegree, Q8PainTypes, Q9Prefer,
-    Q10Photo, Q11Photo, Q12Reservation, Q13NamePhoneNumber
+    Q10Photo, Q11Photo,
+    Q12Reservation, Q13NamePhoneNumber
 ]
 const max = steps.length
 
@@ -78,7 +79,7 @@ const SurveyPage = (props: {
         painTypesEtc: process.browser ? localStorage.getItem('floev[painTypesEtc]') ?? '' : '',
         prefer: process.browser ? localStorage.getItem('floev[preger]') ?? '' : '',
         size: process.browser ? localStorage.getItem('floev[size]') ?? '' : '',
-        lounge: parseInt(process.browser ? localStorage.getItem('floev[lounge]') ?? '2' : '2'),
+        loungeCode: parseInt(process.browser ? localStorage.getItem('floev[lounge]') ?? '2' : '2'),
         reservationDate: process.browser ? localStorage.getItem('floev[reservationDate]') ?? moment().add(15, 'hours').format().slice(0, 10) : moment().add(15, 'hours').format().slice(0, 10),
         reservationTime: process.browser ? localStorage.getItem('floev[reservationTime]') ?? '' : '',
         name: process.browser ? localStorage.getItem('floev[name]') ?? '' : '',

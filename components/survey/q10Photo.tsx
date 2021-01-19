@@ -10,7 +10,7 @@ export default function Q10Photo(props: {
     onPrev: () => void
     onNext: () => void
 }) {
-    const [photo, setPhoto] = useState(null)
+    const [photo, setPhoto] = useState<File>()
     const handleChangeFile = (e: any) => {
         const newPhoto = e.target.files[0]
         setPhoto(newPhoto)
@@ -28,7 +28,7 @@ export default function Q10Photo(props: {
         const fd = new FormData()
         if (photo) {
             console.log('it works!')
-            // fd.append('first_image', photo, photo.name)
+            fd.append('first_image', photo, photo.name)
             // axios.post('https://apollotest.floev.com/uplaod', fd)
             //     .then(res => {
             //         console.log(res)
