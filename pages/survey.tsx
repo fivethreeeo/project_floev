@@ -5,27 +5,19 @@ import SurveyHeader from '../layout/SurveyHeader'
 import Layout from '../layout/DefaultLayout'
 
 import Q0Start from '../components/survey/q0Start'
-import Q1Customer from '../components/survey/q1Customer'
+import Q1Customer, { CUSTOMER } from '../components/survey/q1Customer'
+import Q2CustomerWith from '../components/survey/q2CustomerWith'
+import Q3CustomerOther from '../components/survey/q3CustomerOther'
 import Q4BirthGender from '../components/survey/q4BirthGender'
-import Q5HasWorn from '../components/survey/q5HasWorn'
+import Q5HasWorn, { HASWORN } from '../components/survey/q5HasWorn'
 import Q6Purpose from '../components/survey/q6Purposes'
 import Q7PainDegree from '../components/survey/q7PainDegree'
 import Q8PainTypes from '../components/survey/q8PainTypes'
 import Q9Prefer from '../components/survey/q9Prefer'
 import Q10Photo from '../components/survey/q10Photo'
-
-const steps = [
-    Q0Start,
-    Q1Customer,
-    Q4BirthGender,
-    Q5HasWorn,
-    Q6Purpose,
-    Q7PainDegree,
-    Q8PainTypes,
-    Q9Prefer,
-    Q10Photo
-]
-const max = steps.length
+import Q11Photo from '../components/survey/q11Size'
+import Q12Reservation from '../components/survey/q12Reservation'
+import Q13NamePhoneNumber from '../components/survey/q13NamePhoneNumber'
 
 // 타입 정의
 declare global {
@@ -55,6 +47,15 @@ declare global {
     }
 }
 
+const steps = [
+    Q0Start,
+    Q1Customer, Q2CustomerWith, Q3CustomerOther,
+    Q4BirthGender, Q5HasWorn, Q6Purpose,
+    Q7PainDegree, Q8PainTypes, Q9Prefer,
+    Q10Photo, Q11Photo, Q12Reservation, Q13NamePhoneNumber
+]
+const max = steps.length
+
 const SurveyPage = () => {
     const [currentStep, setCurrentStep] = useState<number>(0);
     const [answers, setAnswers] = useState<Answers>({
@@ -81,18 +82,31 @@ const SurveyPage = () => {
 
     let StepComponent = steps[currentStep]
     function handleNext() {
-        // if(currentStep === 1){
-        //     if(answers.customer === 0){
-        //         setCurrentStep(currentStep + 3)
-        //     }else if(answers.customer === 1){
-        //         setCurrentStep(currentStep + 1)
-        //     }else if(answers.customer === 2){
-        //         setCurrentStep(currentStep + 2)
-        //     }
-        // }
-
-
-        setCurrentStep(currentStep + 1)
+        if (currentStep === 1) {
+            if (answers.customer === CUSTOMER.SELF) {
+                setCurrentStep(4)
+            } else if (answers.customer === CUSTOMER.WITH) {
+                setCurrentStep(2)
+            } else if (answers.customer === CUSTOMER.OTHER) {
+                setCurrentStep(3)
+            }
+        } else if (currentStep === 2) {
+            setCurrentStep(4)
+        } else if (currentStep === 6) {
+            if (answers.hasWorn === HASWORN.YES) {
+                setCurrentStep(7)
+            } else if (answers.hasWorn === HASWORN.NO) {
+                setCurrentStep(9)
+            }
+        } else if (currentStep === 10) {
+            if (answers.hasWorn === HASWORN.YES) {
+                setCurrentStep(11)
+            } else if (answers.hasWorn === HASWORN.NO) {
+                setCurrentStep(12)
+            }
+        } else {
+            setCurrentStep(currentStep + 1)
+        }
 
         // if (currentStep === 1) {
         //     window.analytics.identify({
@@ -113,7 +127,31 @@ const SurveyPage = () => {
     }
 
     function handlePrev() {
-        setCurrentStep(currentStep - 1)
+        if (currentStep === 3) {
+            setCurrentStep(1)
+        } else if (currentStep === 4) {
+            if (answers.customer === CUSTOMER.SELF) {
+                setCurrentStep(1)
+            } else if (answers.customer === CUSTOMER.WITH) {
+                setCurrentStep(2)
+            } else if (answers.customer === CUSTOMER.OTHER) {
+                setCurrentStep(3)
+            }
+        } else if (currentStep === 9) {
+            if (answers.hasWorn === HASWORN.YES) {
+                setCurrentStep(8)
+            } else if (answers.hasWorn === HASWORN.NO) {
+                setCurrentStep(6)
+            }
+        } else if (currentStep === 12) {
+            if (answers.hasWorn === HASWORN.YES) {
+                setCurrentStep(11)
+            } else if (answers.hasWorn === HASWORN.NO) {
+                setCurrentStep(10)
+            }
+        } else {
+            setCurrentStep(currentStep - 1)
+        }
         localStorage.removeItem('floev[reservationDate]')
         localStorage.removeItem('floev[reservationTime]')
     }

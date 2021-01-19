@@ -23,11 +23,15 @@ const MAKE_SURVEY_RESERVATION = gql`
         prefer: $prefer, size: $size,
         reservationDate: $reservationDate, reservationTime: $reservationTime,
         name: $name, phoneNumber: $phoneNumber, authNumber: $authNumber) {
-      token
-      user{
-          id
-          name
-      }
+    token
+        user{
+            id
+            reservations{
+                id
+                date
+                lounge
+            }
+        }
     }
   }
 `
@@ -37,13 +41,13 @@ export default function Q12NamePhoneNumber(props: {
     answersUpdate: (answersParam: Answers) => void
     currentStep: number
     max: number
-    schedule: Schedule[]
     onPrev: () => void
     onNext: () => void
 }) {
     const router = useRouter()
-    const [name, setName] = useState<string>("")
-    const [phoneNumber, setPhoneNumber] = useState<string>("")
+    const [name, setName] = useState<string>(localStorage.getItem('floev[name]') ?? '')
+    const [phoneNumber, setPhoneNumber] = useState<string>(
+        localStorage.getItem('floev[phoneNumber]') ?? '')
     const [authNumber, setAuthNumber] = useState<string>('')
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
     const [isSentAuth, setIsSentAuth] = useState<boolean>(false)

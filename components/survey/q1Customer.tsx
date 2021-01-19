@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-enum CUSTOMER {
+export enum CUSTOMER {
     SELF,
     WITH,
     OTHER
@@ -14,9 +14,10 @@ export default function Q1Customer(props: {
     onPrev: () => void
     onNext: () => void
 }) {
-    const customerJSON = localStorage.getItem('floev[customer]');
+    // const customerJSON = localStorage.getItem('floev[customer]');
     const [customer, setCustomer] = useState<number>(
-        customerJSON !== null ? parseInt(JSON.parse(customerJSON)) : -1)
+        parseInt(localStorage.getItem('floev[customer]') ?? '-1'))
+    // customerJSON !== null ? parseInt(JSON.parse(customerJSON)) : -1)
 
     function handleChange(e: any) {
         const newCustomer: number = parseInt(e.target.value)

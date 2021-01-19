@@ -14,20 +14,23 @@ export default function Q12Reservation(props: {
     onPrev: () => void
     onNext: () => void
 }) {
-    const [lounge, setLounge] = useState<number>(2) // 1: 역삼성당, 2: 강남
-    const [reservationDate, setReservationDate] = useState<string>("")
-    const [reservationTime, setReservationTime] = useState<string>("")
+    const [lounge, setLounge] = useState<number>(
+        parseInt(localStorage.getItem('floev[lounge]') ?? '2')) // 1: 역삼성당, 2: 강남
+    const [reservationDate, setReservationDate] = useState<string>(
+        localStorage.getItem('floev[reservationDate]') ?? '')
+    const [reservationTime, setReservationTime] = useState<string>(
+        localStorage.getItem('floev[reservationTime]') ?? '')
 
     function handleChangeLounge(e: any) {
         const newLounge = parseInt(e.target.value)
         setLounge(newLounge)
-        setReservationDate("")
-        setReservationTime("")
+        setReservationDate('')
+        setReservationTime('')
 
         let answersParam: Answers = props.oldAnswers
         answersParam.lounge = newLounge
-        answersParam.reservationDate = ""
-        answersParam.reservationTime = ""
+        answersParam.reservationDate = ''
+        answersParam.reservationTime = ''
         props.answersUpdate(answersParam)
 
         localStorage.setItem('floev[currentStep]', '12')
@@ -39,11 +42,11 @@ export default function Q12Reservation(props: {
     function handleChangeDate(e: any) {
         const newReservationDate = fromToday[e.currentTarget.id].date
         setReservationDate(newReservationDate)
-        setReservationTime("")
+        setReservationTime('')
 
         let answersParam: Answers = props.oldAnswers
         answersParam.reservationDate = newReservationDate
-        answersParam.reservationTime = ""
+        answersParam.reservationTime = ''
         props.answersUpdate(answersParam)
 
         localStorage.setItem('floev[currentStep]', '12')
@@ -66,31 +69,30 @@ export default function Q12Reservation(props: {
     }
 
     const availableTimes = availableTime(reservationDate, lounge, [])
-    return (
-        <>
-            <div className="contentWrap reservedTime">
-                <p className="qDesc">방문 가능한 날짜와 시간을 확인하고 예약해주세요.</p>
-                <p className="qDesc2">최대 14일 이후까지 예약 가능합니다.</p>
-                <div className="answerWrap">
-                    <div className="lounge optionWrap">
-                        <div className="inner">
-                            <p className="optionTitle">라운지 선택</p>
-                            <div className="innerLineWrap"><div className="innerLine"></div></div>
-                            <ul className="optionList">
-                                <li className="gtm-029">역삼성당</li>
-                                <li className="gtm-030">강남</li>
-                                <li className="gtm-031">삼성(오픈예정)</li>
-                                <li className="space"></li>
-                                <div className="clearfix"></div>
-                            </ul>
-                        </div>
+    return (<>
+        <div className="contentWrap reservedTime">
+            <p className="qDesc">방문 가능한 날짜와 시간을 확인하고 예약해주세요.</p>
+            <p className="qDesc2">최대 14일 이후까지 예약 가능합니다.</p>
+            <div className="answerWrap">
+                <div className="lounge optionWrap">
+                    <div className="inner">
+                        <p className="optionTitle">라운지 선택</p>
+                        <div className="innerLineWrap"><div className="innerLine"></div></div>
+                        <ul className="optionList">
+                            <li className="gtm-029">역삼성당</li>
+                            <li className="gtm-030">강남</li>
+                            <li className="gtm-031">삼성(오픈예정)</li>
+                            <li className="space"></li>
+                            <div className="clearfix"></div>
+                        </ul>
                     </div>
-                    <div className="date optionWrap">
-                        <div className="inner">
-                            <p className="optionTitle">날짜 선택</p>
-                            <div className="innerLineWrap"><div className="innerLine"></div></div>
-                            <ul className="optionList">
-                                {/* {fromToday.map(
+                </div>
+                <div className="date optionWrap">
+                    <div className="inner">
+                        <p className="optionTitle">날짜 선택</p>
+                        <div className="innerLineWrap"><div className="innerLine"></div></div>
+                        <ul className="optionList">
+                            {/* {fromToday.map(
                                     (item: any, index: number) => (
                                         // list name='date'
                                         <li key={index} id={index.toString()} value={getOnlyDate(item.date)} onClick={e => handleChangeDate(e)}>
@@ -103,36 +105,35 @@ export default function Q12Reservation(props: {
                                         </li>
                                     )
                                 )} */}
-                                <li className="space"></li>
-                                <div className="clearfix"></div>
-                            </ul>
-                        </div>
+                            <li className="space"></li>
+                            <div className="clearfix"></div>
+                        </ul>
                     </div>
-                    <div className="time optionWrap">
-                        <div className="inner">
-                            <p className="optionTitle">시간 선택</p>
-                            <div className="innerLineWrap"><div className="innerLine"></div></div>
-                            <ul className="optionList">
-                                {/* {availableTimes.map(
+                </div>
+                <div className="time optionWrap">
+                    <div className="inner">
+                        <p className="optionTitle">시간 선택</p>
+                        <div className="innerLineWrap"><div className="innerLine"></div></div>
+                        <ul className="optionList">
+                            {/* {availableTimes.map(
                                     (item, index) => (
                                         // list name = 'time'
                                         <li key={index} id={index.toString()} value={item.value.replace(':', '')} onClick={e => handleChangeTime(e)}>
                                             <button className={item.value == reservationTime ? "selected gtm-033" : "gtm-033"}>{item.value}</button>
                                         </li>
                                     ))} */}
-                                <div className="clearfix"></div>
+                            <div className="clearfix"></div>
 
-                                {/* {(reservationDate && availableTimes.length === 0) && (<p className="inputCheck" style={{ color: '#C3512A', paddingBottom: '16px' }}>죄송해요. 선택하신 날짜의 예약은 마감되었습니다.</p>)} */}
-                            </ul>
-                        </div>
+                            {/* {(reservationDate && availableTimes.length === 0) && (<p className="inputCheck" style={{ color: '#C3512A', paddingBottom: '16px' }}>죄송해요. 선택하신 날짜의 예약은 마감되었습니다.</p>)} */}
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div className="btnWrap">
-                {reservationDate === "" || reservationTime === "" ?
-                    (<button className="btnNext disabled" type="button" disabled>다음</button>) :
-                    (<button className="btnNext gtm-028" type="button" onClick={() => props.onNext()}>다음</button>)}
-            </div>
-        </>
-    )
+        </div>
+        <div className="btnWrap">
+            {reservationDate === "" || reservationTime === "" ?
+                (<button className="btnNext disabled" type="button" disabled>다음</button>) :
+                (<button className="btnNext gtm-028" type="button" onClick={() => props.onNext()}>다음</button>)}
+        </div>
+    </>)
 }

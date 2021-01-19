@@ -8,8 +8,10 @@ export default function Q6Purpose(props: {
     onPrev: () => void
     onNext: () => void
 }) {
-    const [purposes, setPurposes] = useState<Array<string>>([])
-    const [purposeEtc, setPurposeEtc] = useState<string>("")
+    const [purposes, setPurposes] = useState<Array<string>>(
+        (localStorage.getItem('floev[purposes]') ?? '').split(','))
+    const [purposeEtc, setPurposeEtc] = useState<string>(
+        localStorage.getItem('floev[purposeEtc]') ?? '')
 
     function handleChangePurpose(e: any) {
         const newPurpose = e.target.value
@@ -70,12 +72,12 @@ export default function Q6Purpose(props: {
                 id="purpose-etc"
                 placeholder="예시) 독서용 안경이 필요해요.
                         집에서만 렌즈 대신 착용하는 안경이에요."
-                value={purposeEtc}
+                value={purposeEtc ?? ''}
                 onChange={e => handleChangePuposeEtc(e)}
             ></textarea>
         </div>
         <div className="btnWrap">
-            {purposes.length === 0 && purposeEtc.length === 0 ? (
+            {purposes.length === 0 && purposeEtc === '' ? (
                 <button className="btnNext disabled" type="button">다음</button>) :
                 (<button className="btnNext gtm-016" type="button" onClick={() => props.onNext()}>다음</button>)
             }

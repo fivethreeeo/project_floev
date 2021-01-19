@@ -8,7 +8,7 @@ export default function Q9Prefer(props: {
     onPrev: () => void
     onNext: () => void
 }) {
-    const [prefer, setPrefer] = useState<string>('')
+    const [prefer, setPrefer] = useState<string>(localStorage.getItem('floev[preger]') ?? '')
 
     function handleChange(e: any) {
         const newPrefer: string = e.target.value

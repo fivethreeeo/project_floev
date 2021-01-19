@@ -53,13 +53,5 @@ export default function Q0Start(props: {
                 onClick={() => props.onNext()}>5분 체크 시작하기
                 </button>
         </div>
-
-        <style jsx>{`
-                @media (min-width:641px) {
-                    .contentWrap {padding-bottom:16px!important}
-                    .ppp {margin:32px 0 64px!important}
-                }
-
-                `}</style>
     </>)
 }

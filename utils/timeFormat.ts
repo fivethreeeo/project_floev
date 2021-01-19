@@ -46,7 +46,7 @@ export function getDayDate(period: number) {
     for (let i = 1; i <= period; i++) {
         let now = moment().add(i * 24 - 9, 'hours').format()
         let now2 = new Date(Date.now() + (i * 24 - 9) * 60 * 60 * 1000)
-        let temp: any
+        let temp = { date: "", day: "" }
         temp['date'] = now.slice(0, 4) + '-' + now.slice(5, 7) + '-' + now.slice(8, 10)
         temp['day'] = getDay(now2.getDay())
         timeData.push(temp)

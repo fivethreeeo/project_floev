@@ -8,10 +8,8 @@ export default function Q4BirthGender(props: {
     onPrev: () => void
     onNext: () => void
 }) {
-    const birthJSON = localStorage.getItem('floev[birth]');
-    const [birth, setBirth] = useState<number>(
-        birthJSON !== null ? parseInt(JSON.parse(birthJSON)) : -1)
-    const [gender, setGender] = useState<string>("")
+    const [birth, setBirth] = useState<number>(parseInt(localStorage.getItem('floev[birth]') ?? '-1'))
+    const [gender, setGender] = useState<string>(localStorage.getItem('floev[gender]') ?? '')
 
     function handleChangeBirth(e: any) {
         const newBirth: number = parseInt(e.target.value)
@@ -73,7 +71,7 @@ export default function Q4BirthGender(props: {
 
         </div>
         <div className="btnWrap">
-            {birth < 0 || gender === "" ? (
+            {birth < 0 || gender === '' ? (
                 <button className="btnNext disabled" type="button">다음</button>) :
                 (<button className="btnNext gtm-016" type="button" onClick={() => props.onNext()}>다음</button>)
             }

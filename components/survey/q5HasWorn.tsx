@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 export enum HASWORN {
-    INIT,
     YES,
     NO
 }
@@ -14,9 +13,8 @@ export default function Q5HasWorn(props: {
     onPrev: () => void
     onNext: () => void
 }) {
-    const hasWornJSON = localStorage.getItem('floev[hasWorn]');
     const [haveWorn, setHasWorn] = useState<number>(
-        hasWornJSON !== null ? parseInt(JSON.parse(hasWornJSON)) : 0)
+        parseInt(localStorage.getItem('floev[hasWorn]') ?? '-1'))
 
     function handleChange(e: any) {
         const newHasWorn: number = parseInt(e.target.value)
@@ -49,7 +47,7 @@ export default function Q5HasWorn(props: {
             </div>
         </div>
         <div className="btnWrap">
-            {haveWorn < 1 ? (
+            {haveWorn < 0 ? (
                 <button className="btnNext disabled" type="button">다음</button>) :
                 (<button className="btnNext gtm-016" type="button" onClick={() => props.onNext()}>다음</button>)
             }

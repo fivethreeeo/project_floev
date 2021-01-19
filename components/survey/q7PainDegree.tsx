@@ -16,8 +16,10 @@ export default function Q7PainDegree(props: {
     onPrev: () => void
     onNext: () => void
 }) {
-    const [painDegree, setPainDegree] = useState<number>(-1)
-    const [painDegreeEtc, setPainDegreeEtc] = useState<string>("")
+    const [painDegree, setPainDegree] = useState<number>(
+        parseInt(localStorage.getItem('floev[painDegree]') ?? '-1'))
+    const [painDegreeEtc, setPainDegreeEtc] = useState<string>(
+        localStorage.getItem('floev[painDegreeEtc]') ?? '')
 
     function handleChangePainDegree(e: any) {
         const newPainDegree: number = parseInt(e.target.value)
@@ -28,7 +30,7 @@ export default function Q7PainDegree(props: {
         props.answersUpdate(answersParam)
 
         localStorage.setItem('floev[currentStep]', '7')
-        localStorage.setItem('floev[seriousness]', String(newPainDegree))
+        localStorage.setItem('floev[painDegree]', String(newPainDegree))
     }
 
     function handleChangePainDegreeEtc(e: any) {
@@ -40,7 +42,7 @@ export default function Q7PainDegree(props: {
         props.answersUpdate(answersParam)
 
         localStorage.setItem('floev[currentStep]', '7')
-        localStorage.setItem('floev[seriousnessShortAnswer]', newPainDegreeEtc)
+        localStorage.setItem('floev[painDegreeEtc]', newPainDegreeEtc)
     }
     return (<>
         <div className="contentWrap">
@@ -96,7 +98,7 @@ export default function Q7PainDegree(props: {
             </div>
         </div>
         <div className="btnWrap">
-            {painDegree < 0 && painDegreeEtc.length === 0 ?
+            {painDegree < 0 && painDegreeEtc === '' ?
                 (<button className="btnNext disabled" type="button" disabled>다음</button>) :
                 (<button className="btnNext gtm-020" type="button" onClick={() => props.onNext()}>다음</button>)}
         </div>

@@ -9,7 +9,7 @@ export default function Q11Size(props: {
     onNext: () => void
 }) {
 
-    const [size, setSize] = useState<string>("")
+    const [size, setSize] = useState<string>(localStorage.getItem('floev[size]') ?? '')
 
     function handleChange(newSize: string) {
         setSize(newSize) //화면 표시를 위한 const control
@@ -31,7 +31,7 @@ export default function Q11Size(props: {
             </div>
         </div>
         <div className="btnWrap">
-            {size === null || size === '' ?
+            {size === '' ?
                 (<button className="btnNext disabled" type="button">다음</button>) :
                 (<button className="btnNext gtm-016" type="button" onClick={() => props.onNext()}>다음</button>)}
         </div>
