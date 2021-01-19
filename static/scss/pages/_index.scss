@@ -965,6 +965,7 @@
 			align-items: center;
 			background: url(/static/img/home/bottom-8.jpg) center center / cover no-repeat;
 			@include responsive("mobile") {
+				background: url(/static/img/home/top-1.jpg) center center / cover no-repeat;
 				border-radius: 0;
 			  }
 		}
@@ -976,7 +977,7 @@
 			border-radius: 12px;
 			font-size:18px;
 			@include responsive("mobile") {
-				
+				display:none;
 				padding:12px 26px 10px;
 				border-radius: 8px;
 				font-size:18px;

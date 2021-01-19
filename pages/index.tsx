@@ -264,11 +264,11 @@ const IndexPage = ({
 							<div className="main-visual__desc-wrap">
 								<div className="desc-wrap__inner">
 									<div className="main-visual__title">
-										<p className=""><strong>어떤 안경을 써야할지 모르는<br />사람들을 위한 안경 추천 서비스</strong></p>
+										<p className=""><strong>아직도 얼굴형으로<br />안경 고르세요?</strong></p>
 									</div>
-									<p className="main-visual__caption">안경 고민을 설문하세요.<br />판매가 아닌 추천에 충실한 안경테 체험</p>
+									<p className="main-visual__caption">진짜 나에게 맞는 안경 추천 서비스</p>
 									<div className="main-visual__btn">
-										<button className="gtm-001 btn-cta"><a href="https://service.floev.com/survey">시작하기</a></button>
+										<button className="gtm-001 btn-cta btn-test"><a href="https://service.floev.com/survey">시작하기</a></button>
 									</div>
 								</div>
 							</div>
