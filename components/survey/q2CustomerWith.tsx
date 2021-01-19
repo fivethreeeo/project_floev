@@ -6,6 +6,7 @@ export default function Q2CustomerWith(props: {
     answersUpdate: (answersParam: Answers) => void
     currentStep: number
     max: number
+    schedule: Schedule[]
     onPrev: () => void
     onNext: () => void
 }) {

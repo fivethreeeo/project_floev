@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Spin } from 'antd'
-// import redirect from '../../lib/redirect'
 import cookie from 'cookie'
 import axios from 'axios'
 import { gql, useMutation } from '@apollo/client'
@@ -41,13 +40,13 @@ export default function Q12NamePhoneNumber(props: {
     answersUpdate: (answersParam: Answers) => void
     currentStep: number
     max: number
+    schedule: Schedule[]
     onPrev: () => void
     onNext: () => void
 }) {
     const router = useRouter()
-    const [name, setName] = useState<string>(localStorage.getItem('floev[name]') ?? '')
-    const [phoneNumber, setPhoneNumber] = useState<string>(
-        localStorage.getItem('floev[phoneNumber]') ?? '')
+    const [name, setName] = useState<string>(props.oldAnswers.name)
+    const [phoneNumber, setPhoneNumber] = useState<string>(props.oldAnswers.phoneNumber)
     const [isPhoneNumber, setIsPhoneNumber] = useState<boolean>(false)
     const [authNumber, setAuthNumber] = useState<string>('')
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
@@ -78,7 +77,7 @@ export default function Q12NamePhoneNumber(props: {
                     birth: props.oldAnswers.birth,
                     gender: props.oldAnswers.gender
                 });
-                router.push('/complete')
+                router.replace('/complete')
             }
         },
         onError(error) {

@@ -11,13 +11,11 @@ export default function Q1Customer(props: {
     answersUpdate: (answersParam: Answers) => void
     currentStep: number
     max: number
+    schedule: Schedule[]
     onPrev: () => void
     onNext: () => void
 }) {
-    // const customerJSON = localStorage.getItem('floev[customer]');
-    const [customer, setCustomer] = useState<number>(
-        parseInt(localStorage.getItem('floev[customer]') ?? '-1'))
-    // customerJSON !== null ? parseInt(JSON.parse(customerJSON)) : -1)
+    const [customer, setCustomer] = useState<number>(props.oldAnswers.customer)
 
     function handleChange(e: any) {
         const newCustomer: number = parseInt(e.target.value)

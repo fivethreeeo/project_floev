@@ -6,11 +6,11 @@ export default function Q10Photo(props: {
     answersUpdate: (answersParam: Answers) => void
     currentStep: number
     max: number
+    schedule: Schedule[]
     onPrev: () => void
     onNext: () => void
 }) {
-    // 보안 정책 상 사진을 로컬스토리지에 저장하지 않는다?
-    const [photo, setPhoto] = useState<File>()
+    const [photo, setPhoto] = useState(null)
     const handleChangeFile = (e: any) => {
         const newPhoto = e.target.files[0]
         setPhoto(newPhoto)
@@ -28,7 +28,7 @@ export default function Q10Photo(props: {
         const fd = new FormData()
         if (photo) {
             console.log('it works!')
-            fd.append('first_image', photo, photo.name)
+            // fd.append('first_image', photo, photo.name)
             // axios.post('https://apollotest.floev.com/uplaod', fd)
             //     .then(res => {
             //         console.log(res)

@@ -13,13 +13,12 @@ export default function Q7PainDegree(props: {
     answersUpdate: (answersParam: Answers) => void
     currentStep: number
     max: number
+    schedule: Schedule[]
     onPrev: () => void
     onNext: () => void
 }) {
-    const [painDegree, setPainDegree] = useState<number>(
-        parseInt(localStorage.getItem('floev[painDegree]') ?? '-1'))
-    const [painDegreeEtc, setPainDegreeEtc] = useState<string>(
-        localStorage.getItem('floev[painDegreeEtc]') ?? '')
+    const [painDegree, setPainDegree] = useState<number>(props.oldAnswers.painDegree)
+    const [painDegreeEtc, setPainDegreeEtc] = useState<string>(props.oldAnswers.painDegreeEtc)
 
     function handleChangePainDegree(e: any) {
         const newPainDegree: number = parseInt(e.target.value)
@@ -50,35 +49,35 @@ export default function Q7PainDegree(props: {
             <div className="qLine"></div>
             <div className="answerWrap inputRadio" onChange={(e) => handleChangePainDegree(e)}>
                 {/* 매우편안 */}
-                <input type="radio" name="never" id="seriousness-4"
+                <input type="radio" name="never" id="seriousness-4" onChange={() => { }}
                     value={PAINDEGREE.NEVER} checked={painDegree === PAINDEGREE.NEVER} />
                 <label htmlFor="seriousness-4" className="input-label">
                     <span className="inputImg"></span>
                     <span className="inputTxt">큰 문제 없어요</span>
                 </label>
                 {/* 조금편안 */}
-                <input type="radio" name="sometimes" id="seriousness-3"
+                <input type="radio" name="sometimes" id="seriousness-3" onChange={() => { }}
                     value={PAINDEGREE.SOMETIMES} checked={painDegree === PAINDEGREE.SOMETIMES} />
                 <label htmlFor="seriousness-3" className="input-label">
                     <span className="inputImg"></span>
                     <span className="inputTxt">가능하지만 피로감을 느껴요</span>
                 </label>
                 {/* 조금불편 */}
-                <input type="radio" name="often" id="seriousness-2"
+                <input type="radio" name="often" id="seriousness-2" onChange={() => { }}
                     value={PAINDEGREE.OFTEN} checked={painDegree === PAINDEGREE.OFTEN} />
                 <label htmlFor="seriousness-2" className="input-label">
                     <span className="inputImg"></span>
                     <span className="inputTxt">때때로 어려워요</span>
                 </label>
                 {/* 매우불편 */}
-                <input type="radio" name="always" id="seriousness-1"
+                <input type="radio" name="always" id="seriousness-1" onChange={() => { }}
                     value={PAINDEGREE.ALWAYS} checked={painDegree === PAINDEGREE.ALWAYS} />
                 <label htmlFor="seriousness-1" className="input-label">
                     <span className="inputImg"></span>
                     <span className="inputTxt">불가능해요</span>
                 </label>
                 {/* 모르겠음 */}
-                <input type="radio" name="noidea" id="seriousness-5"
+                <input type="radio" name="noidea" id="seriousness-5" onChange={() => { }}
                     value={PAINDEGREE.NOIDEA} checked={painDegree === PAINDEGREE.NOIDEA} />
                 <label htmlFor="seriousness-5" className="input-label">
                     <span className="inputImg"></span>

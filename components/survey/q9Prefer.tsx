@@ -5,10 +5,11 @@ export default function Q9Prefer(props: {
     answersUpdate: (answersParam: Answers) => void
     currentStep: number
     max: number
+    schedule: Schedule[]
     onPrev: () => void
     onNext: () => void
 }) {
-    const [prefer, setPrefer] = useState<string>(localStorage.getItem('floev[preger]') ?? '')
+    const [prefer, setPrefer] = useState<string>(props.oldAnswers.prefer)
 
     function handleChange(e: any) {
         const newPrefer: string = e.target.value

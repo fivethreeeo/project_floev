@@ -5,11 +5,12 @@ export default function Q4BirthGender(props: {
     answersUpdate: (answersParam: Answers) => void
     currentStep: number
     max: number
+    schedule: Schedule[]
     onPrev: () => void
     onNext: () => void
 }) {
-    const [birth, setBirth] = useState<number>(parseInt(localStorage.getItem('floev[birth]') ?? '-1'))
-    const [gender, setGender] = useState<string>(localStorage.getItem('floev[gender]') ?? '')
+    const [birth, setBirth] = useState<number>(props.oldAnswers.birth)
+    const [gender, setGender] = useState<string>(props.oldAnswers.gender)
 
     function handleChangeBirth(e: any) {
         const newBirth: number = parseInt(e.target.value)

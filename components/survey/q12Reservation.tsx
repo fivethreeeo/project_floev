@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { availableTime } from '../../utils/nonOccupiedTime'
 import { getDayDate, getOnlyDate } from '../../utils/timeFormat'
-import moment from 'moment'
 
 const loungeList = [
     { 'name': '강남', 'code': 2 },
@@ -16,15 +15,13 @@ export default function Q12Reservation(props: {
     answersUpdate: (answersParam: Answers) => void
     currentStep: number
     max: number
+    schedule: Schedule[]
     onPrev: () => void
     onNext: () => void
 }) {
-    const [lounge, setLounge] = useState<number>(
-        parseInt(localStorage.getItem('floev[lounge]') ?? '2')) // 1: 역삼성당, 2: 강남
-    const [reservationDate, setReservationDate] = useState<string>(
-        localStorage.getItem('floev[reservationDate]') ?? moment().add(15, 'hours').format().slice(0, 10))
-    const [reservationTime, setReservationTime] = useState<string>(
-        localStorage.getItem('floev[reservationTime]') ?? '')
+    const [lounge, setLounge] = useState<number>(props.oldAnswers.lounge) // 1: 역삼성당, 2: 강남
+    const [reservationDate, setReservationDate] = useState<string>(props.oldAnswers.reservationDate)
+    const [reservationTime, setReservationTime] = useState<string>(props.oldAnswers.reservationTime)
 
     function handleChangeLounge(e: any) {
         const newLounge = parseInt(e.target.value)
@@ -42,6 +39,10 @@ export default function Q12Reservation(props: {
         localStorage.setItem('floev[lounge]', String(newLounge))
         localStorage.removeItem('floev[reservationDate]')
         localStorage.removeItem('floev[reservationTime]')
+
+        props.schedule.map((item: Schedule) => {
+            console.log(item.date)
+        })
     }
 
     function handleChangeDate(e: any) {
@@ -73,7 +74,7 @@ export default function Q12Reservation(props: {
         localStorage.setItem('floev[reservationTime]', newReservationTime)
     }
 
-    const availableTimes = availableTime(reservationDate, lounge, [])
+    const availableTimes = availableTime(reservationDate, lounge, props.schedule)
     return (<>
         <div className="contentWrap reservedTime">
             <p className="qDesc">방문 가능한 날짜와 시간을 확인하고 예약해주세요.</p>

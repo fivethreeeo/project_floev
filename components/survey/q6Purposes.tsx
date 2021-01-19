@@ -5,13 +5,12 @@ export default function Q6Purpose(props: {
     answersUpdate: (answersParam: Answers) => void
     currentStep: number
     max: number
+    schedule: Schedule[]
     onPrev: () => void
     onNext: () => void
 }) {
-    const [purposes, setPurposes] = useState<Array<string>>(
-        (localStorage.getItem('floev[purposes]') ?? '').split(','))
-    const [purposeEtc, setPurposeEtc] = useState<string>(
-        localStorage.getItem('floev[purposeEtc]') ?? '')
+    const [purposes, setPurposes] = useState<Array<string>>(props.oldAnswers.purposes)
+    const [purposeEtc, setPurposeEtc] = useState<string>(props.oldAnswers.purposeEtc)
 
     function handleChangePurpose(e: any) {
         const newPurpose = e.target.value
@@ -77,7 +76,7 @@ export default function Q6Purpose(props: {
             ></textarea>
         </div>
         <div className="btnWrap">
-            {purposes.length === 0 && purposeEtc === '' ? (
+            {(purposes[0] === '' && purposeEtc.length === 0) ? (
                 <button className="btnNext disabled" type="button">다음</button>) :
                 (<button className="btnNext gtm-016" type="button" onClick={() => props.onNext()}>다음</button>)
             }

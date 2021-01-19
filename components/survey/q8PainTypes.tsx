@@ -6,13 +6,12 @@ export default function Q8Paintypes(props: {
     answersUpdate: (answersParam: Answers) => void
     currentStep: number
     max: number
+    schedule: Schedule[]
     onPrev: () => void
     onNext: () => void
 }) {
-    const [painTypes, setPainTypes] = useState<Array<string>>(
-        (localStorage.getItem('floev[painTypes]') ?? '').split(','))
-    const [painTypesEtc, setPainTypesEtc] = useState<string>(
-        localStorage.getItem('floev[painTypesEtc]') ?? '')
+    const [painTypes, setPainTypes] = useState<Array<string>>(props.oldAnswers.painTypes)
+    const [painTypesEtc, setPainTypesEtc] = useState<string>(props.oldAnswers.painTypesEtc)
 
     function handleChangePainTypes(e: any) {
         const newPainType = e.target.value
@@ -144,7 +143,7 @@ export default function Q8Paintypes(props: {
             </div>
         </div>
         <div className="btnWrap">
-            {painTypes.length === 0 && painTypesEtc === '' ?
+            {painTypes[0] === '' && painTypesEtc.length === 0 ?
                 (<button className="btnNext disabled" type="button" disabled>다음</button>) :
                 (<button className="btnNext gtm-021" type="button" onClick={() => props.onNext()}>다음</button>)}
         </div>

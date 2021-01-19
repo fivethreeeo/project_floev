@@ -5,11 +5,12 @@ export default function Q11Size(props: {
     answersUpdate: (answersParam: Answers) => void
     currentStep: number
     max: number
+    schedule: Schedule[]
     onPrev: () => void
     onNext: () => void
 }) {
 
-    const [size, setSize] = useState<string>(localStorage.getItem('floev[size]') ?? '')
+    const [size, setSize] = useState<string>(props.oldAnswers.size)
 
     function handleChange(newSize: string) {
         setSize(newSize) //화면 표시를 위한 const control

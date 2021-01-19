@@ -13,7 +13,10 @@ export default function SurveyHeader(props: {
             <br />
             <br />
             <div className="inner">
-                <button className="prevBtn gtm-014" type="button" disabled={props.currentStep === 0 ? true : false} onClick={() => props.onPrev()}>뒤로가기</button><br />
+                {props.currentStep !== 0 ?
+                    (<button className="prevBtn gtm-014" type="button" onClick={() => props.onPrev()}>뒤로가기</button>) :
+                    (<button className="prevBtn gtm-014" type="button">뒤로가기</button>)}
+                <br />
                 <button className="closeSurveyBtn gtm-013" type="button" onClick={() => props.onClose()}>닫기</button>
                 <p className="orderNum">{props.currentStep} of {props.max - 1}</p>
                 <div className="clearfix"></div>

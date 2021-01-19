@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import Router from 'next/router'
 import Head from 'next/head'
+import { GetServerSideProps } from 'next'
+import { createApolloClient } from '../lib/apolloClient'
+import { gql } from '@apollo/client'
 import SurveyHeader from '../layout/SurveyHeader'
 import Layout from '../layout/DefaultLayout'
+import moment from 'moment'
 
 import Q0Start from '../components/survey/q0Start'
 import Q1Customer, { CUSTOMER } from '../components/survey/q1Customer'
@@ -56,23 +60,29 @@ const steps = [
 ]
 const max = steps.length
 
-const SurveyPage = () => {
-    const [currentStep, setCurrentStep] = useState<number>(0);
+const SurveyPage = (props: {
+    schedule: Schedule[]
+}) => {
+    const [currentStep, setCurrentStep] = useState<number>(
+        parseInt(process.browser ? localStorage.getItem('floev[currentStep]') ?? '0' : '0'));
     const [answers, setAnswers] = useState<Answers>({
-        customer: -1,
-        birth: -1,
-        gender: "",
-        hasWorn: -1,
-        purposes: [], purposeEtc: "",
-        painDegree: -1, painDegreeEtc: "",
-        painTypes: [], painTypesEtc: "",
-        prefer: "",
-        size: "",
-        lounge: 0,
-        reservationDate: "",
-        reservationTime: "",
-        name: "",
-        phoneNumber: "",
+        customer: parseInt(process.browser ? localStorage.getItem('floev[customer]') ?? '-1' : '-1'),
+        birth: parseInt(process.browser ? localStorage.getItem('floev[birth]') ?? '-1' : '-1'),
+        gender: process.browser ? localStorage.getItem('floev[gender]') ?? '' : '',
+        hasWorn: parseInt(process.browser ? localStorage.getItem('floev[hasWorn]') ?? '-1' : '-1'),
+        purposes: process.browser ? (localStorage.getItem('floev[purposes]') ?? '').split(',') : [],
+        purposeEtc: process.browser ? localStorage.getItem('floev[purposeEtc]') ?? '' : '',
+        painDegree: parseInt(process.browser ? localStorage.getItem('floev[painDegree]') ?? '-1' : '-1'),
+        painDegreeEtc: process.browser ? localStorage.getItem('floev[painDegreeEtc]') ?? '' : '',
+        painTypes: (process.browser ? localStorage.getItem('floev[painTypes]') ?? '' : '').split(','),
+        painTypesEtc: process.browser ? localStorage.getItem('floev[painTypesEtc]') ?? '' : '',
+        prefer: process.browser ? localStorage.getItem('floev[preger]') ?? '' : '',
+        size: process.browser ? localStorage.getItem('floev[size]') ?? '' : '',
+        lounge: parseInt(process.browser ? localStorage.getItem('floev[lounge]') ?? '2' : '2'),
+        reservationDate: process.browser ? localStorage.getItem('floev[reservationDate]') ?? moment().add(15, 'hours').format().slice(0, 10) : moment().add(15, 'hours').format().slice(0, 10),
+        reservationTime: process.browser ? localStorage.getItem('floev[reservationTime]') ?? '' : '',
+        name: process.browser ? localStorage.getItem('floev[name]') ?? '' : '',
+        phoneNumber: process.browser ? localStorage.getItem('floev[phoneNumber]') ?? '' : '',
         authNumber: ""
     });
 
@@ -81,76 +91,86 @@ const SurveyPage = () => {
     }
 
     let StepComponent = steps[currentStep]
+    function updateStep(step: number) {
+        setCurrentStep(step)
+        localStorage.setItem('floev[currentStep]', String(step))
+    }
     function handleNext() {
         if (currentStep === 1) {
             if (answers.customer === CUSTOMER.SELF) {
-                setCurrentStep(4)
+                updateStep(4)
             } else if (answers.customer === CUSTOMER.WITH) {
-                setCurrentStep(2)
+                updateStep(2)
             } else if (answers.customer === CUSTOMER.OTHER) {
-                setCurrentStep(3)
+                updateStep(3)
+            } else {
+                updateStep(4)
             }
         } else if (currentStep === 2) {
-            setCurrentStep(4)
+            updateStep(4)
         } else if (currentStep === 6) {
             if (answers.hasWorn === HASWORN.YES) {
-                setCurrentStep(7)
+                updateStep(7)
             } else if (answers.hasWorn === HASWORN.NO) {
-                setCurrentStep(9)
+                updateStep(9)
+            } else {
+                updateStep(7)
             }
         } else if (currentStep === 10) {
             if (answers.hasWorn === HASWORN.YES) {
-                setCurrentStep(11)
+                updateStep(11)
             } else if (answers.hasWorn === HASWORN.NO) {
-                setCurrentStep(12)
+                updateStep(12)
             }
         } else {
-            setCurrentStep(currentStep + 1)
+            updateStep(currentStep + 1)
         }
 
-        // if (currentStep === 1) {
-        //     window.analytics.identify({
-        //         name: localStorage.getItem('floev[name]')
-        //     })
-        // } else if (currentStep === 2) {
-        //     window.analytics.identify({
-        //         name: localStorage.getItem('floev[name]'),
-        //         gender: localStorage.getItem('floev[gender]')
-        //     })
-        // } else if (currentStep === 3) {
-        //     window.analytics.identify({
-        //         name: localStorage.getItem('floev[name]'),
-        //         gender: localStorage.getItem('floev[gender]'),
-        //         // age: parseInt(localStorage.getItem('floev[age]'))
-        //     })
-        // }
+        if (currentStep === 4) {
+            window.analytics.identify({
+                gender: localStorage.getItem('floev[gender]'),
+                age: localStorage.getItem('floev[birth]')
+            })
+        } else if (currentStep === 13) {
+            window.analytics.identify({
+                gender: localStorage.getItem('floev[gender]'),
+                age: localStorage.getItem('floev[birth]'),
+                name: localStorage.getItem('floev[name]')
+            })
+        }
     }
 
     function handlePrev() {
         if (currentStep === 3) {
-            setCurrentStep(1)
+            updateStep(1)
         } else if (currentStep === 4) {
             if (answers.customer === CUSTOMER.SELF) {
-                setCurrentStep(1)
+                updateStep(1)
             } else if (answers.customer === CUSTOMER.WITH) {
-                setCurrentStep(2)
+                updateStep(2)
             } else if (answers.customer === CUSTOMER.OTHER) {
-                setCurrentStep(3)
+                updateStep(3)
+            } else {
+                updateStep(1)
             }
         } else if (currentStep === 9) {
             if (answers.hasWorn === HASWORN.YES) {
-                setCurrentStep(8)
+                updateStep(8)
             } else if (answers.hasWorn === HASWORN.NO) {
-                setCurrentStep(6)
+                updateStep(6)
+            } else {
+                updateStep(6)
             }
         } else if (currentStep === 12) {
             if (answers.hasWorn === HASWORN.YES) {
-                setCurrentStep(11)
+                updateStep(11)
             } else if (answers.hasWorn === HASWORN.NO) {
-                setCurrentStep(10)
+                updateStep(10)
+            } else {
+                updateStep(10)
             }
         } else {
-            setCurrentStep(currentStep - 1)
+            updateStep(currentStep - 1)
         }
         localStorage.removeItem('floev[reservationDate]')
         localStorage.removeItem('floev[reservationTime]')
@@ -195,12 +215,45 @@ const SurveyPage = () => {
                     answersUpdate={() => handleAnswersUpdate(answers)}
                     currentStep={currentStep}
                     max={max}
+                    schedule={props.schedule}
                     onPrev={() => handlePrev()}
                     onNext={() => handleNext()}
                 />
             </Layout>
         </>
     )
+}
+
+const RESERVATION_SCHEDULE_LIST = gql`
+    query getReservationScheduleList{
+        getReservationScheduleList{
+            date
+            loungeCode
+        }
+    }
+`
+
+export const getServerSideProps: GetServerSideProps = async (context) => { //{ req }: { req: any }
+    const startTime = Date.now();
+    const client = createApolloClient(context)
+    const { schedule } = await client.query({ query: RESERVATION_SCHEDULE_LIST })
+        .then(({ data }) => {
+            console.log("Survey Page elapsed time: " + (Date.now() - startTime) + "ms");
+            return { schedule: data.getReservationScheduleList };
+        })
+        .catch((error) => {
+            console.log("Survey Page elapsed time: " + (Date.now() - startTime) + "ms");
+            console.error("Schedule data fetch ERROR" + error.message)
+            return { schedule: null };
+        });
+
+    return {
+        props: {
+            // this hydrates the clientside Apollo cache in the `withApollo` HOC
+            apolloStaticCache: client.cache.extract(),
+            schedule
+        },
+    }
 }
 
 export default SurveyPage
