@@ -23,9 +23,11 @@ export function availableTime(targetDate: string, loungeCode: number, inputTime:
         occupiedTime.push(element.date.slice(11, 16))
     })
     let dupCheck = (arr: any[]) => arr.filter((item, index) => arr.indexOf(item) != index)
+
+    let nonOccupiedList: { label: string; value: string; }[] = [] // initialize
     if (loungeCode === 2) {
         let occupiedTimeToRemove = dupCheck(occupiedTime)
-        let nonOccupiedList = [
+        nonOccupiedList = [
             { label: "11:00 ~ 12:00", value: "11:00" },
             { label: "12:00 ~ 13:00", value: "12:00" },
             { label: "13:00 ~ 14:00", value: "13:00" },
@@ -38,9 +40,8 @@ export function availableTime(targetDate: string, loungeCode: number, inputTime:
             { label: "20:00 ~ 21:00", value: "20:00" }
         ]
         nonOccupiedList = nonOccupiedList.filter(item => !occupiedTimeToRemove.includes(item.value))
-        return nonOccupiedList
     } else if (loungeCode === 1) {
-        let nonOccupiedList = [
+        nonOccupiedList = [
             { label: "11:00 ~ 12:00", value: "11:00" },
             { label: "12:00 ~ 13:00", value: "12:00" },
             { label: "14:30 ~ 15:30", value: "14:30" },
@@ -50,8 +51,8 @@ export function availableTime(targetDate: string, loungeCode: number, inputTime:
             { label: "19:30 ~ 20:30", value: "19:30" }
         ]
         nonOccupiedList = nonOccupiedList.filter(item => !occupiedTime.includes(item.value))
-        return nonOccupiedList
     }
+    return nonOccupiedList
 }
 export function availableHalfTime(targetDate: string, loungeCode: number, schedules: Schedule[]) {
     // 인자로 받은 스케쥴에서 예약하고자 하는 날짜에 해당하는 일정만 받아옴

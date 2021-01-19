@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { Spin } from 'antd'
 // import redirect from '../../lib/redirect'
 import cookie from 'cookie'
-// import axios from 'axios'
+import axios from 'axios'
 import { gql, useMutation } from '@apollo/client'
 
 const MAKE_SURVEY_RESERVATION = gql`
@@ -48,6 +48,7 @@ export default function Q12NamePhoneNumber(props: {
     const [name, setName] = useState<string>(localStorage.getItem('floev[name]') ?? '')
     const [phoneNumber, setPhoneNumber] = useState<string>(
         localStorage.getItem('floev[phoneNumber]') ?? '')
+    const [isPhoneNumber, setIsPhoneNumber] = useState<boolean>(false)
     const [authNumber, setAuthNumber] = useState<string>('')
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
     const [isSentAuth, setIsSentAuth] = useState<boolean>(false)
@@ -95,15 +96,32 @@ export default function Q12NamePhoneNumber(props: {
         }
     });
 
-    function handleChangePhoneNumber(e: any) {
-        const newPhoneNumber: string = parsePhoneNumber(e.target.value)
-        setPhoneNumber(newPhoneNumber)
+    function handleChangeName(e: any) {
+        const newName: string = e.target.value
+        setName(newName)
 
         let answersParam: Answers = props.oldAnswers
-        answersParam.phoneNumber = newPhoneNumber
+        answersParam.name = newName
         props.answersUpdate(answersParam)
 
-        localStorage.setItem('floev[currentStep]', '14')
+        localStorage.setItem('floev[currentStep]', '13')
+        localStorage.setItem('floev[name]', newName)
+    }
+
+    function handleChangePhoneNumber(e: any) {
+        const newPhoneNumber: string = e.target.value
+        setPhoneNumber(newPhoneNumber)
+
+        if (validatePhoneNumber(newPhoneNumber)) {
+            let answersParam: Answers = props.oldAnswers
+            answersParam.phoneNumber = newPhoneNumber
+            props.answersUpdate(answersParam)
+            setIsPhoneNumber(true)
+        } else {
+            setIsPhoneNumber(false)
+        }
+
+        localStorage.setItem('floev[currentStep]', '13')
         localStorage.setItem('floev[phoneNumber]', newPhoneNumber)
     }
 
@@ -116,8 +134,12 @@ export default function Q12NamePhoneNumber(props: {
         props.answersUpdate(answersParam)
     }
 
-    function parsePhoneNumber(numberString: string) {
-        return numberString.split("-").join("")
+    function validatePhoneNumber(numberString: string) {
+        const regex = /(^02.{0}|^01.{1}|[0-9]{3})([0-9]{3,4})([0-9]{4})/g
+        if (!regex.test(numberString)) {
+            return false
+        }
+        return true
     }
 
     function parseSecondToMinute(num: number) {
@@ -154,31 +176,41 @@ export default function Q12NamePhoneNumber(props: {
         setIsSentAuth(true)
         setTimerOn()
 
-        // axios.post("https://api.floev.com/auth/create", {
-        //     phoneNumber: parsePhoneNumber(phoneNumber)
-        // }).then((result: any) => {
-        //     if (result.data["code"] === "success") {
-        //         setAuthNumber('')
-        //         new Promise(setTimerOn)
-        //     }
-        // })
+        axios.post("https://api.floev.com/auth/create", {
+            phoneNumber: phoneNumber
+        }).then((result: any) => {
+            if (result.data["code"] === "success") {
+                setAuthNumber('')
+                setIsAuthenticated(true)
+                new Promise(setTimerOn)
+            }
+        })
     }
 
     return (<>
         <div className="contentWrap">
-            <p className="qDesc" style={{ fontSize: '18px', lineHeight: '28px', wordBreak: 'break-all' }}>소중한 눈을 위해 플로브를 찾아주셔서 감사합니다. 마지막 인증을 통해 예약을 확정해주세요.</p>
+            <p className="qDesc" >신청 완료에 필요한 나의 정보를 입력해주세요.</p>
             <div className="qLine"></div>
 
+            {/* 이름 입력 */}
+            <input className="inp01" type="text" name="name" placeholder={'이름을 입력해주세요'}
+                maxLength={10} onChange={e => handleChangeName(e)} />
+
+            {/* 휴대전화번호 입력 */}
             <input className="inp01" type="tel" name="phoneNumber" placeholder={'휴대폰 번호 (  \'-\' 없이 숫자만 입력 )'} maxLength={13} onChange={e => handleChangePhoneNumber(e)} />
+
             {!isSentAuth ?
-                phoneNumber.length === 11 ?
+                // 인증번호 보내기 전
+                isPhoneNumber ?
                     (<button className="btn btn02" onClick={() => requestAuthNumber()}>인증번호전송</button>) :
                     (<button className="btn btn02 gray200">인증번호전송</button>) :
-                (<div style={{ position: 'relative' }} >
-                    <input className="inp01" style={{ fontSize: '16px', width: '100%', marginBottom: '0' }} type="text" name="authNumber" placeholder={'인증번호 4자리'} value={authNumber} onChange={e => handleChangeAuthNumber(e)} disabled={isAuthenticated} maxLength={4} />
-                    {isAuthenticated ?
-                        (<button style={{}} className="btn btn02 btnResend">재전송</button>) :
-                        (<button style={{}} className="btn btn02 btnResend gtm-test-resend" onClick={() => requestAuthNumber()}>재전송</button>)}
+
+                // 인증번호 보낸 후
+                (<div>
+                    <input className="inp01" type="text" name="authNumber" placeholder={'인증번호 4자리'} value={authNumber} onChange={e => handleChangeAuthNumber(e)} disabled={isAuthenticated} maxLength={4} />
+                    {!isAuthenticated ?
+                        (<button className="btn btn02 btnResend gtm-test-resend" onClick={() => requestAuthNumber()}>재전송</button>) :
+                        (<button className="btn btn02 btnResend">재전송</button>)}
 
                     {leftSecond <= 180 ?
                         <div style={{ position: 'absolute', top: '11px', right: '76px', fontSize: '12px' }}>{parseSecondToMinute(leftSecond)}</div> :
@@ -195,10 +227,10 @@ export default function Q12NamePhoneNumber(props: {
             (<div className="btnWrap">
                 { authNumber.length !== 4 || !isActive ?
                     (<button className="btnCom disabled">인증하고 예약완료하기</button>) :
-                    (loading ?
-                        (<Spin size="large" tip="잠시만 기다려주세요.." />) :
+                    (!loading ?
                         (<button className="btnCom color gtm-test-14-next" type={'submit'}
-                            onClick={() => makeSurveyReservation()}>인증하고 예약완료하기</button>))
+                            onClick={() => makeSurveyReservation()}>인증하고 예약완료하기</button>) :
+                        (<Spin size="large" tip="잠시만 기다려주세요.." />))
                 }
             </div>)
         }

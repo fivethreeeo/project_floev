@@ -3,6 +3,11 @@ import { availableTime } from '../../utils/nonOccupiedTime'
 import { getDayDate, getOnlyDate } from '../../utils/timeFormat'
 import moment from 'moment'
 
+const loungeList = [
+    { 'name': '강남', 'code': 2 },
+    { 'name': '역삼성당', 'code': 1 }
+]
+
 const fromToday = getDayDate(14)
 const now = new Date(Date.now());
 
@@ -17,7 +22,7 @@ export default function Q12Reservation(props: {
     const [lounge, setLounge] = useState<number>(
         parseInt(localStorage.getItem('floev[lounge]') ?? '2')) // 1: 역삼성당, 2: 강남
     const [reservationDate, setReservationDate] = useState<string>(
-        localStorage.getItem('floev[reservationDate]') ?? '')
+        localStorage.getItem('floev[reservationDate]') ?? moment().add(15, 'hours').format().slice(0, 10))
     const [reservationTime, setReservationTime] = useState<string>(
         localStorage.getItem('floev[reservationTime]') ?? '')
 
@@ -79,9 +84,11 @@ export default function Q12Reservation(props: {
                         <p className="optionTitle">라운지 선택</p>
                         <div className="innerLineWrap"><div className="innerLine"></div></div>
                         <ul className="optionList">
-                            <li className="gtm-029">역삼성당</li>
-                            <li className="gtm-030">강남</li>
-                            <li className="gtm-031">삼성(오픈예정)</li>
+                            {loungeList.map((item, index) => (
+                                <li key={index} value={item.code} onClick={(e) => handleChangeLounge(e)}>
+                                    <button className={item.code === lounge ? "selected gtm-029" : "gtm-030"}>{item.name}</button>
+                                </li>
+                            ))}
                             <li className="space"></li>
                             <div className="clearfix"></div>
                         </ul>
@@ -92,19 +99,18 @@ export default function Q12Reservation(props: {
                         <p className="optionTitle">날짜 선택</p>
                         <div className="innerLineWrap"><div className="innerLine"></div></div>
                         <ul className="optionList">
-                            {/* {fromToday.map(
-                                    (item: any, index: number) => (
-                                        // list name='date'
-                                        <li key={index} id={index.toString()} value={getOnlyDate(item.date)} onClick={e => handleChangeDate(e)}>
-                                            <p className="day">
-                                                <span className={(getOnlyDate(item.date) == now.getDate()) || item.day === '토' || item.day === '일' ? 'color' : ''}>{getOnlyDate(item.date) == now.getDate() ? '오늘' : item.day}</span>
-                                            </p>
-                                            <button className={item.date == reservationDate ? "selected" : ""}>
-                                                <p className="dateNum gtm-032">{getOnlyDate(item.date)}</p>
-                                            </button>
-                                        </li>
-                                    )
-                                )} */}
+                            {fromToday.map(
+                                (item: any, index: number) => (
+                                    // list name='date'
+                                    <li key={index} id={index.toString()} value={getOnlyDate(item.date)} onClick={e => handleChangeDate(e)}>
+                                        <p className="day">
+                                            <span className={(getOnlyDate(item.date) == String(now.getDate())) || item.day === '토' || item.day === '일' ? 'color' : ''}>{getOnlyDate(item.date) == String(now.getDate()) ? '오늘' : item.day}</span>
+                                        </p>
+                                        <button className={item.date == reservationDate ? "selected" : ""}>
+                                            <p className="dateNum gtm-032">{getOnlyDate(item.date)}</p>
+                                        </button>
+                                    </li>)
+                            )}
                             <li className="space"></li>
                             <div className="clearfix"></div>
                         </ul>
@@ -115,16 +121,24 @@ export default function Q12Reservation(props: {
                         <p className="optionTitle">시간 선택</p>
                         <div className="innerLineWrap"><div className="innerLine"></div></div>
                         <ul className="optionList">
-                            {/* {availableTimes.map(
+                            {!(reservationDate === "2021-01-15" && lounge === 1) &&
+                                !(reservationDate == "2021-01-21" && lounge === 1) &&
+                                !(reservationDate == "2021-01-22" && lounge === 1) &&
+                                !(reservationDate == "2021-01-28" && lounge === 1) &&
+                                !(reservationDate == "2021-01-29" && lounge === 1) &&
+                                reservationDate !== null && availableTimes.map(
                                     (item, index) => (
-                                        // list name = 'time'
-                                        <li key={index} id={index.toString()} value={item.value.replace(':', '')} onClick={e => handleChangeTime(e)}>
-                                            <button className={item.value == reservationTime ? "selected gtm-033" : "gtm-033"}>{item.value}</button>
-                                        </li>
-                                    ))} */}
+                                        // 오늘 현재시간 4시간 이후부터 예약 가능하나 3시 이후에는 예약 불가능
+                                        (getOnlyDate(reservationDate) == String(now.getDate()) &&
+                                            (parseInt(item.value.slice(0, 2)) < (now.getHours() + 4) ||
+                                                now.getHours() >= 15) ? '' :
+                                            (<li id={index.toString()} value={item.value.replace(':', '')} onClick={(e) => handleChangeTime(e)}>
+                                                <button className={item.value == reservationTime ? "selected gtm-033" : "gtm-033"}>{item.value}</button>
+                                            </li>))
+                                    ))}
                             <div className="clearfix"></div>
 
-                            {/* {(reservationDate && availableTimes.length === 0) && (<p className="inputCheck" style={{ color: '#C3512A', paddingBottom: '16px' }}>죄송해요. 선택하신 날짜의 예약은 마감되었습니다.</p>)} */}
+                            {(reservationDate && availableTimes.length === 0) && (<p className="inputCheck" style={{ color: '#C3512A', paddingBottom: '16px' }}>죄송해요. 선택하신 날짜의 예약은 마감되었습니다.</p>)}
                         </ul>
                     </div>
                 </div>
