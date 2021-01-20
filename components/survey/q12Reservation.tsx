@@ -140,7 +140,7 @@ export default function Q12Reservation(props: {
                             {availableTimes.map((item, index) => {
                                 <li key={index}>{item.value}</li>
                             })}
-                            {/* {!(reservationDate == "2021-01-21" && lounge === 1) &&
+                            {!(reservationDate == "2021-01-21" && lounge === 1) &&
                                 !(reservationDate == "2021-01-22" && lounge === 1) &&
                                 !(reservationDate == "2021-01-28" && lounge === 1) &&
                                 !(reservationDate == "2021-01-29" && lounge === 1) &&
@@ -153,7 +153,7 @@ export default function Q12Reservation(props: {
                                             (<li key={index} id={index.toString()} value={item.value.replace(':', '')} onClick={(e) => handleChangeTime(e)}>
                                                 <button className={item.value == reservationTime ? "selected gtm-033" : "gtm-033"}>{item.value}</button>
                                             </li>))
-                                    ))} */}
+                                    ))}
                             <div className="clearfix"></div>
 
                             {(reservationDate && availableTimes.length === 0) &&

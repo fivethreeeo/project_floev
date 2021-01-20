@@ -77,6 +77,7 @@ export default function Q12NamePhoneNumber(props: {
                     birth: props.oldAnswers.birth,
                     gender: props.oldAnswers.gender
                 });
+                localStorage.setItem('floev[currentStep]', '0')
                 router.replace('/complete')
             }
         },

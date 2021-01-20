@@ -3,3 +3,4 @@ package-lock.json
 .next
 .vscode
 .env*.local
+ecosystem.config.js
