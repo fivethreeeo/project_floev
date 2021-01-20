@@ -94,11 +94,10 @@ export default function Q10Photo(props: {
             </Modal>
             {/* <button type="button" onClick={() => submitFiles()}>사진 업로드</button> */}
         </div>
-        {/* <div className="btnWrap">
-            {photo === null ?
+        <div className="btnWrap">
+            {fileList.length === 0 ?
                 (<button className="btnNext disabled" type="button" disabled>다음</button>) :
                 (<button className="btnNext gtm-021" type="button" onClick={() => props.onNext()}>다음</button>)}
-            {photo}
-        </div> */}
+        </div>
     </>)
 }

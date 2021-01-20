@@ -226,7 +226,6 @@ const SurveyPage = (props: {
             <Layout>
                 <SurveyHeader
                     currentStep={currentStep}
-                    max={max}
                     onPrev={() => handlePrev()}
                     onClose={() => onClose()}
                 />
