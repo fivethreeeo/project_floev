@@ -30,6 +30,11 @@ declare global {
         date: string
         loungeCode: number
     }
+    interface Slot {
+        label: string
+        time: string
+        loungeCode: number
+    }
     // 설문, 예약 답변 양식
     interface Answers {
         customer: number // 0: 본인, 1: 동행, 2: 타인
@@ -79,7 +84,7 @@ const SurveyPage = (props: {
         painTypesEtc: process.browser ? localStorage.getItem('floev[painTypesEtc]') ?? '' : '',
         prefer: process.browser ? localStorage.getItem('floev[preger]') ?? '' : '',
         size: process.browser ? localStorage.getItem('floev[size]') ?? '' : '',
-        loungeCode: parseInt(process.browser ? (localStorage.getItem('floev[lounge]') ?? '2') : '2'),
+        loungeCode: parseInt(process.browser ? (localStorage.getItem('floev[loungeCode]') ?? '2') : '2'),
         reservationDate: process.browser ? localStorage.getItem('floev[reservationDate]') ?? moment().add(15, 'hours').format().slice(0, 10) : moment().add(15, 'hours').format().slice(0, 10),
         reservationTime: process.browser ? localStorage.getItem('floev[reservationTime]') ?? '' : '',
         name: process.browser ? localStorage.getItem('floev[name]') ?? '' : '',
