@@ -41,9 +41,7 @@ declare var process: Process
 declare function gtag_button1(): void;
 declare function gtag_button2(): void;
 
-const IndexPage = ({
-	user
-}: {
+const IndexPage = (props: {
 	user: any
 }) => {
 	const router = useRouter()
@@ -63,10 +61,10 @@ const IndexPage = ({
 	}
 
 	useEffect(() => {
-		if (user) {
+		if (props.user) {
 			router.push('/')
 		}
-	}, [user])
+	}, [props.user])
 	/*
 	  const handleGtag1 = () => {
 		  if (process.browser) {
@@ -191,7 +189,7 @@ const IndexPage = ({
 					__html: `kakaoPixel('784604748053330030').pageView('arrivehome');`
 				}}></script>
 			</Head>
-			<Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" name={user ? user.name : null}>
+			<Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" name={props.user ? props.user.name : null}>
 				<Modal
 					centered
 					width="100%"

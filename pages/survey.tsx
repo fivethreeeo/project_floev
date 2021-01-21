@@ -79,7 +79,7 @@ const SurveyPage = (props: {
         painTypesEtc: process.browser ? localStorage.getItem('floev[painTypesEtc]') ?? '' : '',
         prefer: process.browser ? localStorage.getItem('floev[preger]') ?? '' : '',
         size: process.browser ? localStorage.getItem('floev[size]') ?? '' : '',
-        loungeCode: parseInt(process.browser ? localStorage.getItem('floev[lounge]') ?? '2' : '2'),
+        loungeCode: parseInt(process.browser ? (localStorage.getItem('floev[lounge]') ?? '2') : '2'),
         reservationDate: process.browser ? localStorage.getItem('floev[reservationDate]') ?? moment().add(15, 'hours').format().slice(0, 10) : moment().add(15, 'hours').format().slice(0, 10),
         reservationTime: process.browser ? localStorage.getItem('floev[reservationTime]') ?? '' : '',
         name: process.browser ? localStorage.getItem('floev[name]') ?? '' : '',

@@ -22,7 +22,7 @@ export default function Q12Reservation(props: {
     // const [lounge, setLounge] = useState<number>(props.oldAnswers.loungeCode) // 1: 역삼성당, 2: 강남
     // const [reservationDate, setReservationDate] = useState<string>(props.oldAnswers.reservationDate)
     // const [reservationTime, setReservationTime] = useState<string>(props.oldAnswers.reservationTime)
-    const [lounge, setLounge] = useState<number>(2) // 1: 역삼성당, 2: 강남
+    const [loungeCode, setLounge] = useState<number>(2) // 1: 역삼성당, 2: 강남
     const [reservationDate, setReservationDate] = useState<string>("2021-01-19")
     const [reservationTime, setReservationTime] = useState<string>("11:00")
 
@@ -46,6 +46,18 @@ export default function Q12Reservation(props: {
         props.schedule.map((item: Schedule) => {
             console.log("lounge: " + item.loungeCode + " , date: " + item.date)
         })
+    }
+    const test = () => {
+        setReservationDate("2021-01-19")
+        setReservationTime("11:01")
+
+        let answersParam: Answers = props.oldAnswers
+        answersParam.loungeCode = 1
+        answersParam.reservationDate = '2021-01-19'
+        answersParam.reservationTime = '11:01'
+        props.answersUpdate(answersParam)
+
+        localStorage.setItem('floev[lounge]', String(1))
     }
 
     function handleChangeDate(e: any) {
@@ -83,7 +95,7 @@ export default function Q12Reservation(props: {
         localStorage.setItem('floev[reservationTime]', newReservationTime)
     }
 
-    const availableTimes = availableTime(reservationDate, lounge, props.schedule)
+    const availableTimes = availableTime(reservationDate, loungeCode, props.schedule)
 
     // const test = () => {
     //     availableTimes.map((item: { label: string; value: string; }) => {
@@ -91,6 +103,7 @@ export default function Q12Reservation(props: {
     //     })
     // }
     return (<>
+        <button onClick={() => test()}>라운지 좀 변경하자</button>
         <div className="contentWrap reservedTime">
             <p className="qDesc">방문 가능한 날짜와 시간을 확인하고 예약해주세요.</p>
             <p className="qDesc2">최대 14일 이후까지 예약 가능합니다.</p>
@@ -102,7 +115,7 @@ export default function Q12Reservation(props: {
                         <ul className="optionList">
                             {loungeList.map((item, index) => (
                                 <li key={index} value={item.code} onClick={(e) => handleChangeLounge(e)}>
-                                    <button className={item.code === lounge ? "selected gtm-029" : "gtm-030"}>{item.name}</button>
+                                    <button className={item.code === loungeCode ? "selected gtm-029" : "gtm-030"}>{item.name}</button>
                                 </li>
                             ))}
                             <li className="space"></li>
@@ -140,10 +153,10 @@ export default function Q12Reservation(props: {
                             {availableTimes.map((item, index) => {
                                 <li key={index}>{item.value}</li>
                             })}
-                            {!(reservationDate == "2021-01-21" && lounge === 1) &&
-                                !(reservationDate == "2021-01-22" && lounge === 1) &&
-                                !(reservationDate == "2021-01-28" && lounge === 1) &&
-                                !(reservationDate == "2021-01-29" && lounge === 1) &&
+                            {!(reservationDate == "2021-01-21" && loungeCode === 1) &&
+                                !(reservationDate == "2021-01-22" && loungeCode === 1) &&
+                                !(reservationDate == "2021-01-28" && loungeCode === 1) &&
+                                !(reservationDate == "2021-01-29" && loungeCode === 1) &&
                                 reservationDate !== '' && availableTimes.map(
                                     (item, index) => (
                                         // 오늘 현재시간 4시간 이후부터 예약 가능하나 3시 이후에는 예약 불가능

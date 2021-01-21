@@ -8,14 +8,14 @@ export default function SurveyHeader(props: {
     onClose: () => void;
 }) {
     const chunkStep = () => {
-        let step = 1
+        let step = 0
         if (props.currentStep <= 3) {
             step = 1
         } else if (props.currentStep <= 5) {
             step = 2
         } else if (props.currentStep <= 8) {
             step = 3
-        } else if (props.currentStep <= 10) {
+        } else if (props.currentStep <= 12) {
             step = 4
         } else {
             step = 5

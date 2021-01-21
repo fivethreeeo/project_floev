@@ -28,7 +28,7 @@ const MAKE_SURVEY_RESERVATION = gql`
             reservations{
                 id
                 date
-                lounge
+                loungeCode
             }
         }
     }
@@ -63,7 +63,9 @@ export default function Q12NamePhoneNumber(props: {
             painDegree: props.oldAnswers.painDegree, painDegreeEtc: props.oldAnswers.painDegreeEtc,
             painTypes: props.oldAnswers.painTypes, painTypesEtc: props.oldAnswers.painTypesEtc,
             prefer: props.oldAnswers.prefer, size: props.oldAnswers.size,
-            reservationDate: props.oldAnswers.reservationDate, reservationTime: props.oldAnswers.reservationTime,
+            loungeCode: props.oldAnswers.loungeCode,
+            reservationDate: props.oldAnswers.reservationDate,
+            reservationTime: props.oldAnswers.reservationTime,
             name: name, phoneNumber: phoneNumber, authNumber: authNumber
         },
         onCompleted(data: any) {
@@ -87,6 +89,8 @@ export default function Q12NamePhoneNumber(props: {
             if (error.message === "not valid") {
                 setIsError(true)
                 setAuthNumber('')
+                setIsActive(false)
+                alert('인증번호가 유효하지 않습니다. 다시 시도해주세요.')
             }// 백엔드 에러와 일치시키기
             else if (error.message === "Duplicated") {
                 alert('죄송합니다. 이미 예약된 시간입니다.')
@@ -127,6 +131,7 @@ export default function Q12NamePhoneNumber(props: {
     function handleChangeAuthNumber(e: any) {
         const newAuthNumber = e.target.value
         setAuthNumber(newAuthNumber)
+        setIsError(false) // 인증번호를 입력하는 중이니 에러메시지를 없애야겠지
 
         let answersParam: Answers = props.oldAnswers
         answersParam.authNumber = newAuthNumber
