@@ -229,20 +229,22 @@ const SurveyPage = (props: {
                 />
             </Head>
             <Layout>
-                <SurveyHeader
-                    currentStep={currentStep}
-                    onPrev={() => handlePrev()}
-                    onClose={() => onClose()}
-                />
-                <StepComponent
-                    oldAnswers={answers}
-                    answersUpdate={() => handleAnswersUpdate(answers)}
-                    currentStep={currentStep}
-                    max={max}
-                    schedule={props.schedule}
-                    onPrev={() => handlePrev()}
-                    onNext={() => handleNext()}
-                />
+                <div className="survey">
+                    <SurveyHeader
+                        currentStep={currentStep}
+                        onPrev={() => handlePrev()}
+                        onClose={() => onClose()}
+                    />
+                    <StepComponent
+                        oldAnswers={answers}
+                        answersUpdate={() => handleAnswersUpdate(answers)}
+                        currentStep={currentStep}
+                        max={max}
+                        schedule={props.schedule}
+                        onPrev={() => handlePrev()}
+                        onNext={() => handleNext()}
+                    />
+                </div>
             </Layout>
         </>
     )

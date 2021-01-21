@@ -6,7 +6,8 @@
     @include po-fix(0,0,auto,0,999);
     @include el-size(100%,56px);
     background:$fv-white;
-    box-shadow: 0px 2px 5px rgba($color: $fv-gray-9, $alpha: 0.2);
+    border-bottom: 1px solid $fv-gray-3;
+    //box-shadow: 0px 2px 5px rgba($color: $fv-gray-9, $alpha: 0.2);
     &__inner {
         @include vw-mx-w(1280px);
         @extend %padding-d;

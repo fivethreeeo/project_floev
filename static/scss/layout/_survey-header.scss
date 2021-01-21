@@ -1,0 +1,28 @@
+.survey-header {
+
+    .progress {
+        &__bar {
+            display: block;
+        }
+        &__steps {
+            @include flexbox(nowrap);
+            justify-content: space-between;
+        }
+        &__step-name {
+            font-size: 14px;
+            font-weight: 400;
+            color: $fv-gray-4;
+        }
+        &__step-name--active {
+            font-weight: 700;
+            color: $fv-sienna;
+        }
+        &__step-arrow {
+            font-size: 14px;
+            color:$fv-gray-3;
+        }
+        &__step-arrow--active {
+            color: $fv-gray-8;
+        }
+    }
+}

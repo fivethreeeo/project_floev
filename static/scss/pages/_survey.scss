@@ -1,7 +1,21 @@
 .survey {
+    @include vw-mx-w(640px);
+    &::before {
+        content:'';
+        height:58px;
+        display:block;
+        @include responsive("mobile") {
+            height:48px;
+        }
+    }
+}   
+
+
+
+.survey {
     .option-wrap {background:#f7f7f7;margin-bottom:40px;}
     .option-list {
-        @include flexbox(wrap)
+        @include flexbox(wrap);
     }
     .day-date {
         text-align: center;margin-right:8px;
