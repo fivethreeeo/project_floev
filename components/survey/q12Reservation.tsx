@@ -47,18 +47,18 @@ export default function Q12Reservation(props: {
             console.log("lounge: " + item.loungeCode + " , date: " + item.date)
         })
     }
-    const test = () => {
-        setReservationDate("2021-01-19")
-        setReservationTime("11:01")
+    // const test = () => {
+    //     setReservationDate("2021-01-19")
+    //     setReservationTime("11:01")
 
-        let answersParam: Answers = props.oldAnswers
-        answersParam.loungeCode = 1
-        answersParam.reservationDate = '2021-01-19'
-        answersParam.reservationTime = '11:01'
-        props.answersUpdate(answersParam)
+    //     let answersParam: Answers = props.oldAnswers
+    //     answersParam.loungeCode = 1
+    //     answersParam.reservationDate = '2021-01-19'
+    //     answersParam.reservationTime = '11:01'
+    //     props.answersUpdate(answersParam)
 
-        localStorage.setItem('floev[lounge]', String(1))
-    }
+    //     localStorage.setItem('floev[lounge]', String(1))
+    // }
 
     function handleChangeDate(e: any) {
         const newReservationDate = fromToday[e.currentTarget.id].date
@@ -97,13 +97,68 @@ export default function Q12Reservation(props: {
 
     const availableTimes = availableTime(reservationDate, loungeCode, props.schedule)
 
-    // const test = () => {
-    //     availableTimes.map((item: { label: string; value: string; }) => {
-    //         console.log("label: " + item.label + " , value: " + item.value)
-    //     })
-    // }
     return (<>
-        <button onClick={() => test()}>라운지 좀 변경하자</button>
+        <div className="option-wrap">
+            <div>날짜 선택</div>
+            <div className="option-list">
+                <div className="day-date today"><div className="day">월</div><div className="date selected">1</div></div>
+                <div className="day-date"><div className="day">화</div><div className="date">2</div></div>
+                <div className="day-date"><div className="day">수</div><div className="date">3</div></div>
+                <div className="day-date"><div className="day">목</div><div className="date">4</div></div>
+                <div className="day-date"><div className="day">금</div><div className="date">5</div></div>
+                <div className="day-date"><div className="day">토</div><div className="date">6</div></div>
+                <div className="day-date"><div className="day">일</div><div className="date">7</div></div>
+                <div className="day-date"><div className="day">월</div><div className="date">8</div></div>
+            </div>
+        </div>
+
+        <div className="option-wrap">
+            <div>라운지/시간 선택</div>
+            <div className="option-lounge">
+                <div>역삼성당</div>
+                <div className="option-list">
+                    <div className="time selected">10:00</div>
+                    <div className="time">11:00</div>
+                    <div className="time">12:00</div>
+                    <div className="time">13:00</div>
+                    <div className="time">14:00</div>
+                    <div className="time">15:00</div>
+                    <div className="time">16:00</div>
+                    <div className="time">17:00</div>
+                    <div className="time">18:00</div>
+                    <div className="time">19:00</div>
+                    <div className="time">20:00</div>
+                    <div className="time">21:00</div>
+                    <div className="time">22:00</div>
+                    <div className="time">23:00</div>
+                    <div className="time">23:00</div>
+                    <div className="time">23:00</div>
+                </div>
+            </div>
+            <div className="option-lounge">
+                <div>강남</div>
+                <div className="option-list">
+                    <div className="time">10:00</div>
+                    <div className="time">11:00</div>
+                    <div className="time">12:00</div>
+                    <div className="time">13:00</div>
+                    <div className="time">14:00</div>
+                    <div className="time">15:00</div>
+                    <div className="time">16:00</div>
+                    <div className="time">17:00</div>
+                    <div className="time">18:00</div>
+                    <div className="time">19:00</div>
+                    <div className="time">20:00</div>
+                    <div className="time">21:00</div>
+                    <div className="time">22:00</div>
+                    <div className="time">23:00</div>
+                    <div className="time">23:00</div>
+                    <div className="time">23:00</div>
+                </div>
+            </div>
+
+        </div>
+
         <div className="contentWrap reservedTime">
             <p className="qDesc">방문 가능한 날짜와 시간을 확인하고 예약해주세요.</p>
             <p className="qDesc2">최대 14일 이후까지 예약 가능합니다.</p>
