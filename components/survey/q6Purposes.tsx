@@ -81,5 +81,6 @@ export default function Q6Purpose(props: {
                 (<button className="btnNext gtm-016" type="button" onClick={() => props.onNext()}>다음</button>)
             }
         </div>
+        <button className="btn btn01 gtm-012" style={{ fontSize: '16px', borderRadius: '24px'}} type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>뒤로</button>
     </>)
 }

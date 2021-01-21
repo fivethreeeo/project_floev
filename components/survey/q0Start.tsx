@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
 
 export default function Q0Start(props: {
     oldAnswers: Answers
@@ -11,47 +10,33 @@ export default function Q0Start(props: {
 }) {
 
     return (<>
-        <div className="surveyHeader start">
-            <Link href="/">
-                <div className="goBackBtnWrap">
-                    <div className="goBackBtn"><a></a></div>
+                <div className="q-wrap q0">
+                    <div className="q0__title">
+                        <p className="text">지금부터<br/><strong>나의 안경 설문</strong>을<br/>시작해 볼까요?</p>
+                        <div className="tag"><img src="/static/img/survey/icon-clock.png" alt="8분소요예상"/><strong>8min</strong></div>
+                    </div>
+                    <div className="q0__steps">
+                        <ul>
+                            <li className="q0__step">
+                                <span className="oval oval--color"><span className="oval__inner"></span></span>
+                                <p className="q0__step-desc q0__step-desc--color"><strong>나의 안경 설문</strong><br/><span>안경 고민과 취향찾기</span></p>
+                            </li>
+                            <li className="q0__step">
+                                <span className="oval"><span className="oval__inner"></span></span>
+                                <p className="q0__step-desc">12시간 이내 설문 분석<br/><span>전담 플로브 카운셀러</span></p>
+                            </li>
+                            <li className="q0__step">
+                                <span className="oval"><span className="oval__inner"></span></span>
+                                <p className="q0__step-desc">16개 안경테 맞춤 추천<br/><span>안경 박스 제작</span></p>
+                            </li>
+                            <li className="q0__step">
+                                <span className="oval"><span className="oval__inner"></span></span>
+                                <p className="q0__step-desc">라운지 추천 서비스<br/><span>안경 카운셀러와 1:1 큐레이션</span></p>
+                            </li>
+                        </ul>
+                        <div className="vertical-line"></div>
+                    </div>
+                    <div className="q0__btn-start dtn-100" onClick={() => props.onNext()}>설문 시작하기</div>
                 </div>
-            </Link>
-        </div>
-        <div className="contentWrap" style={{ padding: '108px 36px 24px' }}>
-            <div style={{ width: '200px', margin: '0 auto' }}>
-                <img style={{ width: '100%' }}
-                    src="/static/new/il-1.jpg"
-                    alt="안경은 일상을 함께하는 만큼 나에 대한 세삼한 고민이 필요해요" />
-            </div>
-
-            <p className="ppp"
-                style={{
-                    textAlign: 'center',
-                    color: '#c3512a',
-                    fontSize: '16px',
-                    margin: '24px 0 48px'
-                }}>
-                <strong>안경은 일상을 함께하는 만큼<br />나에 대한 세심한 고민이 필요해요.</strong></p>
-
-            <p style={{ fontWeight: 300 }}>
-                <strong>5분 눈 건강/스타일 체크</strong>로 플로브 서비스를 시작해 주세요.</p>
-
-            <p style={{ fontWeight: 300 }}>
-                <strong>1시간 오프라인 큐레이션 서비스</strong>로 고민을 해결합니다.</p>
-
-        </div>
-        <div className="start btnWrap">
-            {/* ga event 2 */}
-            <button className="btn btn01 gtm-012"
-                style={{
-                    fontSize: '16px',
-                    borderRadius: '24px'
-                }}
-                type="button"
-                disabled={props.currentStep !== props.max ? false : true}
-                onClick={() => props.onNext()}>5분 체크 시작하기
-                </button>
-        </div>
     </>)
 }

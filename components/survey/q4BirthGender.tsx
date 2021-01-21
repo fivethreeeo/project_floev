@@ -46,36 +46,31 @@ export default function Q4BirthGender(props: {
     }
 
     return (<>
-        <div className="contentWrap">
-            <p>기본 정보를 체크해주세요.</p>
-            <p className="qDesc">나이를 알려주세요.</p>
-            <p className="qDesc2">나이에 따라 일반적으로 발생하는 눈의 불편함을 참고해요.</p>
-            <div className="qLine"></div>
-            <div className="answerWrap">
-                <select name="age" onChange={(e) => handleChangeBirth(e)} value={birth}>
-                    <option defaultValue={-1}>나이</option>
-                    {createOptions()}
-                </select>
-            </div>
-            <div className="answerWrap inputRadio" onChange={e => handleChangeGender(e)}>
-                <input type="radio" name="male" id="q_2_1" onChange={() => { }}
-                    value="male" checked={gender === 'male'} />
-                <label htmlFor="q_2_1">
-                    <span className="inputTxt">남</span>
-                </label>
-                <input type="radio" name="female" id="q_2_2" onChange={() => { }}
-                    value="female" checked={gender === 'female'} />
-                <label htmlFor="q_2_2">
-                    <span className="inputTxt">여</span>
-                </label>
-            </div>
+                <div className="q-wrap q4">
+                    <div className="q-wrap__question-main">기본 정보를 체크해주세요.</div>
+                    <div className="q-wrap__question-sub"></div>
+                    <div className="q-wrap__answer-wrap">
+                        <select className="q-wrap__select" onChange={(e) => handleChangeBirth(e)} value={birth} required>
+                            <option value="" hidden>출생연도 선택</option>
+                            {createOptions()}
+                        </select>
+                        <div className="input-radio-40-wrap" onChange={e => handleChangeGender(e)}>
+                            <input className="q-wrap__input-radio" type="radio" id="q4_1" onChange={() => { }} value="male" checked={gender === 'male'} />
+                            <label className="q-wrap__label-radio-40 q-wrap__label-radio-40--left" htmlFor="q4_1">남</label>
+                            <input className="q-wrap__input-radio" type="radio" id="q4_2" onChange={() => { }} value="female" checked={gender === 'female'} />
+                            <label className="q-wrap__label-radio-40 q-wrap__label-radio-40--right" htmlFor="q4_2">여</label>
+                        </div>
+                    </div>
+                    <div className="q-wrap__btn-wrap">
+                    </div>
+                </div>
 
-        </div>
-        <div className="btnWrap">
-            {birth < 0 || gender === '' ? (
-                <button className="btnNext disabled" type="button">다음</button>) :
-                (<button className="btnNext gtm-016" type="button" onClick={() => props.onNext()}>다음</button>)
-            }
-        </div>
+                <div className="btnWrap">
+                    {birth < 0 || gender === '' ? (
+                        <button className="btnNext disabled" type="button">다음</button>) :
+                        (<button className="btnNext gtm-016" type="button" onClick={() => props.onNext()}>다음</button>)
+                    }
+                </div>
+                <button className="btn btn01 gtm-012" style={{ fontSize: '16px', borderRadius: '24px'}} type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>뒤로</button>
     </>)
 }
