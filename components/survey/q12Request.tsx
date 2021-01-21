@@ -5,7 +5,7 @@ import { getDayDate, getOnlyDate } from '../../utils/timeFormat'
 const fromToday = getDayDate(13, 0)
 const now = new Date(Date.now());
 
-export default function Q12Reservation(props: {
+export default function Q12Request(props: {
     oldAnswers: Answers
     answersUpdate: (answersParam: Answers) => void
     currentStep: number
@@ -15,60 +15,60 @@ export default function Q12Reservation(props: {
     onNext: () => void
 }) {
     const [loungeCode, setLoungeCode] = useState<number>(props.oldAnswers.loungeCode)
-    const [reservationDate, setReservationDate] = useState<string>(props.oldAnswers.reservationDate)
-    const [reservationTime, setReservationTime] = useState<string>(props.oldAnswers.reservationTime)
+    const [requestDate, setRequestDate] = useState<string>(props.oldAnswers.requestDate)
+    const [requestTime, setRequestTime] = useState<string>(props.oldAnswers.requestTime)
     // const [loungeCode, setLoungeCode] = useState<number>(2) // 1: 역삼성당, 2: 강남
-    // const [reservationDate, setReservationDate] = useState<string>("2021-01-19")
-    // const [reservationTime, setReservationTime] = useState<string>("11:00")
+    // const [requestDate, setRequestDate] = useState<string>("2021-01-19")
+    // const [requestTime, setRequestTime] = useState<string>("11:00")
 
     // const test = () => {
-    //     setReservationDate("2021-01-19")
-    //     setReservationTime("11:01")
+    //     setRequestDate("2021-01-19")
+    //     setRequestTime("11:01")
 
     //     let answersParam: Answers = props.oldAnswers
     //     answersParam.loungeCode = 1
-    //     answersParam.reservationDate = '2021-01-19'
-    //     answersParam.reservationTime = '11:01'
+    //     answersParam.requestDate = '2021-01-19'
+    //     answersParam.requestTime = '11:01'
     //     props.answersUpdate(answersParam)
 
     //     localStorage.setItem('floev[loungeCode]', String(1))
     // }
 
     function handleChangeDate(e: any) {
-        const newReservationDate = fromToday[e.currentTarget.id].date
-        setReservationDate(newReservationDate)
-        setReservationTime('')
+        const newRequestDate = fromToday[e.currentTarget.id].date
+        setRequestDate(newRequestDate)
+        setRequestTime('')
 
         let answersParam: Answers = props.oldAnswers
-        answersParam.reservationDate = newReservationDate
+        answersParam.requestDate = newRequestDate
         answersParam.loungeCode = 0
-        answersParam.reservationTime = ''
+        answersParam.requestTime = ''
         props.answersUpdate(answersParam)
 
         localStorage.setItem('floev[currentStep]', '12')
-        localStorage.setItem('floev[reservationDate]', newReservationDate)
+        localStorage.setItem('floev[requestDate]', newRequestDate)
         localStorage.removeItem('floev[loungeCode]')
-        localStorage.removeItem('floev[reservationTime]')
+        localStorage.removeItem('floev[requestTime]')
     }
 
     function handleChangeLoungeTime(e: any) {
-        const newReservationTime = e.target.value.split(',')[0]
+        const newRequestTime = e.target.value.split(',')[0]
         const newLoungeCode = parseInt(e.target.value.split(',')[1])
-        setReservationTime(newReservationTime)
+        setRequestTime(newRequestTime)
         setLoungeCode(newLoungeCode)
 
         let answersParam: Answers = props.oldAnswers
-        answersParam.reservationTime = newReservationTime
+        answersParam.requestTime = newRequestTime
         answersParam.loungeCode = newLoungeCode
         props.answersUpdate(answersParam)
 
         localStorage.setItem('floev[currentStep]', '13')
-        localStorage.setItem('floev[reservationTime]', newReservationTime)
+        localStorage.setItem('floev[requestTime]', newRequestTime)
         localStorage.setItem('floev[loungeCode]', String(newLoungeCode))
     }
 
-    const availableYeuksamTimes = availableTime(reservationDate, 1, props.schedule)
-    const availableGangNumTimes = availableTime(reservationDate, 2, props.schedule)
+    const availableYeuksamTimes = availableTime(requestDate, 1, props.schedule)
+    const availableGangNumTimes = availableTime(requestDate, 2, props.schedule)
 
     return (<>
         <div className="option-wrap">
@@ -80,7 +80,7 @@ export default function Q12Reservation(props: {
                             <p className="day">
                                 {getOnlyDate(item.date) == String(now.getDate()) ? '오늘' : item.day}
                             </p>
-                            <button className={item.date == reservationDate ? "date selected" : "date"}>
+                            <button className={item.date == requestDate ? "date selected" : "date"}>
                                 {getOnlyDate(item.date)}
                             </button>
                         </li>)
@@ -93,14 +93,14 @@ export default function Q12Reservation(props: {
             <div className="option-lounge">
                 <div>역삼성당</div>
                 <div className="option-list">
-                    {reservationDate !== '' && availableYeuksamTimes.map(
+                    {requestDate !== '' && availableYeuksamTimes.map(
                         (item: Slot, index: number) => (
                             // 오늘 현재시간 4시간 이후부터 예약 가능하나 3시 이후에는 예약 불가능
-                            (getOnlyDate(reservationDate) === String(now.getDate()) &&
+                            (getOnlyDate(requestDate) === String(now.getDate()) &&
                                 (parseInt(item.time.slice(0, 2)) < (now.getHours() + 4) ||
                                     now.getHours() >= 15) ? '' :
                                 (<li key={index} id={index.toString()} onClick={(e) => handleChangeLoungeTime(e)}>
-                                    <button className={item.time === reservationTime && item.loungeCode === loungeCode ? "time selected" : "time"} value={item.time + ',' + item.loungeCode}>{item.time}</button>
+                                    <button className={item.time === requestTime && item.loungeCode === loungeCode ? "time selected" : "time"} value={item.time + ',' + item.loungeCode}>{item.time}</button>
                                 </li>))
                         ))}
                 </div>
@@ -108,14 +108,14 @@ export default function Q12Reservation(props: {
             <div className="option-lounge">
                 <div>강남</div>
                 <div className="option-list">
-                    {reservationDate !== '' && availableGangNumTimes.map(
+                    {requestDate !== '' && availableGangNumTimes.map(
                         (item: Slot, index: number) => (
                             // 오늘 현재시간 4시간 이후부터 예약 가능하나 3시 이후에는 예약 불가능
-                            (getOnlyDate(reservationDate) === String(now.getDate()) &&
+                            (getOnlyDate(requestDate) === String(now.getDate()) &&
                                 (parseInt(item.time.slice(0, 2)) < (now.getHours() + 4) ||
                                     now.getHours() >= 15) ? '' :
                                 (<li key={index} id={index.toString()} onClick={(e) => handleChangeLoungeTime(e)}>
-                                    <button className={item.time === reservationTime && item.loungeCode === loungeCode ? "time selected" : "time"} value={item.time + ',' + item.loungeCode} >{item.time}</button>
+                                    <button className={item.time === requestTime && item.loungeCode === loungeCode ? "time selected" : "time"} value={item.time + ',' + item.loungeCode} >{item.time}</button>
                                 </li>))
                         ))}
                 </div>
@@ -123,7 +123,7 @@ export default function Q12Reservation(props: {
 
         </div>
         <div className="btnWrap">
-            {reservationDate === "" || reservationTime === "" ?
+            {requestDate === "" || requestTime === "" ?
                 (<button className="btnNext disabled" type="button" disabled>다음</button>) :
                 (<button className="btnNext gtm-028" type="button" onClick={() => props.onNext()}>다음</button>)}
         </div>

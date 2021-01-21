@@ -8,7 +8,7 @@ import { gql } from '@apollo/client'
 const CompletePage = (props: {
     user: any
 }) => {
-    // const userSchedule: Schedule = props.user.reservations[props.user.reservations.length - 1]
+    // const userSchedule: Schedule = props.user.requests[props.user.requests.length - 1]
 
 
     return (<>
@@ -44,7 +44,7 @@ const CHECKUP_USER = gql`
             name
             email
             phoneNumber
-            reservations{
+            requests{
               id
               date
               loungeCode

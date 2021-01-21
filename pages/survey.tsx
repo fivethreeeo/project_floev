@@ -20,7 +20,7 @@ import Q8PainTypes from '../components/survey/q8PainTypes'
 import Q9Prefer from '../components/survey/q9Prefer'
 import Q10Photo from '../components/survey/q10Photo'
 import Q11Photo from '../components/survey/q11Size'
-import Q12Reservation from '../components/survey/q12Reservation'
+import Q12Request from '../components/survey/q12Request'
 import Q13NamePhoneNumber from '../components/survey/q13NamePhoneNumber'
 
 // 타입 정의
@@ -48,8 +48,8 @@ declare global {
         prefer: string
         size: string
         loungeCode: number
-        reservationDate: string
-        reservationTime: string
+        requestDate: string
+        requestTime: string
         name: string
         phoneNumber: string
         authNumber: string
@@ -62,7 +62,7 @@ const steps = [
     Q4BirthGender, Q5HasWorn, Q6Purpose,
     Q7PainDegree, Q8PainTypes, Q9Prefer,
     Q10Photo, Q11Photo,
-    Q12Reservation, Q13NamePhoneNumber
+    Q12Request, Q13NamePhoneNumber
 ]
 const max = steps.length
 
@@ -85,8 +85,8 @@ const SurveyPage = (props: {
         prefer: process.browser ? localStorage.getItem('floev[preger]') ?? '' : '',
         size: process.browser ? localStorage.getItem('floev[size]') ?? '' : '',
         loungeCode: parseInt(process.browser ? (localStorage.getItem('floev[loungeCode]') ?? '2') : '2'),
-        reservationDate: process.browser ? localStorage.getItem('floev[reservationDate]') ?? moment().add(15, 'hours').format().slice(0, 10) : moment().add(15, 'hours').format().slice(0, 10),
-        reservationTime: process.browser ? localStorage.getItem('floev[reservationTime]') ?? '' : '',
+        requestDate: process.browser ? localStorage.getItem('floev[requestDate]') ?? moment().add(15, 'hours').format().slice(0, 10) : moment().add(15, 'hours').format().slice(0, 10),
+        requestTime: process.browser ? localStorage.getItem('floev[requestTime]') ?? '' : '',
         name: process.browser ? localStorage.getItem('floev[name]') ?? '' : '',
         phoneNumber: process.browser ? localStorage.getItem('floev[phoneNumber]') ?? '' : '',
         authNumber: ""
@@ -158,8 +158,8 @@ const SurveyPage = (props: {
         console.log("answers.prefer: " + answers.prefer)
         console.log("answers.size: " + answers.size)
         console.log("answers.loungeCode: " + answers.loungeCode)
-        console.log("answers.reservationDate: " + answers.reservationDate)
-        console.log("answers.reservationTime: " + answers.reservationTime)
+        console.log("answers.requestDate: " + answers.requestDate)
+        console.log("answers.requestTime: " + answers.requestTime)
         console.log("answers.name: " + answers.name)
         console.log("answers.phoneNumber: " + answers.phoneNumber)
         console.log("answers.authNumber: " + answers.authNumber)
@@ -197,8 +197,8 @@ const SurveyPage = (props: {
         } else {
             updateStep(currentStep - 1)
         }
-        localStorage.removeItem('floev[reservationDate]')
-        localStorage.removeItem('floev[reservationTime]')
+        localStorage.removeItem('floev[requestDate]')
+        localStorage.removeItem('floev[requestTime]')
     }
 
     function onClose() {
@@ -250,9 +250,9 @@ const SurveyPage = (props: {
     )
 }
 
-const RESERVATION_SCHEDULE_LIST = gql`
-    query getReservationScheduleList{
-        getReservationScheduleList{
+const GET_PURCHASE_REQUEST_LIST = gql`
+    query getPuchaseRequestList{
+        getPuchaseRequestList{
             date
             loungeCode
         }
@@ -262,10 +262,10 @@ const RESERVATION_SCHEDULE_LIST = gql`
 export const getServerSideProps: GetServerSideProps = async (context) => { //{ req }: { req: any }
     const startTime = Date.now();
     const client = createApolloClient(context)
-    const { schedule } = await client.query({ query: RESERVATION_SCHEDULE_LIST })
+    const { schedule } = await client.query({ query: GET_PURCHASE_REQUEST_LIST })
         .then(({ data }) => {
             console.log("Survey Page elapsed time: " + (Date.now() - startTime) + "ms");
-            return { schedule: data.getReservationScheduleList };
+            return { schedule: data.getPuchaseRequestList };
         })
         .catch((error) => {
             console.log("Survey Page elapsed time: " + (Date.now() - startTime) + "ms");

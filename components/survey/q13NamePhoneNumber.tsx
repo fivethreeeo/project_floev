@@ -5,27 +5,27 @@ import cookie from 'cookie'
 import axios from 'axios'
 import { gql, useMutation } from '@apollo/client'
 
-const MAKE_SURVEY_RESERVATION = gql`
-  mutation makeSurveyReservation(
+const MAKE_SURVEY_PURCHASE_REQUEST = gql`
+  mutation makeSurveyPurchaseRequest(
         $customer: Int!, $birth: Int!, $gender: String!, $hasWorn: Int!,
         $purpose: [String!], $purposeEtc: String,
         $painDegree: Int!, $painDegreeEtc: String,
         $painTypes: [String!], $painTypesEtc: String,
         $prefer: String!, $size: String, $loungeCode: Int!,
-        $reservationDate: String!, $reservationTime: String!,
+        $requestDate: String!, $requestTime: String!,
         $name: String!, $phoneNumber: String!, $authNumber: String!) {
-    makeSurveyReservation(
+    makeSurveyPurchaseRequest(
         customer: $customer, birth: $birth, gender: $gender, hasWorn: $hasWorn,
         purpose: $purpose, purposeEtc: $purposeEtc,
         painDegree: $painDegree, painDegreeEtc: $painDegreeEtc,
         painTypes: $painTypes, painTypesEtc: $painTypesEtc,
         prefer: $prefer, size: $size, loungeCode: $loungeCode
-        reservationDate: $reservationDate, reservationTime: $reservationTime,
+        requestDate: $requestDate, requestTime: $requestTime,
         name: $name, phoneNumber: $phoneNumber, authNumber: $authNumber) {
     token
         user{
             id
-            reservations{
+            requests{
                 id
                 date
                 loungeCode
@@ -55,7 +55,7 @@ export default function Q12NamePhoneNumber(props: {
     const [isActive, setIsActive] = useState<boolean>(false)
     const [isError, setIsError] = useState<boolean>(false)
 
-    const [makeSurveyReservation, { loading }] = useMutation(MAKE_SURVEY_RESERVATION, {
+    const [makeSurveyPurchaseRequest, { loading }] = useMutation(MAKE_SURVEY_PURCHASE_REQUEST, {
         variables: {
             customer: props.oldAnswers.customer, birth: props.oldAnswers.birth,
             gender: props.oldAnswers.gender, hasWorn: props.oldAnswers.hasWorn,
@@ -64,13 +64,13 @@ export default function Q12NamePhoneNumber(props: {
             painTypes: props.oldAnswers.painTypes, painTypesEtc: props.oldAnswers.painTypesEtc,
             prefer: props.oldAnswers.prefer, size: props.oldAnswers.size,
             loungeCode: props.oldAnswers.loungeCode,
-            reservationDate: props.oldAnswers.reservationDate,
-            reservationTime: props.oldAnswers.reservationTime,
+            requestDate: props.oldAnswers.requestDate,
+            requestTime: props.oldAnswers.requestTime,
             name: name, phoneNumber: phoneNumber, authNumber: authNumber
         },
         onCompleted(data: any) {
             if (data) {
-                const token = data.makeSurveyReservation.token
+                const token = data.makeSurveyPurchaseRequest.token
                 document.cookie = cookie.serialize("token", token, {
                     maxAge: 12 * 60 * 60
                 })
@@ -233,7 +233,7 @@ export default function Q12NamePhoneNumber(props: {
                     (<button className="btnCom disabled">인증하고 예약완료하기</button>) :
                     (!loading ?
                         (<button className="btnCom color gtm-test-14-next" type={'submit'}
-                            onClick={() => makeSurveyReservation()}>인증하고 예약완료하기</button>) :
+                            onClick={() => makeSurveyPurchaseRequest()}>인증하고 예약완료하기</button>) :
                         (<Spin size="large" tip="잠시만 기다려주세요.." />))
                 }
                 {isActive ? 'true' : 'false'}
