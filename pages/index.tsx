@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import Layout from '../layout/DefaultLayout'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import { Modal, Carousel, Collapse } from 'antd'
+import { Modal, Carousel, Collapse, Button } from 'antd'
 import { gql, useMutation } from '@apollo/client'
 import { GetServerSideProps } from 'next'
 import Link from 'next/link'
@@ -45,12 +45,13 @@ const IndexPage = (props: {
 	user: any
 }) => {
 	const router = useRouter()
-	const [modalView, setModalView] = useState(false)
-	const [tabIdx, setTabIdx] = useState(0)
+	const [modalView, setModalView] = useState<boolean>(false)
+	const [tabIdx, setTabIdx] = useState<number>(0)
+	const [surveyModal, setSurveyModal] = useState<boolean>(false)
 
-	const [name, setName] = useState('')
-	const [phn, setPhn] = useState('')
-	const [completed, setCompleted] = useState(false)
+	const [name, setName] = useState<string>('')
+	const [phn, setPhn] = useState<string>('')
+	const [completed, setCompleted] = useState<boolean>(false)
 	const [createUser] = useMutation(CREATE_USER_MUTATION);
 
 	const onChangeName = (e: any) => {
@@ -60,11 +61,11 @@ const IndexPage = (props: {
 		setPhn(e.target.value)
 	}
 
-	useEffect(() => {
-		if (props.user) {
-			router.push('/')
-		}
-	}, [props.user])
+	// useEffect(() => {
+	// 	if (props.user) {
+	// 		router.push('/')
+	// 	}
+	// }, [props.user])
 	/*
 	  const handleGtag1 = () => {
 		  if (process.browser) {
@@ -155,6 +156,41 @@ const IndexPage = (props: {
 				break;
 		}
 		return component
+	}
+
+	function didYouVisit() {
+		console.log("localstorage: " + localStorage.getItem('floev[currentStep]'))
+		if (process.browser) {
+			if (localStorage.getItem('floev[currentStep]') !== null) {
+				setSurveyModal(true)
+			} else {
+				router.push('/survey')
+			}
+		}
+	}
+	function surveyFromMiddle() {
+		router.push('/survey')
+	}
+	function surveyFromStart() {
+		localStorage.removeItem('floev[currentStep]')
+		localStorage.removeItem('floev[customer]')
+		localStorage.removeItem('floev[birth]')
+		localStorage.removeItem('floev[gender]')
+		localStorage.removeItem('floev[hasWorn]')
+		localStorage.removeItem('floev[purposes]')
+		localStorage.removeItem('floev[purposeEtc]')
+		localStorage.removeItem('floev[painDegree]')
+		localStorage.removeItem('floev[painTypesEtc]')
+		localStorage.removeItem('floev[size]')
+		localStorage.removeItem('floev[loungeCode]')
+		localStorage.removeItem('floev[requestDate]')
+		localStorage.removeItem('floev[requestTime]')
+		localStorage.removeItem('floev[name]')
+		localStorage.removeItem('floev[phoneNumber]')
+		localStorage.removeItem('floev[gender]')
+		localStorage.removeItem('floev[gender]')
+		localStorage.removeItem('floev[gender]')
+		router.push('/survey')
 	}
 
 	return (
@@ -268,7 +304,17 @@ const IndexPage = (props: {
 									</div>
 									<p className="main-visual__caption">안경 고민을 설문하세요.<br />판매가 아닌 추천에 충실한 안경테 체험</p>
 									<div className="main-visual__btn">
-										<button className="gtm-001 btn-cta"><a href="https://service.floev.com/survey">시작하기</a></button>
+										<button className="gtm-001 btn-cta" onClick={() => didYouVisit()}>시작하기</button>
+										<Modal
+											title="SurveyModal"
+											visible={surveyModal}
+										>
+											<p>지난 설문 내역이 있어요!</p>
+											<p>거기서부터 시작할까요?😊</p>
+											<Button type="primary" onClick={() => surveyFromMiddle()}>네, 그럴게요</Button>
+											<Button type="dashed" value="start" onClick={() => surveyFromStart()}>아니요, 처음부터 할게요</Button>
+											<Button onClick={() => setSurveyModal(false)}>홈페이지를 더 둘러볼래요</Button>
+										</Modal>
 									</div>
 								</div>
 							</div>
