@@ -193,9 +193,9 @@
     }
     .day-date {
         text-align: center;margin-right:8px;
-        &.today::after {
-            content:'오늘'
-        }
+        // &.today::after {
+        //     content:'오늘'
+        // }
     }
     .date {
         @include el-size(32px,32px);

@@ -8,7 +8,7 @@ import { gql, useMutation } from '@apollo/client'
 const MAKE_SURVEY_PURCHASE_REQUEST = gql`
   mutation makeSurveyPurchaseRequest(
         $customer: Int!, $birth: Int!, $gender: String!, $hasWorn: Int!,
-        $purpose: [String!], $purposeEtc: String,
+        $purposes: [String!], $purposeEtc: String,
         $painDegree: Int!, $painDegreeEtc: String,
         $painTypes: [String!], $painTypesEtc: String,
         $prefer: String!, $size: String, $loungeCode: Int!,
@@ -16,7 +16,7 @@ const MAKE_SURVEY_PURCHASE_REQUEST = gql`
         $name: String!, $phoneNumber: String!, $authNumber: String!) {
     makeSurveyPurchaseRequest(
         customer: $customer, birth: $birth, gender: $gender, hasWorn: $hasWorn,
-        purpose: $purpose, purposeEtc: $purposeEtc,
+        purposes: $purposes, purposeEtc: $purposeEtc,
         painDegree: $painDegree, painDegreeEtc: $painDegreeEtc,
         painTypes: $painTypes, painTypesEtc: $painTypesEtc,
         prefer: $prefer, size: $size, loungeCode: $loungeCode
@@ -59,7 +59,7 @@ export default function Q12NamePhoneNumber(props: {
         variables: {
             customer: props.oldAnswers.customer, birth: props.oldAnswers.birth,
             gender: props.oldAnswers.gender, hasWorn: props.oldAnswers.hasWorn,
-            purpose: props.oldAnswers.purposes, purposeEtc: props.oldAnswers.purposeEtc,
+            purposes: props.oldAnswers.purposes, purposeEtc: props.oldAnswers.purposeEtc,
             painDegree: props.oldAnswers.painDegree, painDegreeEtc: props.oldAnswers.painDegreeEtc,
             painTypes: props.oldAnswers.painTypes, painTypesEtc: props.oldAnswers.painTypesEtc,
             prefer: props.oldAnswers.prefer, size: props.oldAnswers.size,
@@ -79,7 +79,7 @@ export default function Q12NamePhoneNumber(props: {
                     birth: props.oldAnswers.birth,
                     gender: props.oldAnswers.gender
                 });
-                localStorage.setItem('floev[currentStep]', '0')
+                localStorage.removeItem('floev[currentStep]')
                 router.replace('/complete')
             }
         },
@@ -236,7 +236,6 @@ export default function Q12NamePhoneNumber(props: {
                             onClick={() => makeSurveyPurchaseRequest()}>인증하고 예약완료하기</button>) :
                         (<Spin size="large" tip="잠시만 기다려주세요.." />))
                 }
-                {isActive ? 'true' : 'false'}
             </div>)
         }
     </>)

@@ -17,22 +17,6 @@ export default function Q12Request(props: {
     const [loungeCode, setLoungeCode] = useState<number>(props.oldAnswers.loungeCode)
     const [requestDate, setRequestDate] = useState<string>(props.oldAnswers.requestDate)
     const [requestTime, setRequestTime] = useState<string>(props.oldAnswers.requestTime)
-    // const [loungeCode, setLoungeCode] = useState<number>(2) // 1: 역삼성당, 2: 강남
-    // const [requestDate, setRequestDate] = useState<string>("2021-01-19")
-    // const [requestTime, setRequestTime] = useState<string>("11:00")
-
-    // const test = () => {
-    //     setRequestDate("2021-01-19")
-    //     setRequestTime("11:01")
-
-    //     let answersParam: Answers = props.oldAnswers
-    //     answersParam.loungeCode = 1
-    //     answersParam.requestDate = '2021-01-19'
-    //     answersParam.requestTime = '11:01'
-    //     props.answersUpdate(answersParam)
-
-    //     localStorage.setItem('floev[loungeCode]', String(1))
-    // }
 
     function handleChangeDate(e: any) {
         const newRequestDate = fromToday[e.currentTarget.id].date

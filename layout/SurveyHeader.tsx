@@ -24,8 +24,8 @@ export default function SurveyHeader(props: {
         }
         return step
     }
-    return (
-        <div className="survey-header">
+    return (<>
+        {props.currentStep !== 0 && <div className="survey-header">
             <div className="progress">
                 <Progress percent={((chunkStep()) / 5) * 100} showInfo={false} className="progress__bar" />
 
@@ -51,9 +51,6 @@ export default function SurveyHeader(props: {
                     <div className={props.currentStep >= 12 ? "progress__step-name progress__step-name--active" : "progress__step-name"}>일정예약</div>
                 </div>
             </div>
-            <div>
-                <button onClick={() => props.onPrev()}>뒤로가야지 뒤로</button>
-            </div>
-        </div>
-    )
+        </div>}
+    </>)
 }
