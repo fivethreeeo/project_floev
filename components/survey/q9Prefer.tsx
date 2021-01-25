@@ -53,20 +53,11 @@ export default function Q9Prefer(props: {
     }
 
     return (<>
-        <div className="q-wrap q9">
-            <div className="q-wrap__question-main">안경에 대한 고민,<br />플로브에게 요청하고 싶은 내용을 자유롭게 남겨주세요.</div>
-            <div className="q-wrap__answer-wrap">
-                <textarea className="q-wrap__textarea" placeholder="원하는 분위기, 스타일, 기피 색상, 기피 스타일, 불편해도 스타일리쉬하게, 무조건 편한거, 선호하는 브랜드 등" value={prefer} onChange={(e) => handleChangePrefer(e)}></textarea>
-                <p><strong>이미지 고민</strong><br />
-                &#34;회사에서 존재감 있는 사람이 되고싶은데 안경으로 이미지 변신을 하고싶어요!&#34;<br />
-                    <strong>스타일 고민</strong><br />
-                &#34;무채색 안경을 선호하지만 검정색은 별로에요&#34;<br />
-                &#34;첫 안경이라 어떤게 어울리는지 잘 모르겠어요. 최대한 다양하게 경험해볼래요!&#34;<br />
-                    <strong>사이즈&#38;디자인 고민</strong><br />
-                &#34;주로 후드티,청바지,티셔츠 등 캐주얼한 옷을 입어요. 무난하게 어울리는 안경이 필요해요&#34;<br />
-                &#34;저는 뿔테는 너무 무거워서 싫고 금속테 위주로 보고싶어요&#34;
-                        </p>
-                <Upload
+                <div className="q-wrap q9">
+                    <div className="q-wrap__question-main">안경에 대한 고민,<br/>플로브에게 요청하고 싶은 내용을 자유롭게 남겨주세요.</div>
+                    <div className="q-wrap__answer-wrap">
+                        <textarea className="q-wrap__textarea" placeholder="원하는 분위기, 스타일, 기피 색상, 기피 스타일, 불편해도 스타일리쉬하게, 무조건 편한거, 선호하는 브랜드 등" value={prefer} onChange={(e) => handleChangePrefer(e)}></textarea>
+                        <Upload
                     // action="https://image.floev.com/upload"
                     name="upload-image"
                     listType="picture-card"
@@ -87,14 +78,23 @@ export default function Q9Prefer(props: {
                     onCancel={() => handleCancel()}
                 ><img alt="example" style={{ width: '100%' }} src={previewImage} />
                 </Modal>
-
-                <div className="btnWrap">
-                    {prefer.length === 0 ?
-                        (<button className="btnNext disabled" type="button" disabled>다음</button>) :
-                        (<button className="btnNext gtm-021" type="button" onClick={() => props.onNext()}>다음</button>)}
+                    <p><strong>이미지 고민</strong><br />
+                &#34;회사에서 존재감 있는 사람이 되고싶은데 안경으로 이미지 변신을 하고싶어요!&#34;<br />
+                    <strong>스타일 고민</strong><br />
+                &#34;무채색 안경을 선호하지만 검정색은 별로에요&#34;<br />
+                &#34;첫 안경이라 어떤게 어울리는지 잘 모르겠어요. 최대한 다양하게 경험해볼래요!&#34;<br />
+                    <strong>사이즈&#38;디자인 고민</strong><br />
+                &#34;주로 후드티,청바지,티셔츠 등 캐주얼한 옷을 입어요. 무난하게 어울리는 안경이 필요해요&#34;<br />
+                &#34;저는 뿔테는 너무 무거워서 싫고 금속테 위주로 보고싶어요&#34;
+                        </p>
+                    </div>
+                    <div className="q-wrap__btn-wrap">
+                        <button className="q-wrap__btn q-wrap__btn-prev" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
+                        {prefer.length === 0 ? (
+                            <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt=""/></button>) :
+                            (<button className="q-wrap__btn q-wrap__btn-next" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt=""/></button>)
+                        }
+                    </div>
                 </div>
-                <button className="btn btn01 gtm-012" style={{ fontSize: '16px', borderRadius: '24px' }} type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>뒤로</button>
-            </div>
-        </div>
     </>)
 }

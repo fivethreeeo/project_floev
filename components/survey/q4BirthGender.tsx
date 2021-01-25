@@ -62,15 +62,13 @@ export default function Q4BirthGender(props: {
                         </div>
                     </div>
                     <div className="q-wrap__btn-wrap">
+                        <button className="q-wrap__btn q-wrap__btn-prev" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
+                        {birth < 0 || gender === '' ? (
+                            <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt=""/></button>) :
+                            (<button className="q-wrap__btn q-wrap__btn-next" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt=""/></button>)
+                        }
                     </div>
                 </div>
-
-                <div className="btnWrap">
-                    {birth < 0 || gender === '' ? (
-                        <button className="btnNext disabled" type="button">다음</button>) :
-                        (<button className="btnNext gtm-016" type="button" onClick={() => props.onNext()}>다음</button>)
-                    }
-                </div>
-                <button className="btn btn01 gtm-012" style={{ fontSize: '16px', borderRadius: '24px'}} type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>뒤로</button>
+            
     </>)
 }

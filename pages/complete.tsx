@@ -39,7 +39,7 @@ const CompletePage = (props: {
                     </div>
 
                     <div className="coupon">
-                        <div className="coupon__img"><img src="/static/img/survey/coupon-welcome.png" alt=""/></div>
+                        <div className="coupon__img"><img src="/static/img/survey/coupon-welcome.jpg" alt=""/></div>
                         <div className="coupon__noti">
                             <ul>
                                 <li>- 쿠폰은 라운지에서 체험 후 구매를 원하시면 자동 적용됩니다.</li>

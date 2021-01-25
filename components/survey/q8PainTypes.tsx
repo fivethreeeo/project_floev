@@ -47,7 +47,7 @@ export default function Q8Paintypes(props: {
     return (<>
         <div className="q-wrap q8">
             <div className="q-wrap__question-main">지금 안경에서 느껴지는 불편함을 모두 체크해주세요.</div>
-            <div className="q-wrap__question-sub">플로브 안경 추천 서비스는 가장 나은 안경을 고민하고 해소할 수 있는 방법을 제안해요.</div>
+            {/*<div className="q-wrap__question-sub">플로브 안경 추천 서비스는 가장 나은 안경을 고민하고 해소할 수 있는 방법을 제안해요.</div>*/}
             <div className="q-wrap__answer-wrap q-wrap__checkbox-wrap" onChange={(e) => handleChangePainTypes(e)}>
                 {/* 문제없음 */}
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q8_1" onChange={() => { }} value="문제없음" checked={painTypes.includes("문제없음")} />
@@ -94,11 +94,12 @@ export default function Q8Paintypes(props: {
                     onChange={(e) => handleChangePainTypeEtc(e)}
                 ></textarea>
             </div>
-            <div className="btnWrap">
-                {painTypes.length === 0 && painTypesEtc.length === 0 ?
-                    (<button className="btnNext disabled" type="button" disabled>다음</button>) :
-                    (<button className="btnNext gtm-021" type="button" onClick={() => props.onNext()}>다음</button>)}
-                <button className="btn btn01 gtm-012" style={{ fontSize: '16px', borderRadius: '24px' }} type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>뒤로</button>
+            <div className="q-wrap__btn-wrap">
+                <button className="q-wrap__btn q-wrap__btn-prev" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
+                {painTypes.length === 0 && painTypesEtc.length === 0 ? (
+                    <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt=""/></button>) :
+                    (<button className="q-wrap__btn q-wrap__btn-next" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt=""/></button>)
+                }
             </div>
         </div>
 

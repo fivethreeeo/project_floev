@@ -44,37 +44,30 @@ export default function Q6Purpose(props: {
     }
 
     return (<>
-        <div className="q-wrap q6">
-            <div className="q-wrap__question-main">어떤 용도의 안경을 추천해드릴까요?</div>
-            <div className="q-wrap__answer-wrap q-wrap__checkbox-wrap" onChange={e => handleChangePurpose(e)}>
-                <input className="q-wrap__input-checkbox" type="checkbox" id="q6_1" onChange={() => { }} value="daily" checked={purposes.includes("daily")} />
-                <label className="q-wrap__label-checkbox" htmlFor="q6_1">일상/데일리용</label>
-                <input className="q-wrap__input-checkbox" type="checkbox" id="q6_2" onChange={() => { }} value="work" checked={purposes.includes("work")} />
-                <label className="q-wrap__label-checkbox" htmlFor="q6_2">업무/컴퓨터 작업용</label>
-                <input className="q-wrap__input-checkbox" type="checkbox" id="q6_3" onChange={() => { }} value="home" checked={purposes.includes("home")} />
-                <label className="q-wrap__label-checkbox" htmlFor="q6_3">집에서 렌즈 대신 착용</label>
-                <p className="q-wrap__textarea-caption">* 그 외 용도나 구체적인 상황을 더 들려주세요.</p>
-                <textarea
-                    className="q-wrap__textarea"
-                    value={purposeEtc ?? ''}
-                    onChange={e => handleChangePuposeEtc(e)}
-                    placeholder="예시) 독서용 안경이 필요해요. &#13;&#10;집에서만 렌즈 대신 착용하는 안경이에요."
-                ></textarea>
-            </div>
-            <div className="btnWrap">
-                {(purposes.length === 0 && purposeEtc.length === 0) ? (
-                    <button className="btnNext disabled" type="button">다음</button>) :
-                    (<button className="btnNext gtm-016" type="button" onClick={() => props.onNext()}>다음</button>)
-                }
-            </div>
-            <button className="btn btn01 gtm-012" style={{ fontSize: '16px', borderRadius: '24px' }} type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>뒤로</button>
-        </div>
-        <div className="contentWrap">
-
-        </div>
-        <div className="personal">
-
-        </div>
-
+                <div className="q-wrap q6">
+                    <div className="q-wrap__question-main">어떤 용도의 안경을 추천해드릴까요?</div>
+                    <div className="q-wrap__answer-wrap q-wrap__checkbox-wrap" onChange={e => handleChangePurpose(e)}>
+                        <input className="q-wrap__input-checkbox" type="checkbox" id="q6_1" onChange={() => { }} value="daily" checked={purposes.includes("daily")} />
+                        <label className="q-wrap__label-checkbox" htmlFor="q6_1">일상/데일리용</label>
+                        <input className="q-wrap__input-checkbox" type="checkbox" id="q6_2" onChange={() => { }} value="work" checked={purposes.includes("work")} />
+                        <label className="q-wrap__label-checkbox" htmlFor="q6_2">업무/컴퓨터 작업용</label>
+                        <input className="q-wrap__input-checkbox" type="checkbox" id="q6_3" onChange={() => { }} value="home" checked={purposes.includes("home")} />
+                        <label className="q-wrap__label-checkbox" htmlFor="q6_3">집에서 편하게 착용</label>
+                        <p className="q-wrap__textarea-caption">* 그 외 용도나 구체적인 상황을 더 들려주세요. </p>
+                        <textarea
+                            className="q-wrap__textarea"
+                            value={purposeEtc ?? ''}
+                            onChange={e => handleChangePuposeEtc(e)}
+                            placeholder="예시)&#13;&#10;독서용 안경이 필요해요.&#13;&#10;집에서만 렌즈 대신 착용하는 안경이에요."
+                        ></textarea>
+                    </div>
+                    <div className="q-wrap__btn-wrap">
+                        <button className="q-wrap__btn q-wrap__btn-prev" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
+                        {(purposes.length === 0 && purposeEtc.length === 0) ? (
+                            <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt=""/></button>) :
+                            (<button className="q-wrap__btn q-wrap__btn-next" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt=""/></button>)
+                        }
+                    </div>
+                </div>
     </>)
 }
