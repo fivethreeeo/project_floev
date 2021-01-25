@@ -4,6 +4,8 @@ import { Spin } from 'antd'
 import cookie from 'cookie'
 import axios from 'axios'
 import { gql, useMutation } from '@apollo/client'
+import path from 'path';
+import moment from 'moment'
 
 const MAKE_SURVEY_PURCHASE_REQUEST = gql`
   mutation makeSurveyPurchaseRequest(
@@ -191,6 +193,41 @@ export default function Q12NamePhoneNumber(props: {
         })
     }
 
+    const submitPhoto = async () => {
+        for (let i = 0; i < props.oldAnswers.photoFileList.length; i++) {
+            const formData = new FormData()
+            const tempFile = props.oldAnswers.photoFileList[i].originFileObj
+            if (tempFile !== undefined) {
+                formData.append("upload-image", tempFile, moment().format().slice(0, 16) + "_" + phoneNumber + "_" + i.toString() + path.extname(props.oldAnswers.photoFileList[i].name))
+            }
+            await axios.post('https://image.floev.com/upload', formData, {
+                headers: { "content-type": "multipart/form-data" }
+            }).then(res => {
+                console.log(res)
+            }).catch(err => {
+                console.error(err)
+            })
+        }
+        for (let i = 0; i < props.oldAnswers.preferFileList.length; i++) {
+            const formData = new FormData()
+            const tempFile = props.oldAnswers.preferFileList[i].originFileObj
+            if (tempFile !== undefined) {
+                formData.append("upload-image", tempFile, moment().format().slice(0, 16) + "_" + phoneNumber + "_prefer_" + i.toString() + path.extname(props.oldAnswers.preferFileList[i].name))
+            }
+            await axios.post('https://image.floev.com/upload', formData, {
+                headers: { "content-type": "multipart/form-data" }
+            }).then(res => {
+                console.log(res.status)
+            }).catch(err => {
+                console.error(err)
+            })
+        }
+    }
+    function handleClick() {
+        submitPhoto()
+        makeSurveyPurchaseRequest()
+    }
+
     return (<>
         <div className="contentWrap">
             <p className="qDesc" >신청 완료에 필요한 나의 정보를 입력해주세요.</p>
@@ -233,10 +270,11 @@ export default function Q12NamePhoneNumber(props: {
                     (<button className="btnCom disabled">인증하고 예약완료하기</button>) :
                     (!loading ?
                         (<button className="btnCom color gtm-test-14-next" type={'submit'}
-                            onClick={() => makeSurveyPurchaseRequest()}>인증하고 예약완료하기</button>) :
+                            onClick={() => { handleClick() }}>인증하고 예약완료하기</button>) :
                         (<Spin size="large" tip="잠시만 기다려주세요.." />))
                 }
             </div>)
         }
+        <button className="btn btn01 gtm-012" style={{ fontSize: '16px', borderRadius: '24px' }} type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>뒤로</button>
     </>)
 }

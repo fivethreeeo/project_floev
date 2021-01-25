@@ -7,6 +7,7 @@ export default function SurveyHeader(props: {
     onPrev: () => void;
     onClose: () => void;
 }) {
+    // const [currentStep, setCurrentStep] = useState(props.currentStep)
     const chunkStep = () => {
         let step = 0
         if (props.currentStep <= 1) {
@@ -39,7 +40,7 @@ export default function SurveyHeader(props: {
         return step
     }
     return (<>
-        {props.currentStep !== 0 && <div className="survey-header">
+        <div className="survey-header">
             <div className="progress">
                 <Progress percent={((chunkStep()) / 13) * 100} showInfo={false} className="progress__bar" />
 
@@ -65,6 +66,6 @@ export default function SurveyHeader(props: {
                     <div className={props.currentStep >= 12 ? "progress__step-name progress__step-name--active" : "progress__step-name"}>일정예약</div>
                 </div>
             </div>
-        </div>}
+        </div>
     </>)
 }

@@ -1,17 +1,9 @@
 import React, { useState } from 'react'
 import { Upload, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import { UploadFile } from 'antd/lib/upload/interface';
+import { UploadChangeParam, UploadFile } from 'antd/lib/upload/interface';
 import { HASWORN } from './q5HasWorn'
-
-function getBase64(file: any) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
-    });
-}
+import { getBase64 } from '../../utils/getBase64'
 
 export default function Q10Photo(props: {
     oldAnswers: Answers
@@ -36,7 +28,7 @@ export default function Q10Photo(props: {
     const [previewVisible, setPreviewVisible] = useState(false)
     const [previewImage, setPreviewImage] = useState('')
     const [previewTitle, setPreviewTitle] = useState('')
-    const [fileList, setFileList] = useState<UploadFile[]>([])
+    const [photoFileList, setPhotoFileList] = useState<UploadFile[]>(props.oldAnswers.photoFileList)
 
     async function handlePreview(file: any) {
         if (!file.url && !file.preview) {
@@ -47,25 +39,17 @@ export default function Q10Photo(props: {
         setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1))
     };
 
-    function handleChange(e: any) {
-        setFileList(e.fileList)
+    function handleChange(e: UploadChangeParam<UploadFile<any>>) {
+        setPhotoFileList(e.fileList)
+
+        let answersParam: Answers = props.oldAnswers
+        answersParam.photoFileList = e.fileList
+        props.answersUpdate(answersParam)
     }
     function handleCancel() {
         setPreviewVisible(false)
     };
-    // const submitFiles = async () => {
-    //     const fd = new FormData()
-    //     for (let i = 0; i < fileList.length; i++) {
-    //         fd.append("uploadImage", fileList[i], moment().format().slice(0, 16) + '_' + props.oldAnswers.birth + '_' + props.oldAnswers.gender)
-    //     }
-    //     await axios.post('https://apollotest.floev.com/uplaod', fd)
-    //         .then(res => {
-    //             console.log(res)
-    //         })
-    //         .catch(err => {
-    //             console.error(err)
-    //         })
-    // }
+
     return (<>
         <div className="contentWrap">
             {photoTitle()}
@@ -73,13 +57,14 @@ export default function Q10Photo(props: {
             <p>-지금 쓰는 안경과 내 불편함의 원인을 체크해요.</p>
             <p>-나의 이미지에 맞는 안경을 더 정확하게 추천해요.</p>
             <Upload
-                action="https://image.floev.com/upload"
+                // action="https://image.floev.com/upload"
                 name="upload-image"
                 listType="picture-card"
-                fileList={fileList}
+                fileList={photoFileList}
                 onPreview={(e) => handlePreview(e)}
                 onChange={(e) => handleChange(e)}
-            >{fileList.length >= 3 ? null :
+                beforeUpload={() => false} // setFileList(fileList.concat(file));
+            >{photoFileList.length >= 3 ? null :
                 (<div>
                     <PlusOutlined />
                     <div style={{ marginTop: 8 }}>Upload</div>
@@ -92,13 +77,13 @@ export default function Q10Photo(props: {
                 onCancel={() => handleCancel()}
             ><img alt="example" style={{ width: '100%' }} src={previewImage} />
             </Modal>
-            {/* <button type="button" onClick={() => submitFiles()}>사진 업로드</button> */}
+
         </div>
         <div className="btnWrap">
-            {fileList.length === 0 ?
+            {photoFileList.length === 0 ?
                 (<button className="btnNext disabled" type="button" disabled>다음</button>) :
                 (<button className="btnNext gtm-021" type="button" onClick={() => props.onNext()}>다음</button>)}
         </div>
-        <button className="btn btn01 gtm-012" style={{ fontSize: '16px', borderRadius: '24px'}} type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>뒤로</button>
+        <button className="btn btn01 gtm-012" style={{ fontSize: '16px', borderRadius: '24px' }} type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>뒤로</button>
     </>)
 }

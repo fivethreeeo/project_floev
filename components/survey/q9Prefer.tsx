@@ -1,4 +1,8 @@
 import React, { useState } from 'react'
+import { Modal, Upload } from 'antd'
+import { UploadChangeParam, UploadFile } from 'antd/lib/upload/interface'
+import { PlusOutlined } from '@ant-design/icons';
+import { getBase64 } from '../../utils/getBase64'
 
 export default function Q9Prefer(props: {
     oldAnswers: Answers
@@ -10,8 +14,32 @@ export default function Q9Prefer(props: {
     onNext: () => void
 }) {
     const [prefer, setPrefer] = useState<string>(props.oldAnswers.prefer)
+    const [previewVisible, setPreviewVisible] = useState(false)
+    const [previewImage, setPreviewImage] = useState('')
+    const [previewTitle, setPreviewTitle] = useState('')
+    const [preferFileList, setPreferFileList] = useState<UploadFile[]>(props.oldAnswers.preferFileList)
 
-    function handleChange(e: any) {
+    async function handlePreview(file: any) {
+        if (!file.url && !file.preview) {
+            file.preview = await getBase64(file.originFileObj);
+        }
+        setPreviewImage(file.url || file.preview)
+        setPreviewVisible(true)
+        setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1))
+    };
+
+    function handleChangePreferPhoto(e: UploadChangeParam<UploadFile<any>>) {
+        setPreferFileList(e.fileList)
+        let answersParam: Answers = props.oldAnswers
+        answersParam.preferFileList = e.fileList
+        props.answersUpdate(answersParam)
+
+    }
+    function handleCancel() {
+        setPreviewVisible(false)
+    };
+
+    function handleChangePrefer(e: any) {
         const newPrefer: string = e.target.value
         setPrefer(newPrefer)
 
@@ -43,15 +71,37 @@ export default function Q9Prefer(props: {
                     placeholder="원하는 분위기, 스타일, 기피 색상, 기피 스타일,
                         불편해도 스타일리쉬하게, 무조건 편한거, 선호하는 브랜드 등"
                     value={prefer}
-                    onChange={(e) => handleChange(e)}
+                    onChange={(e) => handleChangePrefer(e)}
                 ></textarea>
             </div>
         </div>
+        <Upload
+            // action="https://image.floev.com/upload"
+            name="upload-image"
+            listType="picture-card"
+            fileList={preferFileList}
+            onPreview={(e) => handlePreview(e)}
+            onChange={(e) => handleChangePreferPhoto(e)}
+            beforeUpload={() => false} // setFileList(fileList.concat(file));
+        >{preferFileList.length >= 3 ? null :
+            (<div>
+                <PlusOutlined />
+                <div style={{ marginTop: 8 }}>Upload</div>
+            </div>)}
+        </Upload>
+        <Modal
+            visible={previewVisible}
+            title={previewTitle}
+            footer={null}
+            onCancel={() => handleCancel()}
+        ><img alt="example" style={{ width: '100%' }} src={previewImage} />
+        </Modal>
+
         <div className="btnWrap">
             {prefer.length === 0 ?
                 (<button className="btnNext disabled" type="button" disabled>다음</button>) :
                 (<button className="btnNext gtm-021" type="button" onClick={() => props.onNext()}>다음</button>)}
         </div>
-        <button className="btn btn01 gtm-012" style={{ fontSize: '16px', borderRadius: '24px'}} type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>뒤로</button>
+        <button className="btn btn01 gtm-012" style={{ fontSize: '16px', borderRadius: '24px' }} type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>뒤로</button>
     </>)
 }
