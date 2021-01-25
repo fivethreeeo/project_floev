@@ -1,12 +1,59 @@
 .complete {
-    @include vw-mx-w(480px);
-    @extend %padding-m;
+    @include vw-mx-w(520px);
+    padding-bottom: 160px;
+    background: $fv-gray-2;
     &::before {
         content:'';
         height:56px;
         display:block;
         @include responsive("mobile") {
             height:48px;
+        }
+    }
+    .request {
+        background: $fv-white;
+        padding-bottom: 24px;
+        &__msg {
+            height: 32px;
+            line-height: 36px;
+            margin-bottom: 24px;
+            color: $fv-gray-2;
+            font-size: 15px;
+            background: $fv-gray-9;
+            text-align: center;
+        }
+        &__info-inner {
+            width: 260px;
+            margin: 0 auto;
+            p {
+                margin-bottom: 16px;
+                font-size: 12px;
+                font-weight: 500;
+                color: $fv-gray-6;
+                text-align: center;
+            }
+            font-size: 20px;
+            line-height: 1.7;
+        }
+        .schedule, .lounge {
+            color: $fv-sienna;
+            font-weight: 700;
+        }
+    }
+    .coupon {
+        @extend %padding-m;
+        margin-top: 24px;
+        &__img {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        &__noti {
+            margin-top: 16px;
+            li {
+                margin-bottom: 4px;
+                color: $fv-gray-6;
+                font-size: 13px;
+            }
         }
     }
 }

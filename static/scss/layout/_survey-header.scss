@@ -25,7 +25,8 @@
             justify-content: space-between;
             padding: 32px 20px 16px;
             @include responsive("mobile") {
-                padding: 16px 20px 0;
+                background: $fv-gray-1;
+                padding: 16px 20px 14px;
             }
         }
         &__step-name {

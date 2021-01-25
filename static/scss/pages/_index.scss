@@ -1041,148 +1041,183 @@
 /* -------- 모달 --------- */
 
 body{ overflow:scroll!important}
-.ant-modal {
-	max-width: 520px;
-	padding-bottom: 0;
-	@include responsive("mobile") {
-		margin: 0px auto!important;
-		vertical-align: bottom!important;
+
+.modal-cookie {
+	.ant-modal-content {
+		border-radius: 8px;
+		overflow: hidden;
 	}
-	&-content {
-		border-radius: 20px;
-		@include responsive("mobile") {
-			border-radius: 20px 20px 0 0;
-		}
-	}
-	&-close, &-footer {
+	.ant-modal-footer {
 		display:none;
 	}
-	&-body {
-		padding:0;
+	p {
+		margin-top: 20px;
+		color: $fv-gray-9;
+		font-size: 16px;
+	}
+	.modal-btn-wrap {
+		margin-top: 16px;
+		@include flexbox(wrap);
+		justify-content: space-between;
+		.modal-btn {
+			padding: 6px 15px;
+			background: $fv-white;
+			border: 1px solid $fv-gray-4;
+			border-radius: 4px;
+		}
+		.continue {
+			color: $fv-white;
+			background: $fv-gray-9;
+			border: 1px solid $fv-gray-9;
+		}
 	}
 }
-/* -------- 모달 콜랩스 --------- */
-.modalWrap{
-	.ant-collapse {
-		.ant-collapse-header {
-			padding:8px 8px!important;
+
+.modal-heg {
+	.ant-modal {
+		max-width: 520px;
+		padding-bottom: 0;
+		@include responsive("mobile") {
+			margin: 0px auto!important;
+			vertical-align: bottom!important;
 		}
-		.ant-collapse-content-box {
-			padding:0 8px!important;
-			.inner {
-				padding:0!important;
+		&-content {
+			border-radius: 20px;
+			@include responsive("mobile") {
+				border-radius: 20px 20px 0 0;
 			}
 		}
-		.anticon.anticon-right.ant-collapse-arrow {
-			top:5px!important;
-			right:auto!important;
-			left:166px!important;
-			padding:6px 0!important;
-			transform: rotate(90deg)!important;
+		&-close, &-footer {
+			display:none;
+		}
+		&-body {
+			padding:0;
 		}
 	}
-}
-
-.submitFormWrap {
-	.policy {
-		.inner {
-		  height:auto;
+	/* -------- 모달 콜랩스 --------- */
+	.modalWrap{
+		.ant-collapse {
+			.ant-collapse-header {
+				padding:8px 8px!important;
+			}
+			.ant-collapse-content-box {
+				padding:0 8px!important;
+				.inner {
+					padding:0!important;
+				}
+			}
+			.anticon.anticon-right.ant-collapse-arrow {
+				top:5px!important;
+				right:auto!important;
+				left:166px!important;
+				padding:6px 0!important;
+				transform: rotate(90deg)!important;
+			}
+		}
+	}
+	
+	.submitFormWrap {
+		.policy {
+			.inner {
+			  height:auto;
+			}
+		  }
+	}
+	
+	.modalWrap {
+	  position: relative;
+	  .modalDesc {
+		padding:64px 20px 0;width:100%;color:$fv-gray-9;
+		@include responsive("mobile") {
+			padding:56px 20px 0;
+		  }
+		.main {
+			font-size:20px;font-weight:300;line-height:30px;text-align:center;
+			@include responsive("mobile") {
+				font-weight:300;
+			  }
+		}
+		.sub {
+			margin:24px 0 0;font-size:16px;font-weight:300;text-align:center;line-height:27px;
+			@include responsive("mobile") {
+				font-weight:300;
+				margin:20px 0 0;
+			  }
+		}
+		@include responsive("desktop") {
+		  padding: 64px 20px 0;
+		}
+	  } 
+	  .kakaoForm {
+		margin:24px 0 0;padding:0 20px 0;
+		@include responsive("desktop") {
+		  padding: 0 40px 40px;
+		}
+		@include responsive("mobile") {
+			padding-bottom:24px;
+		  }
+		input {
+		  padding:0 0 0 12px;width:100%;height:40px;border:1px solid $fv-gray-3;border-radius:6px;background:$fv-white;font-size:15px;
+		  &:focus {border:1px solid $fv-gray-9}
+		  &::placeholder {color:$fv-gray-6}
+		}
+		select {
+		  padding:0 0 0 12px;width:calc(50% - 4px);height:40px;border:1px solid $fv-gray-3;border-radius:6px;background:$fv-white;font-size:15px;
+		  &:required:invalid {color:$fv-gray-6}
+		  &:focus {border:1px solid $fv-gray-9!important}
+		}
+		option {
+		  &:focus {border:1px solid $fv-gray-9}
+		  &[value=""][disabled] {display:none}
+		}
+		button {
+		  width:100%;height:44px;background:$fv-sienna;font-size:16px;color:$fv-white;border-radius:6px;
+		  &.disabled {background:#E7B9AA}
+		}
+		.birthyear {margin:8px 8px 0 0}
+		.gender {margin:8px 0 0 0}
+		.tel {margin:8px 0 16px}
+	
+		.policy {
+		  .inner {
+			height:80px;
+			overflow-y: scroll;
+			padding: 0 8px 16px;
+			text-align: left;
+			font-size:12px;
+			font-weight:300;
+			color:$fv-gray-7;
+			p:nth-child(2) {font-weight:500;margin:16px 0 6px}
+			@include responsive("desktop") {
+			  height:auto;
+			}
+		  }
 		}
 	  }
-}
-
-.modalWrap {
-  position: relative;
-  .modalDesc {
-	padding:64px 20px 0;width:100%;color:$fv-gray-9;
-	@include responsive("mobile") {
-		padding:56px 20px 0;
+	  .closeBtn {
+		position: absolute;
+		top:24px;
+		right:24px;
+		width:16px;
+		@include responsive("desktop") {
+		  display: block;
+		  top:32px;
+		  right:32px;
+		  width:20px;
+		}
 	  }
-    .main {
-		font-size:20px;font-weight:300;line-height:30px;text-align:center;
-		@include responsive("mobile") {
-			font-weight:300;
+	}
+	
+	.modalWrap.kakao__2 {
+		padding-bottom:48px;
+	  .sub {font-size:16px;font-weight:400;margin:24px 0 8px}
+	  .sub__2 {font-size:14px;text-align:center}
+	  .confirm {
+		  display:block;margin:48px auto 0;width:calc(100% - 64px);height:44px;background:$fv-gray-9;font-size:16px;color:$fv-white;border-radius:6px;
+		  @include responsive("mobile") {
+			width:calc(100% - 40px);
 		  }
+		}
 	}
-    .sub {
-		margin:24px 0 0;font-size:16px;font-weight:300;text-align:center;line-height:27px;
-		@include responsive("mobile") {
-			font-weight:300;
-			margin:20px 0 0;
-		  }
-	}
-    @include responsive("desktop") {
-      padding: 64px 20px 0;
-    }
-  } 
-  .kakaoForm {
-    margin:24px 0 0;padding:0 20px 0;
-    @include responsive("desktop") {
-      padding: 0 40px 40px;
-	}
-	@include responsive("mobile") {
-		padding-bottom:24px;
-	  }
-    input {
-      padding:0 0 0 12px;width:100%;height:40px;border:1px solid $fv-gray-3;border-radius:6px;background:$fv-white;font-size:15px;
-      &:focus {border:1px solid $fv-gray-9}
-      &::placeholder {color:$fv-gray-6}
-    }
-    select {
-      padding:0 0 0 12px;width:calc(50% - 4px);height:40px;border:1px solid $fv-gray-3;border-radius:6px;background:$fv-white;font-size:15px;
-      &:required:invalid {color:$fv-gray-6}
-      &:focus {border:1px solid $fv-gray-9!important}
-    }
-    option {
-      &:focus {border:1px solid $fv-gray-9}
-      &[value=""][disabled] {display:none}
-    }
-    button {
-      width:100%;height:44px;background:$fv-sienna;font-size:16px;color:$fv-white;border-radius:6px;
-      &.disabled {background:#E7B9AA}
-    }
-    .birthyear {margin:8px 8px 0 0}
-    .gender {margin:8px 0 0 0}
-    .tel {margin:8px 0 16px}
 
-    .policy {
-      .inner {
-        height:80px;
-        overflow-y: scroll;
-        padding: 0 8px 16px;
-        text-align: left;
-        font-size:12px;
-        font-weight:300;
-        color:$fv-gray-7;
-        p:nth-child(2) {font-weight:500;margin:16px 0 6px}
-        @include responsive("desktop") {
-          height:auto;
-        }
-      }
-    }
-  }
-  .closeBtn {
-    position: absolute;
-    top:24px;
-    right:24px;
-    width:16px;
-    @include responsive("desktop") {
-      display: block;
-      top:32px;
-      right:32px;
-      width:20px;
-    }
-  }
-}
-
-.modalWrap.kakao__2 {
-	padding-bottom:48px;
-  .sub {font-size:16px;font-weight:400;margin:24px 0 8px}
-  .sub__2 {font-size:14px;text-align:center}
-  .confirm {
-	  display:block;margin:48px auto 0;width:calc(100% - 64px);height:44px;background:$fv-gray-9;font-size:16px;color:$fv-white;border-radius:6px;
-	  @include responsive("mobile") {
-		width:calc(100% - 40px);
-	  }
-	}
 }

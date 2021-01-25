@@ -53,9 +53,7 @@ export default function Q10Photo(props: {
     return (<>
         <div className="q-wrap q10">
             {photoTitle()}
-            <p>얼굴의 사이즈와 눈 사이 거리, 균형감을 체크해요.</p>
-            <p>지금 쓰는 안경과 내 불편함의 원인을 체크해요.</p>
-            <p>나의 이미지에 맞는 안경을 더 정확하게 추천해요.</p>
+            <div className="q-wrap__question-sub">얼굴의 사이즈와 눈 사이 거리, 균형감을 체크해요.<br/>지금 쓰는 안경과 내 불편함의 원인을 체크해요.<br/>나의 이미지에 맞는 안경을 더 정확하게 추천해요.</div>
             <div className="q-wrap__answer-wrap">
                 <div className="q-wrap__upload-wrap">
                     <Upload
@@ -69,7 +67,7 @@ export default function Q10Photo(props: {
                     >{photoFileList.length >= 3 ? null :
                         (<div>
                             <PlusOutlined />
-                            <div style={{ marginTop: 8 }}>Upload</div>
+                            <div>사진 업로드</div>
                         </div>)}
                     </Upload>
                     <Modal
@@ -81,11 +79,12 @@ export default function Q10Photo(props: {
                     </Modal>
                 </div>
             </div>
-            <div className="btnWrap">
-                {photoFileList.length === 0 ?
-                    (<button className="btnNext disabled" type="button" disabled>다음</button>) :
-                    (<button className="btnNext gtm-021" type="button" onClick={() => props.onNext()}>다음</button>)}
-                <button className="btn btn01 gtm-012" style={{ fontSize: '16px', borderRadius: '24px' }} type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>뒤로</button>
+            <div className="q-wrap__btn-wrap">
+                <button className="q-wrap__btn q-wrap__btn-prev" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
+                {photoFileList.length === 0 ? (
+                    <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt=""/></button>) :
+                    (<button className="q-wrap__btn q-wrap__btn-next" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt=""/></button>)
+                }
             </div>
         </div>
     </>)

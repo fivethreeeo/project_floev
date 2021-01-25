@@ -85,7 +85,8 @@ export default function Q8Paintypes(props: {
                 {/* 안어울림 */}
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q8_12" onChange={() => { }} value="안경안어울림" checked={painTypes.includes("안경안어울림")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q8_12">안경이 정말 안어울려요</label>
-
+            </div>
+            <div className="q-wrap__textarea-wrap">
                 <p className="q-wrap__textarea-caption">*그 외 고민되는 불편함이 있다면 편하게 남겨주세요.</p>
                 <textarea
                     className="q-wrap__textarea"

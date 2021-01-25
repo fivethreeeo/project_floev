@@ -57,6 +57,8 @@ export default function Q7PainDegree(props: {
                         <label className="q-wrap__label-radio-100" htmlFor="q7_4">불가능해요</label>
                         <input className="q-wrap__input-radio" type="radio" id="q7_5" onChange={() => { }} value={PAINDEGREE.NOIDEA} checked={painDegree === PAINDEGREE.NOIDEA} />
                         <label className="q-wrap__label-radio-100" htmlFor="q7_5">잘 모르겠어요</label>
+                    </div>
+                    <div className="q-wrap__textarea-wrap">
                         <p className="q-wrap__textarea-caption">* 그 외 어려움이나 구체적인 상황을 더 들려주세요.</p>
                         <textarea
                             className="q-wrap__textarea"

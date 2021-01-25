@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Layout from '../layout/DefaultLayout'
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import { Modal, Carousel, Collapse, Button } from 'antd'
+import { Modal, Carousel, Collapse } from 'antd'
 import { gql, useMutation } from '@apollo/client'
 import { GetServerSideProps } from 'next'
 import Link from 'next/link'
@@ -227,6 +227,7 @@ const IndexPage = (props: {
 			</Head>
 			<Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" name={props.user ? props.user.name : null}>
 				<Modal
+					className="modal-heg"
 					centered
 					width="100%"
 					visible={modalView}
@@ -306,14 +307,19 @@ const IndexPage = (props: {
 									<div className="main-visual__btn">
 										<button className="gtm-001 btn-cta btn-test" onClick={() => didYouVisit()}>시작하기</button>
 										<Modal
-											title="SurveyModal"
-											visible={surveyModal}
+										className="modal-cookie"
+										visible={surveyModal}
+										centered
+										width="320px"
+										onCancel={() => {
+											setSurveyModal(false);
+										}}
 										>
-											<p>지난 설문 내역이 있어요!</p>
-											<p>거기서부터 시작할까요?😊</p>
-											<Button type="primary" onClick={() => surveyFromMiddle()}>네, 그럴게요</Button>
-											<Button type="dashed" value="start" onClick={() => surveyFromStart()}>아니요, 처음부터 할게요</Button>
-											<Button onClick={() => setSurveyModal(false)}>홈페이지를 더 둘러볼래요</Button>
+											<p>전에 작성해둔 설문내역이 있어요!<br/>이어서 작성할까요?</p>
+											<div className="modal-btn-wrap">
+												<button type="button" className="modal-btn" value="start" onClick={() => surveyFromStart()}>처음부터 할게요</button>
+												<button type="button" className="modal-btn continue" onClick={() => surveyFromMiddle()}>이어서 작성할게요</button>
+											</div>
 										</Modal>
 									</div>
 								</div>

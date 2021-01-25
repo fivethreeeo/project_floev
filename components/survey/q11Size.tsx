@@ -58,7 +58,8 @@ export default function Q11Size(props: {
                     <div className="q-wrap__question-main">내 안경의 사이즈를 입력해주세요.</div>
                     <div className="q-wrap__question-sub">지워지거나 원래 적혀있지 않은 안경도 있어요.</div>
                     <div className="q-wrap__answer-wrap">
-                        <input className="input-text input-text-size-1" type="text" tabIndex={1} placeholder={'45'} value={size1} maxLength={2} onChange={e => handleChange1(e.target.value)} />
+                        <img src="static/img/survey/size-info.jpg" alt=""/>
+                        <input className="input-text input-text-size-1" type="text" tabIndex={1} placeholder={'46'} value={size1} maxLength={2} onChange={e => handleChange1(e.target.value)} />
                         <input className="input-text input-text-size-2" type="text" tabIndex={2} placeholder={'24'} value={size2} maxLength={2} onChange={e => handleChange2(e.target.value)} />
                         <input className="input-text input-text-size-3" type="text" tabIndex={3} placeholder={'145'} value={size3} maxLength={3} onChange={e => handleChange3(e.target.value)} />
                     </div>

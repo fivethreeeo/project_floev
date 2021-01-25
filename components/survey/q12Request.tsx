@@ -76,6 +76,9 @@ export default function Q12Request(props: {
                         )}
                     </ul>
                 </div>
+                <div className="q12__coupon-area">
+                    <div className="q12__coupon"></div>
+                </div>
                 <div className="q12__lounge-time">
                     <div className="q12__lounge-time-title">라운지/시간 선택</div>
                     <div className="q12__title-underline"></div>
@@ -139,12 +142,13 @@ export default function Q12Request(props: {
 
                 </div>
             </div>
-            <div className="btnWrap">
-                {requestDate === "" || requestTime === "" ?
-                    (<button className="btnNext disabled" type="button" disabled>다음</button>) :
-                    (<button className="btnNext gtm-028" type="button" onClick={() => props.onNext()}>다음</button>)}
+            <div className="q-wrap__btn-wrap">
+                <button className="q-wrap__btn q-wrap__btn-prev" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
+                {requestDate === "" || requestTime === "" ? (
+                    <button className="q-wrap__btn q-wrap__btn-next" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt=""/></button>) :
+                    (<button className="q-wrap__btn q-wrap__btn-next" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt=""/></button>)
+                }
             </div>
-            <button className="btn btn01 gtm-012" style={{ fontSize: '16px', borderRadius: '24px' }} type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>뒤로</button>
         </div>
     </>)
 }

@@ -52,7 +52,9 @@ export default function Q6Purpose(props: {
                         <input className="q-wrap__input-checkbox" type="checkbox" id="q6_2" onChange={() => { }} value="work" checked={purposes.includes("work")} />
                         <label className="q-wrap__label-checkbox" htmlFor="q6_2">업무/컴퓨터 작업용</label>
                         <input className="q-wrap__input-checkbox" type="checkbox" id="q6_3" onChange={() => { }} value="home" checked={purposes.includes("home")} />
-                        <label className="q-wrap__label-checkbox" htmlFor="q6_3">집에서 편하게 착용</label>
+                        <label className="q-wrap__label-checkbox" htmlFor="q6_3">집에서 렌즈 대신 편하게 착용</label>
+                    </div>
+                    <div className="q-wrap__textarea-wrap">
                         <p className="q-wrap__textarea-caption">* 그 외 용도나 구체적인 상황을 더 들려주세요. </p>
                         <textarea
                             className="q-wrap__textarea"
