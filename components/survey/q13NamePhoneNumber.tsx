@@ -229,52 +229,51 @@ export default function Q12NamePhoneNumber(props: {
     }
 
     return (<>
-        <div className="contentWrap">
-            <p className="qDesc" >신청 완료에 필요한 나의 정보를 입력해주세요.</p>
-            <div className="qLine"></div>
+        <div className="q-wrap q13">
+            <div className="q-wrap__question-main">마지막 인증을 통해 예약을 확정해주세요.</div>
 
-            {/* 이름 입력 */}
-            <input className="inp01" type="text" name="name" placeholder={'이름을 입력해주세요'}
-                maxLength={10} onChange={e => handleChangeName(e)} />
+            <div className="q-wrap__answer-wrap">
 
-            {/* 휴대전화번호 입력 */}
-            <input className="inp01" type="tel" name="phoneNumber" placeholder={'휴대폰 번호 (  \'-\' 없이 숫자만 입력 )'} maxLength={13} onChange={e => handleChangePhoneNumber(e)} />
+                {/* 이름 입력 */}
+                <input className="q-wrap__input-text" type="text" placeholder={'이름을 입력해주세요'} maxLength={10} onChange={e => handleChangeName(e)} />
+                {/* 휴대전화번호 입력 */}
+                <input className="q-wrap__input-text" type="tel" placeholder={'휴대폰 번호 (  \'-\' 없이 숫자만 입력 )'} maxLength={11} onChange={e => handleChangePhoneNumber(e)} />
+                {!isSentAuth ?
+                    // 인증번호 보내기 전
+                    isPhoneNumber ?
+                        (<button className="btn btn02" onClick={() => requestAuthNumber()}>인증번호전송</button>) :
+                        (<button className="btn btn02 gray200">인증번호전송</button>) :
+                    // 인증번호 보낸 후
+                    (<div>
+                        <input className="inp01" type="text" name="authNumber" placeholder={'인증번호 4자리'} value={authNumber} onChange={e => handleChangeAuthNumber(e)} maxLength={4} />
+                        {isAuthenticated ?
+                            (<button className="btn btn02 btnResend gtm-test-resend" onClick={() => requestAuthNumber()}>재전송</button>) :
+                            (<button className="btn btn02 btnResend">재전송</button>)}
 
-            {!isSentAuth ?
-                // 인증번호 보내기 전
-                isPhoneNumber ?
-                    (<button className="btn btn02" onClick={() => requestAuthNumber()}>인증번호전송</button>) :
-                    (<button className="btn btn02 gray200">인증번호전송</button>) :
+                        {leftSecond <= 180 ?
+                            <div>{parseSecondToMinute(leftSecond)}</div> :
+                            leftSecond === 181 ?
+                                <div>만료</div> :
+                                leftSecond === 182 ?
+                                    <span className="time"></span> :
+                                    <div className="txtWarning">인증번호가 일치하지 않습니다. 다시 확인해주세요.</div>}
+                    </div>)
+                } {isError && (<div className="txtWarning">인증번호가 일치하지 않습니다. 다시 확인해주세요.</div>)}
 
-                // 인증번호 보낸 후
-                (<div>
-                    <input className="inp01" type="text" name="authNumber" placeholder={'인증번호 4자리'} value={authNumber} onChange={e => handleChangeAuthNumber(e)} maxLength={4} />
-                    {isAuthenticated ?
-                        (<button className="btn btn02 btnResend gtm-test-resend" onClick={() => requestAuthNumber()}>재전송</button>) :
-                        (<button className="btn btn02 btnResend">재전송</button>)}
+            </div>
 
-                    {leftSecond <= 180 ?
-                        <div>{parseSecondToMinute(leftSecond)}</div> :
-                        leftSecond === 181 ?
-                            <div>만료</div> :
-                            leftSecond === 182 ?
-                                <span className="time"></span> :
-                                <div className="txtWarning">인증번호가 일치하지 않습니다. 다시 확인해주세요.</div>}
-                </div>)}
-            {isError &&
-                (<div className="txtWarning">인증번호가 일치하지 않습니다. 다시 확인해주세요.</div>)}
+            {isSentAuth &&
+                (<div className="btnWrap">
+                    { authNumber.length !== 4 || !isActive ?
+                        (<button className="btnCom disabled">인증하고 예약완료하기</button>) :
+                        (!loading ?
+                            (<button className="btnCom color gtm-test-14-next" type={'submit'}
+                                onClick={() => handleClick()}>인증하고 예약완료하기</button>) :
+                            (<Spin size="large" tip="잠시만 기다려주세요.." />))
+                    }
+                </div>)
+            }
+            <button className="btn btn01 gtm-012" style={{ fontSize: '16px', borderRadius: '24px' }} type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>뒤로</button>
         </div>
-        {isSentAuth &&
-            (<div className="btnWrap">
-                { authNumber.length !== 4 || !isActive ?
-                    (<button className="btnCom disabled">인증하고 예약완료하기</button>) :
-                    (!loading ?
-                        (<button className="btnCom color gtm-test-14-next" type={'submit'}
-                            onClick={() => { handleClick() }}>인증하고 예약완료하기</button>) :
-                        (<Spin size="large" tip="잠시만 기다려주세요.." />))
-                }
-            </div>)
-        }
-        <button className="btn btn01 gtm-012" style={{ fontSize: '16px', borderRadius: '24px' }} type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>뒤로</button>
     </>)
 }

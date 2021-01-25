@@ -1,0 +1,12 @@
+.complete {
+    @include vw-mx-w(480px);
+    @extend %padding-m;
+    &::before {
+        content:'';
+        height:56px;
+        display:block;
+        @include responsive("mobile") {
+            height:48px;
+        }
+    }
+}

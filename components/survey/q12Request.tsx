@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { availableTime } from '../../utils/nonOccupiedTime'
 import { getDayDate, getOnlyDate } from '../../utils/timeFormat'
 
-const fromToday = getDayDate(13, 0)
+const fromToday = getDayDate(7, 0)
 const now = new Date(Date.now());
 
 export default function Q12Request(props: {
@@ -55,62 +55,96 @@ export default function Q12Request(props: {
     const availableGangNumTimes = availableTime(requestDate, 2, props.schedule)
 
     return (<>
-        <div className="option-wrap">
-            <div>날짜 선택</div>
-            <div className="option-list">
-                {fromToday.map(
-                    (item: any, index: number) => (
-                        <li className={getOnlyDate(item.date) === String(now.getDate()) ? "day-date today" : "day-date"} key={index} id={index.toString()} value={getOnlyDate(item.date)} onClick={e => handleChangeDate(e)}>
-                            <p className="day">
-                                {getOnlyDate(item.date) == String(now.getDate()) ? '오늘' : item.day}
-                            </p>
-                            <button className={item.date == requestDate ? "date selected" : "date"}>
-                                {getOnlyDate(item.date)}
-                            </button>
-                        </li>)
-                )}
-            </div>
-        </div>
+        <div className="q-wrap q12">
+            <div className="q-wrap__question-main">방문하실 일정을 선택해주세요.</div>
+            <div className="q-wrap__question-sub">오늘을 포함해 최대 7일 이후까지 예약 가능합니다.</div>
+            <div className="q-wrap__answer-wrap q12__schedule">
+                <div className="q12__day-date">
+                    <div className="q12__day-date-title">날짜 선택</div>
+                    <div className="q12__title-underline"></div>
+                    <ul className="q12__day-date-option-list">
+                        {fromToday.map(
+                            (item: any, index: number) => (
+                                <li className={getOnlyDate(item.date) === String(now.getDate()) ? "q12__day-date-option today" : "q12__day-date-option"} key={index} id={index.toString()} value={getOnlyDate(item.date)} onClick={e => handleChangeDate(e)}>
+                                    <p className={getOnlyDate(item.date) == String(now.getDate()) ? "day today" : "day"}>
+                                        {getOnlyDate(item.date) == String(now.getDate()) ? '오늘' : item.day}
+                                    </p>
+                                    <button className={item.date == requestDate ? "date selected" : "date"}>
+                                        {getOnlyDate(item.date)}
+                                    </button>
+                                </li>)
+                        )}
+                    </ul>
+                </div>
+                <div className="q12__lounge-time">
+                    <div className="q12__lounge-time-title">라운지/시간 선택</div>
+                    <div className="q12__title-underline"></div>
+                    <div className="q12__option-lounge">
+                        <div></div>
+                        <div className="lounge-name">라운지 역삼성당</div>
+                        <div className="lounge-caption">역삼역 1번출구 도보7분, 주차가능</div>
+                        <ul className="option-list">
+                            <li><button className="time">11:00</button></li>
+                            <li><button className="time">11:00</button></li>
+                            <li><button className="time">11:00</button></li>
+                            <li><button className="time">11:00</button></li>
+                            <li><button className="time">11:00</button></li>
+                            <li><button className="time">11:00</button></li>
+                            <li><button className="time">11:00</button></li>
+                            {/*
+                                    {requestDate !== '' && availableYeuksamTimes.map(
+                                        (item: Slot, index: number) => (
+                                            // 오늘 현재시간 4시간 이후부터 예약 가능하나 3시 이후에는 예약 불가능
+                                            (getOnlyDate(requestDate) === String(now.getDate()) &&
+                                                (parseInt(item.time.slice(0, 2)) < (now.getHours() + 4) ||
+                                                    now.getHours() >= 15) ? '' :
+                                                (<li key={index} id={index.toString()} onClick={(e) => handleChangeLoungeTime(e)}>
+                                                    <button className={item.time === requestTime && item.loungeCode === loungeCode ? "time selected" : "time"} value={item.time + ',' + item.loungeCode}>{item.time}</button>
+                                                </li>))
+                                        ))}
+                                        */}
+                        </ul>
+                    </div>
+                    <div className="q12__option-lounge">
+                        <div></div>
+                        <div className="lounge-name">라운지 강남</div>
+                        <div className="lounge-caption">강남역 4번출구 도보3분, 주차가능</div>
+                        <ul className="option-list">
+                            <li><button className="time selected">11:00</button></li>
+                            <li><button className="time">11:00</button></li>
+                            <li><button className="time">11:00</button></li>
+                            <li><button className="time">11:00</button></li>
+                            <li><button className="time">11:00</button></li>
+                            <li><button className="time">11:00</button></li>
+                            <li><button className="time">11:00</button></li>
+                            <li><button className="time">11:00</button></li>
+                            <li><button className="time">11:00</button></li>
+                            <li><button className="time">11:00</button></li>
+                            <li><button className="time">11:00</button></li>
+                            <li><button className="time">11:00</button></li>
+                            {/*
+                                    {requestDate !== '' && availableGangNumTimes.map(
+                                        (item: Slot, index: number) => (
+                                            // 오늘 현재시간 4시간 이후부터 예약 가능하나 3시 이후에는 예약 불가능
+                                            (getOnlyDate(requestDate) === String(now.getDate()) &&
+                                                (parseInt(item.time.slice(0, 2)) < (now.getHours() + 4) ||
+                                                    now.getHours() >= 15) ? '' :
+                                                (<li key={index} id={index.toString()} onClick={(e) => handleChangeLoungeTime(e)}>
+                                                    <button className={item.time === requestTime && item.loungeCode === loungeCode ? "time selected" : "time"} value={item.time + ',' + item.loungeCode} >{item.time}</button>
+                                                </li>))
+                                        ))}
+                                                                */}
+                        </ul>
+                    </div>
 
-        <div className="option-wrap">
-            <div>라운지/시간 선택</div>
-            <div className="option-lounge">
-                <div>역삼성당</div>
-                <div className="option-list">
-                    {requestDate !== '' && availableYeuksamTimes.map(
-                        (item: Slot, index: number) => (
-                            // 오늘 현재시간 4시간 이후부터 예약 가능하나 3시 이후에는 예약 불가능
-                            (getOnlyDate(requestDate) === String(now.getDate()) &&
-                                (parseInt(item.time.slice(0, 2)) < (now.getHours() + 4) ||
-                                    now.getHours() >= 15) ? '' :
-                                (<li key={index} id={index.toString()} onClick={(e) => handleChangeLoungeTime(e)}>
-                                    <button className={item.time === requestTime && item.loungeCode === loungeCode ? "time selected" : "time"} value={item.time + ',' + item.loungeCode}>{item.time}</button>
-                                </li>))
-                        ))}
                 </div>
             </div>
-            <div className="option-lounge">
-                <div>강남</div>
-                <div className="option-list">
-                    {requestDate !== '' && availableGangNumTimes.map(
-                        (item: Slot, index: number) => (
-                            // 오늘 현재시간 4시간 이후부터 예약 가능하나 3시 이후에는 예약 불가능
-                            (getOnlyDate(requestDate) === String(now.getDate()) &&
-                                (parseInt(item.time.slice(0, 2)) < (now.getHours() + 4) ||
-                                    now.getHours() >= 15) ? '' :
-                                (<li key={index} id={index.toString()} onClick={(e) => handleChangeLoungeTime(e)}>
-                                    <button className={item.time === requestTime && item.loungeCode === loungeCode ? "time selected" : "time"} value={item.time + ',' + item.loungeCode} >{item.time}</button>
-                                </li>))
-                        ))}
-                </div>
+            <div className="btnWrap">
+                {requestDate === "" || requestTime === "" ?
+                    (<button className="btnNext disabled" type="button" disabled>다음</button>) :
+                    (<button className="btnNext gtm-028" type="button" onClick={() => props.onNext()}>다음</button>)}
             </div>
-
+            <button className="btn btn01 gtm-012" style={{ fontSize: '16px', borderRadius: '24px' }} type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>뒤로</button>
         </div>
-        <div className="btnWrap">
-            {requestDate === "" || requestTime === "" ?
-                (<button className="btnNext disabled" type="button" disabled>다음</button>) :
-                (<button className="btnNext gtm-028" type="button" onClick={() => props.onNext()}>다음</button>)}
-        </div>
-        <button className="btn btn01 gtm-012" style={{ fontSize: '16px', borderRadius: '24px' }} type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>뒤로</button>
     </>)
 }

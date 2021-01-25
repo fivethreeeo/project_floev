@@ -16,7 +16,11 @@ export function availableDate(period: number) {
     return availableDateList
 }
 
+
 export function availableTime(targetDate: string, targetLounge: number, inputTime: Schedule[]) {
+
+    /*
+
     // 해당 날짜에 예약된 스케쥴 골라내기
     const occupiedTimeArray: Schedule[] = inputTime.filter((item: Schedule) => item.date.slice(0, 10) === targetDate && item.loungeCode === targetLounge)
 
@@ -57,6 +61,7 @@ export function availableTime(targetDate: string, targetLounge: number, inputTim
         nonOccupiedList = nonOccupiedList.filter(item => !occupiedTime.includes(item.time))
     }
     return nonOccupiedList
+    */
 }
 
 export function availableHalfTime(targetDate: string, loungeCode: number, schedules: Schedule[]) {
