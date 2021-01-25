@@ -9,25 +9,39 @@ export default function SurveyHeader(props: {
 }) {
     const chunkStep = () => {
         let step = 0
-        if (props.currentStep <= 4) {
-            step = 1
-        } else if (props.currentStep <= 8) {
+        if (props.currentStep <= 1) {
             step = 2
-        } else if (props.currentStep <= 9) {
+        } else if (props.currentStep <= 2) {
+            step = 2
+        } else if (props.currentStep <= 3) {
+            step = 2
+        } else if (props.currentStep <= 4) {
             step = 3
-        } else if (props.currentStep <= 11) {
+        } else if (props.currentStep <= 5) {
             step = 4
-        } else if (props.currentStep <= 12) {
-            step = 4.5
-        } else {
+        } else if (props.currentStep <= 6) {
             step = 5
+        } else if (props.currentStep <= 7) {
+            step = 6
+        } else if (props.currentStep <= 8) {
+            step = 7
+        } else if (props.currentStep <= 9) {
+            step = 8
+        } else if (props.currentStep <= 10) {
+            step = 9
+        } else if (props.currentStep <= 11) {
+            step = 10
+        } else if (props.currentStep <= 12) {
+            step = 11
+        } else {
+            step = 12
         }
         return step
     }
     return (<>
         {props.currentStep !== 0 && <div className="survey-header">
             <div className="progress">
-                <Progress percent={((chunkStep()) / 5) * 100} showInfo={false} className="progress__bar" />
+                <Progress percent={((chunkStep()) / 13) * 100} showInfo={false} className="progress__bar" />
 
                 <div className="progress__steps">
 

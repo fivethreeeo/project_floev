@@ -2,14 +2,31 @@
 
     .progress {
         &__bar {
+            @include po-fix(auto,0,auto,0,999);
+            margin-top:-1px;
             display: block;
+            height: 2px;
+            .ant-progress-outer, .ant-progress-inner, .ant-progress-bg {
+                height: 2px!important;
+            }
+            .ant-progress-inner, .ant-progress-bg {
+                vertical-align: top;
+                border-radius: 0;
+            }
+            .ant-progress-inner {
+                background: $fv-gray-3;
+            }
+            .ant-progress-bg {
+                background: $fv-sienna;
+            }
         }
         &__steps {
             @include flexbox(nowrap);
             justify-content: space-between;
+            padding: 12px 20px 0;
         }
         &__step-name {
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 400;
             color: $fv-gray-4;
         }
@@ -18,7 +35,7 @@
             color: $fv-sienna;
         }
         &__step-arrow {
-            font-size: 14px;
+            font-size: 12px;
             color:$fv-gray-3;
         }
         &__step-arrow--active {

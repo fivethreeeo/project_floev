@@ -30,7 +30,7 @@ export default function Q5HasWorn(props: {
     }
 
     return (<>
-                <div className="q-wrap q1">
+                <div className="q-wrap q5">
                     <div className="q-wrap__question-main">안경을 평소에 착용하시나요?</div>
                     <div className="q-wrap__question-sub">시력 교정 목적/눈 보호 목적 모두 해당돼요.</div>
                     <div className="q-wrap__answer-wrap" onChange={e => handleChange(e)}>

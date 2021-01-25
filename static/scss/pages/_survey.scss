@@ -3,7 +3,7 @@
     @include vw-mx-w(480px);
     &::before {
         content:'';
-        height:58px;
+        height:56px;
         display:block;
         @include responsive("mobile") {
             height:48px;
@@ -12,6 +12,7 @@
 
     // 서베이 문항 - 공통
     .q-wrap {
+        margin-top: 24px;
         &__question-main {
             @extend %padding-m;
             margin-bottom: 24px;
@@ -21,10 +22,35 @@
         &__question-sub {
             @extend %padding-m;
             margin-bottom: 24px;
+            font-size: 14px;
+            color: $fv-gray-6;
 
         }
         &__answer-wrap {
             @extend %padding-m;
+        }
+
+        &__checkbox-wrap {
+            @include flexbox(wrap);
+            gap: 8px;
+        }
+
+        &__input-checkbox {
+            display:none;
+        }
+
+        &__label-checkbox {
+            padding: 12px 16px 11px;
+            font-size: 14px;
+            border-radius: 40px;
+            border: 1px solid $fv-gray-4;
+            cursor: pointer;
+        }
+
+        &__input-checkbox:checked+.q-wrap__label-checkbox {
+            color: $fv-white;
+            border: 1px solid $fv-gray-9;
+            background: $fv-gray-9;
         }
 
         &__input-radio {
@@ -34,7 +60,7 @@
         &__label-radio-100 {
             @include el-size(100%,48px);
             padding: 13px 24px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             display:block;
             font-size: 14px;
             border-radius: 8px;
@@ -47,10 +73,29 @@
             border: 1px solid $fv-gray-9;
             background: $fv-gray-9;
         }
+        &__textarea-caption {
+            margin-top: 40px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: $fv-gray-7;
+        }
+        &__textarea {
+            @include el-size(100%,160px);
+            padding: 16px;
+            border: 1px solid $fv-gray-4;
+            border-radius: 8px;
+            &:focus {
+                border: 1px solid $fv-gray-9;
+            }
+            &::placeholder {
+                color: $fv-gray-5;
+            }
+        }
     }
 
     // 서베이 문항 - q0 / 시작
     .q0 {
+        margin-top: 0;
         padding: 20px 20px 80px;
         &__title {
             padding: 32px 20px 20px;
@@ -134,6 +179,13 @@
             border-radius: 48px;
             background: $fv-sienna;
             cursor: pointer;
+        }
+    }
+
+    //서베이 문항 - 퀘스쳔 서브 텍스트 레이아웃
+    .q1, .q8 {
+        .q-wrap__question-main {
+            margin-bottom: 4px;
         }
     }
 

@@ -27,13 +27,18 @@ export default function Q11Size(props: {
             <p className="qDesc">사진을 참고하여 내 안경의 사이즈를 입력해주세요.</p>
             <p className="qDesc2">지워지거나 원래 적혀있지 않은 안경도 있어요. 이 경우 편하게 넘어가셔도 됩니다.</p>
             <div className="answerWrap">
-                <input type="text" name="size" placeholder={'00-00-000'} value={size} maxLength={9} onChange={e => handleChange(e.target.value)} />
+                <input type="text" name="size" placeholder={'45'} value={size} maxLength={9} onChange={e => handleChange(e.target.value)} />
+                <input type="text" name="size" placeholder={'24'} value={size} maxLength={9} onChange={e => handleChange(e.target.value)} />
+                <input type="text" name="size" placeholder={'145'} value={size} maxLength={9} onChange={e => handleChange(e.target.value)} />
             </div>
         </div>
         <div className="btnWrap">
-            {size === '' ?
-                (<button className="btnNext disabled" type="button">다음</button>) :
+            <button className="btnNext gtm-016" type="button" onClick={() => props.onNext()}>다음</button>
+            {/*
+                {size === '' ?
+                    (<button className="btnNext disabled" type="button">다음</button>) :
                 (<button className="btnNext gtm-016" type="button" onClick={() => props.onNext()}>다음</button>)}
+            */}
         </div>
         <button className="btn btn01 gtm-012" style={{ fontSize: '16px', borderRadius: '24px'}} type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>뒤로</button>
     </>)

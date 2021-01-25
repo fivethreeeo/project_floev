@@ -45,42 +45,35 @@ export default function Q6Purpose(props: {
     }
 
     return (<>
+                <div className="q-wrap q6">
+                    <div className="q-wrap__question-main">어떤 용도의 안경을 추천해드릴까요?</div>
+                    <div className="q-wrap__answer-wrap q-wrap__checkbox-wrap" onChange={e => handleChangePurpose(e)}>
+                        <input className="q-wrap__input-checkbox" type="checkbox" id="q6_1" onChange={() => { }} value="daily" checked={purposes.includes("daily")} />
+                        <label className="q-wrap__label-checkbox" htmlFor="q6_1">일상/데일리용 안경</label>
+                        <input className="q-wrap__input-checkbox" type="checkbox" id="q6_2" onChange={() => { }} value="work" checked={purposes.includes("work")} />
+                        <label className="q-wrap__label-checkbox" htmlFor="q6_2">업무/컴퓨터 작업용 안경</label>
+                        <p className="q-wrap__textarea-caption">* 그 외 용도나 구체적인 상황을 더 들려주세요.</p>
+                        <textarea
+                            className="q-wrap__textarea"
+                            value={purposeEtc ?? ''}
+                            onChange={e => handleChangePuposeEtc(e)}
+                            placeholder="예시) 독서용 안경이 필요해요. &#13;&#10;집에서만 렌즈 대신 착용하는 안경이에요."
+                        ></textarea>
+                    </div>
+                    <div className="btnWrap">
+                        {(purposes[0] === '' && purposeEtc.length === 0) ? (
+                            <button className="btnNext disabled" type="button">다음</button>) :
+                            (<button className="btnNext gtm-016" type="button" onClick={() => props.onNext()}>다음</button>)
+                        }
+                    </div>
+                    <button className="btn btn01 gtm-012" style={{ fontSize: '16px', borderRadius: '24px'}} type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>뒤로</button>
+                </div>
         <div className="contentWrap">
-            <p>어떤 용도의 안경을 추천해드릴까요?</p>
-            <div onChange={e => handleChangePurpose(e)}>
-                <input id="q_4_1" type="checkbox" name="daily" onChange={() => { }}
-                    value="daily" checked={purposes.includes("daily")} />
-                <label htmlFor="purpose-1" className="input-label">
-                    <p className="inner">
-                        <span className="inputTxt">일상/데일리용 안경</span>
-                    </p>
-                </label>
-                <input id="q_4_2" type="checkbox" name="work" onChange={() => { }}
-                    value="work" checked={purposes.includes("work")} />
-                <label htmlFor="purpose-2" className="input-label">
-                    <p className="inner">
-                        <span className="inputTxt others">업무/컴퓨터 작업용 안경</span>
-                    </p>
-                </label>
-            </div>
+
         </div>
         <div className="personal">
-            <p>* 그 외 용도나 구체적인 상황을 더 들려주세요.</p>
-            <textarea
-                name="purpose-etc"
-                id="purpose-etc"
-                placeholder="예시) 독서용 안경이 필요해요.
-                        집에서만 렌즈 대신 착용하는 안경이에요."
-                value={purposeEtc ?? ''}
-                onChange={e => handleChangePuposeEtc(e)}
-            ></textarea>
+
         </div>
-        <div className="btnWrap">
-            {(purposes[0] === '' && purposeEtc.length === 0) ? (
-                <button className="btnNext disabled" type="button">다음</button>) :
-                (<button className="btnNext gtm-016" type="button" onClick={() => props.onNext()}>다음</button>)
-            }
-        </div>
-        <button className="btn btn01 gtm-012" style={{ fontSize: '16px', borderRadius: '24px'}} type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>뒤로</button>
+
     </>)
 }

@@ -30,7 +30,7 @@
 		max-height:560px;
 		background:#fff9e7;
 		@include responsive("mobile") {
-			height: 80vh;
+			height: auto;
 		  }
 		&__inner {
 			@include vw-mx-w(1280px);
@@ -106,17 +106,16 @@
 			font-weight:400;
 			margin-top:16px;
 			@include responsive("mobile") {
-				font-weight:400;
 				margin-top:12px;
+				padding-bottom: 40px;
 				font-size:14px;
+				font-weight:400;
 			  }
 		}
 		.btn-cta {
-			a {
-				color:$fv-white;
-				padding:12px 16px 10px;
-				display: block;
-			}
+			color:$fv-white;
+			padding:12px 16px 10px;
+			display: block;
 			margin-top:32px;
 			display: block;
 			background: $fv-sienna;
@@ -128,9 +127,7 @@
 			  }
 			&.btn-test {
 				@include responsive("mobile") {
-					a {
-						padding: 16px 16px 13px;
-					}
+					padding: 16px 16px 13px;
 					margin-top:0;
 					position: absolute;
 					left:0;
