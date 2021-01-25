@@ -18,6 +18,7 @@
             margin-bottom: 24px;
             font-size: 20px;
             font-weight: 700;
+            word-break: keep-all;
         }
         &__question-sub {
             @extend %padding-m;
@@ -183,7 +184,7 @@
     }
 
     //서베이 문항 - 퀘스쳔 서브 텍스트 레이아웃
-    .q1, .q8 {
+    .q1, .q5, .q8, .q11, .q12 {
         .q-wrap__question-main {
             margin-bottom: 4px;
         }
@@ -234,41 +235,94 @@
             background: $fv-gray-9;
         }
     }
-}   
 
-
-
-.survey {
-    .option-wrap {background:#f7f7f7;margin-bottom:40px;}
-    .option-list {
-        @include flexbox(wrap);
-    }
-    .day-date {
-        text-align: center;margin-right:8px;
-        // &.today::after {
-        //     content:'오늘'
-        // }
-    }
-    .date {
-        @include el-size(32px,32px);
-        line-height: 32px;
-        border-radius: 24px;
-        cursor: pointer;
-        &.selected {
-            color:$fv-white;
-            background: $fv-sienna;
+    .q12 {
+        &__schedule {
+            padding: 0;
         }
-    }
-    .time {
-        @include el-size(72px,32px);
-        line-height:32px;
-        text-align: center;
-        cursor: pointer;
-        background: $fv-gray-2;
-        border-radius: 24px;
-        &.selected {
-            color:$fv-white;
-            background: $fv-sienna;
+        &__title-underline {
+            margin-top: 12px;
+            margin-bottom: 16px;
+            display:block;
+            content:'';
+            @include el-size(100%,1px);
+            background: $fv-gray-3;
+        }
+        &__day-date, &__lounge-time {
+            padding: 20px 20px 24px;
+            background: #f7f7f7;
+            margin-bottom: 16px;
+        }
+        &__day-date-title, &__lounge-time-title {
+            font-size: 16px;
+            font-weight: 700;
+        }
+        &__day-date-option-list {
+            @include flexbox(wrap);
+            justify-content: space-between;
+            gap: 12px 8px;
+
+        }
+        &__day-date-option {
+            text-align: center;
+            .day {
+                color: $fv-gray-5;
+                font-size: 12px;
+                &.today {
+                    color: $fv-gray-9;
+                    font-weight: 500;
+                }
+            }
+            .date {
+                @include el-size(32px,32px);
+                margin-top:6px;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 33px;
+                border-radius: 24px;
+                cursor: pointer;
+                &.selected {
+                    color:$fv-white;
+                    background: $fv-sienna;
+                }
+            }
+
+        }
+        &__lounge-time {
+            margin-bottom: 64px;
+        }
+        &__option-lounge {
+            .lounge-name {
+                margin-left: 4px;
+                margin-bottom: 2px; 
+                font-size: 15px;
+                font-weight: 500;
+            }
+            .lounge-caption {
+                margin-left: 4px;
+                font-size: 13px;
+                color: $fv-gray-5;
+            }
+            .option-list {
+                @include flexbox(wrap);
+                gap: 12px 8px;
+                margin-top: 16px;
+                margin-bottom: 32px;
+            }
+            .time {
+                @include el-size(72px,36px);
+                line-height:38px;
+                text-align: center;
+                font-size: 14px;
+                cursor: pointer;
+                background: $fv-gray-2;
+                border-radius: 24px;
+                &.selected {
+                    color:$fv-white;
+                    background: $fv-sienna;
+                }
+            }
+
         }
     }
 }   
