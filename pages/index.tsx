@@ -247,7 +247,7 @@ const IndexPage = (props: {
 									</div>
 									<p className="main-visual__caption">안경 고민을 설문하세요.<br />진짜 나에게 맞는 안경 추천 서비스</p>
 									<div className="main-visual__btn">
-										<button className="gtm-001 btn-cta btn-test" onClick={() => didYouVisit()}>시작하기</button>
+										<button className="tn-0003 gtm-001 btn-cta btn-test" onClick={() => didYouVisit()}>시작하기</button>
 										<Modal
 											className="modal-cookie"
 											visible={surveyModal}
@@ -259,8 +259,8 @@ const IndexPage = (props: {
 										>
 											<p>전에 작성해둔 설문내역이 있어요!<br />이어서 작성할까요?</p>
 											<div className="modal-btn-wrap">
-												<button type="button" className="modal-btn" value="start" onClick={() => surveyFromStart()}>처음부터 할게요</button>
-												<button type="button" className="modal-btn continue" onClick={() => surveyFromMiddle()}>이어서 작성할게요</button>
+												<button type="button" className="modal-btn tn-0001" value="start" onClick={() => surveyFromStart()}>처음부터 할게요</button>
+												<button type="button" className="modal-btn continue tn-0002" onClick={() => surveyFromMiddle()}>이어서 작성할게요</button>
 											</div>
 										</Modal>
 									</div>
@@ -685,7 +685,7 @@ const IndexPage = (props: {
 
 					<div className="bottom-cta">
 						<div className="bottom-cta__inner">
-							<button className="gtm-001 btn-cta"><Link href="https://service.floev.com/survey"><span>시작하기</span></Link></button>
+							<button className="gtm-001 btn-cta tn-0004"><Link href="https://service.floev.com/survey"><span>시작하기</span></Link></button>
 						</div>
 					</div>
 

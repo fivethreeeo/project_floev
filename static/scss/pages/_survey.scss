@@ -263,7 +263,7 @@
         .q-wrap__btn.q-wrap__btn-next {
             width:50%;
             @include responsive("mobile") {
-                width:64%
+                width:64%;
             }    
         }
     }

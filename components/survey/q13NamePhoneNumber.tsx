@@ -276,7 +276,7 @@ export default function Q12NamePhoneNumber(props: {
                 {authNumber.length !== 4 || !isActive ?
                     (<button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled"><span>인증하고 예약완료하기</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>) :
                     (!loading ?
-                        (<button className="q-wrap__btn q-wrap__btn-next" type={'submit'}
+                        (<button className="q-wrap__btn q-wrap__btn-next tn-0026" type={'submit'}
                             onClick={() => handleClick()}><span>인증하고 예약완료하기</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>) :
                         (<Spin size="large" tip="잠시만 기다려주세요.." />))
                 }

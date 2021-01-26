@@ -36,7 +36,7 @@ export default function Q0Start(props: {
                         </ul>
                         <div className="vertical-line"></div>
                     </div>
-                    <div className="q0__btn-start dtn-100" onClick={() => props.onNext()}>설문 시작하기</div>
+                    <div className="q0__btn-start tn-0005" onClick={() => props.onNext()}>설문 시작하기</div>
                 </div>
     </>)
 }
