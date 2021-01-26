@@ -177,7 +177,7 @@ const SurveyPage = (props: {
             `}}
                 />
             </Head>
-            <Layout title="나와 내 눈을 위한 설문">
+            <Layout title="플로브 - 안경 설문">
                 <div className="survey">
                     {currentStep > 0 &&
                         <SurveyHeader

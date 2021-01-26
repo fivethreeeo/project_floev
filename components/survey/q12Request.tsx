@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { availableTime } from '../../utils/nonOccupiedTime'
+import { availableTime } from '../../utils/surveyUtils'
 import { getDayDate, getOnlyDate, getWeekday } from '../../utils/timeFormat'
 
 const fromToday = getDayDate(7, 0)
