@@ -19,7 +19,7 @@ export default function Q10Photo(props: {
         if (props.oldAnswers.hasWorn === HASWORN.YES) {
             title = <div className="q-wrap__question-main">안경을 쓰고 촬영한 얼굴 사진, 요청드려도 될까요?</div>
         } else if (props.oldAnswers.hasWorn === HASWORN.NO) {
-            title = <div className="q-wrap__question-main">당신만을 위한 추천을 위해 얼굴 사진, 요청드려도 될까요?</div>
+            title = <div className="q-wrap__question-main">안경 추천을 위해 얼굴 사진, 요청드려도 될까요?</div>
         } else {
             title = <p>안경 씀 여부를 확인해주세요~!</p>
         }
