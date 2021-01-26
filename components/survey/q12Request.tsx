@@ -87,25 +87,17 @@ export default function Q12Request(props: {
                         <div className="lounge-name">라운지 역삼성당</div>
                         <div className="lounge-caption">역삼역 1번출구 도보7분, 주차가능</div>
                         <ul className="option-list">
-                            <li><button className="time">11:00</button></li>
-                            <li><button className="time">11:00</button></li>
-                            <li><button className="time">11:00</button></li>
-                            <li><button className="time">11:00</button></li>
-                            <li><button className="time">11:00</button></li>
-                            <li><button className="time">11:00</button></li>
-                            <li><button className="time">11:00</button></li>
-                            {/*
-                                    {requestDate !== '' && availableYeuksamTimes.map(
-                                        (item: Slot, index: number) => (
-                                            // 오늘 현재시간 4시간 이후부터 예약 가능하나 3시 이후에는 예약 불가능
-                                            (getOnlyDate(requestDate) === String(now.getDate()) &&
-                                                (parseInt(item.time.slice(0, 2)) < (now.getHours() + 4) ||
-                                                    now.getHours() >= 15) ? '' :
-                                                (<li key={index} id={index.toString()} onClick={(e) => handleChangeLoungeTime(e)}>
-                                                    <button className={item.time === requestTime && item.loungeCode === loungeCode ? "time selected" : "time"} value={item.time + ',' + item.loungeCode}>{item.time}</button>
-                                                </li>))
-                                        ))}
-                                        */}
+                        {requestDate !== '' && availableYeuksamTimes.map(
+                            (item: Slot, index: number) => (
+                                // 오늘 현재시간 4시간 이후부터 예약 가능하나 3시 이후에는 예약 불가능
+                                (getOnlyDate(requestDate) === String(now.getDate()) &&
+                                    (parseInt(item.time.slice(0, 2)) < (now.getHours() + 4) ||
+                                        now.getHours() >= 15) ? '' :
+                                    (<li key={index} id={index.toString()} onClick={(e) => handleChangeLoungeTime(e)}>
+                                        <button className={item.time === requestTime && item.loungeCode === loungeCode ? "time selected" : "time"} value={item.time + ',' + item.loungeCode}>{item.time}</button>
+                                    </li>))
+                            )
+                        )}
                         </ul>
                     </div>
                     <div className="q12__option-lounge">
@@ -113,30 +105,17 @@ export default function Q12Request(props: {
                         <div className="lounge-name">라운지 강남</div>
                         <div className="lounge-caption">강남역 4번출구 도보3분, 주차가능</div>
                         <ul className="option-list">
-                            <li><button className="time selected">11:00</button></li>
-                            <li><button className="time">11:00</button></li>
-                            <li><button className="time">11:00</button></li>
-                            <li><button className="time">11:00</button></li>
-                            <li><button className="time">11:00</button></li>
-                            <li><button className="time">11:00</button></li>
-                            <li><button className="time">11:00</button></li>
-                            <li><button className="time">11:00</button></li>
-                            <li><button className="time">11:00</button></li>
-                            <li><button className="time">11:00</button></li>
-                            <li><button className="time">11:00</button></li>
-                            <li><button className="time">11:00</button></li>
-                            {/*
-                                    {requestDate !== '' && availableGangNumTimes.map(
-                                        (item: Slot, index: number) => (
-                                            // 오늘 현재시간 4시간 이후부터 예약 가능하나 3시 이후에는 예약 불가능
-                                            (getOnlyDate(requestDate) === String(now.getDate()) &&
-                                                (parseInt(item.time.slice(0, 2)) < (now.getHours() + 4) ||
-                                                    now.getHours() >= 15) ? '' :
-                                                (<li key={index} id={index.toString()} onClick={(e) => handleChangeLoungeTime(e)}>
-                                                    <button className={item.time === requestTime && item.loungeCode === loungeCode ? "time selected" : "time"} value={item.time + ',' + item.loungeCode} >{item.time}</button>
-                                                </li>))
-                                        ))}
-                                                                */}
+                            {requestDate !== '' && availableGangNumTimes.map(
+                                (item: Slot, index: number) => (
+                                    // 오늘 현재시간 4시간 이후부터 예약 가능하나 3시 이후에는 예약 불가능
+                                    (getOnlyDate(requestDate) === String(now.getDate()) &&
+                                        (parseInt(item.time.slice(0, 2)) < (now.getHours() + 4) ||
+                                            now.getHours() >= 15) ? '' :
+                                        (<li key={index} id={index.toString()} onClick={(e) => handleChangeLoungeTime(e)}>
+                                            <button className={item.time === requestTime && item.loungeCode === loungeCode ? "time selected" : "time"} value={item.time + ',' + item.loungeCode} >{item.time}</button>
+                                        </li>))
+                                )
+                            )}
                         </ul>
                     </div>
 
