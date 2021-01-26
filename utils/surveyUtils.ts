@@ -1,5 +1,4 @@
 
-
 export function availableTime(targetDate: string, targetLounge: number, inputTime: Schedule[]) {
     // 해당 날짜에 예약된 스케쥴 골라내기
     const occupiedTimeArray: Schedule[] = inputTime.filter((item: Schedule) => item.date.slice(0, 10) === targetDate && item.loungeCode === targetLounge)
@@ -113,6 +112,7 @@ export const resetSurvey = () => {
         localStorage.removeItem('floev[purposes]')
         localStorage.removeItem('floev[purposeEtc]')
         localStorage.removeItem('floev[painDegree]')
+        localStorage.removeItem('floev[painDegreeEtc]')
         localStorage.removeItem('floev[painTypes]')
         localStorage.removeItem('floev[painTypesEtc]')
         localStorage.removeItem('floev[prefer]')
@@ -122,8 +122,5 @@ export const resetSurvey = () => {
         localStorage.removeItem('floev[requestTime]')
         localStorage.removeItem('floev[name]')
         localStorage.removeItem('floev[phoneNumber]')
-        localStorage.removeItem('floev[gender]')
-        localStorage.removeItem('floev[gender]')
-        localStorage.removeItem('floev[gender]')
     }
 }

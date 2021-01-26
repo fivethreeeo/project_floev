@@ -34,7 +34,7 @@ const SurveyPage = (props: {
     schedule: Schedule[]
 }) => {
     const [currentStep, setCurrentStep] = useState<number>(
-        parseInt(localStorage.getItem('floev[currentStep]') ?? '0'));
+        parseInt(localStorage.getItem('floev[currentStep]') ?? '0') > 9 ? 9 : parseInt(localStorage.getItem('floev[currentStep]') ?? '0'));
     const [answers, setAnswers] = useState<Answers>({
         customer: parseInt(localStorage.getItem('floev[customer]') ?? '-1'),
         birth: parseInt(localStorage.getItem('floev[birth]') ?? '-1'),

@@ -56,7 +56,11 @@ export default function Q11Size(props: {
             <div className="q-wrap__answer-wrap">
                 <img src="static/img/survey/size-info.jpg" alt="" />
                 <input className="input-text input-text-size-1" type="text" tabIndex={1} placeholder={'46'} value={size1} maxLength={2} onChange={e => handleChange1(e.target.value)} />
+                {/* 칸 채우면 다음 칸으로 이동하는 이벤트 */}
+
                 <input className="input-text input-text-size-2" type="text" tabIndex={2} placeholder={'24'} value={size2} maxLength={2} onChange={e => handleChange2(e.target.value)} />
+                {/* 칸 채우면 다음 칸으로 이동하는 이벤트 */}
+
                 <input className="input-text input-text-size-3" type="text" tabIndex={3} placeholder={'145'} value={size3} maxLength={3} onChange={e => handleChange3(e.target.value)} />
             </div>
             <div className="q-wrap__btn-wrap">
