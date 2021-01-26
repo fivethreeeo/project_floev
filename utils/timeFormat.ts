@@ -1,8 +1,13 @@
 import moment from 'moment'
+const week = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일']
 
 function getDay(dayNumber: number) {
     const week = ['일', '월', '화', '수', '목', '금', '토']
     return week[dayNumber]
+}
+
+export function getWeekday(date: string) {
+    return week[moment(date.slice(0, 10)).day()]
 }
 
 export function getOnlyDate(date: string) {
@@ -14,7 +19,6 @@ export function getOnlyDate(date: string) {
 }
 
 export function getYMDW(date: string) {
-    const week = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일']
     return date.slice(0, 4) + '년 ' + date.slice(5, 7) + '월 ' + date.slice(8, 10) + '일 ' + week[moment(date.slice(0, 10)).day()]
 }
 

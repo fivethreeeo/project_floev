@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { availableTime } from '../../utils/nonOccupiedTime'
-import { getDayDate, getOnlyDate } from '../../utils/timeFormat'
+import { getDayDate, getOnlyDate, getWeekday } from '../../utils/timeFormat'
 
 const fromToday = getDayDate(7, 0)
 const now = new Date(Date.now());
@@ -88,17 +88,18 @@ export default function Q12Request(props: {
                         <div className="lounge-name">라운지 역삼성당</div>
                         <div className="lounge-caption">역삼역 1번출구 도보7분, 주차가능</div>
                         <ul className="option-list">
-                            {requestDate !== '' && availableYeuksamTimes.map(
-                                (item: Slot, index: number) => (
-                                    // 오늘 현재시간 4시간 이후부터 예약 가능하나 3시 이후에는 예약 불가능
-                                    (getOnlyDate(requestDate) === String(now.getDate()) &&
-                                        (parseInt(item.time.slice(0, 2)) < (now.getHours() + 4) ||
-                                            now.getHours() >= 15) ? '' :
-                                        (<li key={index} id={index.toString()} onClick={(e) => handleChangeLoungeTime(e)}>
-                                            <button className={item.time === requestTime && item.loungeCode === loungeCode ? "time selected" : "time"} value={item.time + ',' + item.loungeCode}>{item.time}</button>
-                                        </li>))
-                                )
-                            )}
+                            {requestDate !== '' && !(getWeekday(requestDate) === '목요일' || getWeekday(requestDate) === '금요일') &&
+                                availableYeuksamTimes.map(
+                                    (item: Slot, index: number) => (
+                                        // 오늘 현재시간 4시간 이후부터 예약 가능하나 3시 이후에는 예약 불가능
+                                        (getOnlyDate(requestDate) === String(now.getDate()) &&
+                                            (parseInt(item.time.slice(0, 2)) < (now.getHours() + 4) ||
+                                                now.getHours() >= 15) ? '' :
+                                            (<li key={index} id={index.toString()} onClick={(e) => handleChangeLoungeTime(e)}>
+                                                <button className={item.time === requestTime && item.loungeCode === loungeCode ? "time selected" : "time"} value={item.time + ',' + item.loungeCode}>{item.time}</button>
+                                            </li>))
+                                    )
+                                )}
                         </ul>
                     </div>
                     <div className="q12__option-lounge">
