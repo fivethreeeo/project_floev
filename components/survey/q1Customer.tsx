@@ -37,9 +37,10 @@ export default function Q1Customer(props: {
                     <div className="q-wrap__answer-wrap" onChange={e => handleChange(e)}>
                         <input className="q-wrap__input-radio" type="radio" id="q1_1" onChange={() => { }} value={CUSTOMER.SELF} checked={customer === CUSTOMER.SELF} />
                         <label className="q-wrap__label-radio-100" htmlFor="q1_1">제가 추천 받을거에요</label>
-                    {/*
+                    
                         <input className="q-wrap__input-radio" type="radio" id="q1_2" onChange={() => { }} value={CUSTOMER.WITH} checked={customer === CUSTOMER.WITH} />
                         <label className="q-wrap__label-radio-100" htmlFor="q1_2">친구(연인)와 함께 추천받고 싶어요</label>
+                    {/*
                         <input className="q-wrap__input-radio" type="radio" id="q1_3" onChange={() => { }} value={CUSTOMER.OTHER} checked={customer === CUSTOMER.OTHER} />
                         <label className="q-wrap__label-radio-100" htmlFor="q1_3">다른 사람에게 선물하고 싶어요</label>
                     */}
