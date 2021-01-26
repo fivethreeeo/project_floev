@@ -19,7 +19,7 @@ export default function Q2CustomerWith(props: {
             </div>
             <div className="q-wrap__btn-wrap">
                 <button className="q-wrap__btn q-wrap__btn-prev" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
-                <button className="q-wrap__btn q-wrap__btn-next" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt=""/></button>
+                <button className="q-wrap__btn q-wrap__btn-next" type="button" onClick={() => props.onNext()}><span>내 설문 시작하기</span> <img src="static/img/survey/ic-arrows-right.png" alt=""/></button>
             </div>
         </div>
     </>)
