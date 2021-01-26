@@ -13,7 +13,7 @@ const addChannel = () => {
 
 const Layout = ({
   children,
-  title = 'This is the default title',
+  title = '플로브 - 나의 눈을 위한 안경 큐레이션 서비스',
   name
 }: {
   children?: ReactNode
