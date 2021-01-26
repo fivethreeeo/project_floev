@@ -113,6 +113,7 @@ export const resetSurvey = () => {
         localStorage.removeItem('floev[purposes]')
         localStorage.removeItem('floev[purposeEtc]')
         localStorage.removeItem('floev[painDegree]')
+        localStorage.removeItem('floev[painTypes]')
         localStorage.removeItem('floev[painTypesEtc]')
         localStorage.removeItem('floev[prefer]')
         localStorage.removeItem('floev[size]')
