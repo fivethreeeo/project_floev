@@ -40,8 +40,6 @@
 
         &__checkbox-wrap {
             @include flexbox(wrap);
-            grid-gap: 10px 8px;
-            gap: 10px 8px;
         }
 
         &__input-checkbox {
@@ -50,6 +48,8 @@
 
         &__label-checkbox {
             padding: 10px 16px 7px;
+            margin-right:8px;
+            margin-bottom:10px;
             font-size: 14px;
             border-radius: 40px;
             border: 1px solid $fv-gray-4;
@@ -268,7 +268,7 @@
             border: 1px solid $fv-gray-9;
             border-radius: 8px;
             background: $fv-white;
-            padding-left: calc(31% - 4px - 20px);
+            padding-left: 20px;
             &:not(:valid) {
                 color: $fv-gray-4;
                 border: 1px solid $fv-gray-4;
