@@ -3,7 +3,7 @@ import { Upload, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { UploadChangeParam, UploadFile } from 'antd/lib/upload/interface';
 import { HASWORN } from './q5HasWorn'
-import { getBase64 } from '../../utils/getBase64'
+import { getBase64 } from '../../utils/surveyUtils'
 
 export default function Q10Photo(props: {
     oldAnswers: Answers
@@ -53,7 +53,7 @@ export default function Q10Photo(props: {
     return (<>
         <div className="q-wrap q10">
             {photoTitle()}
-            <div className="q-wrap__question-sub">얼굴의 사이즈와 눈 사이 거리, 균형감을 체크해요.<br/>지금 쓰는 안경과 내 불편함의 원인을 체크해요.<br/>나의 이미지에 맞는 안경을 더 정확하게 추천해요.</div>
+            <div className="q-wrap__question-sub">얼굴의 사이즈와 눈 사이 거리, 균형감을 체크해요.<br />지금 쓰는 안경과 내 불편함의 원인을 체크해요.<br />나의 이미지에 맞는 안경을 더 정확하게 추천해요.</div>
             <div className="q-wrap__answer-wrap">
                 <div className="q-wrap__upload-wrap">
                     <Upload
@@ -82,8 +82,8 @@ export default function Q10Photo(props: {
             <div className="q-wrap__btn-wrap">
                 <button className="q-wrap__btn q-wrap__btn-prev" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
                 {photoFileList.length === 0 ? (
-                    <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt=""/></button>) :
-                    (<button className="q-wrap__btn q-wrap__btn-next" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt=""/></button>)
+                    <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>) :
+                    (<button className="q-wrap__btn q-wrap__btn-next" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>)
                 }
             </div>
         </div>

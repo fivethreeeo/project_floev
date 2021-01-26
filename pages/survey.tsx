@@ -1,6 +1,6 @@
-import { gql } from '@apollo/client';
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic'
+import { gql } from '@apollo/client';
 import { createApolloClient } from '../lib/apolloClient';
 import { UploadFile } from 'antd/lib/upload/interface'
 

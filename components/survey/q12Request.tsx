@@ -21,6 +21,7 @@ export default function Q12Request(props: {
     function handleChangeDate(e: any) {
         const newRequestDate = fromToday[e.currentTarget.id].date
         setRequestDate(newRequestDate)
+        setLoungeCode(0)
         setRequestTime('')
 
         let answersParam: Answers = props.oldAnswers
@@ -87,17 +88,17 @@ export default function Q12Request(props: {
                         <div className="lounge-name">라운지 역삼성당</div>
                         <div className="lounge-caption">역삼역 1번출구 도보7분, 주차가능</div>
                         <ul className="option-list">
-                        {requestDate !== '' && availableYeuksamTimes.map(
-                            (item: Slot, index: number) => (
-                                // 오늘 현재시간 4시간 이후부터 예약 가능하나 3시 이후에는 예약 불가능
-                                (getOnlyDate(requestDate) === String(now.getDate()) &&
-                                    (parseInt(item.time.slice(0, 2)) < (now.getHours() + 4) ||
-                                        now.getHours() >= 15) ? '' :
-                                    (<li key={index} id={index.toString()} onClick={(e) => handleChangeLoungeTime(e)}>
-                                        <button className={item.time === requestTime && item.loungeCode === loungeCode ? "time selected" : "time"} value={item.time + ',' + item.loungeCode}>{item.time}</button>
-                                    </li>))
-                            )
-                        )}
+                            {requestDate !== '' && availableYeuksamTimes.map(
+                                (item: Slot, index: number) => (
+                                    // 오늘 현재시간 4시간 이후부터 예약 가능하나 3시 이후에는 예약 불가능
+                                    (getOnlyDate(requestDate) === String(now.getDate()) &&
+                                        (parseInt(item.time.slice(0, 2)) < (now.getHours() + 4) ||
+                                            now.getHours() >= 15) ? '' :
+                                        (<li key={index} id={index.toString()} onClick={(e) => handleChangeLoungeTime(e)}>
+                                            <button className={item.time === requestTime && item.loungeCode === loungeCode ? "time selected" : "time"} value={item.time + ',' + item.loungeCode}>{item.time}</button>
+                                        </li>))
+                                )
+                            )}
                         </ul>
                     </div>
                     <div className="q12__option-lounge">
@@ -123,9 +124,9 @@ export default function Q12Request(props: {
             </div>
             <div className="q-wrap__btn-wrap">
                 <button className="q-wrap__btn q-wrap__btn-prev" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
-                {requestDate === "" || requestTime === "" ? (
-                    <button className="q-wrap__btn q-wrap__btn-next" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt=""/></button>) :
-                    (<button className="q-wrap__btn q-wrap__btn-next" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt=""/></button>)
+                {requestDate === "" || loungeCode === 0 || requestTime === "" ? (
+                    <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>) :
+                    (<button className="q-wrap__btn q-wrap__btn-next" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>)
                 }
             </div>
         </div>

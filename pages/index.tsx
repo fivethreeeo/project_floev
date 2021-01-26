@@ -1,14 +1,14 @@
-import Head from 'next/head'
-import Layout from '../layout/DefaultLayout'
 import React, { useState } from 'react'
-import { useRouter } from 'next/router'
-import { Modal, Carousel, Collapse } from 'antd'
-import { gql, useMutation } from '@apollo/client'
-import { GetServerSideProps } from 'next'
+import Head from 'next/head'
 import Link from 'next/link'
-import { createApolloClient } from '../lib/apolloClient'
-// import CollapsePanel from 'antd/lib/collapse/CollapsePanel'
+import { useRouter } from 'next/router'
+import { GetServerSideProps } from 'next'
+import Layout from '../layout/DefaultLayout'
+import { Modal, Carousel, Collapse } from 'antd'
 import { CaretRightOutlined } from '@ant-design/icons'
+import { gql, useMutation } from '@apollo/client'
+import { createApolloClient } from '../lib/apolloClient'
+import { resetSurvey } from '../utils/surveyUtils'
 
 const CREATE_USER_MUTATION = gql`
   mutation createUser($name: String!, $phn: String!) {
@@ -159,7 +159,6 @@ const IndexPage = (props: {
 	}
 
 	function didYouVisit() {
-		console.log("localstorage: " + localStorage.getItem('floev[currentStep]'))
 		if (process.browser) {
 			if (localStorage.getItem('floev[currentStep]') !== null) {
 				setSurveyModal(true)
@@ -172,24 +171,7 @@ const IndexPage = (props: {
 		router.push('/survey')
 	}
 	function surveyFromStart() {
-		localStorage.removeItem('floev[currentStep]')
-		localStorage.removeItem('floev[customer]')
-		localStorage.removeItem('floev[birth]')
-		localStorage.removeItem('floev[gender]')
-		localStorage.removeItem('floev[hasWorn]')
-		localStorage.removeItem('floev[purposes]')
-		localStorage.removeItem('floev[purposeEtc]')
-		localStorage.removeItem('floev[painDegree]')
-		localStorage.removeItem('floev[painTypesEtc]')
-		localStorage.removeItem('floev[size]')
-		localStorage.removeItem('floev[loungeCode]')
-		localStorage.removeItem('floev[requestDate]')
-		localStorage.removeItem('floev[requestTime]')
-		localStorage.removeItem('floev[name]')
-		localStorage.removeItem('floev[phoneNumber]')
-		localStorage.removeItem('floev[gender]')
-		localStorage.removeItem('floev[gender]')
-		localStorage.removeItem('floev[gender]')
+		resetSurvey()
 		router.push('/survey')
 	}
 
@@ -307,15 +289,15 @@ const IndexPage = (props: {
 									<div className="main-visual__btn">
 										<button className="gtm-001 btn-cta btn-test" onClick={() => didYouVisit()}>시작하기</button>
 										<Modal
-										className="modal-cookie"
-										visible={surveyModal}
-										centered
-										width="320px"
-										onCancel={() => {
-											setSurveyModal(false);
-										}}
+											className="modal-cookie"
+											visible={surveyModal}
+											centered
+											width="320px"
+											onCancel={() => {
+												setSurveyModal(false);
+											}}
 										>
-											<p>전에 작성해둔 설문내역이 있어요!<br/>이어서 작성할까요?</p>
+											<p>전에 작성해둔 설문내역이 있어요!<br />이어서 작성할까요?</p>
 											<div className="modal-btn-wrap">
 												<button type="button" className="modal-btn" value="start" onClick={() => surveyFromStart()}>처음부터 할게요</button>
 												<button type="button" className="modal-btn continue" onClick={() => surveyFromMiddle()}>이어서 작성할게요</button>

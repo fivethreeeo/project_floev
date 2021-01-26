@@ -6,6 +6,7 @@ import axios from 'axios'
 import { gql, useMutation } from '@apollo/client'
 import path from 'path';
 import moment from 'moment'
+import { resetSurvey } from '../../utils/surveyUtils'
 
 const MAKE_SURVEY_PURCHASE_REQUEST = gql`
   mutation makeSurveyPurchaseRequest(
@@ -81,7 +82,7 @@ export default function Q12NamePhoneNumber(props: {
                     birth: props.oldAnswers.birth,
                     gender: props.oldAnswers.gender
                 });
-                localStorage.removeItem('floev[currentStep]')
+                resetSurvey()
                 router.replace('/complete')
             }
         },
@@ -263,16 +264,16 @@ export default function Q12NamePhoneNumber(props: {
             </div>
 
 
-                <div className="q-wrap__btn-wrap">
-                    <button className="q-wrap__btn q-wrap__btn-prev" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
-                    { authNumber.length !== 4 || !isActive ?
-                        (<button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled"><span>인증하고 예약완료하기</span> <img src="static/img/survey/ic-arrows-right.png" alt=""/></button>) :
-                        (!loading ?
-                            (<button className="q-wrap__btn q-wrap__btn-next" type={'submit'}
-                                onClick={() => handleClick()}><span>인증하고 예약완료하기</span> <img src="static/img/survey/ic-arrows-right.png" alt=""/></button>) :
-                            (<Spin size="large" tip="잠시만 기다려주세요.." />))
-                    }
-                </div>
+            <div className="q-wrap__btn-wrap">
+                <button className="q-wrap__btn q-wrap__btn-prev" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
+                {authNumber.length !== 4 || !isActive ?
+                    (<button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled"><span>인증하고 예약완료하기</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>) :
+                    (!loading ?
+                        (<button className="q-wrap__btn q-wrap__btn-next" type={'submit'}
+                            onClick={() => handleClick()}><span>인증하고 예약완료하기</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>) :
+                        (<Spin size="large" tip="잠시만 기다려주세요.." />))
+                }
+            </div>
 
         </div>
     </>)

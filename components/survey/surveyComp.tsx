@@ -50,7 +50,7 @@ const SurveyPage = (props: {
         preferFileList: [],
         photoFileList: [],
         size: localStorage.getItem('floev[size]') ?? '',
-        loungeCode: parseInt((localStorage.getItem('floev[loungeCode]') ?? '2')),
+        loungeCode: parseInt((localStorage.getItem('floev[loungeCode]') ?? '0')),
         requestDate: localStorage.getItem('floev[requestDate]') ?? moment().add(15, 'hours').format().slice(0, 10),
         requestTime: localStorage.getItem('floev[requestTime]') ?? '',
         name: localStorage.getItem('floev[name]') ?? '',
@@ -63,10 +63,12 @@ const SurveyPage = (props: {
     }
 
     let StepComponent = steps[currentStep]
+
     function updateStep(step: number) {
         setCurrentStep(step)
         localStorage.setItem('floev[currentStep]', String(step))
     }
+
     function handleNext() {
         if (currentStep === 1) {
             if (answers.customer === CUSTOMER.SELF) {
@@ -175,7 +177,7 @@ const SurveyPage = (props: {
             `}}
                 />
             </Head>
-            <Layout>
+            <Layout title="나와 내 눈을 위한 설문">
                 <div className="survey">
                     {currentStep > 0 &&
                         <SurveyHeader
