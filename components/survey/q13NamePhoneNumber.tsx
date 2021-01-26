@@ -193,27 +193,34 @@ export default function Q12NamePhoneNumber(props: {
             }
         })
     }
+    function hashCode(input: string) {
+        for (var i = 0, hash = 0xdeadbeef; i < input.length; i++)
+            hash = Math.imul(hash ^ input.charCodeAt(i), 2654435761);
+        return (hash ^ hash >>> 16) >>> 0;
+    };
 
     const submitPhoto = async () => {
         for (let i = 0; i < props.oldAnswers.photoFileList.length; i++) {
             const formData = new FormData()
-            const tempFile = props.oldAnswers.photoFileList[i].originFileObj
-            if (tempFile !== undefined) {
-                formData.append("upload-image", tempFile, moment().format().slice(0, 16) + "_" + phoneNumber + "_" + i.toString() + path.extname(props.oldAnswers.photoFileList[i].name))
+            const file = props.oldAnswers.photoFileList[i].originFileObj
+            const fileName: string = moment().format().slice(0, 16) + "_" + hashCode(phoneNumber).toString() + "_prefer_" + i.toString() + path.extname(props.oldAnswers.photoFileList[i].name)
+            if (file !== undefined) {
+                formData.append("upload-image", file, fileName)
             }
             await axios.post('https://image.floev.com/upload', formData, {
                 headers: { "content-type": "multipart/form-data" }
             }).then(res => {
-                console.log(res)
+                console.log(res.status)
             }).catch(err => {
                 console.error(err)
             })
         }
         for (let i = 0; i < props.oldAnswers.preferFileList.length; i++) {
             const formData = new FormData()
-            const tempFile = props.oldAnswers.preferFileList[i].originFileObj
-            if (tempFile !== undefined) {
-                formData.append("upload-image", tempFile, moment().format().slice(0, 16) + "_" + phoneNumber + "_prefer_" + i.toString() + path.extname(props.oldAnswers.preferFileList[i].name))
+            const file = props.oldAnswers.preferFileList[i].originFileObj
+            const fileName: string = moment().format().slice(0, 16) + "_" + hashCode(phoneNumber).toString() + "_" + i.toString() + path.extname(props.oldAnswers.photoFileList[i].name)
+            if (file !== undefined) {
+                formData.append("upload-image", file, fileName)
             }
             await axios.post('https://image.floev.com/upload', formData, {
                 headers: { "content-type": "multipart/form-data" }
