@@ -60,7 +60,7 @@ export default function Q6Purpose(props: {
                     className="q-wrap__textarea"
                     value={purposeEtc ?? ''}
                     onChange={e => handleChangePuposeEtc(e)}
-                    placeholder="예시)&#13;&#10;독서용 안경이 필요해요.&#13;&#10;집에서만 렌즈 대신 착용하는 안경이에요."
+                    placeholder="예시)&#13;&#10; 독서용 안경이 필요해요.&#13;&#10; 집에서만 렌즈 대신 착용하는 안경이에요."
                 ></textarea>
             </div>
             <div className="q-wrap__btn-wrap">
