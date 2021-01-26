@@ -393,7 +393,6 @@
         &__day-date-option-list {
             @include flexbox(wrap);
             justify-content: space-between;
-            gap: 12px 8px;
 
         }
         &__day-date-option {
@@ -435,11 +434,11 @@
             }
             .option-list {
                 @include flexbox(wrap);
-                gap: 12px 8px;
                 margin-top: 16px;
                 margin-bottom: 32px;
             }
             .time {
+                margin: 0 4px 12px 4px;
                 @include el-size(72px,36px);
                 line-height:38px;
                 text-align: center;
