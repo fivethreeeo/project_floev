@@ -303,6 +303,11 @@ const IndexPage = (props: {
 									<div className="main-visual__title">
 										<p className=""><strong>아직도 얼굴형으로<br />안경 고르세요?</strong></p>
 									</div>
+<<<<<<< HEAD
+									<p className="main-visual__caption">진짜 나에게 맞는 안경 추천 서비스</p>
+									<div className="main-visual__btn">
+										<button className="gtm-001 btn-cta btn-test"><a href="https://service.floev.com/survey">시작하기</a></button>
+=======
 									<p className="main-visual__caption">안경 고민을 설문하세요.<br />진짜 나에게 맞는 안경 추천 서비스</p>
 									<div className="main-visual__btn">
 										<button className="gtm-001 btn-cta btn-test" onClick={() => didYouVisit()}>시작하기</button>
@@ -321,6 +326,7 @@ const IndexPage = (props: {
 												<button type="button" className="modal-btn continue" onClick={() => surveyFromMiddle()}>이어서 작성할게요</button>
 											</div>
 										</Modal>
+>>>>>>> newSurvey
 									</div>
 								</div>
 							</div>
