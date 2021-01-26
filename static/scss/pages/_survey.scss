@@ -1,0 +1,518 @@
+.survey {
+    @include vw-mx-w(520px);
+    &::before {
+        content:'';
+        height:56px;
+        display:block;
+        @include responsive("mobile") {
+            height:48px;
+        }
+    }
+    @include responsive("mobile") {
+        &::after {
+            content:'';
+            height:65px;
+            display:block;
+        }
+    }  
+
+    // 서베이 문항 - 공통
+    .q-wrap {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        &__question-main {
+            @extend %padding-m;
+            margin-bottom: 24px;
+            font-size: 20px;
+            font-weight: 700;
+            word-break: keep-all;
+        }
+        &__question-sub {
+            @extend %padding-m;
+            margin-bottom: 24px;
+            font-size: 14px;
+            color: $fv-gray-6;
+
+        }
+        &__answer-wrap {
+            @extend %padding-m;
+        }
+
+        &__checkbox-wrap {
+            @include flexbox(wrap);
+            gap: 10px 8px;
+        }
+
+        &__input-checkbox {
+            display:none;
+        }
+
+        &__label-checkbox {
+            padding: 10px 16px 7px;
+            font-size: 14px;
+            border-radius: 40px;
+            border: 1px solid $fv-gray-4;
+            cursor: pointer;
+            transition: ease 0.1s;
+        }
+
+        &__input-checkbox:checked+.q-wrap__label-checkbox {
+            color: $fv-white;
+            border: 1px solid $fv-gray-9;
+            background: $fv-gray-9;
+        }
+
+        &__input-radio {
+            display:none;
+        }
+
+        &__label-radio-100 {
+            @include el-size(100%,48px);
+            padding: 13px 24px;
+            margin-bottom: 12px;
+            display:block;
+            font-size: 14px;
+            border-radius: 8px;
+            border: 1px solid $fv-gray-4;
+            background: $fv-white;
+            cursor: pointer;
+        }
+        &__input-radio:checked+.q-wrap__label-radio-100 {
+            color: $fv-white;
+            border: 1px solid $fv-gray-9;
+            background: $fv-gray-9;
+        }
+        &__textarea-wrap {
+            @extend %padding-m;
+            margin-top: 40px;
+        }
+        &__textarea-caption {
+            margin-bottom: 4px;
+            font-size: 14px;
+            color: $fv-gray-7;
+        }
+        &__textarea {
+            @include el-size(100%,120px);
+            padding: 16px;
+            border: 1px solid $fv-gray-4;
+            border-radius: 8px;
+            &:focus {
+                border: 1px solid $fv-gray-9;
+            }
+            &::placeholder {
+                font-size:14px;
+                line-height: 1.7;
+                color: $fv-gray-5;
+            }
+        }
+        
+        &__btn-wrap {
+            @include flexbox(nowrap);
+            justify-content: space-between;
+            padding: 0 20px;
+            margin: 48px 0;
+            @include responsive("mobile") {
+                padding: 8px 16px 8px;
+                background: $fv-white;
+                border-top:1px solid $fv-gray-3;
+                @include po-fix(auto, 0, 0, 0, 999);
+                @include vw-mx-w(480px);
+            }     
+        }
+        &__btn {
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 40px;
+            display:block;
+            height: 56px;
+            span {
+                display:inline-block;
+                height:24px;
+                line-height: 28px;
+            }
+            @include responsive("mobile") {
+                height: 48px;
+            }
+        }
+        &__btn-next {
+            width:30%;
+            padding: 0 24px 0 40px;
+            color: $fv-white;
+            background:$fv-gray-9;
+            img {
+                @include el-size(24px,24px)
+            }
+            @include responsive("mobile") {
+                width: 64%;
+                //border-radius: 8px;
+            }  
+        }
+        &__btn-next--disabled {
+            background:$fv-gray-3;
+        }
+        &__btn-prev {
+            padding: 0 20px 0 16px;
+            color: $fv-gray-7;
+            font-size: 16px;
+            @include responsive("mobile") {
+                line-height: 50px;
+            }  
+        }
+    }
+
+    // 서베이 문항 - q0 / 시작
+    .q0 {
+        margin-top: 40px;
+        @include responsive("mobile") {
+            margin-top:0;
+        }
+        padding: 20px;
+        &__title {
+            padding: 32px 20px 20px;
+            border-radius: 16px;
+            background: url(/static/img/survey/start-bg.jpg) center center / cover no-repeat;
+            .text {
+                margin-bottom: 8px;
+                font-size: 24px;
+                color: $fv-white;
+            }
+            .tag {
+                @include el-size(64px,24px);
+                padding-top:2px;
+                text-align: center;
+                font-size: 13px;
+                line-height: 24px;
+                color: $fv-white;
+                border-radius: 24px;
+                background: $fv-sienna;
+                img {
+                    @include el-size(20px,20px);
+                    margin-left:-4px;
+                }
+            }
+        }
+        &__steps {
+            @extend %padding-m;
+            position: relative;
+            margin: 24px 0;
+        }
+        &__step {
+            @include flexbox(wrap);
+            margin-bottom: 16px;
+        }
+        &__step-desc {
+            margin-left: 16px;
+            font-size: 15px;
+            color: $fv-gray-6;
+            span {
+                padding-left: 2px;
+                font-size: 12px;
+                color: $fv-gray-4;
+            }
+        }
+        &__step-desc--color {
+            color: $fv-gray-9;
+        }
+        .oval {
+            @include el-size(16px,16px);
+            position: relative;
+            z-index: 500;
+            margin-top:1px;
+            padding: 4px;
+            display: block;
+            border-radius: 8px;
+            background: $fv-gray-4;
+            &__inner {
+                @include el-size(8px,8px);
+                display:block;
+                border-radius: 8px;
+                background: $fv-white;
+            }
+        }
+        .oval--color {
+            background: $fv-sienna;
+        }
+        .vertical-line {
+            @include el-size(1.5px,170px);
+            position: absolute;
+            top:16px;
+            left:27px;
+            z-index:400;
+            background: $fv-gray-4;
+        }
+        &__btn-start {
+            @include el-size(100%,48px);
+            font-size: 16px;
+            color: $fv-white;
+            text-align: center;
+            line-height: 48px;
+            border-radius: 48px;
+            background: $fv-sienna;
+            cursor: pointer;
+        }
+    }
+
+    //서베이 문항 - 퀘스쳔 서브 텍스트 레이아웃
+    .q1, .q2, .q5, .q9, .q10, .q11, .q12 {
+        .q-wrap__question-main {
+            margin-bottom: 4px;
+        }
+    }
+
+    // 서베이 문항 - q4 / 출생연도, 나이
+    .q-wrap {
+        &__select {
+            @include el-size(calc(62% - 8px),48px);
+            font-size: 16px;
+            text-align-last: center;
+            border: 1px solid $fv-gray-9;
+            border-radius: 8px;
+            background: $fv-white;
+            &:not(:valid) {
+                color: $fv-gray-4;
+                border: 1px solid $fv-gray-4;
+            }
+        }
+        .input-radio-40-wrap {
+            @include el-size(38%,48px);
+            float: right;
+            &::after {
+                @extend %clearfix;
+            }
+        }
+        &__label-radio-40 {
+            @include el-size(50%,48px);
+            display: inline-block;
+            text-align: center;
+            line-height:48px;
+            font-size: 14px;
+            color: $fv-gray-4;
+            border: 1px solid $fv-gray-4;
+            background: $fv-white;
+            cursor: pointer;
+        }
+        &__label-radio-40--left {
+            border-radius: 8px 0 0 8px;
+            border-right:none;
+        }
+        &__label-radio-40--right {
+            border-radius: 0 8px 8px 0;
+        }
+        &__input-radio:checked+.q-wrap__label-radio-40 {
+            color: $fv-white;
+            border: none;
+            background: $fv-gray-9;
+        }
+    }
+    .q9 {
+        .q-wrap__textarea {
+            height:240px;
+            &::placeholder {
+                font-size: 14px;
+            }
+        }
+    }
+    .q9, .q10 {
+        .ant-upload.ant-upload-select.ant-upload-select-picture-card {
+            border: 1px solid $fv-gray-4;
+            border-radius: 8px;
+            background: $fv-gray-0;
+        }
+    }
+
+    .q11 {
+        .input-text {
+            @include el-size(100%,48px);
+            padding: 13px 24px;
+            font-size: 16px;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid $fv-gray-4;
+            background: $fv-white;
+            &::placeholder {
+                font-size:16px;
+                color: $fv-gray-5;
+            }
+            &:focus {
+                border: 1px solid $fv-gray-9;
+            }
+        }
+        .input-text-size-1 {
+            width: calc(30% - 8px);
+        }
+        .input-text-size-2 {
+            margin: 0 8px;
+            width: calc(30% - 8px);
+        }
+        .input-text-size-3 {
+            width: calc(40%);
+        }
+
+        .q-wrap__answer-wrap img {
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+    }
+
+    .q12 {
+        &__coupon-area {
+            display:none;
+            padding: 12px;
+            height:80px;
+            background: $fv-gray-1;
+        }
+        &__coupon {
+            width:100%;
+            height: 56px;
+            background: $fv-gray-2;
+            border-radius: 8px;
+        }
+        &__schedule {
+            padding: 0;
+        }
+        &__title-underline {
+            margin-top: 12px;
+            margin-bottom: 16px;
+            display:block;
+            content:'';
+            @include el-size(100%,1px);
+            background: $fv-gray-3;
+        }
+        &__day-date, &__lounge-time {
+            padding: 20px 20px 24px;
+            border-top: 16px solid $fv-gray-1;
+        }
+        &__lounge-time {
+            border-top: 16px solid $fv-gray-1;
+        }
+        &__day-date-title, &__lounge-time-title {
+            font-size: 16px;
+            font-weight: 700;
+        }
+        &__day-date-option-list {
+            @include flexbox(wrap);
+            justify-content: space-between;
+            gap: 12px 8px;
+
+        }
+        &__day-date-option {
+            text-align: center;
+            .day {
+                color: $fv-gray-5;
+                font-size: 12px;
+                &.today {
+                    color: $fv-gray-9;
+                    font-weight: 500;
+                }
+            }
+            .date {
+                @include el-size(32px,32px);
+                margin-top:6px;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 33px;
+                border-radius: 24px;
+                cursor: pointer;
+                &.selected {
+                    color:$fv-white;
+                    background: $fv-sienna;
+                }
+            }
+
+        }
+        &__option-lounge {
+            .lounge-name {
+                margin-left: 4px;
+                margin-bottom: 2px; 
+                font-size: 15px;
+                font-weight: 500;
+            }
+            .lounge-caption {
+                margin-left: 4px;
+                font-size: 13px;
+                color: $fv-gray-5;
+            }
+            .option-list {
+                @include flexbox(wrap);
+                gap: 12px 8px;
+                margin-top: 16px;
+                margin-bottom: 32px;
+            }
+            .time {
+                @include el-size(72px,36px);
+                line-height:38px;
+                text-align: center;
+                font-size: 14px;
+                cursor: pointer;
+                background: $fv-gray-1;
+                border-radius: 24px;
+                &.selected {
+                    color:$fv-white;
+                    background: $fv-sienna;
+                }
+            }
+
+        }
+    }
+
+    .q13 {
+            .q-wrap__btn-next {
+                width: 75%;
+            }
+            .q-wrap__input-text {
+                @include el-size(100%,40px);
+                padding: 0 12px;
+                margin-bottom: 8px;
+                border: 1px solid $fv-gray-4;
+                border-radius: 4px;
+                font-size:15px;
+                &:focus {
+                    border: 1px solid $fv-gray-9;
+                }
+                &::placeholder {
+                    color: $fv-gray-4;
+                }
+            }
+            .btn-num {
+                @include el-size(100%,40px);
+                font-size: 14px;
+                color:$fv-white;
+                border-radius: 4px;
+                border: 1px solid $fv-gray-9;
+                background: $fv-gray-9;
+            }
+            .btn-num--disabled {
+                background: $fv-gray-4;
+                border: 1px solid $fv-gray-4;
+            }
+            .input-text-num {
+                position: relative;
+                .btn-resend {
+                    width: 58px;
+                    height: 26px;
+                    background: $fv-gray-1;
+                    color: $fv-gray-9;
+                    border: 1px solid $fv-gray-2;
+                    border-radius: 4px;
+                    font-size: 12px;
+                    text-align: center;
+                    position: absolute;
+                    right: 10px;
+                    top: 7px;
+                }
+                .left-time {
+                    position: absolute;
+                    top: 11px;
+                    right: 80px;
+                    font-size: 13px;
+                }
+                .left-done {
+                    position: absolute;
+                    top: 11px;
+                    right: 80px;
+                    font-size: 13px;
+                    color: $fv-sienna;
+                }
+            }
+    }
+}   
