@@ -259,7 +259,14 @@
             margin-bottom: 8px;
         }
     }
-
+    .q2 {
+        .q-wrap__btn.q-wrap__btn-next {
+            width:50%;
+            @include responsive("mobile") {
+                width:64%
+            }    
+        }
+    }
     // 서베이 문항 - q4 / 출생연도, 나이
     .q-wrap {
         &__select {
