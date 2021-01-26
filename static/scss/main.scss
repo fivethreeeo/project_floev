@@ -9,7 +9,10 @@
 @import "utilities/normalize";
 
 @import "layout/header";
+@import "layout/survey-header";
 
 @import "pages/index";
+@import "pages/survey";
+@import "pages/complete";
 @import "pages/login";
 @import "pages/signup";

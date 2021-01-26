@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Layout from '../layout/DefaultLayout'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import { Modal, Carousel, Collapse } from 'antd'
 import { gql, useMutation } from '@apollo/client'
@@ -41,18 +41,17 @@ declare var process: Process
 declare function gtag_button1(): void;
 declare function gtag_button2(): void;
 
-const IndexPage = ({
-	user
-}: {
+const IndexPage = (props: {
 	user: any
 }) => {
 	const router = useRouter()
-	const [modalView, setModalView] = useState(false)
-	const [tabIdx, setTabIdx] = useState(0)
+	const [modalView, setModalView] = useState<boolean>(false)
+	const [tabIdx, setTabIdx] = useState<number>(0)
+	const [surveyModal, setSurveyModal] = useState<boolean>(false)
 
-	const [name, setName] = useState('')
-	const [phn, setPhn] = useState('')
-	const [completed, setCompleted] = useState(false)
+	const [name, setName] = useState<string>('')
+	const [phn, setPhn] = useState<string>('')
+	const [completed, setCompleted] = useState<boolean>(false)
 	const [createUser] = useMutation(CREATE_USER_MUTATION);
 
 	const onChangeName = (e: any) => {
@@ -62,18 +61,18 @@ const IndexPage = ({
 		setPhn(e.target.value)
 	}
 
-	useEffect(() => {
-		if (user) {
-			router.push('/')
-		}
-	}, [user])
-  /*
-	const handleGtag1 = () => {
-		if (process.browser) {
-			gtag_button1()
-		}
-	}
-  */
+	// useEffect(() => {
+	// 	if (props.user) {
+	// 		router.push('/')
+	// 	}
+	// }, [props.user])
+	/*
+	  const handleGtag1 = () => {
+		  if (process.browser) {
+			  gtag_button1()
+		  }
+	  }
+	*/
 	const handleGtag2 = () => {
 		if (process.browser) {
 			gtag_button2()
@@ -159,6 +158,41 @@ const IndexPage = ({
 		return component
 	}
 
+	function didYouVisit() {
+		console.log("localstorage: " + localStorage.getItem('floev[currentStep]'))
+		if (process.browser) {
+			if (localStorage.getItem('floev[currentStep]') !== null) {
+				setSurveyModal(true)
+			} else {
+				router.push('/survey')
+			}
+		}
+	}
+	function surveyFromMiddle() {
+		router.push('/survey')
+	}
+	function surveyFromStart() {
+		localStorage.removeItem('floev[currentStep]')
+		localStorage.removeItem('floev[customer]')
+		localStorage.removeItem('floev[birth]')
+		localStorage.removeItem('floev[gender]')
+		localStorage.removeItem('floev[hasWorn]')
+		localStorage.removeItem('floev[purposes]')
+		localStorage.removeItem('floev[purposeEtc]')
+		localStorage.removeItem('floev[painDegree]')
+		localStorage.removeItem('floev[painTypesEtc]')
+		localStorage.removeItem('floev[size]')
+		localStorage.removeItem('floev[loungeCode]')
+		localStorage.removeItem('floev[requestDate]')
+		localStorage.removeItem('floev[requestTime]')
+		localStorage.removeItem('floev[name]')
+		localStorage.removeItem('floev[phoneNumber]')
+		localStorage.removeItem('floev[gender]')
+		localStorage.removeItem('floev[gender]')
+		localStorage.removeItem('floev[gender]')
+		router.push('/survey')
+	}
+
 	return (
 		<>
 			{/* Google Pixel: index.js -> survey.js */}
@@ -187,10 +221,13 @@ const IndexPage = ({
 				/>
 				{/* Kakao Pixel */}
 				<script type="text/javascript" charSet="UTF-8" src="//t1.daumcdn.net/adfit/static/kp.js"></script>
-				<script type="text/javascript">kakaoPixel('784604748053330030').pageView('arrivehome');</script>
+				<script type="text/javascript" dangerouslySetInnerHTML={{
+					__html: `kakaoPixel('784604748053330030').pageView('arrivehome');`
+				}}></script>
 			</Head>
-			<Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" name={user ? user.name : null}>
+			<Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" name={props.user ? props.user.name : null}>
 				<Modal
+					className="modal-heg"
 					centered
 					width="100%"
 					visible={modalView}
@@ -219,7 +256,7 @@ const IndexPage = ({
 								}}
 							>
 								<div className="kakaoForm">
-									<input className="name" type="text" name="name" placeholder={"이름"} maxLength={10} value={name} onChange={onChangeName} tabIndex={1}/>
+									<input className="name" type="text" name="name" placeholder={"이름"} maxLength={10} value={name} onChange={onChangeName} tabIndex={1} />
 									<input className="tel" type="tel" name="phoneNumber" placeholder={"휴대폰 번호 (  '-' 없이 숫자만 입력 )"} maxLength={11} value={phn} onChange={onChangePhn} tabIndex={2} />
 									{phn.length >= 11 && name !== "" ? (
 										<button type="submit" className="gtm-033" onClick={() => { handleGtag2(); }}>안경 무료상담 받기</button>
@@ -264,11 +301,26 @@ const IndexPage = ({
 							<div className="main-visual__desc-wrap">
 								<div className="desc-wrap__inner">
 									<div className="main-visual__title">
-										<p className=""><strong>어떤 안경을 써야할지 모르는<br />사람들을 위한 안경 추천 서비스</strong></p>
+										<p className=""><strong>아직도 얼굴형으로<br />안경 고르세요?</strong></p>
 									</div>
-									<p className="main-visual__caption">안경 고민을 설문하세요.<br />판매가 아닌 추천에 충실한 안경테 체험</p>
+									<p className="main-visual__caption">안경 고민을 설문하세요.<br />진짜 나에게 맞는 안경 추천 서비스</p>
 									<div className="main-visual__btn">
-										<button className="gtm-001 btn-cta"><a href="https://service.floev.com/survey">시작하기</a></button>
+										<button className="gtm-001 btn-cta btn-test" onClick={() => didYouVisit()}>시작하기</button>
+										<Modal
+										className="modal-cookie"
+										visible={surveyModal}
+										centered
+										width="320px"
+										onCancel={() => {
+											setSurveyModal(false);
+										}}
+										>
+											<p>전에 작성해둔 설문내역이 있어요!<br/>이어서 작성할까요?</p>
+											<div className="modal-btn-wrap">
+												<button type="button" className="modal-btn" value="start" onClick={() => surveyFromStart()}>처음부터 할게요</button>
+												<button type="button" className="modal-btn continue" onClick={() => surveyFromMiddle()}>이어서 작성할게요</button>
+											</div>
+										</Modal>
 									</div>
 								</div>
 							</div>
@@ -290,7 +342,7 @@ const IndexPage = ({
 
 					<div className="score">
 						<div className="score__inner">
-						<div className="score__date">(2020/12/31 기준)</div>
+							<div className="score__date">(2020/12/31 기준)</div>
 							<div className="score__title">플로브에서 <span className="num">1,644명</span>이 <span className="br"></span><span>안경 추천상담</span>을 받았어요.</div>
 							<div className="score__board">
 								<div className="score__each">
@@ -648,7 +700,7 @@ const IndexPage = ({
 									<div className="faq__answer">네 구매하지 않으셔도 됩니다.<br />안경 추천을 비롯한 서비스 비용은 모두 무료이며 안경/렌즈 구매는 선택입니다.</div>
 								</Collapse.Panel>
 								<Collapse.Panel header="받을 수 있는 가격 할인 혜택이 있나요?" key="2">
-									<div className="faq__answer">네 있습니다. 우선 기본적으로 플로브 정책 가는 아래의 할인이 적용되어 있어요.<br/><strong>안경테 10~20% / 안경 렌즈 20%</strong><br/>추가로 플로브 할인 이벤트를 통해 최소 3만 원의 할인 혜택을 받을 수 있습니다.</div>
+									<div className="faq__answer">네 있습니다. 우선 기본적으로 플로브 정책 가는 아래의 할인이 적용되어 있어요.<br /><strong>안경테 10~20% / 안경 렌즈 20%</strong><br />추가로 플로브 할인 이벤트를 통해 최소 3만 원의 할인 혜택을 받을 수 있습니다.</div>
 								</Collapse.Panel>
 								<Collapse.Panel header="오늘 예약하고 바로 방문할 수 있나요?" key="3">
 									<div className="faq__answer">네, 당일 오후 3시 이전까지 예약이 가능합니다.</div>
@@ -657,19 +709,19 @@ const IndexPage = ({
 									<div className="faq__answer">네 함께 추천받을 수 있어요.<br />동시 서비스는 최대 2명까지 가능하고 총 서비스 시간은 100분입니다.</div>
 								</Collapse.Panel>
 								<Collapse.Panel header="안경을 선물하고 싶은데, 어떻게 예약해야 하나요?" key="5">
-									<div className="faq__answer">성공적인 선물을 위한 상담을 카카오톡으로 진행해요.<br/>홈페이지 설문이 아닌 플로브 카카오톡 채널로 문의해주세요!</div>
+									<div className="faq__answer">성공적인 선물을 위한 상담을 카카오톡으로 진행해요.<br />홈페이지 설문이 아닌 플로브 카카오톡 채널로 문의해주세요!</div>
 								</Collapse.Panel>
 								<Collapse.Panel header="구매한 안경을 당일에 받을 수 있나요?" key="6">
 									<div className="faq__answer">선택한 렌즈 사양에 따라 달라져요.<br />렌즈 브랜드 및 추가하는 옵션에 따라 렌즈 주문이 필요할 수 있어요. 이 경우 수령 날짜를 라운지에서 안내받을 수 있습니다.</div>
 								</Collapse.Panel>
 								<Collapse.Panel header="예약 없이 방문할 수 있나요?" key="7">
-									<div className="faq__answer">플로브는 100% 예약제로 운영됩니다.<br/>플로브는 일반적인 안경원과 달라요. 안경을 구매하는 새로운 방식을 제안합니다. 나만을 위한 안경박스를 추천받기 위해서 홈페이지 설문을 꼭 진행해 주세요!</div>
+									<div className="faq__answer">플로브는 100% 예약제로 운영됩니다.<br />플로브는 일반적인 안경원과 달라요. 안경을 구매하는 새로운 방식을 제안합니다. 나만을 위한 안경박스를 추천받기 위해서 홈페이지 설문을 꼭 진행해 주세요!</div>
 								</Collapse.Panel>
 								<Collapse.Panel header="안경을 원래 쓰지 않는데, 방문해도 되나요?" key="8">
 									<div className="faq__answer">네 가능해요.<br />내 눈에 대한 고민은 시력적인 불편함뿐만 아니라 보호하고 싶은 걱정스러운 마음도 포함됩니다.</div>
 								</Collapse.Panel>
 								<Collapse.Panel header="구매한 안경의 수리도 플로브에서 받을 수 있나요?" key="9">
-									<div className="faq__answer">네 가능해요.<br/>카카오톡 채널로 문의해 주시면 접수 가능한 링크를 전달드려요.<br />플로브는 어려운 수리 판단과 안경 브랜드사와의 복잡한 소통을 고객님을 대신해서 진행해드립니다.</div>
+									<div className="faq__answer">네 가능해요.<br />카카오톡 채널로 문의해 주시면 접수 가능한 링크를 전달드려요.<br />플로브는 어려운 수리 판단과 안경 브랜드사와의 복잡한 소통을 고객님을 대신해서 진행해드립니다.</div>
 								</Collapse.Panel>
 								<Collapse.Panel header="맞춘 렌즈에 적응이 어려운데, 교환이 가능한가요?" key="10">
 									<div className="faq__answer">네 가능해요.<br />플로브는 렌즈로 인한 불편함을 해소하기 위해 한 달 이내 2회까지 동급 렌즈로 무상 교환해드립니다.</div>
@@ -691,7 +743,7 @@ const IndexPage = ({
 
 					<div className="bottom-cta">
 						<div className="bottom-cta__inner">
-              <button className="gtm-001 btn-cta"><Link href="https://service.floev.com/survey"><span>시작하기</span></Link></button>
+							<button className="gtm-001 btn-cta"><Link href="https://service.floev.com/survey"><span>시작하기</span></Link></button>
 						</div>
 					</div>
 
