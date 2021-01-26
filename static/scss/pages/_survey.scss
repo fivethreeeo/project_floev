@@ -264,10 +264,19 @@
         &__select {
             @include el-size(calc(62% - 8px),48px);
             font-size: 16px;
+            text-align: center;
+            -moz-text-align-last: center;
+            -ms-text-align-last: center;
             text-align-last: center;
             border: 1px solid $fv-gray-9;
             border-radius: 8px;
             background: $fv-white;
+            option {
+                text-align: center;
+                -moz-text-align-last: center;
+                -ms-text-align-last: center;
+                text-align-last: center;
+            }
             &:not(:valid) {
                 color: $fv-gray-4;
                 border: 1px solid $fv-gray-4;
