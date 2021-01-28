@@ -3,40 +3,12 @@ import { useRouter } from 'next/router'
 import { Spin } from 'antd'
 import cookie from 'cookie'
 import axios from 'axios'
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import path from 'path';
 import moment from 'moment'
 import { resetSurvey } from '../../utils/surveyUtils'
+import { MAKE_SURVEY_PURCHASE_REQUEST } from '../../lib/mutation'
 
-const MAKE_SURVEY_PURCHASE_REQUEST = gql`
-  mutation makeSurveyPurchaseRequest(
-        $customer: Int!, $birth: Int!, $gender: String!, $hasWorn: Int!,
-        $purposes: [String!], $purposeEtc: String,
-        $painDegree: Int!, $painDegreeEtc: String,
-        $painTypes: [String!], $painTypesEtc: String,
-        $prefer: String!, $size: String, $loungeCode: Int!,
-        $requestDate: String!, $requestTime: String!,
-        $name: String!, $phoneNumber: String!, $authNumber: String!) {
-    makeSurveyPurchaseRequest(
-        customer: $customer, birth: $birth, gender: $gender, hasWorn: $hasWorn,
-        purposes: $purposes, purposeEtc: $purposeEtc,
-        painDegree: $painDegree, painDegreeEtc: $painDegreeEtc,
-        painTypes: $painTypes, painTypesEtc: $painTypesEtc,
-        prefer: $prefer, size: $size, loungeCode: $loungeCode
-        requestDate: $requestDate, requestTime: $requestTime,
-        name: $name, phoneNumber: $phoneNumber, authNumber: $authNumber) {
-    token
-        user{
-            id
-            requests{
-                id
-                date
-                loungeCode
-            }
-        }
-    }
-  }
-`
 
 export default function Q12NamePhoneNumber(props: {
     oldAnswers: Answers
@@ -239,7 +211,6 @@ export default function Q12NamePhoneNumber(props: {
     return (<>
         <div className="q-wrap q13">
             <div className="q-wrap__question-main">인증을 통해 예약을 확정해주세요.</div>
-
             <div className="q-wrap__answer-wrap">
 
                 {/* 이름 입력 */}

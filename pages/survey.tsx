@@ -1,8 +1,8 @@
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic'
-import { gql } from '@apollo/client';
 import { createApolloClient } from '../lib/apolloClient';
 import { UploadFile } from 'antd/lib/upload/interface'
+import { GET_PURCHASE_REQUEST_LIST } from '../lib/query'
 
 // 타입 정의
 declare global {
@@ -50,15 +50,6 @@ function Survey(props: {
         <DynamicComponent schedule={props.schedule} />
     </>)
 }
-
-const GET_PURCHASE_REQUEST_LIST = gql`
-    query getPuchaseRequestList{
-        getPuchaseRequestList{
-            date
-            loungeCode
-        }
-    }
-`
 
 export const getServerSideProps: GetServerSideProps = async (context) => { //{ req }: { req: any }
     const startTime = Date.now();

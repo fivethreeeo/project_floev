@@ -120,9 +120,9 @@ export default function Q12Request(props: {
                             )}
                         </ul>
                     </div>
-
                 </div>
             </div>
+
             <div className="q-wrap__btn-wrap">
                 <button className="q-wrap__btn q-wrap__btn-prev tn-0025" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
                 {requestDate === "" || loungeCode === 0 || requestTime === "" ? (
