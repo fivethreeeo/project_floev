@@ -7,8 +7,8 @@ import { CHECKUP_USER, GET_PURCHASE_REQUEST_LIST } from '../../lib/query'
 import { availableTime } from '../../utils/surveyUtils'
 import moment from 'moment'
 import { Modal } from "antd"
-import { GetServerSideProps } from "next"
-import { createApolloClient } from "../../lib/apolloClient"
+// import { GetServerSideProps } from "next"
+// import { createApolloClient } from "../../lib/apolloClient"
 
 interface PurchaseRequest {
     id: string
@@ -20,13 +20,21 @@ const fromToday = getDayDate(14, 1)
 const now = new Date(Date.now());
 
 const MyPageIndex = (props: {
-    user: any
-    userRequests: PurchaseRequest[]
+    // user: any
+    // userRequests: PurchaseRequest[]
 }) => {
     // 유저 정보
-    const user = props.user
-    const size = props.userRequests.length
-    const userRequest = props.userRequests[size - 1]
+    // const user = props.user
+    // const size = props.userRequests.length
+    // const userRequest = props.userRequests[size - 1]
+    const user = {
+        name: "jtest"
+    }
+    const size = 1
+    const userRequest = {
+        date: "2021-01-30",
+        loungeCode: 1
+    }
 
     // 예약 변경용
     const [loungeCode, setLoungeCode] = useState<number>(0)
@@ -71,60 +79,60 @@ const MyPageIndex = (props: {
             setModal2(true)
         }
     }
-    const availableYeuksamTimes = availableTime(requestDate, 1, props.userRequests)
-    const availableGangNumTimes = availableTime(requestDate, 2, props.userRequests)
+    // const availableYeuksamTimes = availableTime(requestDate, 1, props.userRequests)
+    // const availableGangNumTimes = availableTime(requestDate, 2, props.userRequests)
     return (
         <Layout>
             <div className="myPageWrap">
                 <div className="goBackBtnWrap">
                     <div className="goBackBtn" onClick={() => Router.back()}></div>
                 </div>
-
-                {size !== 0 &&
+                {/* size !== 0 && */}
+                {
                     (userRequest.date.slice(0, 16) > moment().format().slice(0, 16)) ?
-                    (<div className="contentWrap">
-                        <p className="qDesc3"><strong>{props.user.name}님</strong></p>
-                        <p className="qDesc4">{props.user.phoneNumber}</p>
+                        (<div className="contentWrap">
+                            {/* <p className="qDesc3"><strong>{props.user.name}님</strong></p>
+                        <p className="qDesc4">{props.user.phoneNumber}</p> */}
 
-                        <div className="status-card">
-                            <div className="inner-content">
-                                <a className="mapLink" href={loungeCode === 1 ? "https://m.map.naver.com/search2/site.nhn?query=%EC%97%AD%EC%82%BC%20%ED%94%8C%EB%A1%9C%EB%B8%8C&sm=hty&style=v5&code=1175801694" : "https://m.map.naver.com/search2/site.nhn?query=%EA%B0%95%EB%82%A8%20%ED%94%8C%EB%A1%9C%EB%B8%8C&sm=hty&style=v5&code=1814217589"} target="_blank"><span>라운지 위치보기 &#xE001;</span></a>
-                                <p className="booking-info">고객님의 방문일정은 <strong>라운지 {loungeCode === 1 ? "역삼성당" : "강남"}</strong><br /><strong>{getMDW(userRequest.date)} {getHour(userRequest.date)}</strong> 입니다.</p>
+                            <div className="status-card">
+                                <div className="inner-content">
+                                    {/* <a className="mapLink" href={loungeCode === 1 ? "https://m.map.naver.com/search2/site.nhn?query=%EC%97%AD%EC%82%BC%20%ED%94%8C%EB%A1%9C%EB%B8%8C&sm=hty&style=v5&code=1175801694" : "https://m.map.naver.com/search2/site.nhn?query=%EA%B0%95%EB%82%A8%20%ED%94%8C%EB%A1%9C%EB%B8%8C&sm=hty&style=v5&code=1814217589"} target="_blank"><span>라운지 위치보기 &#xE001;</span></a>
+                                <p className="booking-info">고객님의 방문일정은 <strong>라운지 {loungeCode === 1 ? "역삼성당" : "강남"}</strong><br /><strong>{getMDW(userRequest.date)} {getHour(userRequest.date)}</strong> 입니다.</p> */}
+                                </div>
+                                <div className="inner-btn-wrap">
+                                    <button className="btn-cancel" onClick={(e) => showModal(e, 'modal2')}>예약취소하기</button>
+                                    <button className="btn-change" onClick={(e) => showModal(e, 'modal1')}>일정변경하기</button>
+                                </div>
                             </div>
-                            <div className="inner-btn-wrap">
-                                <button className="btn-cancel" onClick={(e) => showModal(e, 'modal2')}>예약취소하기</button>
-                                <button className="btn-change" onClick={(e) => showModal(e, 'modal1')}>일정변경하기</button>
+
+                            <div className="noti-1">
+                                <p className="inner-p-1"><strong>당일 변경/취소는 서비스 유지에 어려움을 줍니다.</strong></p>
+                                <p className="inner-p-2">예약 변경/취소는 마이페이지를 통해<br /><strong>최소한</strong> 하루 전까지 부탁드려요.</p>
+                                <p className="inner-p-3">플로브 서비스를 위해 배려해주셔서 감사합니다.</p>
                             </div>
+
+                            <div className="noti-2">
+                                <div className="innerLine"></div>
+                                <p className="inner-p-1"><strong>플로브 방문 전 체크해주세요</strong></p>
+                                <div className="inner-list">
+                                    <div className="li"><div className="imgbx"><img src="/static/new/noti2-img1.jpg" alt="" /></div><div className="txtbx"><p>예약시간에 맞추어<br />정시에 도착</p></div></div>
+                                    <div className="li"><div className="imgbx"><img src="/static/new/noti2-img2.jpg" alt="" /></div><div className="txtbx"><p>콘텍트렌즈는<br />빼고 방문</p></div></div>
+                                    <div className="li con3"><div className="imgbx"><img src="/static/new/noti2-img3.jpg" alt="" /></div><div className="txtbx"><p><span>(선택사항)</span><br />카카오톡으로<br />얼굴 사진 전송</p></div></div>
+                                    <div className="li"><div className="imgbx"><img src="/static/new/noti2-img4.jpg" alt="" /></div><div className="txtbx"><p>기존 착용안경<br />가져오기</p></div></div>
+                                </div>
+                            </div>
+
                         </div>
 
-                        <div className="noti-1">
-                            <p className="inner-p-1"><strong>당일 변경/취소는 서비스 유지에 어려움을 줍니다.</strong></p>
-                            <p className="inner-p-2">예약 변경/취소는 마이페이지를 통해<br /><strong>최소한</strong> 하루 전까지 부탁드려요.</p>
-                            <p className="inner-p-3">플로브 서비스를 위해 배려해주셔서 감사합니다.</p>
-                        </div>
 
-                        <div className="noti-2">
-                            <div className="innerLine"></div>
-                            <p className="inner-p-1"><strong>플로브 방문 전 체크해주세요</strong></p>
-                            <div className="inner-list">
-                                <div className="li"><div className="imgbx"><img src="/static/new/noti2-img1.jpg" alt="" /></div><div className="txtbx"><p>예약시간에 맞추어<br />정시에 도착</p></div></div>
-                                <div className="li"><div className="imgbx"><img src="/static/new/noti2-img2.jpg" alt="" /></div><div className="txtbx"><p>콘텍트렌즈는<br />빼고 방문</p></div></div>
-                                <div className="li con3"><div className="imgbx"><img src="/static/new/noti2-img3.jpg" alt="" /></div><div className="txtbx"><p><span>(선택사항)</span><br />카카오톡으로<br />얼굴 사진 전송</p></div></div>
-                                <div className="li"><div className="imgbx"><img src="/static/new/noti2-img4.jpg" alt="" /></div><div className="txtbx"><p>기존 착용안경<br />가져오기</p></div></div>
-                            </div>
-                        </div>
+                        ) : (
+                            <div>
+                                <div className="contentWrap noBooking">
+                                    {/* <p className="qDesc3"><strong>{props.user.name}님</strong></p>
+                                <p className="qDesc4">{props.user.phoneNumber}</p> */}
 
-                    </div>
-
-
-                    ) : (
-                        <div>
-                            <div className="contentWrap noBooking">
-                                <p className="qDesc3"><strong>{props.user.name}님</strong></p>
-                                <p className="qDesc4">{props.user.phoneNumber}</p>
-
-                                {/* 1. 예약내역 없음 */}
-                                {size === 0 ? (
+                                    {/* 1. 예약내역 없음 */}
+                                    {/* {size === 0 ? (
                                     <div className="status-card">
                                         <div className="inner-content">
                                             <p className="booking-info">설문예약을 통해 플로브에서<br />고객님께 딱 알맞는 안경을 찾아보세요!</p>
@@ -142,15 +150,16 @@ const MyPageIndex = (props: {
                                                 <a href="/survey" className="btn-start">다시 예약하기</a>
                                             </div>
                                         </div>
-                                    )}
+                                    )} */}
+                                </div>
                             </div>
-                        </div>
-                    )}
+                        )}
             </div>
 
             <a style={{ display: 'block', margin: '64px auto 0', maxWidth: '420px', padding: '0 20px 80px', textDecoration: 'underline', fontWeight: 700, fontSize: '18px' }} href="/service-policy">서비스 정책 보기</a>
 
-            {size !== 0 && (
+            {/* size !== 0 &&  */}
+            {(
                 <Modal
                     visible={modal1}
                     onCancel={() => setModal1(false)} >
@@ -187,7 +196,7 @@ const MyPageIndex = (props: {
                                         <div className="lounge-name">라운지 역삼성당</div>
                                         <div className="lounge-caption">역삼역 1번출구 도보7분, 주차가능</div>
                                         <ul className="option-list">
-                                            {requestDate !== '' && !(getWeekday(requestDate) === '목요일' || getWeekday(requestDate) === '금요일') &&
+                                            {/* {requestDate !== '' && !(getWeekday(requestDate) === '목요일' || getWeekday(requestDate) === '금요일') &&
                                                 availableYeuksamTimes.map(
                                                     (item: Slot, index: number) => (
                                                         // 오늘 현재시간 4시간 이후부터 예약 가능하나 3시 이후에는 예약 불가능
@@ -198,7 +207,7 @@ const MyPageIndex = (props: {
                                                                 <button className={item.time === requestTime && item.loungeCode === loungeCode ? "time selected" : "time"} value={item.time + ',' + item.loungeCode}>{item.time}</button>
                                                             </li>))
                                                     )
-                                                )}
+                                                )} */}
                                         </ul>
                                     </div>
                                     <div className="q12__option-lounge">
@@ -206,7 +215,7 @@ const MyPageIndex = (props: {
                                         <div className="lounge-name">라운지 강남</div>
                                         <div className="lounge-caption">강남역 4번출구 도보3분, 주차가능</div>
                                         <ul className="option-list">
-                                            {requestDate !== '' && availableGangNumTimes.map(
+                                            {/* {requestDate !== '' && availableGangNumTimes.map(
                                                 (item: Slot, index: number) => (
                                                     // 오늘 현재시간 4시간 이후부터 예약 가능하나 3시 이후에는 예약 불가능
                                                     (getOnlyDate(requestDate) === String(now.getDate()) &&
@@ -216,7 +225,7 @@ const MyPageIndex = (props: {
                                                             <button className={item.time === requestTime && item.loungeCode === loungeCode ? "time selected" : "time"} value={item.time + ',' + item.loungeCode} >{item.time}</button>
                                                         </li>))
                                                 )
-                                            )}
+                                            )} */}
                                         </ul>
                                     </div>
 
@@ -250,7 +259,8 @@ const MyPageIndex = (props: {
                     )} */}
                 </Modal>
             )}
-            {size !== 0 && (
+            {/* size !== 0 &&  */}
+            {(
                 <Modal
                     visible={modal2}
                     onCancel={() => setModal2(false)}>
@@ -298,35 +308,35 @@ const MyPageIndex = (props: {
         </Layout >
     )
 }
-export const getServerSideProps: GetServerSideProps = async (context) => { //{ req }: { req: any }
-    const client = createApolloClient(context)
+// export const getServerSideProps: GetServerSideProps = async (context) => { //{ req }: { req: any }
+//     const client = createApolloClient(context)
 
-    // 유저 로그인을 해서 유저가 없으면
-    const { user } = await client.query({ query: CHECKUP_USER }) //const { user } = 
-        .then(({ data }) => {
-            return { user: data.checkUpUser };
-        }).catch(() => {
-            return { user: null };
-        });
-    const { purchaseRequestList } = await client.query({ query: GET_PURCHASE_REQUEST_LIST })
-        .then(({ data }) => {
-            return { purchaseRequestList: data.getPuchaseRequestList };
-        })
-        .catch((error) => {
-            console.error("Schedule data fetch ERROR" + error.message)
-            return { purchaseRequestList: null };
-        });
-    const userRequests = user.requests
+//     // 유저 로그인을 해서 유저가 없으면
+//     const { user } = await client.query({ query: CHECKUP_USER }) //const { user } = 
+//         .then(({ data }) => {
+//             return { user: data.checkUpUser };
+//         }).catch(() => {
+//             return { user: null };
+//         });
+//     const { purchaseRequestList } = await client.query({ query: GET_PURCHASE_REQUEST_LIST })
+//         .then(({ data }) => {
+//             return { purchaseRequestList: data.getPuchaseRequestList };
+//         })
+//         .catch((error) => {
+//             console.error("Schedule data fetch ERROR" + error.message)
+//             return { purchaseRequestList: null };
+//         });
+//     const userRequests = user.requests
 
-    return {
-        props: {
-            // this hydrates the clientside Apollo cache in the `withApollo` HOC
-            apolloStaticCache: client.cache.extract(),
-            user,
-            userRequests,
-            purchaseRequestList
-        },
-    }
-}
+//     return {
+//         props: {
+//             // this hydrates the clientside Apollo cache in the `withApollo` HOC
+//             apolloStaticCache: client.cache.extract(),
+//             user,
+//             userRequests,
+//             purchaseRequestList
+//         },
+//     }
+// }
 
 export default MyPageIndex
