@@ -170,16 +170,16 @@ const Inquiry = (
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => { //{ req }: { req: any }
-    const client = createApolloClient(context)
-    const { user } = await client.query({ query: CHECKUP_USER })
-        .then(({ data }) => {
-            return { user: data.checkUpUser };
-        }).catch(() => {
-            return { user: null };
-        });
-    if (user) {
-        redirect(context, "/mypage")
-    }
+    // const client = createApolloClient(context)
+    // const { user } = await client.query({ query: CHECKUP_USER })
+    //     .then(({ data }) => {
+    //         return { user: data.checkUpUser };
+    //     }).catch(() => {
+    //         return { user: null };
+    //     });
+    // if (user) {
+    //     redirect(context, "/mypage")
+    // }
     return { props: {} }
 }
 

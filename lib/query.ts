@@ -12,16 +12,15 @@ export const GET_PURCHASE_REQUEST_LIST = gql`
 export const CHECKUP_USER = gql`
 	query checkUpUser{
 		checkUpUser{
-			id
+            id
             name
             email
             phoneNumber
             requests{
-              id
-              date
-              loungeCode
+                id
+                date
+                loungeCode
             }
-          }
-		}
-	}
+        }
+    }
 `
