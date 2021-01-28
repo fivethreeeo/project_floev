@@ -27,16 +27,16 @@ export default function Header({
 						<span><a href="/service-policy">서비스 정책 안내</a></span>
 					</nav>
 					<nav className="header__nav--sub">
-						<span className="link-ico"><a href="https://www.instagram.com/floev_official/" target="_blank"></a></span>
-						<span className="hr">|</span>
 						{!name ? (
 							<>
-								<span className="link-text"><a href="/login">로그인</a></span>
-								<span className="link-text"><a href="/signup">회원가입</a></span>
+								<span className="link-text"><a href="/login">로그인/회원가입</a></span>
+								<span className="link-text link-text--mypage"><a href="/mypage">예약조회</a></span>
 							</>) : <>
 								<span className="link-text">{name}</span>
 								<span className="link-text" onClick={() => logout()}><a href="/">로그아웃</a></span>
 							</>}
+						<span className="hr">|</span>
+						<span className="link-ico"><a href="https://www.instagram.com/floev_official/" target="_blank"></a></span>
 					</nav>
 				</div>
 			</header>
