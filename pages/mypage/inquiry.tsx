@@ -122,46 +122,48 @@ const Inquiry = (
 
     return (
         <Layout>
-            <br /><br /><br /><br /><br /><br /><br />
-            <div className="q-wrap q13">
-                <div className="q-wrap__question-main">인증을 통해 예약을 확정해주세요.</div>
-                <div className="q-wrap__answer-wrap">
+            <div className="mypage-inquiry">
+                <div className="q-wrap q13">
+                    <div className="q-wrap__question-main">예약조회</div>
+                    <div className="q-wrap__question-sub">예약시 입력하신 휴대폰 번호를 입력해주세요.</div>
+                    <div className="q-wrap__answer-wrap">
 
-                    {/* 휴대전화번호 입력 */}
-                    <input className="q-wrap__input-text" type="tel" placeholder={'휴대폰 번호 입력 (  \'-\' 없이 숫자만 )'} maxLength={11} onChange={e => handleChangePhoneNumber(e)} />
-                    {!isSentAuth ?
-                        // 인증번호 보내기 전
-                        isPhoneNumber ?
-                            (<button className="btn-num" onClick={() => requestAuthNumber()}>인증번호전송</button>) :
-                            (<button className="btn-num">인증번호전송</button>) :
-                        // 인증번호 보낸 후
-                        (<div className="input-text-num">
-                            <input className="q-wrap__input-text" type="text" placeholder={'인증번호 4자리'} value={authNumber} onChange={e => handleChangeAuthNumber(e)} maxLength={4} />
-                            {isAuthenticated ?
-                                (<button className="btn-resend" onClick={() => requestAuthNumber()}>재전송</button>) :
-                                (<button className="btn-resend">재전송</button>)}
+                        {/* 휴대전화번호 입력 */}
+                        <input className="q-wrap__input-text" type="tel" placeholder={'휴대폰 번호 입력 (  \'-\' 없이 숫자만 )'} maxLength={11} onChange={e => handleChangePhoneNumber(e)} />
+                        {!isSentAuth ?
+                            // 인증번호 보내기 전
+                            isPhoneNumber ?
+                                (<button className="btn-num" onClick={() => requestAuthNumber()}>인증번호전송</button>) :
+                                (<button className="btn-num">인증번호전송</button>) :
+                            // 인증번호 보낸 후
+                            (<div className="input-text-num">
+                                <input className="q-wrap__input-text" type="text" placeholder={'인증번호 4자리'} value={authNumber} onChange={e => handleChangeAuthNumber(e)} maxLength={4} />
+                                {isAuthenticated ?
+                                    (<button className="btn-resend" onClick={() => requestAuthNumber()}>재전송</button>) :
+                                    (<button className="btn-resend">재전송</button>)}
 
-                            {leftSecond <= 180 ?
-                                <div className="left-time">{parseSecondToMinute(leftSecond)}</div> :
-                                leftSecond === 181 ?
-                                    <div className="left-done">만료</div> :
-                                    leftSecond === 182 ?
-                                        <span className="time"></span> :
-                                        <div className="txtWarning">인증번호가 일치하지 않습니다. 다시 확인해주세요.</div>}
-                        </div>)
-                    } {isError && (<div className="txtWarning">인증번호가 일치하지 않습니다. 다시 확인해주세요.</div>)}
+                                {leftSecond <= 180 ?
+                                    <div className="left-time">{parseSecondToMinute(leftSecond)}</div> :
+                                    leftSecond === 181 ?
+                                        <div className="left-done">만료</div> :
+                                        leftSecond === 182 ?
+                                            <span className="time"></span> :
+                                            <div className="txtWarning">인증번호가 일치하지 않습니다. 다시 확인해주세요.</div>}
+                            </div>)
+                        } {isError && (<div className="txtWarning">인증번호가 일치하지 않습니다. 다시 확인해주세요.</div>)}
 
-                </div>
+                    </div>
 
 
-                <div className="q-wrap__btn-wrap">
-                    {authNumber.length !== 4 || !isActive ?
-                        (<button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled"><span>인증하고 예약 조회하기</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>) :
-                        (!loading ?
-                            (<button className="q-wrap__btn q-wrap__btn-next tn-0026" type='submit'
-                                onClick={() => signInWithPhoneNumber()}><span>인증하고 예약조회하기</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>) :
-                            (<Spin size="large" tip="잠시만 기다려주세요.." />))
-                    }
+                    <div className="q-wrap__btn-wrap">
+                        {authNumber.length !== 4 || !isActive ?
+                            (<button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled"><span>인증하고 예약 조회하기</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>) :
+                            (!loading ?
+                                (<button className="q-wrap__btn q-wrap__btn-next tn-0026" type='submit'
+                                    onClick={() => signInWithPhoneNumber()}><span>인증하고 예약조회하기</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>) :
+                                (<Spin size="large" tip="잠시만 기다려주세요.." />))
+                        }
+                    </div>
                 </div>
 
             </div>

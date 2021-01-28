@@ -30,6 +30,7 @@ const CompletePage = (props: {
                             <strong className="schedule">{getMDW(userSchedule.date)} {getHour(userSchedule.date)}</strong><br />
                             <strong>예약 라운지는 </strong><strong className="lounge">{userSchedule.loungeCode === 1 ? '역삼성당' : '강남'}</strong> 입니다.
                             </div>
+                            <div><a style={{maxWidth:'260px',margin:'24px auto 0',display:'block',fontSize:'14px',color:'#999',textDecoration:'underline'}} href="/mypage">예약변경, 취소 하러가기 &#xE001;</a></div>
                     </div>
                 </div>
                 <div className="coupon">

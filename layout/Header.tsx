@@ -29,10 +29,10 @@ export default function Header({
 					<nav className="header__nav--sub">
 						{!name ? (
 							<>
-								<span className="link-text"><a href="/login">로그인/회원가입</a></span>
 								<span className="link-text link-text--mypage"><a href="/mypage">예약조회</a></span>
+								<span className="link-text"><a href="/login">로그인/회원가입</a></span>
 							</>) : <>
-								<span className="link-text">{name}</span>
+								<span className="link-text link-text--mypage"><a href="/mypage">예약조회</a></span>
 								<span className="link-text" onClick={() => logout()}><a href="/">로그아웃</a></span>
 							</>}
 						<span className="hr">|</span>
