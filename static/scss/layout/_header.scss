@@ -22,7 +22,7 @@
     }
     &__logo {
         float:left;
-        margin-right:40px;
+        margin-right:24px;
         width: 80px;
         @include responsive("mobile") {
             width: 72px!important;
@@ -44,7 +44,7 @@
         span {
             display: block;
             font-size: 15px;
-            margin-right:24px;
+            margin-right:20px;
             &:last-child {
                 margin-right:0;
             }
@@ -67,38 +67,38 @@
         @include flexbox(nowrap);
         @include responsive("mobile") {
             margin-top:-2px;
-          }
-        span {
+        }
+        .hr {
+            display: block;
+            font-size: 14px;
+            font-size: 18px;
+            font-weight: 300;
+            margin: 0 16px 0 20px;
+            @include responsive("mobile") {
+                margin: 0 12px 0 16px;
+            }
+        }
+        .link-text {
             display: block;
             font-size: 14px;
             margin-left:12px;
             @include responsive("mobile") {
-                display:none;
-              }
-        }
-        .hr {
-            font-size: 18px;
-            font-weight: 300;
-            margin: 0 8px 0 20px;
-            @include responsive("mobile") {
-                display:none;
-              }
+                display: none;
+                &.link-text--mypage {
+                    display: block;
+                }
+            }
         }
         .link-ico {
             @include bg-img(-10px,-34px,400px,400px);
+            @include el-size(24px,24px);
+            margin-left:0;
             &:hover {
                 @include bg-img(-34px,-34px,400px,400px);
             }
-            margin-left:0;
-            @include el-size(24px,24px);
             a {
                 @include el-size(24px,24px);
             }
-            @include responsive("mobile") {
-                display:block;
-              }
-            
-
         }
         .link-text {
             padding-top:3px;
