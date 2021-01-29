@@ -6,25 +6,12 @@ import { GetServerSideProps } from 'next'
 import Layout from '../layout/DefaultLayout'
 import { Modal, Carousel, Collapse } from 'antd'
 import { CaretRightOutlined } from '@ant-design/icons'
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
+import { CREATE_USER_MUTATION } from '../lib/mutation'
+import { CHECKUP_USER } from '../lib/query'
 import { createApolloClient } from '../lib/apolloClient'
 import { resetSurvey } from '../utils/surveyUtils'
 import ServiceTab from '../components/index/serviceTab'
-
-const CREATE_USER_MUTATION = gql`
-  mutation createUser($name: String!, $phn: String!) {
-    createUser(name: $name, phn: $phn) {
-      id
-    }
-  }
-`
-const CHECKUP_USER = gql`
-	query checkUpUser{
-		checkUpUser{
-			name
-		}
-	}
-`
 
 // 타입 정의
 declare global {
@@ -43,7 +30,7 @@ declare function gtag_button1(): void;
 declare function gtag_button2(): void;
 
 const IndexPage = (props: {
-	user: any
+	user: User
 }) => {
 	const router = useRouter()
 	const [modalView, setModalView] = useState<boolean>(false)
@@ -167,7 +154,7 @@ const IndexPage = (props: {
 					__html: `kakaoPixel('784604748053330030').pageView('arrivehome');`
 				}}></script>
 			</Head>
-			<Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" name={props.user ? props.user.name : null}>
+			<Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" name={props.user ? props.user.name : undefined} requests={props.user ? props.user.requests : undefined}>
 				<Modal
 					className="modal-heg"
 					centered

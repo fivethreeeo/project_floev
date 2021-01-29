@@ -15,7 +15,7 @@ export default function Q12NamePhoneNumber(props: {
     answersUpdate: (answersParam: Answers) => void
     currentStep: number
     max: number
-    schedule: Schedule[]
+    purchaseRequest: PurchaseRequest[]
     onPrev: () => void
     onNext: () => void
 }) {

@@ -5,7 +5,7 @@ export default function Q6Purpose(props: {
     answersUpdate: (answersParam: Answers) => void
     currentStep: number
     max: number
-    schedule: Schedule[]
+    purchaseRequest: PurchaseRequest[]
     onPrev: () => void
     onNext: () => void
 }) {

@@ -6,11 +6,29 @@ import { GET_PURCHASE_REQUEST_LIST } from '../lib/query'
 
 // 타입 정의
 declare global {
-    interface Schedule {
+    interface User {
+        id: string | undefined
+        name: string | undefined
+        email: string | undefined
+        password: string | undefined
+        phoneNumber: string | undefined
+        gender: string | undefined
+        birth: number | undefined
+        status: string | undefined
+        clickUpProfileId: string | undefined
+        requests: PurchaseRequest[]
+    }
+    interface FloevRequest {
         [x: string]: any
+        id: string
         date: string
         loungeCode: number
+        type: number
+        status: string
     }
+    interface PurchaseRequest extends FloevRequest { }
+    interface PickupRequest extends FloevRequest { }
+
     interface Slot {
         label: string
         time: string
@@ -44,32 +62,32 @@ const DynamicComponent = dynamic(() => import('../components/survey/surveyComp')
 })
 
 function Survey(props: {
-    schedule: Schedule[]
+    purchaseRequest: PurchaseRequest[]
 }) {
     return (<>
-        <DynamicComponent schedule={props.schedule} />
+        <DynamicComponent purchaseRequest={props.purchaseRequest} />
     </>)
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => { //{ req }: { req: any }
     const startTime = Date.now();
     const client = createApolloClient(context)
-    const { schedule } = await client.query({ query: GET_PURCHASE_REQUEST_LIST })
+    const { purchaseRequest } = await client.query({ query: GET_PURCHASE_REQUEST_LIST })
         .then(({ data }) => {
             console.log("Survey Page elapsed time: " + (Date.now() - startTime) + "ms");
-            return { schedule: data.getPuchaseRequestList };
+            return { purchaseRequest: data.getPuchaseRequestList };
         })
         .catch((error) => {
             console.log("Survey Page elapsed time: " + (Date.now() - startTime) + "ms");
-            console.error("Schedule data fetch ERROR" + error.message)
-            return { schedule: null };
+            console.error("Request data fetch ERROR" + error.message)
+            return { purchaseRequest: null };
         });
 
     return {
         props: {
             // this hydrates the clientside Apollo cache in the `withApollo` HOC
             apolloStaticCache: client.cache.extract(),
-            schedule
+            purchaseRequest
         },
     }
 }

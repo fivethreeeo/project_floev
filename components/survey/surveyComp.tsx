@@ -31,7 +31,7 @@ const steps = [
 const max = steps.length
 
 const SurveyPage = (props: {
-    schedule: Schedule[]
+    purchaseRequest: PurchaseRequest[]
 }) => {
     const [currentStep, setCurrentStep] = useState<number>(
         parseInt(localStorage.getItem('floev[currentStep]') ?? '0') > 9 ? 9 : parseInt(localStorage.getItem('floev[currentStep]') ?? '0'));
@@ -190,7 +190,7 @@ const SurveyPage = (props: {
                         answersUpdate={() => handleAnswersUpdate(answers)}
                         currentStep={currentStep}
                         max={max}
-                        schedule={props.schedule}
+                        purchaseRequest={props.purchaseRequest}
                         onPrev={() => handlePrev()}
                         onNext={() => handleNext()}
                     />

@@ -66,3 +66,11 @@ mutation signInWithPhoneNumber($phoneNumber: String! $authNumber: String!){
     }
 }
 `
+
+export const CREATE_USER_MUTATION = gql`
+  mutation createUser($name: String!, $phn: String!) {
+    createUser(name: $name, phn: $phn) {
+      id
+    }
+  }
+`

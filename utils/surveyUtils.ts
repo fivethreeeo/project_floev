@@ -1,7 +1,7 @@
 
-export function availableTime(targetDate: string, targetLounge: number, inputTime: Schedule[]) {
+export function availableTime(targetDate: string, targetLounge: number, inputTime: PurchaseRequest[]) {
     // 해당 날짜에 예약된 스케쥴 골라내기
-    const occupiedTimeArray: Schedule[] = inputTime.filter((item: Schedule) => item.date.slice(0, 10) === targetDate && item.loungeCode === targetLounge)
+    const occupiedTimeArray: PurchaseRequest[] = inputTime.filter((item: PurchaseRequest) => item.date.slice(0, 10) === targetDate && item.loungeCode === targetLounge)
 
     // 시간 발라내기
     let occupiedTime: string[] = []
@@ -42,9 +42,9 @@ export function availableTime(targetDate: string, targetLounge: number, inputTim
     return nonOccupiedList
 }
 
-export function availableHalfTime(targetDate: string, loungeCode: number, schedules: Schedule[]) {
+export function availableHalfTime(targetDate: string, loungeCode: number, purchaseRequest: PurchaseRequest[]) {
     // 인자로 받은 스케쥴에서 예약하고자 하는 날짜에 해당하는 일정만 받아옴
-    let occupiedTimeArray = schedules.filter(schedule =>
+    let occupiedTimeArray = purchaseRequest.filter(schedule =>
         (schedule.date.slice(0, 10) === targetDate) && (schedule.lounge === loungeCode))
 
     //그 일정에서 시간만 뽑아냄

@@ -12,40 +12,22 @@ import { createApolloClient } from "../../lib/apolloClient"
 import { useMutation } from "@apollo/client"
 import redirect from "../../lib/redirect"
 
-interface PurchaseRequest {
-    id: string
-    date: string
-    loungeCode: number
-}
-
 const fromToday = getDayDate(7, 1)
 const now = new Date(Date.now());
 
 const MyPageIndex = (props: {
     user: any
-    userRequests: PurchaseRequest[]
+    purchaseRequestList: PurchaseRequest[]
 }) => {
     // 유저 정보
-    const [user, setUser] = useState(props.user)
-    const [size, setSize] = useState(props.userRequests.length)
-    const [userRequest, setUserRequest] = useState(props.userRequests[size - 1])
-
-    // const user = {
-    //     name: "jtest"
-    // }
-    // const size = 1
-    // const userRequest = {
-    //     date: "2021-01-30",
-    //     loungeCode: 1
-    // }
+    const size = props.user.requests.length
+    const [userRequest, setUserRequest] = useState(props.user.requests[size - 1])
 
     // 예약 변경용
     const router = useRouter()
     const [loungeCode, setLoungeCode] = useState<number>(0)
     const [requestDate, setRequestDate] = useState<string>(moment().add(15, 'hours').format().slice(0, 10))
     const [requestTime, setRequestTime] = useState<string>('')
-
-    const [cancelSuccess, setCancelSuccess] = useState<boolean>(false)
 
     const [modal1, setModal1] = useState<boolean>(false)
     const [modal2, setModal2] = useState<boolean>(false)
@@ -64,7 +46,7 @@ const MyPageIndex = (props: {
             }
         },
         onError(error) {
-            console.error(error.message)
+            console.error("error: " + error.message)
             if (error.message === "Duplicated") {
                 alert('죄송합니다. 이미 예약된 시간입니다.')
             } else {
@@ -75,7 +57,7 @@ const MyPageIndex = (props: {
     });
     const [cancelPurchaseRequest, { loading: cancelLoading }] = useMutation(CANCEL_PURCHASE_REQUEST, {
         variables: { requestId: userRequest.id },
-        onCompleted(data: any) {
+        onCompleted() {
             alert('예약 취소에 성공하였습니다!\n'
                 + '좋은 기회로 다시 뵙기를 기원할게요!')
             router.push('/')
@@ -120,8 +102,8 @@ const MyPageIndex = (props: {
             setModal2(true)
         }
     }
-    const availableYeuksamTimes = availableTime(requestDate, 1, props.userRequests)
-    const availableGangNumTimes = availableTime(requestDate, 2, props.userRequests)
+    const availableYeuksamTimes = availableTime(requestDate, 1, props.purchaseRequestList)
+    const availableGangNumTimes = availableTime(requestDate, 2, props.purchaseRequestList)
     return (
         <Layout>
 
@@ -145,7 +127,6 @@ const MyPageIndex = (props: {
                         </div>
 
                     </div>
-
 
                     ) : (
                         <div>
@@ -263,37 +244,37 @@ const MyPageIndex = (props: {
             </Modal>
 
             {/* 예약 취소 모달 */}
-            <Modal 
+            <Modal
                 className="mypage-modal-outer"
                 visible={modal2}
                 onCancel={() => setModal2(false)}>
-                    <div className="mypage-modal">
-                        <div className="modalWrap">
-                            <div className="q-wrap">
-                                <div className="q-wrap__question-main">취소사유를 선택해주세요.</div>
-                                <div className="q-wrap__question-sub">더 좋은 서비스를 준비하도록 도와주세요.</div>
-                            </div>
-                            <div className="whyCancel" style={{padding:'0 20px'}}>
-                                <input className="q-wrap__input-radio" name="whyCancel" type="radio" id="q1_1_c" />
-                                <label className="q-wrap__label-radio-100" htmlFor="q1_1_c">급한 약속이 생겼어요.</label>
-                                <input className="q-wrap__input-radio" name="whyCancel" type="radio" id="q1_2_c" />
-                                <label className="q-wrap__label-radio-100" htmlFor="q1_2_c">라운지 위치가 방문하기 멀어요.</label>
-
-                                <div className="q-wrap__textarea-wrap" style={{padding:'0 0'}}>
-                                    <p className="q-wrap__textarea-caption">* 자세히 들려주기</p>
-                                    <textarea
-                                        className="q-wrap__textarea"
-                                        placeholder="예시) 원하는 안경 브랜드가 없어요."
-                                    ></textarea>
-                                </div>
-                            </div>
-
-                            {(!cancelLoading ?
-                                (<button className="q-wrap__btn q-wrap__btn-next tn-0026" type='submit' style={{background:"#333"}}
-                                    onClick={() => handleClickCancel()}><span>일정취소하기</span></button>) :
-                                (<Spin size="large" tip="잠시만 기다려주세요.." />))}
+                <div className="mypage-modal">
+                    <div className="modalWrap">
+                        <div className="q-wrap">
+                            <div className="q-wrap__question-main">취소사유를 선택해주세요.</div>
+                            <div className="q-wrap__question-sub">더 좋은 서비스를 준비하도록 도와주세요.</div>
                         </div>
+                        <div className="whyCancel" style={{ padding: '0 20px' }}>
+                            <input className="q-wrap__input-radio" name="whyCancel" type="radio" id="q1_1_c" />
+                            <label className="q-wrap__label-radio-100" htmlFor="q1_1_c">급한 약속이 생겼어요.</label>
+                            <input className="q-wrap__input-radio" name="whyCancel" type="radio" id="q1_2_c" />
+                            <label className="q-wrap__label-radio-100" htmlFor="q1_2_c">라운지 위치가 방문하기 멀어요.</label>
+
+                            <div className="q-wrap__textarea-wrap" style={{ padding: '0 0' }}>
+                                <p className="q-wrap__textarea-caption">* 자세히 들려주기</p>
+                                <textarea
+                                    className="q-wrap__textarea"
+                                    placeholder="예시) 원하는 안경 브랜드가 없어요."
+                                ></textarea>
+                            </div>
+                        </div>
+
+                        {(!cancelLoading ?
+                            (<button className="q-wrap__btn q-wrap__btn-next tn-0026" type='submit' style={{ background: "#333" }}
+                                onClick={() => handleClickCancel()}><span>일정취소하기</span></button>) :
+                            (<Spin size="large" tip="잠시만 기다려주세요.." />))}
                     </div>
+                </div>
             </Modal>
         </Layout >
     )
@@ -309,13 +290,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{ r
             return { user: null };
         });
 
+    let destination = '/'
+    let goRedirect = false
     if (!user) {
-        redirect(context, '/')
+        goRedirect = true
+        destination = '/mypage/inquiry'
     } else if (user.requests.length === 0) {
-        redirect(context, '/')
+        goRedirect = true
+        destination = '/'
     }
-
-    const userRequests = user.requests
+    if (goRedirect) {
+        redirect(context, destination)
+    }
 
     const { purchaseRequestList } = await client.query({ query: GET_PURCHASE_REQUEST_LIST })
         .then(({ data }) => {
@@ -331,7 +317,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{ r
             // this hydrates the clientside Apollo cache in the `withApollo` HOC
             apolloStaticCache: client.cache.extract(),
             user,
-            userRequests,
             purchaseRequestList
         },
     }

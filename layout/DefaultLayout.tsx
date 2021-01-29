@@ -14,11 +14,13 @@ const addChannel = () => {
 const Layout = ({
   children,
   title = '플로브 - 나의 눈을 위한 안경 큐레이션 서비스',
-  name
+  name,
+  requests
 }: {
   children?: ReactNode
   title?: string
   name?: string
+  requests?: PurchaseRequest[]
 }) => (
   <div>
     <Head>
@@ -31,7 +33,7 @@ const Layout = ({
       <meta property="og:url" content="https://floev.com" />
       <meta property="og:image" content="https://floev.com/static/img/newLanding/og.jpg" />
     </Head>
-    <Header name={name} isBack={true}></Header>
+    <Header name={name} isBack={true} requests={requests}></Header>
     {children}
     <footer>
       <div className="global1280">

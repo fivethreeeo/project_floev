@@ -41,9 +41,9 @@ const Inquiry = (
         onError(error) {
             console.error(error.message)
             if (error.message === "No User in signInWithPhoneNumber") {
-                // setIsError(true)
-                // setAuthNumber('')
-                // setIsActive(false)
+                setIsError(true)
+                setAuthNumber('')
+                setIsActive(false)
             } else if (error.message === "Not valid authnumber in signInWithPhoneNumber") {
                 alert('인증번호가 유효하지 않습니다. 다시 시도해주세요.')
             }
@@ -151,9 +151,7 @@ const Inquiry = (
                                             <div className="txtWarning">인증번호가 일치하지 않습니다. 다시 확인해주세요.</div>}
                             </div>)
                         } {isError && (<div className="txtWarning">인증번호가 일치하지 않습니다. 다시 확인해주세요.</div>)}
-
                     </div>
-
 
                     <div className="q-wrap__btn-wrap">
                         {authNumber.length !== 4 || !isActive ?
@@ -171,7 +169,7 @@ const Inquiry = (
     )
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => { //{ req }: { req: any }
+export const getServerSideProps: GetServerSideProps = async (context) => {
     const client = createApolloClient(context)
     const { user } = await client.query({ query: CHECKUP_USER })
         .then(({ data }) => {

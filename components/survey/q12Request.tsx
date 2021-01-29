@@ -10,7 +10,7 @@ export default function Q12Request(props: {
     answersUpdate: (answersParam: Answers) => void
     currentStep: number
     max: number
-    schedule: Schedule[]
+    purchaseRequest: PurchaseRequest[]
     onPrev: () => void
     onNext: () => void
 }) {
@@ -52,8 +52,8 @@ export default function Q12Request(props: {
         localStorage.setItem('floev[loungeCode]', String(newLoungeCode))
     }
 
-    const availableYeuksamTimes = availableTime(requestDate, 1, props.schedule)
-    const availableGangNumTimes = availableTime(requestDate, 2, props.schedule)
+    const availableYeuksamTimes = availableTime(requestDate, 1, props.purchaseRequest)
+    const availableGangNumTimes = availableTime(requestDate, 2, props.purchaseRequest)
 
     return (<>
         <div className="q-wrap q12">

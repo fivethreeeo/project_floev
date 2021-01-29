@@ -10,7 +10,7 @@ export default function Q5HasWorn(props: {
     answersUpdate: (answersParam: Answers) => void
     currentStep: number
     max: number
-    schedule: Schedule[]
+    purchaseRequest: PurchaseRequest[]
     onPrev: () => void
     onNext: () => void
 }) {

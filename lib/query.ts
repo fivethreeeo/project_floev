@@ -20,6 +20,8 @@ export const CHECKUP_USER = gql`
                 id
                 date
                 loungeCode
+                type
+                status
             }
         }
     }
