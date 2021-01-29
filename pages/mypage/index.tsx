@@ -16,7 +16,7 @@ const fromToday = getDayDate(7, 1)
 const now = new Date(Date.now());
 
 const MyPageIndex = (props: {
-    user: any
+    user: User
     purchaseRequestList: PurchaseRequest[]
 }) => {
     // 유저 정보
@@ -59,7 +59,7 @@ const MyPageIndex = (props: {
         variables: { requestId: userRequest.id },
         onCompleted() {
             alert('예약 취소에 성공하였습니다!\n'
-                + '좋은 기회로 다시 뵙기를 기원할게요!')
+                + '꼭 다시 뵙기를 기원할게요!')
             router.push('/')
         },
         onError(error) {
@@ -105,12 +105,12 @@ const MyPageIndex = (props: {
     const availableYeuksamTimes = availableTime(requestDate, 1, props.purchaseRequestList)
     const availableGangNumTimes = availableTime(requestDate, 2, props.purchaseRequestList)
     return (
-        <Layout>
+        <Layout name={props.user ? props.user.name : undefined} requests={props.user ? props.user.requests : undefined}>
 
             <div className="mypage">
 
                 {size !== 0 &&
-                    (userRequest.date.slice(0, 16) > moment().format().slice(0, 16)) ?
+                    ((userRequest.date.slice(0, 16) > moment().format().slice(0, 16)) && userRequest.status !== 'cancel') ?
                     (<div className="contentWrap">
                         <p className="qDesc3"><strong>{props.user.name}님</strong></p>
                         <p className="qDesc4">{props.user.phoneNumber}</p>
@@ -135,7 +135,7 @@ const MyPageIndex = (props: {
                                 <p className="qDesc4">{props.user.phoneNumber}</p>
 
                                 {/* 1. 예약내역 없음 */}
-                                {size === 0 ? (
+                                {size === 0 || userRequest.status === 'cancel' ? (
                                     <div className="status-card">
                                         <div className="inner-content">
                                             <p className="booking-info">설문예약을 통해 플로브에서<br />고객님께 딱 알맞는 안경을 찾아보세요!</p>

@@ -27,12 +27,18 @@ export function getMDW(date: string) {
     //return date.slice(5,7)+'월 '+date.slice(8,10)+'일 '+ week[moment(date.slice(0,10)).day()]
     // 2020.5.11 상범 임시 수정, 05월 -> 5월 로 보이게 임시 수정
     let month: string = ''
+    let day: string = ''
     if (date.charAt(5) === '0') {
         month = date.slice(6, 7) + '월 '
     } else {
         month = date.slice(5, 7) + '월 '
     }
-    return month + date.slice(8, 10) + '일 ' + week[moment(date.slice(0, 10)).day()]
+    if (date.charAt(8) === '0') {
+        day = date.slice(9, 10) + '일 '
+    } else {
+        day = date.slice(8, 10) + '일 '
+    }
+    return month + day + week[moment(date.slice(0, 10)).day()]
 }
 
 export function get12hours(time: string) {
