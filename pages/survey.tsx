@@ -24,7 +24,7 @@ declare global {
         date: string
         loungeCode: number
         type: number
-        status: string
+        status?: string
     }
     interface PurchaseRequest extends FloevRequest { }
     interface PickupRequest extends FloevRequest { }

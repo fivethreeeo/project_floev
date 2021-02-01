@@ -1,37 +1,34 @@
 import { useRouter } from "next/router";
-import moment from 'moment'
 
 export default function Header({
 	name,
-	isBack = true,
-	requests
+	isBack = true
 }: {
 	name?: string
 	isBack?: boolean
-	requests?: PurchaseRequest[]
 }) {
 	const router = useRouter()
 	const logout = () => {
 		document.cookie = 'token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 	}
 
-	const checkRequest = () => {
-		if (requests === undefined || requests.length === 0) {
-			alert('조회된 예약내역이 없어요!')
-		} else {
-			let afterToday: PurchaseRequest[] = []
-			requests.map((item) => {
-				if (item.date.slice(0, 10) >= moment().format().slice(0, 16) && item.type === 0) {
-					afterToday.push(item)
-				}
-			})
-			if (afterToday.length === 0) {
-				alert('플로브를 다시 찾아와주셨군요! 환영합니다!😃\n고객님의 조회된 예약내역이 없어요, 새로운 설문을 해주시면 서비스 예약을 도와드릴게요!🥳')
-			} else {
-				router.push('/mypage')
-			}
-		}
-	}
+	// const checkRequest = () => {
+	// 	if (requests === undefined || requests.length === 0) {
+	// 		alert('조회된 예약내역이 없어요!')
+	// 	} else {
+	// 		let afterToday: PurchaseRequest[] = []
+	// 		requests.map((item) => {
+	// 			if (item.date.slice(0, 10) >= moment().format().slice(0, 16) && item.type === 0) {
+	// 				afterToday.push(item)
+	// 			}
+	// 		})
+	// 		if (afterToday.length === 0) {
+	// 			alert('플로브를 다시 찾아와주셨군요! 환영합니다!😃\n고객님의 조회된 예약내역이 없어요, 새로운 설문을 해주시면 서비스 예약을 도와드릴게요!🥳')
+	// 		} else {
+	// 			router.push('/mypage')
+	// 		}
+	// 	}
+	// }
 	return (
 		<>
 			<header className="header">
@@ -49,14 +46,10 @@ export default function Header({
 						<span><a href="/service-policy">서비스 정책 안내</a></span>
 					</nav>
 					<nav className="header__nav--sub">
+						<span className="link-text link-text--mypage" onClick={() => router.push('/mypage')}><a>예약조회</a></span>
 						{!name ? (
-							<>
-								<span className="link-text link-text--mypage" onClick={() => router.push('/mypage/inquiry')}><a>예약조회</a></span>
-								<span className="link-text"><a href="/login">로그인/회원가입</a></span>
-							</>) : <>
-								<span className="link-text link-text--mypage" onClick={() => checkRequest()}><a>예약조회</a></span>
-								<span className="link-text" onClick={() => logout()}><a href="/">로그아웃</a></span>
-							</>}
+							<span className="link-text"><a href="/login">로그인/회원가입</a></span>) :
+							<span className="link-text" onClick={() => logout()}><a href="/">로그아웃</a></span>}
 						<span className="hr">|</span>
 						<span className="link-ico"><a href="https://www.instagram.com/floev_official/" target="_blank"></a></span>
 					</nav>
