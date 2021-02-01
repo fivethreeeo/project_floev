@@ -19,7 +19,7 @@ const CompletePage = (props: {
                 kakaoPixel('784604748053330030').purchase('reservationcomp');
           </script>
         </Head>
-        <Layout>
+        <Layout name={props.user ? props.user.name : undefined} requests={props.user ? props.user.requests : undefined}>
             <div className="complete">
                 <div className="request">
                     <div className="request__msg">설문이 완료되었어요.</div>

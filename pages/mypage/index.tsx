@@ -108,7 +108,6 @@ const MyPageIndex = (props: {
         <Layout name={props.user ? props.user.name : undefined} requests={props.user ? props.user.requests : undefined}>
 
             <div className="mypage">
-
                 {size !== 0 &&
                     ((userRequest.date.slice(0, 16) > moment().format().slice(0, 16)) && userRequest.status !== 'cancel') ?
                     (<div className="contentWrap">
@@ -301,6 +300,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{ r
     }
     if (goRedirect) {
         redirect(context, destination)
+        return { props: {} }
     }
 
     const { purchaseRequestList } = await client.query({ query: GET_PURCHASE_REQUEST_LIST })

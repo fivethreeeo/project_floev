@@ -12,11 +12,7 @@ import { useMutation } from "@apollo/client"
 import { Spin } from "antd"
 // import { NormalizedCache } from "@apollo/client"
 
-const Inquiry = (
-    // props: {
-    //  apolloStaticCache: NormalizedCache
-    //  user: any}
-) => {
+const Inquiry = () => {
     const router = useRouter();
     const [phoneNumber, setPhoneNumber] = useState<string>('')
     const [isPhoneNumber, setIsPhoneNumber] = useState<boolean>(false)
@@ -35,15 +31,15 @@ const Inquiry = (
                     maxAge: 12 * 60 * 60
                 })
                 router.replace('/mypage')
-                // props.apolloStaticCache.cache.reset().then(() => { redirect({}, '/mypage') })
             }
         },
         onError(error) {
             console.error(error.message)
+            setIsError(true)
+            setAuthNumber('')
+            setIsActive(false)
             if (error.message === "No User in signInWithPhoneNumber") {
-                setIsError(true)
-                setAuthNumber('')
-                setIsActive(false)
+                alert('등록되지 않은 사용자에요! 설문 진행을 통해 서비스를 예약해주세요!')
             } else if (error.message === "Not valid authnumber in signInWithPhoneNumber") {
                 alert('인증번호가 유효하지 않습니다. 다시 시도해주세요.')
             }
@@ -102,6 +98,7 @@ const Inquiry = (
 
     const setTimerOff = () => {
         setIsActive(false);
+        setIsAuthenticated(true)
         setLeftSecond(181);
     }
 
@@ -155,10 +152,10 @@ const Inquiry = (
 
                     <div className="q-wrap__btn-wrap">
                         {authNumber.length !== 4 || !isActive ?
-                            (<button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled"><span>인증하고 예약 조회하기</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>) :
+                            (<button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled"><span>인증하고 예약 조회하기</span></button>) :
                             (!loading ?
                                 (<button className="q-wrap__btn q-wrap__btn-next tn-0026" type='submit'
-                                    onClick={() => signInWithPhoneNumber()}><span>인증하고 예약조회하기</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>) :
+                                    onClick={() => signInWithPhoneNumber()}><span>인증하고 예약조회하기</span></button>) :
                                 (<Spin size="large" tip="잠시만 기다려주세요.." />))
                         }
                     </div>

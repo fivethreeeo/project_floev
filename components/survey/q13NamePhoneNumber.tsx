@@ -148,6 +148,7 @@ export default function Q12NamePhoneNumber(props: {
 
     const setTimerOff = () => {
         setIsActive(false);
+        setIsAuthenticated(true)
         setLeftSecond(181);
     }
 
