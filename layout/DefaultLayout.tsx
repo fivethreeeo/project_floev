@@ -15,7 +15,6 @@ const Layout = ({
   children,
   title = '플로브 - 나의 눈을 위한 안경 큐레이션 서비스',
   name,
-  requests
 }: {
   children?: ReactNode
   title?: string
