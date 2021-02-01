@@ -52,7 +52,6 @@
             margin-bottom: 16px;
             font-size: 14px;
             color: $fv-gray-6;
-    
         }
         &__btn {
             position:fixed;
@@ -258,6 +257,9 @@
 }
 
 .mypage-inquiry {
+
+
+
     &::before {
 		@extend %clearfix;
 		height:56px;
@@ -270,6 +272,24 @@
     max-width:480px;
     margin:0 auto;
     .q13 {
+        .q-wrap__btn-next--disabled {
+            color:$fv-white;
+            background:$fv-gray-4;
+        }
+        .q-wrap__question-main {
+            @extend %padding-m;
+            margin-top:24px;
+            margin-bottom: 4px;
+            font-size: 20px;
+            font-weight: 700;
+            word-break: keep-all;
+        }
+        .q-wrap__question-sub {
+            @extend %padding-m;
+            margin-bottom: 16px;
+            font-size: 14px;
+            color: $fv-gray-6;
+        }
         .q-wrap__btn-wrap {
             padding: 0 20px;
         }
@@ -277,10 +297,12 @@
             position: static;
             bottom:auto;
             width: 100%!important;
-            border-radius: 8px;
+            border-radius: 4px;
             font-size:16px;
             height:40px;
             margin-top:8px;
+            background: $fv-sienna;
+            color:$fv-white;
         }
         .q-wrap__answer-wrap {
             padding: 0 20px;
