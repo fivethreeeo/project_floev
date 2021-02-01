@@ -154,7 +154,7 @@ const IndexPage = (props: {
 					__html: `kakaoPixel('784604748053330030').pageView('arrivehome');`
 				}}></script>
 			</Head>
-			<Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" name={props.user ? props.user.name : undefined} requests={props.user ? props.user.requests : undefined}>
+			<Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" name={props.user ? props.user.name : undefined}>
 				<Modal
 					className="modal-heg"
 					centered

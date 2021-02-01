@@ -21,7 +21,13 @@ const MyPageIndex = (props: {
 }) => {
     // 유저 정보
     const size = props.user.requests.length
-    const [userRequest, setUserRequest] = useState(props.user.requests[size - 1])
+    const tempPR: PurchaseRequest = {
+        id: '',
+        date: '',
+        loungeCode: 0,
+        type: 0
+    }
+    const [userRequest, setUserRequest] = useState<PurchaseRequest>(size !== 0 ? props.user.requests[size - 1] : tempPR)
 
     // 예약 변경용
     const router = useRouter()
@@ -105,57 +111,63 @@ const MyPageIndex = (props: {
     const availableYeuksamTimes = availableTime(requestDate, 1, props.purchaseRequestList)
     const availableGangNumTimes = availableTime(requestDate, 2, props.purchaseRequestList)
     return (
-        <Layout name={props.user ? props.user.name : undefined} requests={props.user ? props.user.requests : undefined}>
-
+        <Layout name={props.user ? props.user.name : undefined}>
             <div className="mypage">
-                {size !== 0 &&
-                    ((userRequest.date.slice(0, 16) > moment().format().slice(0, 16)) && userRequest.status !== 'cancel') ?
-                    (<div className="contentWrap">
+                {size !== 0 ? // 예약 내역이 있는 경우
+                    ((userRequest.date.slice(0, 16) > moment().format().slice(0, 16)) && userRequest.status !== 'cancel') ? // 오늘 이후 취소되지 않은 예약이 있을 경우
+                        (<div className="contentWrap">
+                            <p className="qDesc3"><strong>{props.user.name}님</strong></p>
+                            <p className="qDesc4">{props.user.phoneNumber}</p>
+
+                            <div className="status-card">
+                                <div className="inner-content">
+                                    <a className="mapLink" href={loungeCode === 1 ? "http://naver.me/xH2We7TP" : "http://naver.me/xfa1CFMZ"} target="_blank"><span>라운지 위치보기 &#xE001;</span></a>
+                                    <p className="booking-info">고객님의 방문일정은 <strong>라운지 {loungeCode === 1 ? "역삼성당" : "강남"}</strong><br /><strong>{getMDW(userRequest.date)} {getHour(userRequest.date)}</strong> 입니다.</p>
+                                </div>
+                                <div className="inner-btn-wrap">
+                                    <button className="btn-cancel" onClick={(e) => showModal(e, 'modal2')}>예약취소하기</button>
+                                    <button className="btn-change" onClick={(e) => showModal(e, 'modal1')}>일정변경하기</button>
+                                </div>
+                            </div>
+                        </div>) :
+                        // 이전 예약이 있지만 취소상태이거나 그 예약이 이전 예약인 경우
+                        (<div className="contentWrap noBooking">
+                            <p className="qDesc3"><strong>{props.user.name}님</strong></p>
+                            <p className="qDesc4">{props.user.phoneNumber}</p>
+                            {userRequest.status === 'cancel' ? // 취소 상태의 예약인 경우 : 예약이 하나도 없다는 걸 가정(오류 있음)
+                                (<div className="status-card">
+                                    <div className="inner-content">
+                                        <p className="booking-info">설문예약을 통해 플로브에서<br />고객님께 딱 알맞는 안경을 찾아보세요!</p>
+                                    </div>
+                                    <div className="inner-btn-wrap">
+                                        <a href="/survey" className="btn-start">플로브 시작하기</a>
+                                    </div>
+                                </div>) : // 취소가 아닌 경우 : 이전 방문한 적이 있는 경우
+                                (<div className="status-card">
+                                    <div className="inner-content">
+                                        <p className="booking-info" >고객님의 이전 예약내역은 <strong style={{ color: '#64433F' }}>라운지 {userRequest.loungeCode === 1 ? "역삼성당" : "강남"}</strong><br /><strong style={{ color: '#64433F' }}>{getMDW(userRequest.date)} {getHour(userRequest.date)}</strong> 입니다.</p>
+                                    </div>
+                                    <div className="inner-btn-wrap">
+                                        <a href="/survey" className="btn-start">다시 예약하기</a>
+                                    </div>
+                                </div>)
+                            }
+                        </div>
+                        ) :
+                    // 예약 내역이 하나도 없는 경우
+                    (<div className="contentWrap noBooking">
                         <p className="qDesc3"><strong>{props.user.name}님</strong></p>
                         <p className="qDesc4">{props.user.phoneNumber}</p>
-
                         <div className="status-card">
                             <div className="inner-content">
-                                <a className="mapLink" href={loungeCode === 1 ? "http://naver.me/xH2We7TP" : "http://naver.me/xfa1CFMZ"} target="_blank"><span>라운지 위치보기 &#xE001;</span></a>
-                                <p className="booking-info">고객님의 방문일정은 <strong>라운지 {loungeCode === 1 ? "역삼성당" : "강남"}</strong><br /><strong>{getMDW(userRequest.date)} {getHour(userRequest.date)}</strong> 입니다.</p>
+                                <p className="booking-info">설문예약을 통해 플로브에서<br />고객님께 딱 알맞는 안경을 찾아보세요!</p>
                             </div>
                             <div className="inner-btn-wrap">
-                                <button className="btn-cancel" onClick={(e) => showModal(e, 'modal2')}>예약취소하기</button>
-                                <button className="btn-change" onClick={(e) => showModal(e, 'modal1')}>일정변경하기</button>
+                                <a href="/survey" className="btn-start">플로브 시작하기</a>
                             </div>
                         </div>
-
-                    </div>
-
-                    ) : (
-                        <div>
-                            <div className="contentWrap noBooking">
-                                <p className="qDesc3"><strong>{props.user.name}님</strong></p>
-                                <p className="qDesc4">{props.user.phoneNumber}</p>
-
-                                {/* 1. 예약내역 없음 */}
-                                {size === 0 || userRequest.status === 'cancel' ? (
-                                    <div className="status-card">
-                                        <div className="inner-content">
-                                            <p className="booking-info">설문예약을 통해 플로브에서<br />고객님께 딱 알맞는 안경을 찾아보세요!</p>
-                                        </div>
-                                        <div className="inner-btn-wrap">
-                                            <a href="/survey" className="btn-start">플로브 시작하기</a>
-                                        </div>
-                                    </div>
-                                ) : (
-                                        <div className="status-card">
-                                            <div className="inner-content">
-                                                <p className="booking-info" >고객님의 이전 예약내역은 <strong style={{ color: '#64433F' }}>라운지 {userRequest.loungeCode === 1 ? "역삼성당" : "강남"}</strong><br /><strong style={{ color: '#64433F' }}>{getMDW(userRequest.date)} {getHour(userRequest.date)}</strong> 입니다.</p>
-                                            </div>
-                                            <div className="inner-btn-wrap">
-                                                <a href="/survey" className="btn-start">다시 예약하기</a>
-                                            </div>
-                                        </div>
-                                    )}
-                            </div>
-                        </div>
-                    )}
+                    </div>)
+                }
 
             </div>
             {/* 예약 변경 모달 */}
@@ -278,28 +290,19 @@ const MyPageIndex = (props: {
         </Layout >
     )
 }
-export const getServerSideProps: GetServerSideProps = async (context) => { //{ req }: { req: any }
+export const getServerSideProps: GetServerSideProps = async (context) => { //{req}: { req: any }
     const client = createApolloClient(context)
 
     // 유저 로그인을 해서 유저가 없으면
-    const { user } = await client.query({ query: CHECKUP_USER }) //const { user } = 
+    const { user } = await client.query({ query: CHECKUP_USER }) //const {user} =
         .then(({ data }) => {
             return { user: data.checkUpUser };
         }).catch(() => {
             return { user: null };
         });
 
-    let destination = '/'
-    let goRedirect = false
     if (!user) {
-        goRedirect = true
-        destination = '/mypage/inquiry'
-    } else if (user.requests.length === 0) {
-        goRedirect = true
-        destination = '/'
-    }
-    if (goRedirect) {
-        redirect(context, destination)
+        redirect(context, '/mypage/inquiry')
         return { props: {} }
     }
 
