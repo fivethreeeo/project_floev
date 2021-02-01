@@ -33,7 +33,7 @@ const Layout = ({
       <meta property="og:url" content="https://floev.com" />
       <meta property="og:image" content="https://floev.com/static/img/newLanding/og.jpg" />
     </Head>
-    <Header name={name} isBack={true} requests={requests}></Header>
+    <Header name={name} isBack={true}></Header>
     {children}
     <footer>
       <div className="global1280">
