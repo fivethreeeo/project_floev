@@ -271,31 +271,31 @@ const IndexPage = (props: {
 
 					<div className="score">
 						<div className="score__inner">
-							<div className="score__date">(2020/12/31 기준)</div>
-							<div className="score__title">플로브에서 <span className="num">1,644명</span>이 <span className="br"></span><span>안경 추천상담</span>을 받았어요.</div>
+							<div className="score__date">(2021/1/31 기준)</div>
+							<div className="score__title">플로브에서 <span className="num">1,775명</span>이 <span className="br"></span><span>안경 추천상담</span>을 받았어요.</div>
 							<div className="score__board">
 								<div className="score__each">
-									<div className="score__glasses"><span className="num">26,304</span><span className="type">장</span></div>
+									<div className="score__glasses"><span className="num">28,400</span><span className="type">장</span></div>
 									<div className="score__name">추천된 안경</div>
 								</div>
 								<div className="line"></div>
 								<div className="score__each">
-									<div className="score__time"><span className="num">82,200</span><span className="type">분</span></div>
+									<div className="score__time"><span className="num">106,500</span><span className="type">분</span></div>
 									<div className="score__name">추천상담 시간</div>
 								</div>
 								<div className="line"></div>
 								<div className="score__each">
-									<div className="score__per"><span className="num">87</span><span className="type">%</span></div>
+									<div className="score__per"><span className="num">91.8</span><span className="type">%</span></div>
 									<div className="score__name">서비스 만족도</div>
 								</div>
 							</div>
 							<div className="score__desc">
 								<div className="left">
-									<div>추천상담 만족도 평균 <span>8.9 / 10점</span></div>
-									<div>시력상담 만족도 평균 <span>8.9 / 10점</span></div>
+									<div>추천상담 만족도 평균 <span>9.1 / 10점</span></div>
+									<div>시력상담 만족도 평균 <span>9.0 / 10점</span></div>
 								</div>
 								<div className="right">
-									<div>서비스 추천지수 평균 <span>8.3 / 10점</span></div>
+									<div>서비스 추천지수 평균 <span>8.4 / 10점</span></div>
 									<div>네이버/카카오맵 별점 평균 <span>4.9 / 5점</span></div>
 								</div>
 							</div>
