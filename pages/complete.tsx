@@ -70,15 +70,15 @@ const CHECKUP_USER = gql`
 
 export const getServerSideProps: GetServerSideProps = async (context) => { //{ req }: { req: any }
     const client = createApolloClient(context)
-    const user: User = await client.query({ query: CHECKUP_USER })
+    const { user } = await client.query({ query: CHECKUP_USER })
         .then(({ data }) => {
-            return data.checkUpUser;
+            return { user: data.checkUpUser };
         })
         .catch(() => {
             return { user: null };
         });
     if (user) {
-        const data = await axios.post("https://graph.facebook.com/v9.0/2371955746349798/events?access_token=EAAHcnHVaQ5ABAIPBnix9Y05zaLn4hZAt9mVCa2ZALzJ7BPPg27mO0KHtopUBZC4jYVsJWqQ9flFh3MWp0STyUwHxrY94FmHN0TyczBEQ39VRh2BDinQTv50eFgDqwmSQsjUSI2uOo0Nfp63wmf7RTyi7xdJNAdnEgycRZClyrUBeNsZAySEThqu0nreNBabUZD", {
+        await axios.post("https://graph.facebook.com/v9.0/2371955746349798/events?access_token=EAAHcnHVaQ5ABAIPBnix9Y05zaLn4hZAt9mVCa2ZALzJ7BPPg27mO0KHtopUBZC4jYVsJWqQ9flFh3MWp0STyUwHxrY94FmHN0TyczBEQ39VRh2BDinQTv50eFgDqwmSQsjUSI2uOo0Nfp63wmf7RTyi7xdJNAdnEgycRZClyrUBeNsZAySEThqu0nreNBabUZD", {
             "data": [{
                 "event_name": "Schedule",
                 "event_time": moment().unix(),
@@ -92,8 +92,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{ r
         }).catch((errer: any) => {
             console.error(errer.message)
         })
-
-        console.log(JSON.stringify(data))
     }
     return {
         props: {
@@ -103,16 +101,5 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{ r
         },
     }
 }
-
-// {
-//     "data": [{
-//         "event_name": "Schedule",
-//         "event_time": moment().unix(),
-//         "user_data": {
-//             "fn": SHA256(user.name),
-//             "pn": SHA256(user.phoneNumber)
-//         }
-//     }],
-// }
 
 export default CompletePage
