@@ -6,7 +6,7 @@ import { createApolloClient } from '../lib/apolloClient'
 import { gql } from '@apollo/client'
 import { getMDW, getHour } from '../utils/timeFormat'
 import axios from "axios";
-import { SHA256 } from '../utils/crypto'
+import { SHA256 } from '../utils/SHA256'
 import moment from "moment";
 
 const CompletePage = (props: {
