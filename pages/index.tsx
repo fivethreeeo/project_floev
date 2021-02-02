@@ -285,7 +285,7 @@ const IndexPage = (props: {
 								</div>
 								<div className="line"></div>
 								<div className="score__each">
-									<div className="score__per"><span className="num">91.8</span><span className="type">%</span></div>
+									<div className="score__per"><span className="num">90.8</span><span className="type">%</span></div>
 									<div className="score__name">서비스 만족도</div>
 								</div>
 							</div>

@@ -27,7 +27,7 @@ const EventPage = () => {
             <div className="h3"><strong><span className="color__yellow">카카오맵, 네이버맵 리뷰 등록</span></strong>을 약속하면<br/><strong><span className="color__yellow">최대 3만원 할인 혜택</span></strong>을 드려요.</div>
             <div className="title2">이벤트 안내</div>
             <div className="h5">카카오맵(1만원), 네이버맵(2만원)<br/>리뷰 등록을 약속하면<br/>최대 3만원 할인 혜택을 드려요.<br/>참여 방법은 라운지에서 자세히 확인하세요.</div>
-            <div className="h6">*할인은 결제액의 30%까지 적용가능합니다.<br/>*네이버맵/카카오맵 동시 참여 가능합니다.<br/>*1인 1회에 한해 참여 가능합니다.<br/>*해당 이벤트는 사전 고지 없이 종료될 수 있습니다.<br/>*이벤트 1과 2는 중복 참여 가능합니다.</div>
+            <div className="h6">*할인은 결제액의 30%까지 적용가능합니다.<br/>*네이버맵/카카오맵 동시 참여 가능합니다.<br/>*1인 1회에 한해 참여 가능합니다.<br/>*해당 이벤트는 사전 고지 없이 종료될 수 있습니다.</div>
           </div>
           <style jsx>{`
                     .wrap {padding-bottom:80px;margin-top:48px;background:#64433F}
