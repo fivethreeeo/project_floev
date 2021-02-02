@@ -672,7 +672,7 @@ const IndexPage = (props: {
 
 					<div className="bottom-cta">
 						<div className="bottom-cta__inner">
-							<button className="gtm-001 btn-cta tn-0004"><Link href="https://service.floev.com/survey"><span>시작하기</span></Link></button>
+							<button className="gtm-001 btn-cta tn-0004" onClick={() => didYouVisit()}><span>시작하기</span></button>
 						</div>
 					</div>
 
