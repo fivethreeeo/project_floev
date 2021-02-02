@@ -78,7 +78,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{ r
             return { user: null };
         });
     if (user) {
-        await axios.post("https://graph.facebook.com/v9.0/2371955746349798/events?access_token=EAAHcnHVaQ5ABAIPBnix9Y05zaLn4hZAt9mVCa2ZALzJ7BPPg27mO0KHtopUBZC4jYVsJWqQ9flFh3MWp0STyUwHxrY94FmHN0TyczBEQ39VRh2BDinQTv50eFgDqwmSQsjUSI2uOo0Nfp63wmf7RTyi7xdJNAdnEgycRZClyrUBeNsZAySEThqu0nreNBabUZD", {
+        await axios.post("https://graph.facebook.com/v9.0/2371955746349798/events?access_token=EAAHcnHVaQ5ABANKlraZASxfv68vhBn2AqJPli0LGM4dmo0Eh7zfgDEMOqRigiHZCQZAWppwKuwlKi4X7Ofz9VwDlZCFeVLZAIRFEGAn4OnIFesaJ1sJVGx1KwspLl5g2rjA6ZCbZBdJ9WZC5Ara2I1PfOg7vEdEVD0XbBke9e3GxIntjTXbMl11gvRvYwRprIA4ZD", {
             "data": [{
                 "event_name": "Schedule",
                 "event_time": moment().unix(),
@@ -88,6 +88,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{ r
                 }
             }]
         }).then((result) => {
+            console.log(JSON.stringify(result.data))
             return result.data
         }).catch((errer: any) => {
             console.error(errer.message)
