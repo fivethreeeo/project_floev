@@ -151,7 +151,7 @@
 		  }
 		&__inner {
 			@include vw-mx-w(1280px);
-			@extend %padding-d;
+			@extend %padding-m;
 		}
 		a {
 			display: block;
@@ -276,7 +276,8 @@
 				font-weight:700;
 				color:$fv-sienna;
 				@include responsive("mobile") {
-					font-size:21px;
+					font-size:19px;
+					letter-spacing: 0;
 				}
 			}
 			.type {
