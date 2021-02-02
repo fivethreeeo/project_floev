@@ -31,6 +31,7 @@ const Layout = ({
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://floev.com" />
       <meta property="og:image" content="https://floev.com/static/img/newLanding/og.jpg" />
+      <meta name="facebook-domain-verification" content="h2rt1xuljax0nvwa9e821ig88cstv4" />
     </Head>
     <Header name={name} isBack={true}></Header>
     {children}

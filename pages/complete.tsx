@@ -5,6 +5,9 @@ import { GetServerSideProps } from "next";
 import { createApolloClient } from '../lib/apolloClient'
 import { gql } from '@apollo/client'
 import { getMDW, getHour } from '../utils/timeFormat'
+import axios from "axios";
+import { SHA256 } from '../utils/crypto'
+import moment from "moment";
 
 const CompletePage = (props: {
     user: any
@@ -67,15 +70,29 @@ const CHECKUP_USER = gql`
 
 export const getServerSideProps: GetServerSideProps = async (context) => { //{ req }: { req: any }
     const client = createApolloClient(context)
-    const { user } = await client.query({ query: CHECKUP_USER })
+    const user: User = await client.query({ query: CHECKUP_USER })
         .then(({ data }) => {
-            return { user: data.checkUpUser };
+            return data.checkUpUser;
         })
         .catch(() => {
-            // Fail gracefully
             return { user: null };
         });
-
+    if (user) {
+        await axios.post("https://graph.facebook.com/v9.0/2371955746349798/events?access_token=EAAHcnHVaQ5ABAIPBnix9Y05zaLn4hZAt9mVCa2ZALzJ7BPPg27mO0KHtopUBZC4jYVsJWqQ9flFh3MWp0STyUwHxrY94FmHN0TyczBEQ39VRh2BDinQTv50eFgDqwmSQsjUSI2uOo0Nfp63wmf7RTyi7xdJNAdnEgycRZClyrUBeNsZAySEThqu0nreNBabUZD", {
+            "data": [{
+                "event_name": "Schedule",
+                "event_time": moment().unix(),
+                "user_data": {
+                    "fn": SHA256(user.name),
+                    "ph": SHA256(user.phoneNumber)
+                }
+            }]
+        }).then((result) => {
+            return result.data
+        }).catch((errer: any) => {
+            console.error(errer.message)
+        })
+    }
     return {
         props: {
             // this hydrates the clientside Apollo cache in the `withApollo` HOC
@@ -84,5 +101,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{ r
         },
     }
 }
+
+// {
+//     "data": [{
+//         "event_name": "Schedule",
+//         "event_time": moment().unix(),
+//         "user_data": {
+//             "fn": SHA256(user.name),
+//             "pn": SHA256(user.phoneNumber)
+//         }
+//     }],
+// }
 
 export default CompletePage
