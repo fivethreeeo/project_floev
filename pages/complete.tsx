@@ -78,7 +78,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{ r
             return { user: null };
         });
     if (user) {
-        await axios.post("https://graph.facebook.com/v9.0/2371955746349798/events?access_token=EAAHcnHVaQ5ABAIPBnix9Y05zaLn4hZAt9mVCa2ZALzJ7BPPg27mO0KHtopUBZC4jYVsJWqQ9flFh3MWp0STyUwHxrY94FmHN0TyczBEQ39VRh2BDinQTv50eFgDqwmSQsjUSI2uOo0Nfp63wmf7RTyi7xdJNAdnEgycRZClyrUBeNsZAySEThqu0nreNBabUZD", {
+        const data = await axios.post("https://graph.facebook.com/v9.0/2371955746349798/events?access_token=EAAHcnHVaQ5ABAIPBnix9Y05zaLn4hZAt9mVCa2ZALzJ7BPPg27mO0KHtopUBZC4jYVsJWqQ9flFh3MWp0STyUwHxrY94FmHN0TyczBEQ39VRh2BDinQTv50eFgDqwmSQsjUSI2uOo0Nfp63wmf7RTyi7xdJNAdnEgycRZClyrUBeNsZAySEThqu0nreNBabUZD", {
             "data": [{
                 "event_name": "Schedule",
                 "event_time": moment().unix(),
@@ -92,6 +92,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{ r
         }).catch((errer: any) => {
             console.error(errer.message)
         })
+
+        console.log(JSON.stringify(data))
     }
     return {
         props: {
