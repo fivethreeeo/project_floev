@@ -78,7 +78,10 @@ export default function Q12Request(props: {
                     </ul>
                 </div>
                 <div className="q12__coupon-area">
-                    <div className="q12__coupon"></div>
+                    <div className="q12__coupon">
+                        <div><strong>지금 예약 완료하고<br/><span>2만원 할인 쿠폰</span> 받아 가세요!</strong></div>
+                        <img src="static/img/survey/coupon-welcome-banner.png" alt=""/>
+                    </div>
                 </div>
                 <div className="q12__lounge-time">
                     <div className="q12__lounge-time-title">라운지/시간 선택</div>
