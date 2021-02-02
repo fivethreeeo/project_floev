@@ -8,10 +8,10 @@ import { GET_PURCHASE_REQUEST_LIST } from '../lib/query'
 declare global {
     interface User {
         id: string | undefined
-        name: string
+        name: string | undefined
         email: string | undefined
         password: string | undefined
-        phoneNumber: string
+        phoneNumber: string | undefined
         gender: string | undefined
         birth: number | undefined
         status: string | undefined
