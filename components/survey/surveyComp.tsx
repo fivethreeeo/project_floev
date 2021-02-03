@@ -48,7 +48,7 @@ const SurveyPage = (props: {
         painDegreeEtc: localStorage.getItem('floev[painDegreeEtc]') ?? '',
         painTypes: tempPainTypes[0] === "" ? [] : tempPainTypes,
         painTypesEtc: localStorage.getItem('floev[painTypesEtc]') ?? '',
-        prefer: localStorage.getItem('floev[preger]') ?? '',
+        prefer: localStorage.getItem('floev[prefer]') ?? '',
         preferFileList: [],
         photoFileList: [],
         size: localStorage.getItem('floev[size]') ?? '',
