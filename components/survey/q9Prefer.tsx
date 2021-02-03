@@ -49,7 +49,7 @@ export default function Q9Prefer(props: {
 
         // for caching
         localStorage.setItem('floev[currentStep]', '9')
-        localStorage.setItem('floev[preger]', newPrefer)
+        localStorage.setItem('floev[prefer]', newPrefer)
     }
 
     return (<>

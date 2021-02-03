@@ -33,6 +33,8 @@ const max = steps.length
 const SurveyPage = (props: {
     purchaseRequest: PurchaseRequest[]
 }) => {
+    const tempPurposes = (localStorage.getItem('floev[purposes]') ?? '').split(',')
+    const tempPainTypes = (localStorage.getItem('floev[painTypes]') ?? '').split(',')
     const [currentStep, setCurrentStep] = useState<number>(
         parseInt(localStorage.getItem('floev[currentStep]') ?? '0') > 9 ? 9 : parseInt(localStorage.getItem('floev[currentStep]') ?? '0'));
     const [answers, setAnswers] = useState<Answers>({
@@ -40,13 +42,13 @@ const SurveyPage = (props: {
         birth: parseInt(localStorage.getItem('floev[birth]') ?? '-1'),
         gender: localStorage.getItem('floev[gender]') ?? '',
         hasWorn: parseInt(localStorage.getItem('floev[hasWorn]') ?? '-1'),
-        purposes: (localStorage.getItem('floev[purposes]') ?? '').split(','),
+        purposes: tempPurposes[0] === "" ? [] : tempPurposes,
         purposeEtc: localStorage.getItem('floev[purposeEtc]') ?? '',
         painDegree: parseInt(localStorage.getItem('floev[painDegree]') ?? '-1'),
         painDegreeEtc: localStorage.getItem('floev[painDegreeEtc]') ?? '',
-        painTypes: (localStorage.getItem('floev[painTypes]') ?? '').split(','),
+        painTypes: tempPainTypes[0] === "" ? [] : tempPainTypes,
         painTypesEtc: localStorage.getItem('floev[painTypesEtc]') ?? '',
-        prefer: localStorage.getItem('floev[preger]') ?? '',
+        prefer: localStorage.getItem('floev[prefer]') ?? '',
         preferFileList: [],
         photoFileList: [],
         size: localStorage.getItem('floev[size]') ?? '',

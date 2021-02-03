@@ -53,22 +53,22 @@ export default function Q8Paintypes(props: {
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q8_1" onChange={() => { }} value="문제없음" checked={painTypes.includes("문제없음")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q8_1">큰 불편함 없었어요</label>
                 {/* 피팅문제 */}
-                <input className="q-wrap__input-checkbox" type="checkbox" id="q8_2" onChange={() => { }} value="피팅문제" checked={painTypes.includes("피팅문제")} />
+                <input className="q-wrap__input-checkbox" type="checkbox" id="q8_2" onChange={() => { }} value="흘러내림" checked={painTypes.includes("흘러내림")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q8_2">흘러내림</label>
                 {/* 귀아픔문제 */}
-                <input className="q-wrap__input-checkbox" type="checkbox" id="q8_7" onChange={() => { }} value="귀아픔문제" checked={painTypes.includes("귀아픔문제")} />
+                <input className="q-wrap__input-checkbox" type="checkbox" id="q8_7" onChange={() => { }} value="귀아픔" checked={painTypes.includes("귀아픔")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q8_7">귀아픔</label>
                 {/* 콧대자국문제 */}
-                <input className="q-wrap__input-checkbox" type="checkbox" id="q8_3" onChange={() => { }} value="콧대자국문제" checked={painTypes.includes("콧대자국문제")} />
+                <input className="q-wrap__input-checkbox" type="checkbox" id="q8_3" onChange={() => { }} value="콧대자국" checked={painTypes.includes("콧대자국")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q8_3">콧대자국</label>
                 {/* 고도근시문제 */}
-                <input className="q-wrap__input-checkbox" type="checkbox" id="q8_4" onChange={() => { }} value="고도근시문제" checked={painTypes.includes("고도근시문제")} />
+                <input className="q-wrap__input-checkbox" type="checkbox" id="q8_4" onChange={() => { }} value="눈작아보임" checked={painTypes.includes("눈작아보임")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q8_4">눈 작아보임</label>
                 {/* 화장지워짐 */}
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q8_5" onChange={() => { }} value="화장지워짐" checked={painTypes.includes("화장지워짐")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q8_5">화장지워짐</label>
                 {/* 알러지문제 */}
-                <input className="q-wrap__input-checkbox" type="checkbox" id="q8_6" onChange={() => { }} value="알러지문제" checked={painTypes.includes("알러지문제")} />
+                <input className="q-wrap__input-checkbox" type="checkbox" id="q8_6" onChange={() => { }} value="알러지" checked={painTypes.includes("알러지")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q8_6">알러지</label>
                 {/* 사이즈문제 */}
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q8_8" onChange={() => { }} value="관자놀이눌림" checked={painTypes.includes("관자놀이눌림")} />
@@ -84,7 +84,7 @@ export default function Q8Paintypes(props: {
                 <label className="q-wrap__label-checkbox" htmlFor="q8_11">안경 무거움</label>
                 {/* 안어울림 */}
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q8_12" onChange={() => { }} value="안경안어울림" checked={painTypes.includes("안경안어울림")} />
-                <label className="q-wrap__label-checkbox" htmlFor="q8_12">안경이 정말 안어울려요</label>
+                <label className="q-wrap__label-checkbox" htmlFor="q8_12">안경이 안 어울려요</label>
             </div>
             <div className="q-wrap__textarea-wrap">
                 <p className="q-wrap__textarea-caption">*그 외 고민되는 불편함이 있다면 편하게 남겨주세요.</p>
@@ -97,7 +97,7 @@ export default function Q8Paintypes(props: {
             </div>
             <div className="q-wrap__btn-wrap">
                 <button className="q-wrap__btn q-wrap__btn-prev tn-0017" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
-                {painTypes.length === 1 && painTypesEtc.length === 0 ? (
+                {painTypes.length === 0 && painTypesEtc.length === 0 ? (
                     <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>) :
                     (<button className="q-wrap__btn q-wrap__btn-next tn-0016" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>)
                 }
