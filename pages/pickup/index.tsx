@@ -1,5 +1,5 @@
 import redirect from 'nextjs-redirect'
-export default redirect('https://service.floev.com/fitting')
+export default redirect('https://service.floev.com/pickup')
 
 // import React, { useState } from "react"
 // import { useRouter } from 'next/router'
