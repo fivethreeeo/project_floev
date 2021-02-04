@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import Layout from '../../layout/DefaultLayout'
 import { getDayDate, getOnlyDate, getMDW, getHour, getWeekday } from '../../utils/timeFormat'
 import { CHANGE_PURCHASE_REQUEST, CANCEL_PURCHASE_REQUEST } from '../../lib/mutation'
-import { CHECKUP_USER, GET_PURCHASE_REQUEST_LIST } from '../../lib/query'
+import { CHECKUP_USER, GET_PICKUP_REQUEST_LIST } from '../../lib/query'
 import { availablePurchaseRequestTime } from '../../utils/surveyUtils'
 import moment from 'moment'
 import { Modal, Spin } from "antd"
@@ -11,12 +11,11 @@ import { GetServerSideProps } from "next"
 import { createApolloClient } from "../../lib/apolloClient"
 import { useMutation } from "@apollo/client"
 import redirect from "../../lib/redirect"
-import { LOUNGE } from '../../lib/constants'
 
 const fromToday = getDayDate(7, 1)
 const now = new Date(Date.now());
 
-const MyPageIndex = (props: {
+const PickupPageIndex = (props: {
     user: User
     purchaseRequestList: PurchaseRequest[]
 }) => {
@@ -109,8 +108,8 @@ const MyPageIndex = (props: {
             setModal2(true)
         }
     }
-    const availableYeuksamTimes = availablePurchaseRequestTime(requestDate, LOUNGE.YEUKSAM, props.purchaseRequestList)
-    const availableGangNumTimes = availablePurchaseRequestTime(requestDate, LOUNGE.GANGNAM, props.purchaseRequestList)
+    const availableYeuksamTimes = availablePurchaseRequestTime(requestDate, 1, props.purchaseRequestList)
+    const availableGangNumTimes = availablePurchaseRequestTime(requestDate, 2, props.purchaseRequestList)
     return (
         <Layout name={props.user ? props.user.name : undefined}>
             <div className="mypage">
@@ -303,27 +302,23 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{re
         });
 
     if (!user) {
-        redirect(context, '/mypage/inquiry')
+        redirect(context, '/pickup/inquiry')
         return { props: {} }
     }
 
-    const { purchaseRequestList } = await client.query({ query: GET_PURCHASE_REQUEST_LIST })
+    const { pickupRequest } = await client.query({ query: GET_PICKUP_REQUEST_LIST })
         .then(({ data }) => {
-            return { purchaseRequestList: data.getPuchaseRequestList };
-        })
-        .catch((error) => {
-            console.error("Schedule data fetch ERROR" + error.message)
-            return { purchaseRequestList: null };
+            return { pickupRequest: data.getRequestList };
+        }).catch(() => {
+            return { pickupRequest: null };
         });
 
     return {
         props: {
-            // this hydrates the clientside Apollo cache in the `withApollo` HOC
-            apolloStaticCache: client.cache.extract(),
             user,
-            purchaseRequestList
-        },
+            pickupRequest
+        }
     }
 }
 
-export default MyPageIndex
+export default PickupPageIndex
