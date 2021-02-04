@@ -1,5 +1,6 @@
+import { LOUNGE } from '../lib/constants'
 
-export function availableTime(targetDate: string, targetLounge: number, inputTime: PurchaseRequest[]) {
+export function availablePurchaseRequestTime(targetDate: string, targetLounge: number, inputTime: PurchaseRequest[]) {
     // 해당 날짜에 예약된 스케쥴 골라내기
     const occupiedTimeArray: PurchaseRequest[] = inputTime.filter((item: PurchaseRequest) => item.date.slice(0, 10) === targetDate && item.loungeCode === targetLounge)
 
@@ -12,37 +13,29 @@ export function availableTime(targetDate: string, targetLounge: number, inputTim
     let dupCheck = (arr: string[]) => arr.filter((item, index) => arr.indexOf(item) != index)
 
     let nonOccupiedList: Slot[] = [] // initialize
-    if (targetLounge === 2) {
+    if (targetLounge === LOUNGE.GANGNAM) {
         let occupiedTimeToRemove = dupCheck(occupiedTime)
-        nonOccupiedList = [
-            { label: "11:00 ~ 12:00", time: "11:00", loungeCode: 2 },
-            { label: "12:00 ~ 13:00", time: "12:00", loungeCode: 2 },
-            { label: "13:00 ~ 14:00", time: "13:00", loungeCode: 2 },
-            { label: "14:00 ~ 15:00", time: "14:00", loungeCode: 2 },
-            { label: "15:00 ~ 16:00", time: "15:00", loungeCode: 2 },
-            { label: "16:00 ~ 17:00", time: "16:00", loungeCode: 2 },
-            { label: "17:00 ~ 18:00", time: "17:00", loungeCode: 2 },
-            { label: "18:00 ~ 19:00", time: "18:00", loungeCode: 2 },
-            { label: "19:00 ~ 20:00", time: "19:00", loungeCode: 2 },
-            { label: "20:00 ~ 21:00", time: "20:00", loungeCode: 2 }
-        ]
+
+        for (let i = 11; i < 21; i++)
+            nonOccupiedList.push({ time: (i.toString() + ":00"), loungeCode: LOUNGE.GANGNAM })
+
         nonOccupiedList = nonOccupiedList.filter(item => !occupiedTimeToRemove.includes(item.time))
-    } else if (targetLounge === 1) {
+    } else if (targetLounge === LOUNGE.YEUKSAM) {
         nonOccupiedList = [
-            { label: "11:00 ~ 12:00", time: "11:00", loungeCode: 1 },
-            { label: "12:00 ~ 13:00", time: "12:00", loungeCode: 1 },
-            { label: "14:30 ~ 15:30", time: "14:30", loungeCode: 1 },
-            { label: "15:30 ~ 16:30", time: "15:30", loungeCode: 1 },
-            { label: "16:30 ~ 17:30", time: "16:30", loungeCode: 1 },
-            { label: "18:30 ~ 19:30", time: "18:30", loungeCode: 1 },
-            { label: "19:30 ~ 20:30", time: "19:30", loungeCode: 1 }
+            { time: "11:00", loungeCode: LOUNGE.YEUKSAM },
+            { time: "12:00", loungeCode: LOUNGE.YEUKSAM },
+            { time: "14:30", loungeCode: LOUNGE.YEUKSAM },
+            { time: "15:30", loungeCode: LOUNGE.YEUKSAM },
+            { time: "16:30", loungeCode: LOUNGE.YEUKSAM },
+            { time: "18:30", loungeCode: LOUNGE.YEUKSAM },
+            { time: "19:30", loungeCode: LOUNGE.YEUKSAM }
         ]
         nonOccupiedList = nonOccupiedList.filter(item => !occupiedTime.includes(item.time))
     }
     return nonOccupiedList
 }
 
-export function availableHalfTime(targetDate: string, loungeCode: number, purchaseRequest: PurchaseRequest[]) {
+export function availablePickupFittingRequestTime(targetDate: string, loungeCode: number, purchaseRequest: PickupRequest[]) {
     // 인자로 받은 스케쥴에서 예약하고자 하는 날짜에 해당하는 일정만 받아옴
     let occupiedTimeArray = purchaseRequest.filter(schedule =>
         (schedule.date.slice(0, 10) === targetDate) && (schedule.lounge === loungeCode))

@@ -30,7 +30,6 @@ declare global {
     interface PickupRequest extends FloevRequest { }
 
     interface Slot {
-        label: string
         time: string
         loungeCode: number
     }
@@ -75,7 +74,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{ r
     const { purchaseRequest } = await client.query({ query: GET_PURCHASE_REQUEST_LIST })
         .then(({ data }) => {
             console.log("Survey Page elapsed time: " + (Date.now() - startTime) + "ms");
-            return { purchaseRequest: data.getPuchaseRequestList };
+            return { purchaseRequest: data.getRequestList };
         })
         .catch((error) => {
             console.log("Survey Page elapsed time: " + (Date.now() - startTime) + "ms");
