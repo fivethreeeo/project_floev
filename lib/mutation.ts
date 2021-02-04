@@ -27,8 +27,7 @@ export const MAKE_SURVEY_PURCHASE_REQUEST = gql`
             }
         }
     }
-  }
-`
+  }`
 
 export const CHANGE_PURCHASE_REQUEST = gql`
     mutation changePurchaseRequest(
@@ -47,8 +46,26 @@ export const CHANGE_PURCHASE_REQUEST = gql`
             date
             loungeCode
         }
-  }
-`
+  }`
+
+export const MAKE_PICKUP_REQUEST = gql`
+mutation makePickupRequest(
+        $phoneNumber: String!
+        $loungeCode: Int!
+        $requestDate: String!
+        $requestTime: String!
+    ){
+    makePickupRequest(
+        phoneNumber: $phoneNumber
+        loungeCode: $loungeCode
+        requestDate: $requestDate
+        requestTime: $requestTime
+    ){
+        id
+        date
+        loungeCode
+    }
+}`
 
 export const CANCEL_PURCHASE_REQUEST = gql`
 mutation cancelPurchaseRequest($requestId: String!){
@@ -64,13 +81,11 @@ mutation signInWithPhoneNumber($phoneNumber: String! $authNumber: String!){
             name
         }
     }
-}
-`
+}`
 
 export const CREATE_USER_MUTATION = gql`
   mutation createUser($name: String!, $phn: String!) {
     createUser(name: $name, phn: $phn) {
       id
     }
-  }
-`
+  }`
