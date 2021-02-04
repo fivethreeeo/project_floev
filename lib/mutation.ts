@@ -49,13 +49,13 @@ export const CHANGE_PURCHASE_REQUEST = gql`
   }`
 
 export const MAKE_PICKUP_REQUEST = gql`
-mutation makePickUpRequest(
+mutation makePickupRequest(
         $phoneNumber: String!
         $loungeCode: Int!
         $requestDate: String!
         $requestTime: String!
     ){
-    makePickUpRequest(
+    makePickupRequest(
         phoneNumber: $phoneNumber
         loungeCode: $loungeCode
         requestDate: $requestDate
