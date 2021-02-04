@@ -30,7 +30,7 @@ const Inquiry = () => {
                 document.cookie = cookie.serialize("token", data.signInWithPhoneNumber.token, {
                     maxAge: 12 * 60 * 60
                 })
-                router.replace('/mypage')
+                router.replace('/pickup')
             }
         },
         onError(error) {
@@ -174,7 +174,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         }).catch(() => {
             return { user: null };
         });
-    if (user) {
+    if (user !== null) {
         redirect(context, "/pickup")
     }
     return { props: {} }

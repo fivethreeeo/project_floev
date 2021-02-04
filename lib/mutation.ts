@@ -67,9 +67,33 @@ mutation makePickupRequest(
     }
 }`
 
+export const CHANGE_PICKUP_REQUEST = gql`
+    mutation changePickupRequest(
+        $requestId: String!
+        $loungeCode: Int!
+        $requestDate: String!
+        $requestTime: String!
+    ){
+        changePickupRequest(
+            requestId: $requestId
+            loungeCode: $loungeCode
+            requestDate: $requestDate
+            requestTime: $requestTime
+        ){
+            id
+            date
+            loungeCode
+        }
+  }`
+
 export const CANCEL_PURCHASE_REQUEST = gql`
 mutation cancelPurchaseRequest($requestId: String!){
     cancelPurchaseRequest(requestId: $requestId)
+}`
+
+export const CANCEL_PICKUP_REQUEST = gql`
+mutation cancelPickupRequest($requestId: String!){
+    cancelPickupRequest(requestId: $requestId)
 }`
 
 export const SIGN_IN_WITH_PHONENUMBER = gql`

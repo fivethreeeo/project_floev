@@ -34,7 +34,7 @@ const PickupCreate = (props: {
         },
         onCompleted() {
             alert('픽업예약을 완료했어요!👏🏻')
-            router.push('/')
+            router.push('/pickup')
         },
         onError(error) {
             console.error(error.message)
@@ -90,7 +90,7 @@ const PickupCreate = (props: {
                         <option value="" defaultValue="" hidden>방문 시간을 선택해주세요.</option>
                         {pickupRequestDate !== null && availableTimes.map(
                             (item: any, index: any) => (
-                                <option key={index} value={item.value}>{item.value} </option>
+                                <option key={index} value={item.time}>{item.time} </option>
                             ))}
                     </select>
 
