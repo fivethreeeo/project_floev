@@ -220,12 +220,14 @@ const IndexPage = (props: {
 						)}
 				</Modal>
 
-				<div className="indexPage">
+				<div className="indexPage" style={{width:'100%',maxWidth:'640px',margin:'0 auto',paddingBottom:'53px'}}>
 
-					<div className="landing_1_02" style={{width:'100%',maxWidth:'640px',margin:'0 auto',paddingBottom:'53px'}}>
-						<div><img src="/static/img/home/ex1_1.png" alt=""/></div>
-						<div><img src="/static/img/home/ex2_2.png" alt=""/></div>
-						<div><img src="/static/img/home/ex3_3.png" alt=""/></div>
+					<div className="landing_1_02">
+						<div><img src="/static/img/home/landing_1.png" alt=""/></div>
+						<div><img src="/static/img/home/landing_2.png" alt=""/></div>
+						<div><img src="/static/img/home/landing_3.png" alt=""/></div>
+						<div><img src="/static/img/home/landing_4.png" alt=""/></div>
+						<div><img src="/static/img/home/landing_5.png" alt=""/></div>
 						<div className="main-visual__btn">
 							<button className="tn-0003 gtm-001 btn-cta btn-test" onClick={() => didYouVisit()}>20,000원 혜택받고 서비스 신청하기</button>
 							<Modal
@@ -624,12 +626,12 @@ const IndexPage = (props: {
 							</Carousel>
 						</div>
 					</div>
-
-
-
+				*/}
+<div style={{padding:'48px 0'}}>
 					<div className="lounge">
-						<div className="lounge__title"><strong><p>안경을 만나는 그 순간까지 <span></span>고려한 '플로브 라운지'</p></strong></div>
-						<div className="lounge__caption"><p>플로브 라운지 스토리부터 각 지점별 정보를 확인하세요.</p></div>
+						<div style={{marginBottom:'8px'}} className="lounge__title"><strong>플로브 라운지 안내</strong></div>
+						{/*<div className="lounge__title"><strong><p>안경을 만나는 그 순간까지 <span></span>고려한 '플로브 라운지'</p></strong></div>
+						<div className="lounge__caption"><p>플로브 라운지 스토리부터 각 지점별 정보를 확인하세요.</p></div>*/}
 						<div className="lounge__list">
 							<div className="lounge__thumb"><a href="/lounge/yeoksam"><div><img src="/static/img/home/lounge_y_0.jpg" alt="" /></div><p>라운지 역삼성당</p></a></div>
 							<div className="lounge__thumb"><a href="/lounge/gangnam"><div><img src="/static/img/home/lounge_g_0.jpg" alt="" /></div><p>라운지 강남</p></a></div>
@@ -637,6 +639,7 @@ const IndexPage = (props: {
 						</div>
 					</div>
 
+				{/*
 					<div className="faq">
 						<div className="faq__title"><strong><p>플로브 서비스, 이런 점이 궁금해요!</p></strong></div>
 						<div className="faq__caption"><p>궁금한 내용을 클릭하시면 내용을 확인할 수 있습니다.</p></div>
@@ -682,6 +685,7 @@ const IndexPage = (props: {
 							</Collapse>
 						</div>
 					</div>
+				*/}
 
 					<div className="banner-brand">
 						<div className="banner-brand__inner">
@@ -693,13 +697,14 @@ const IndexPage = (props: {
 							</a>
 						</div>
 					</div>
-
+</div>
+				{/*
 					<div className="bottom-cta">
 						<div className="bottom-cta__inner">
 							<button className="gtm-001 btn-cta tn-0004" onClick={() => didYouVisit()}><span>시작하기</span></button>
 						</div>
 					</div>
-
+				*/}
 					<div className="company">
 						<div className="company__inner">
 							<p className="company__name">(주)씨에이치스퀘어</p>
@@ -714,7 +719,7 @@ const IndexPage = (props: {
 							<div className="company__link"><a href="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=6998601370" target="_blank">사업자정보확인</a> | <a href="/service-policy"><span>서비스 정책 안내</span></a> | <a href="https://www.instagram.com/floev_official/" target="_blank">instagram</a></div>
 						</div>
 					</div>
-				*/}
+
 
 				</div>
 
