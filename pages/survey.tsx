@@ -94,7 +94,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{ r
             }
         }]
     }).then((result) => {
-        console.log(JSON.stringify(result.data))
+        console.log(moment().format("YYYY-MM-DD HH:mm") + " " + JSON.stringify(result.data))
         return result.data
     }).catch((errer: any) => {
         console.error(errer.message)
