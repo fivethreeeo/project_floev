@@ -1,40 +1,15 @@
+import React, { useState } from 'react'
 import Layout from '../layout/DefaultLayout'
-import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import cookie from 'cookie'
 import { GetServerSideProps } from 'next'
 import { createApolloClient } from '../lib/apolloClient'
+import { CHECK_EMAIL_DUP, SIGN_UP_USER } from '../lib/mutation'
+import { CHECKUP_USER } from '../lib/query'
+import redirect from '../lib/redirect'
 
-const SIGN_UP_USER = gql`
-  mutation signUpUser($email: String!, $password: String!, $name: String!, $phoneNumber: String!) {
-    signUpUser(email: $email, password: $password, name: $name, phoneNumber: $phoneNumber) {
-      token
-      user{
-          name
-          email
-      }
-    }
-  }
-`
-const CHECK_EMAIL_DUP = gql`
-  mutation checkEmailDup($email: String!){
-    checkEmailDup(email: $email)
-  }
-`
-const CHECKUP_USER = gql`
-	query checkUpUser{
-		checkUpUser{
-			name
-		}
-	}
-`
-
-const SignUp = ({
-    user
-}: {
-    user: any
-}) => {
+const SignUp = () => {
     const router = useRouter();
 
     //email
@@ -88,12 +63,6 @@ const SignUp = ({
             }
         }
     });
-
-    useEffect(() => {
-        if (user) {
-            router.push('/')
-        }
-    }, [user])
 
     const handleFocusEmail = () => {
         setIsEmail(true)
@@ -429,9 +398,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{ r
         })
         .catch((error) => {
             console.error(error.message)
-            // Fail gracefully
             return { user: null };
         });
+
+    if (user) {
+        redirect(context, '/')
+        return { props: {} }
+    }
 
     return {
         props: {
