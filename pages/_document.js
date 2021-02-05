@@ -42,7 +42,18 @@ class MyDocument extends Document {
               gtag('config', 'AW-738487034');
             `}}
           />
-          <scrip src="https://www.googleoptimize.com/optimize.js?id=GTM-K2ZP9MN"></scrip>
+
+          <script dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-NNF4ZC5');
+          `}}
+          />
+
+          <script src="https://www.googleoptimize.com/optimize.js?id=GTM-K2ZP9MN"></script>
           <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
           <script dangerouslySetInnerHTML={{
             __html: `

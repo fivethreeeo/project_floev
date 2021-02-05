@@ -143,15 +143,15 @@ select:-webkit-autofill:focus {
 
 /* kakao plusFriend button */
 .global640 {display:block;width:100%;max-width:640px;margin:0 auto}
-.global1280 {display:block;width:100%;max-width:1280px;margin:0 auto}
-.kakaoLinkWrap {position:fixed;bottom:0;width:100%;max-width:1280px;z-index:800}
+.global1280 {display:block;width:100%;max-width:640px;margin:0 auto}
+.kakaoLinkWrap {position:fixed;bottom:0;width:100%;max-width:640px;z-index:800}
 .kakaoLinkWrap a {display:block;position: absolute; bottom:0;right:0;width:48px;height:48px;z-index: 5000;}
 .kakaoLinkWrap a img {display:none}
 .kakaoBtn {position:absolute;right:24px;bottom:24px;width:48px;height:48px}
 .kakaoBtn img {position:relative;width:100%}
 #channel-add-button.btnAsk a {position:static;display:block;height:48px;margin-top:-48px}
 @include responsive("mobile") {
-  .kakaoBtn {position:absolute;right:16px;bottom:16px;width:48px;height:48px}
+  .kakaoBtn {position:absolute;right:12px;bottom:28px;width:48px;height:48px}
 }
 
 /* 뒤로가기 버튼 */

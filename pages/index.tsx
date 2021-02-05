@@ -3,14 +3,14 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
 import Layout from '../layout/DefaultLayout'
-import { Modal, Carousel, Collapse } from 'antd'
-import { CaretRightOutlined } from '@ant-design/icons'
+import { Modal, Collapse } from 'antd'
+//import { CaretRightOutlined } from '@ant-design/icons'
 import { useMutation } from '@apollo/client'
 import { CREATE_USER_MUTATION } from '../lib/mutation'
 import { CHECKUP_USER } from '../lib/query'
 import { createApolloClient } from '../lib/apolloClient'
 import { resetSurvey } from '../utils/surveyUtils'
-import ServiceTab from '../components/index/serviceTab'
+//import ServiceTab from '../components/index/serviceTab'
 
 // 타입 정의
 declare global {
@@ -33,7 +33,7 @@ const IndexPage = (props: {
 }) => {
 	const router = useRouter()
 	const [modalView, setModalView] = useState<boolean>(false)
-	const [tabIdx, setTabIdx] = useState<number>(0)
+	//const [tabIdx, setTabIdx] = useState<number>(0)
 	const [surveyModal, setSurveyModal] = useState<boolean>(false)
 
 	const [name, setName] = useState<string>('')
@@ -62,9 +62,9 @@ const IndexPage = (props: {
 
 	const collapseCallback = (key: any) => {
 		console.log("collapse key: " + key)
-		setTabIdx(key)
+		//setTabIdx(key)
 	}
-
+/*
 	const serviceTabs = () => {
 		let component
 		switch (tabIdx) {
@@ -99,7 +99,7 @@ const IndexPage = (props: {
 		}
 		return component
 	}
-
+*/
 	function didYouVisit() {
 		if (process.browser) {
 			if (localStorage.getItem('floev[currentStep]') !== null) {
@@ -220,7 +220,34 @@ const IndexPage = (props: {
 						)}
 				</Modal>
 
-				<div className="indexPage">
+				<div className="indexPage" style={{width:'100%',maxWidth:'640px',margin:'0 auto',paddingBottom:'53px'}}>
+
+					<div className="landing_1_02">
+						<div><img src="/static/img/home/landing_1.png" alt=""/></div>
+						<div><img src="/static/img/home/landing_2.png" alt=""/></div>
+						<div><img src="/static/img/home/landing_3.png" alt=""/></div>
+						<div><img src="/static/img/home/landing_4.png" alt=""/></div>
+						<div><img src="/static/img/home/landing_5.png" alt=""/></div>
+						<div className="main-visual__btn">
+							<button className="tn-0003 gtm-001 btn-cta btn-test" onClick={() => didYouVisit()}>20,000원 혜택받고 서비스 신청하기</button>
+							<Modal
+								className="modal-cookie"
+								visible={surveyModal}
+								centered
+								width="320px"
+								onCancel={() => {
+									setSurveyModal(false);
+								}}
+							>
+								<p>전에 작성해둔 설문내역이 있어요!<br />이어서 작성할까요?</p>
+								<div className="modal-btn-wrap">
+									<button type="button" className="modal-btn tn-0001" value="start" onClick={() => surveyFromStart()}>처음부터 할게요</button>
+									<button type="button" className="modal-btn continue tn-0002" onClick={() => surveyFromMiddle()}>이어서 작성할게요</button>
+								</div>
+							</Modal>
+						</div>
+					</div>
+					{/* 
 					<div className="main-visual">
 						<div className="main-visual__inner">
 							<div className="main-visual__img-wrap">
@@ -599,12 +626,12 @@ const IndexPage = (props: {
 							</Carousel>
 						</div>
 					</div>
-
-
-
+				*/}
+<div style={{padding:'48px 0'}}>
 					<div className="lounge">
-						<div className="lounge__title"><strong><p>안경을 만나는 그 순간까지 <span></span>고려한 '플로브 라운지'</p></strong></div>
-						<div className="lounge__caption"><p>플로브 라운지 스토리부터 각 지점별 정보를 확인하세요.</p></div>
+						<div style={{marginBottom:'8px'}} className="lounge__title"><strong>플로브 라운지 안내</strong></div>
+						{/*<div className="lounge__title"><strong><p>안경을 만나는 그 순간까지 <span></span>고려한 '플로브 라운지'</p></strong></div>
+						<div className="lounge__caption"><p>플로브 라운지 스토리부터 각 지점별 정보를 확인하세요.</p></div>*/}
 						<div className="lounge__list">
 							<div className="lounge__thumb"><a href="/lounge/yeoksam"><div><img src="/static/img/home/lounge_y_0.jpg" alt="" /></div><p>라운지 역삼성당</p></a></div>
 							<div className="lounge__thumb"><a href="/lounge/gangnam"><div><img src="/static/img/home/lounge_g_0.jpg" alt="" /></div><p>라운지 강남</p></a></div>
@@ -612,6 +639,7 @@ const IndexPage = (props: {
 						</div>
 					</div>
 
+				{/*
 					<div className="faq">
 						<div className="faq__title"><strong><p>플로브 서비스, 이런 점이 궁금해요!</p></strong></div>
 						<div className="faq__caption"><p>궁금한 내용을 클릭하시면 내용을 확인할 수 있습니다.</p></div>
@@ -657,6 +685,7 @@ const IndexPage = (props: {
 							</Collapse>
 						</div>
 					</div>
+				*/}
 
 					<div className="banner-brand">
 						<div className="banner-brand__inner">
@@ -668,13 +697,14 @@ const IndexPage = (props: {
 							</a>
 						</div>
 					</div>
-
+</div>
+				{/*
 					<div className="bottom-cta">
 						<div className="bottom-cta__inner">
 							<button className="gtm-001 btn-cta tn-0004" onClick={() => didYouVisit()}><span>시작하기</span></button>
 						</div>
 					</div>
-
+				*/}
 					<div className="company">
 						<div className="company__inner">
 							<p className="company__name">(주)씨에이치스퀘어</p>
@@ -690,18 +720,9 @@ const IndexPage = (props: {
 						</div>
 					</div>
 
+
 				</div>
-				{/*
-				<div className="font-test-10">폰트사이즈 12px - 0.5em</div>
-				<div className="font-test-12">폰트사이즈 12px - 0.75em</div>
-				<div className="font-test-14">폰트사이즈 14px - 0.875em</div>
-				<div className="font-test-16">폰트사이즈 16px - 1em</div>
-				<div className="font-test-18">폰트사이즈 18px - 1.125em</div>
-				<div className="font-test-20">폰트사이즈 20px - 1.25em</div>
-				<div className="font-test-24">폰트사이즈 24px - 1.5em</div>
-				<div className="font-test-28">폰트사이즈 28px - 1.75em</div>
-				<div className="font-test-32">폰트사이즈 32px - 2.em</div>
-				*/}
+
 			</Layout>
 		</>
 	);
