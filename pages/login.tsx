@@ -1,36 +1,16 @@
 import Layout from '../layout/DefaultLayout'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import Link from 'next/link'
 import cookie from 'cookie'
 import { GetServerSideProps } from 'next'
 import { createApolloClient } from '../lib/apolloClient'
+import { SIGN_IN_USER } from '../lib/mutation'
+import { CHECKUP_USER } from '../lib/query'
+import redirect from '../lib/redirect'
 
-const SIGN_IN_USER = gql`
-  mutation signInUser($email: String!, $password: String!) {
-    signInUser(email: $email, password: $password) {
-      token
-      user{
-          name
-          email
-      }
-    }
-  }
-`
-const CHECKUP_USER = gql`
-	query checkUpUser{
-		checkUpUser{
-			name
-		}
-	}
-`
-
-const LoginPage = ({
-	user
-}: {
-	user: any
-}) => {
+const LoginPage = () => {
 	const router = useRouter();
 	const [email, setEmail] = useState('');
 	const [isEmail, setIsEmail] = useState(true)
@@ -39,12 +19,6 @@ const LoginPage = ({
 	const [isPassword, setIsPassword] = useState(true);
 	const [showPassword, setShowPassword] = useState(false);
 	const [validPassword, setValidPassword] = useState(true)
-
-	useEffect(() => {
-		if (user) {
-			router.push('/')
-		}
-	}, [user])
 
 	const [signInUser] = useMutation(SIGN_IN_USER, {
 		variables: {
@@ -174,17 +148,20 @@ const LoginPage = ({
 	)
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => { //{ req }: { req: any }
+export const getServerSideProps: GetServerSideProps = async (context) => {
 	const client = createApolloClient(context)
 	const { user } = await client.query({ query: CHECKUP_USER })
 		.then(({ data }) => {
 			return { user: data.checkUpUser };
-		})
-		.catch((error) => {
+		}).catch((error) => {
 			console.error(error.message)
-			// Fail gracefully
 			return { user: null };
 		});
+
+	if (user) {
+		redirect(context, '/')
+		return { props: {} }
+	}
 
 	return {
 		props: {

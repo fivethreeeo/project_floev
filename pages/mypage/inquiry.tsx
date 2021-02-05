@@ -174,7 +174,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         }).catch(() => {
             return { user: null };
         });
-    if (user) {
+    if (user !== null) {
         redirect(context, "/mypage")
     }
     return { props: {} }

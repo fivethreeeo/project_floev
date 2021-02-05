@@ -34,7 +34,7 @@ const PickupCreate = (props: {
         },
         onCompleted() {
             alert('픽업예약을 완료했어요!👏🏻')
-            router.push('/')
+            router.push('/pickup')
         },
         onError(error) {
             console.error(error.message)
@@ -46,10 +46,6 @@ const PickupCreate = (props: {
         }
     });
 
-    // const onChangeLounge = (e: any) => {
-    //     setLoungeCode(parseInt(e.target.value))
-    // }
-
     const onChangeDate = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setPickupRequestDate(fromToday[parseInt(e.currentTarget.value)].date)
     }
@@ -59,9 +55,8 @@ const PickupCreate = (props: {
 
     const availableTimes = availablePickupFittingRequestTime(pickupRequestDate, loungeCode, props.pickupRequest)
     return (
-        <Layout>
+        <Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" name={props.user ? props.user.name : undefined}>
             <div className="">
-                <div className="goBackBtnWrap"><div className="goBackBtn" onClick={() => router.back()}></div></div>
                 <div className="headroom"></div>
                 <div className="pickUpWrap">
                     <h2>강남 라운지 픽업 예약</h2>
@@ -90,7 +85,7 @@ const PickupCreate = (props: {
                         <option value="" defaultValue="" hidden>방문 시간을 선택해주세요.</option>
                         {pickupRequestDate !== null && availableTimes.map(
                             (item: any, index: any) => (
-                                <option key={index} value={item.value}>{item.value} </option>
+                                <option key={index} value={item.time}>{item.time} </option>
                             ))}
                     </select>
 
@@ -105,8 +100,8 @@ const PickupCreate = (props: {
 
             <style jsx>{`
                     h2 {text-align:center;font-size:20px}
-                    .headroom {height:64px}
-                    .pickUpWrap {padding: 0 20px}
+                    .headroom {height:120px}
+                    .pickUpWrap {width:100%;max-width:480px;margin:0 auto;padding: 0 20px}
                     .inputTit {margin: 20px 0 4px;color:#33343a}
                     input {width:100%;height:40px;border-radius:4px;border:1px solid #d6d7d8;font-size:14px;padding:0 12px;color:#33343a}
                     input::placeholder {color:#bbb}
@@ -133,7 +128,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const { pickupRequest } = await client.query({ query: GET_PICKUP_REQUEST_LIST })
         .then(({ data }) => {
             return { pickupRequest: data.getRequestList };
-        }).catch(() => {
+        }).catch((error) => {
+            console.error(error.message)
             return { pickupRequest: null };
         });
 
