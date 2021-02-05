@@ -85,9 +85,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{ r
             return { purchaseRequest: null };
         });
     // 페이스북 픽셀 : user_data는 임의값으로 설정
-    await axios.post("https://graph.facebook.com/v9.0/2371955746349798/events?access_token=EAAHcnHVaQ5ABANKlraZASxfv68vhBn2AqJPli0LGM4dmo0Eh7zfgDEMOqRigiHZCQZAWppwKuwlKi4X7Ofz9VwDlZCFeVLZAIRFEGAn4OnIFesaJ1sJVGx1KwspLl5g2rjA6ZCbZBdJ9WZC5Ara2I1PfOg7vEdEVD0XbBke9e3GxIntjTXbMl11gvRvYwRprIA4ZD", {
+    await axios.post("https://graph.facebook.com/v9.0/2371955746349798/events?access_token=EAAHcnHVaQ5ABAAyifbUiOmzZBwxaIcdHN9CmZCDhk3BDZCcxQCZBgOKqBdz6RlZAUGAhmBtTl4NtwmLzKfZBaEpYlrFIsEGa7fCn1pTE40ITuBUR7kN6D1TkBB7ZAXaM8WA8zqvVQNJwO5ZAsB2bVBg16xDQVSYWImmHqZCd6Vo58dAmq8ZCW54aCXJ7I3sagEAXcZD", {
         "data": [{
-            "event_name": "Search",
+            "event_name": "AddToCart",
             "event_time": moment().unix(),
             "user_data": {
                 "country": SHA256("KR"),
