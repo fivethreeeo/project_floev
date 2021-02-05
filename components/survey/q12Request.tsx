@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { availableTime } from '../../utils/surveyUtils'
+import { availablePurchaseRequestTime } from '../../utils/surveyUtils'
 import { getDayDate, getOnlyDate, getWeekday } from '../../utils/timeFormat'
+import { LOUNGE } from '../../lib/constants'
 
 const fromToday = getDayDate(7, 0)
 const now = new Date(Date.now());
@@ -52,8 +53,8 @@ export default function Q12Request(props: {
         localStorage.setItem('floev[loungeCode]', String(newLoungeCode))
     }
 
-    const availableYeuksamTimes = availableTime(requestDate, 1, props.purchaseRequest)
-    const availableGangNumTimes = availableTime(requestDate, 2, props.purchaseRequest)
+    const availableYeuksamTimes = availablePurchaseRequestTime(requestDate, LOUNGE.YEUKSAM, props.purchaseRequest)
+    const availableGangNumTimes = availablePurchaseRequestTime(requestDate, LOUNGE.GANGNAM, props.purchaseRequest)
 
     return (<>
         <div className="q-wrap q12">
@@ -79,8 +80,8 @@ export default function Q12Request(props: {
                 </div>
                 <div className="q12__coupon-area">
                     <div className="q12__coupon">
-                        <div><strong>지금 예약 완료하고<br/><span>2만원 할인 쿠폰</span> 받아 가세요!</strong></div>
-                        <img src="static/img/survey/coupon-welcome-banner.png" alt=""/>
+                        <div><strong>지금 예약 완료하고<br /><span>2만원 할인 쿠폰</span> 받아 가세요!</strong></div>
+                        <img src="static/img/survey/coupon-welcome-banner.png" alt="" />
                     </div>
                 </div>
                 <div className="q12__lounge-time">

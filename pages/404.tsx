@@ -2,7 +2,7 @@ export default function Custom404() {
   return (
     <div>
       <p>404</p>
-      <p>찾을 수 없는 페이지 입니다.<br/>요청하신 페이지가 사라졌거나, 잘못된 경로를 이용하셨어요:)</p>
+      <p>찾을 수 없는 페이지 입니다.<br />요청하신 페이지가 사라졌거나, 잘못된 경로를 이용하셨어요:)</p>
       <a href='/'>홈으로 가기</a>
       <style jsx>{`
   div {
@@ -42,5 +42,5 @@ export default function Custom404() {
   }
         `}</style>
     </div>
-    )
+  )
 }

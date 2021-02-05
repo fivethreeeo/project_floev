@@ -4,13 +4,14 @@ import Layout from '../../layout/DefaultLayout'
 import { getDayDate, getOnlyDate, getMDW, getHour, getWeekday } from '../../utils/timeFormat'
 import { CHANGE_PURCHASE_REQUEST, CANCEL_PURCHASE_REQUEST } from '../../lib/mutation'
 import { CHECKUP_USER, GET_PURCHASE_REQUEST_LIST } from '../../lib/query'
-import { availableTime } from '../../utils/surveyUtils'
+import { availablePurchaseRequestTime } from '../../utils/surveyUtils'
 import moment from 'moment'
 import { Modal, Spin } from "antd"
 import { GetServerSideProps } from "next"
 import { createApolloClient } from "../../lib/apolloClient"
 import { useMutation } from "@apollo/client"
 import redirect from "../../lib/redirect"
+import { LOUNGE } from '../../lib/constants'
 
 const fromToday = getDayDate(7, 1)
 const now = new Date(Date.now());
@@ -108,8 +109,8 @@ const MyPageIndex = (props: {
             setModal2(true)
         }
     }
-    const availableYeuksamTimes = availableTime(requestDate, 1, props.purchaseRequestList)
-    const availableGangNumTimes = availableTime(requestDate, 2, props.purchaseRequestList)
+    const availableYeuksamTimes = availablePurchaseRequestTime(requestDate, LOUNGE.YEUKSAM, props.purchaseRequestList)
+    const availableGangNumTimes = availablePurchaseRequestTime(requestDate, LOUNGE.GANGNAM, props.purchaseRequestList)
     return (
         <Layout name={props.user ? props.user.name : undefined}>
             <div className="mypage">
