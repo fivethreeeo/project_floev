@@ -97,7 +97,7 @@ const PickupPageIndex = (props: {
     }
 
     function handleChangeFeedback(e: any) {
-        setFeedback(e.currentTarget.value)
+        setFeedback(e.target.value)
     }
 
     function handleClickChange() {
@@ -129,8 +129,8 @@ const PickupPageIndex = (props: {
                             <p className="booking-info">고객님의 픽업 방문일정은 <strong>라운지 {loungeCode === 1 ? "역삼성당" : "강남"}</strong><br /><strong>{getMDW(userRequest.date)} {getHour(userRequest.date)}</strong> 입니다.</p>
                         </div>
                         <div className="inner-btn-wrap">
-                            <button className="btn-cancel" onClick={(e) => showModal(e, 'modal2')}>예약취소하기</button>
                             <button className="btn-change" onClick={(e) => showModal(e, 'modal1')}>일정변경하기</button>
+                            <button className="btn-cancel" onClick={(e) => showModal(e, 'modal2')}>예약취소하기</button>
                         </div>
                     </div>
                 </div>
@@ -211,9 +211,9 @@ const PickupPageIndex = (props: {
                             <div className="q-wrap__question-sub">더 좋은 서비스를 준비하도록 도와주세요.</div>
                         </div>
                         <div className="whyCancel" style={{ padding: '0 20px' }}>
-                            <div className="q-wrap__textarea-wrap" style={{ padding: '0 0' }}>
+                            <div className="q-wrap__textarea-wrap" style={{ padding: '0 0' }} onChange={e => handleChangeFeedback(e)}>
                                 <textarea
-                                    className="q-wrap__textarea"
+                                    className="q-wrap__textarea" value={feedback}
                                     placeholder="예시) 일정이 확실하지 않아요."
                                 ></textarea>
                             </div>
