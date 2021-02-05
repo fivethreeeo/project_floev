@@ -13,7 +13,7 @@ import { useMutation } from "@apollo/client"
 import redirect from "../../lib/redirect"
 import { LOUNGE, REQUEST } from "../../lib/constants"
 
-const fromToday = getDayDate(7, 1)
+const fromToday = getDayDate(6, 0)
 const now = new Date(Date.now());
 
 const PickupPageIndex = (props: {
@@ -151,7 +151,7 @@ const PickupPageIndex = (props: {
                                         {fromToday.map(
                                             (item: any, index: number) => (
                                                 <li className={getOnlyDate(item.date) === String(now.getDate()) ? "q12__day-date-option today" : "q12__day-date-option"} key={index} id={index.toString()} value={getOnlyDate(item.date)} onClick={e => handleChangeDate(e)}>
-                                                    <p className={getOnlyDate(item.date) == String(now.getDate()) ? "day today" : "day"}>
+                                                    <p className={getOnlyDate(item.date) === String(now.getDate()) ? "day today" : "day"}>
                                                         {getOnlyDate(item.date) == String(now.getDate()) ? '오늘' : item.day}
                                                     </p>
                                                     <button className={item.date == requestDate ? "date selected" : "date"}>

@@ -46,10 +46,6 @@ const PickupCreate = (props: {
         }
     });
 
-    // const onChangeLounge = (e: any) => {
-    //     setLoungeCode(parseInt(e.target.value))
-    // }
-
     const onChangeDate = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setPickupRequestDate(fromToday[parseInt(e.currentTarget.value)].date)
     }
