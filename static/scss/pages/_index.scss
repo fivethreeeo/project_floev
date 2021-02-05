@@ -7,7 +7,33 @@
 			height:48px;
 		  }
 	}
-
+	.landing_1_02 {
+		.btn-cta {
+			color:$fv-white;
+			padding:12px 16px 10px;
+			display: block;
+			margin-top:32px;
+			display: block;
+			background: $fv-gray-9;
+			border-radius: 8px;
+			font-size:18px;
+			font-weight: 500;
+			@include responsive("mobile") {
+				margin-top:24px;
+				font-size:16px;
+			  }
+			&.btn-test {
+				padding: 16px 16px 13px;
+				margin-top:0;
+				position: absolute;
+				bottom:0;
+				width:100%;
+				max-width:640px;
+				z-index:700;
+				border-radius:0;
+			}
+		}
+	}
 	.main-visual {
 		&.bg-test {
 			.main-visual__img-wrap {

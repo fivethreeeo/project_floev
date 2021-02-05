@@ -3,14 +3,14 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
 import Layout from '../layout/DefaultLayout'
-import { Modal, Carousel, Collapse } from 'antd'
-import { CaretRightOutlined } from '@ant-design/icons'
+import { Modal, Collapse } from 'antd'
+//import { CaretRightOutlined } from '@ant-design/icons'
 import { useMutation } from '@apollo/client'
 import { CREATE_USER_MUTATION } from '../lib/mutation'
 import { CHECKUP_USER } from '../lib/query'
 import { createApolloClient } from '../lib/apolloClient'
 import { resetSurvey } from '../utils/surveyUtils'
-import ServiceTab from '../components/index/serviceTab'
+//import ServiceTab from '../components/index/serviceTab'
 
 // 타입 정의
 declare global {
@@ -33,7 +33,7 @@ const IndexPage = (props: {
 }) => {
 	const router = useRouter()
 	const [modalView, setModalView] = useState<boolean>(false)
-	const [tabIdx, setTabIdx] = useState<number>(0)
+	//const [tabIdx, setTabIdx] = useState<number>(0)
 	const [surveyModal, setSurveyModal] = useState<boolean>(false)
 
 	const [name, setName] = useState<string>('')
@@ -62,9 +62,9 @@ const IndexPage = (props: {
 
 	const collapseCallback = (key: any) => {
 		console.log("collapse key: " + key)
-		setTabIdx(key)
+		//setTabIdx(key)
 	}
-
+/*
 	const serviceTabs = () => {
 		let component
 		switch (tabIdx) {
@@ -99,7 +99,7 @@ const IndexPage = (props: {
 		}
 		return component
 	}
-
+*/
 	function didYouVisit() {
 		if (process.browser) {
 			if (localStorage.getItem('floev[currentStep]') !== null) {
@@ -221,6 +221,31 @@ const IndexPage = (props: {
 				</Modal>
 
 				<div className="indexPage">
+
+					<div className="landing_1_02" style={{width:'100%',maxWidth:'640px',margin:'0 auto',paddingBottom:'53px'}}>
+						<div><img src="/static/img/home/ex1_1.png" alt=""/></div>
+						<div><img src="/static/img/home/ex2_2.png" alt=""/></div>
+						<div><img src="/static/img/home/ex3_3.png" alt=""/></div>
+						<div className="main-visual__btn">
+							<button className="tn-0003 gtm-001 btn-cta btn-test" onClick={() => didYouVisit()}>20,000원 혜택받고 서비스 신청하기</button>
+							<Modal
+								className="modal-cookie"
+								visible={surveyModal}
+								centered
+								width="320px"
+								onCancel={() => {
+									setSurveyModal(false);
+								}}
+							>
+								<p>전에 작성해둔 설문내역이 있어요!<br />이어서 작성할까요?</p>
+								<div className="modal-btn-wrap">
+									<button type="button" className="modal-btn tn-0001" value="start" onClick={() => surveyFromStart()}>처음부터 할게요</button>
+									<button type="button" className="modal-btn continue tn-0002" onClick={() => surveyFromMiddle()}>이어서 작성할게요</button>
+								</div>
+							</Modal>
+						</div>
+					</div>
+					{/* 
 					<div className="main-visual">
 						<div className="main-visual__inner">
 							<div className="main-visual__img-wrap">
@@ -689,19 +714,10 @@ const IndexPage = (props: {
 							<div className="company__link"><a href="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=6998601370" target="_blank">사업자정보확인</a> | <a href="/service-policy"><span>서비스 정책 안내</span></a> | <a href="https://www.instagram.com/floev_official/" target="_blank">instagram</a></div>
 						</div>
 					</div>
+				*/}
 
 				</div>
-				{/*
-				<div className="font-test-10">폰트사이즈 12px - 0.5em</div>
-				<div className="font-test-12">폰트사이즈 12px - 0.75em</div>
-				<div className="font-test-14">폰트사이즈 14px - 0.875em</div>
-				<div className="font-test-16">폰트사이즈 16px - 1em</div>
-				<div className="font-test-18">폰트사이즈 18px - 1.125em</div>
-				<div className="font-test-20">폰트사이즈 20px - 1.25em</div>
-				<div className="font-test-24">폰트사이즈 24px - 1.5em</div>
-				<div className="font-test-28">폰트사이즈 28px - 1.75em</div>
-				<div className="font-test-32">폰트사이즈 32px - 2.em</div>
-				*/}
+
 			</Layout>
 		</>
 	);
