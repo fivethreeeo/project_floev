@@ -129,8 +129,8 @@ const PickupPageIndex = (props: {
                             <p className="booking-info">고객님의 픽업 방문일정은 <strong>라운지 {loungeCode === 1 ? "역삼성당" : "강남"}</strong><br /><strong>{getMDW(userRequest.date)} {getHour(userRequest.date)}</strong> 입니다.</p>
                         </div>
                         <div className="inner-btn-wrap">
-                            <button className="btn-change" onClick={(e) => showModal(e, 'modal1')}>일정변경하기</button>
                             <button className="btn-cancel" onClick={(e) => showModal(e, 'modal2')}>예약취소하기</button>
+                            <button className="btn-change" onClick={(e) => showModal(e, 'modal1')}>일정변경하기</button>
                         </div>
                     </div>
                 </div>
@@ -206,14 +206,15 @@ const PickupPageIndex = (props: {
                 onCancel={() => setModal2(false)}>
                 <div className="mypage-modal">
                     <div className="modalWrap">
-                        <div className="modalDesc">
-                            <p className="main">픽업예약을 취소하시겠어요?</p>
-                            <div className="innerLine"></div>
-                            <div className="personal">
-                                <p><strong>플로브에 하고 싶은 말을 전해주세요 :)</strong></p>
-                                <textarea name="feedback" value={feedback}
-                                    placeholder="예시) 안경테를 친절하게 설명해주신 카운셀러 분께 감사해요!"
-                                    onChange={e => handleChangeFeedback(e)}
+                        <div className="q-wrap">
+                            <div className="q-wrap__question-main">취소사유를 알려주세요.</div>
+                            <div className="q-wrap__question-sub">더 좋은 서비스를 준비하도록 도와주세요.</div>
+                        </div>
+                        <div className="whyCancel" style={{ padding: '0 20px' }}>
+                            <div className="q-wrap__textarea-wrap" style={{ padding: '0 0' }}>
+                                <textarea
+                                    className="q-wrap__textarea"
+                                    placeholder="예시) 일정이 확실하지 않아요."
                                 ></textarea>
                             </div>
                         </div>

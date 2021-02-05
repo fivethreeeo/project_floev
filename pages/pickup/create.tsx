@@ -61,7 +61,6 @@ const PickupCreate = (props: {
     return (
         <Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" name={props.user ? props.user.name : undefined}>
             <div className="">
-                <div className="goBackBtnWrap"><div className="goBackBtn" onClick={() => router.back()}></div></div>
                 <div className="headroom"></div>
                 <div className="pickUpWrap">
                     <h2>강남 라운지 픽업 예약</h2>
@@ -105,8 +104,8 @@ const PickupCreate = (props: {
 
             <style jsx>{`
                     h2 {text-align:center;font-size:20px}
-                    .headroom {height:64px}
-                    .pickUpWrap {padding: 0 20px}
+                    .headroom {height:120px}
+                    .pickUpWrap {width:100%;max-width:480px;margin:0 auto;padding: 0 20px}
                     .inputTit {margin: 20px 0 4px;color:#33343a}
                     input {width:100%;height:40px;border-radius:4px;border:1px solid #d6d7d8;font-size:14px;padding:0 12px;color:#33343a}
                     input::placeholder {color:#bbb}
