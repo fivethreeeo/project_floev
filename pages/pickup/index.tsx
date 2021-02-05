@@ -117,7 +117,7 @@ const PickupPageIndex = (props: {
     }
     const availablePickupFittingTimes = availablePickupFittingRequestTime(requestDate, LOUNGE.GANGNAM, props.pickupRequestList)
     return (
-        <Layout name={props.user ? props.user.name : undefined}>
+        <Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" name={props.user ? props.user.name : undefined}>
             <div className="mypage">
                 <div className="contentWrap">
                     <p className="qDesc3"><strong>{props.user.name}님</strong></p>
@@ -264,7 +264,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{re
     const { pickupRequestList } = await client.query({ query: GET_PICKUP_REQUEST_LIST })
         .then(({ data }) => {
             return { pickupRequestList: data.getRequestList };
-        }).catch(() => {
+        }).catch((error) => {
+            console.error(error.message)
             return { pickupRequestList: null };
         });
 

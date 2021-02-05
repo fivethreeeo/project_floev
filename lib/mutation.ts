@@ -113,3 +113,32 @@ export const CREATE_USER_MUTATION = gql`
       id
     }
   }`
+
+export const SIGN_UP_USER = gql`
+mutation signUpUser($email: String!, $password: String!, $name: String!, $phoneNumber: String!) {
+  signUpUser(email: $email, password: $password, name: $name, phoneNumber: $phoneNumber) {
+    token
+    user{
+        name
+        email
+    }
+  }
+}
+`
+export const CHECK_EMAIL_DUP = gql`
+mutation checkEmailDup($email: String!){
+  checkEmailDup(email: $email)
+}
+`
+
+export const SIGN_IN_USER = gql`
+  mutation signInUser($email: String!, $password: String!) {
+    signInUser(email: $email, password: $password) {
+      token
+      user{
+          name
+          email
+      }
+    }
+  }
+`

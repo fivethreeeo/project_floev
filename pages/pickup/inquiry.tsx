@@ -118,7 +118,7 @@ const Inquiry = () => {
     }
 
     return (
-        <Layout>
+        <Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스">
             <div className="mypage-inquiry">
                 <div className="q-wrap q13">
                     <div className="q-wrap__question-main">픽업예약조회</div>
