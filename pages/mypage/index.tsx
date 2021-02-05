@@ -308,7 +308,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{re
 
     const { purchaseRequestList } = await client.query({ query: GET_PURCHASE_REQUEST_LIST })
         .then(({ data }) => {
-            return { purchaseRequestList: data.getPuchaseRequestList };
+            return { purchaseRequestList: data.getRequestList };
         })
         .catch((error) => {
             console.error("Schedule data fetch ERROR" + error.message)
