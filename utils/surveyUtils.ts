@@ -57,10 +57,11 @@ export function availablePickupFittingRequestTime(targetDate: string, targetLoun
             { time: "20:00", loungeCode: LOUNGE.YEUKSAM }
         ]
     } else if (targetLounge === LOUNGE.GANGNAM) {
-        for (let i = 11; i < 21; i++) {
+        for (let i = 11; i < 20; i++) {
             nonOccupiedList.push({ time: (i.toString() + ":00"), loungeCode: LOUNGE.GANGNAM })
             nonOccupiedList.push({ time: (i.toString() + ":30"), loungeCode: LOUNGE.GANGNAM })
         }
+        nonOccupiedList.push({ time: "20:00", loungeCode: LOUNGE.GANGNAM })
     }
     // 전체시간에서 예약된 시간 제거함
     nonOccupiedList = nonOccupiedList.filter((item: Slot) => !occupiedTime.includes(item.time))
