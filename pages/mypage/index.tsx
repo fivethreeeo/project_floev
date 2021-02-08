@@ -246,7 +246,7 @@ const MyPageIndex = (props: {
                             {requestDate === "" || loungeCode === 0 || requestTime === "" ? (
                                 <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>일정변경하기</span></button>) :
                                 (!changeLoading ?
-                                    (<button className="q-wrap__btn q-wrap__btn-next tn-0026" type='submit'
+                                    (<button className="q-wrap__btn q-wrap__btn-next" type='submit'
                                         onClick={() => handleClickChange()}><span>일정변경하기</span></button>) :
                                     (<Spin size="large" tip="잠시만 기다려주세요.." />))
                             }
@@ -282,7 +282,7 @@ const MyPageIndex = (props: {
                         </div>
 
                         {(!cancelLoading ?
-                            (<button className="q-wrap__btn q-wrap__btn-next tn-0026" type='submit' style={{ background: "#333" }}
+                            (<button className="q-wrap__btn q-wrap__btn-next" type='submit' style={{ background: "#333" }}
                                 onClick={() => handleClickCancel()}><span>일정취소하기</span></button>) :
                             (<Spin size="large" tip="잠시만 기다려주세요.." />))}
                     </div>
