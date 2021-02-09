@@ -55,6 +55,7 @@ export default function Q12NamePhoneNumber(props: {
                     gender: props.oldAnswers.gender
                 });
                 resetSurvey()
+                fbq('track', 'Schedule');
                 router.replace('/complete')
             }
         },
