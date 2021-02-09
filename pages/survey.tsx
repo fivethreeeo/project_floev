@@ -1,11 +1,9 @@
+import React from 'react';
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic'
 import { createApolloClient } from '../lib/apolloClient';
 import { UploadFile } from 'antd/lib/upload/interface'
 import { GET_PURCHASE_REQUEST_LIST } from '../lib/query'
-import axios from 'axios';
-import moment from 'moment';
-import { SHA256 } from '../utils/SHA256';
 
 // 타입 정의
 declare global {
@@ -84,23 +82,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{ r
             console.error("Request data fetch ERROR :" + error.message)
             return { purchaseRequest: null };
         });
-    // 페이스북 픽셀 : user_data는 임의값으로 설정
-    await axios.post("https://graph.facebook.com/v9.0/2371955746349798/events?access_token=EAAHcnHVaQ5ABAAyifbUiOmzZBwxaIcdHN9CmZCDhk3BDZCcxQCZBgOKqBdz6RlZAUGAhmBtTl4NtwmLzKfZBaEpYlrFIsEGa7fCn1pTE40ITuBUR7kN6D1TkBB7ZAXaM8WA8zqvVQNJwO5ZAsB2bVBg16xDQVSYWImmHqZCd6Vo58dAmq8ZCW54aCXJ7I3sagEAXcZD", {
-        "data": [{
-            "event_name": "AddToCart",
-            "event_time": moment().unix(),
-            "user_data": {
-                "country": SHA256("KR"),
-            }
-        }]
-    }).then((result) => {
-        console.log(moment().format("YYYY-MM-DD HH:mm") + " " + JSON.stringify(result.data))
-        return result.data
-    }).catch((errer: any) => {
-        console.error(errer.message)
-    })
-
-
     return {
         props: {
             // this hydrates the clientside Apollo cache in the `withApollo` HOC
