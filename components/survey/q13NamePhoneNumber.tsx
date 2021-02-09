@@ -221,13 +221,13 @@ export default function Q12NamePhoneNumber(props: {
                 {!isSentAuth ?
                     // 인증번호 보내기 전
                     isPhoneNumber ?
-                        (<button className="btn-num" onClick={() => requestAuthNumber()}>인증번호전송</button>) :
+                        (<button className="btn-num tn-0028" onClick={() => requestAuthNumber()}>인증번호전송</button>) :
                         (<button className="btn-num">인증번호전송</button>) :
                     // 인증번호 보낸 후
                     (<div className="input-text-num">
                         <input className="q-wrap__input-text" type="text" placeholder={'인증번호 4자리'} value={authNumber} onChange={e => handleChangeAuthNumber(e)} maxLength={4} />
                         {isAuthenticated ?
-                            (<button className="btn-resend" onClick={() => requestAuthNumber()}>재전송</button>) :
+                            (<button className="btn-resend tn-0029" onClick={() => requestAuthNumber()}>재전송</button>) :
                             (<button className="btn-resend">재전송</button>)}
 
                         {leftSecond <= 180 ?
@@ -244,7 +244,7 @@ export default function Q12NamePhoneNumber(props: {
 
 
             <div className="q-wrap__btn-wrap">
-                <button className="q-wrap__btn q-wrap__btn-prev" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-prev tn-0027" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
                 {authNumber.length !== 4 || !isActive ?
                     (<button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled"><span>인증하고 예약완료하기</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>) :
                     (!loading ?

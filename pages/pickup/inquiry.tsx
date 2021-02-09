@@ -154,7 +154,7 @@ const Inquiry = () => {
                         {authNumber.length !== 4 || !isActive ?
                             (<button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled"><span>인증하고 예약 조회하기</span></button>) :
                             (!loading ?
-                                (<button className="q-wrap__btn q-wrap__btn-next tn-0026" type='submit'
+                                (<button className="q-wrap__btn q-wrap__btn-next" type='submit'
                                     onClick={() => signInWithPhoneNumber()}><span>인증하고 예약조회하기</span></button>) :
                                 (<Spin size="large" tip="잠시만 기다려주세요.." />))
                         }
