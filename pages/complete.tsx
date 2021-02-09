@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from '../layout/DefaultLayout';
-import Head from "next/head";
 import { GetServerSideProps } from "next";
 import { createApolloClient } from '../lib/apolloClient'
 import { gql } from '@apollo/client'
@@ -12,13 +11,6 @@ const CompletePage = (props: {
     const userSchedule: PurchaseRequest = props.user.requests[props.user.requests.length - 1]
 
     return (<>
-        <Head>
-            <script type="text/javascript" charSet="UTF-8" src="//t1.daumcdn.net/adfit/static/kp.js"></script>
-            <script type="text/javascript">
-                kakaoPixel('784604748053330030').pageView();
-                kakaoPixel('784604748053330030').purchase('reservationcomp');
-          </script>
-        </Head>
         <Layout name={props.user ? props.user.name : undefined}>
             <div className="complete">
                 <div className="request">
