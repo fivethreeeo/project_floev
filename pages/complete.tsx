@@ -5,9 +5,6 @@ import { GetServerSideProps } from "next";
 import { createApolloClient } from '../lib/apolloClient'
 import { gql } from '@apollo/client'
 import { getMDW, getHour } from '../utils/timeFormat'
-import axios from "axios";
-import { SHA256 } from '../utils/SHA256'
-import moment from "moment";
 
 const CompletePage = (props: {
     user: any
@@ -77,23 +74,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{ r
         .catch(() => {
             return { user: null };
         });
-    if (user) {
-        await axios.post("https://graph.facebook.com/v9.0/2371955746349798/events?access_token=EAAHcnHVaQ5ABANKlraZASxfv68vhBn2AqJPli0LGM4dmo0Eh7zfgDEMOqRigiHZCQZAWppwKuwlKi4X7Ofz9VwDlZCFeVLZAIRFEGAn4OnIFesaJ1sJVGx1KwspLl5g2rjA6ZCbZBdJ9WZC5Ara2I1PfOg7vEdEVD0XbBke9e3GxIntjTXbMl11gvRvYwRprIA4ZD", {
-            "data": [{
-                "event_name": "Schedule",
-                "event_time": moment().unix(),
-                "user_data": {
-                    "fn": SHA256(user.name),
-                    "ph": SHA256(user.phoneNumber)
-                }
-            }]
-        }).then((result) => {
-            console.log(JSON.stringify(result.data))
-            return result.data
-        }).catch((errer: any) => {
-            console.error(errer.message)
-        })
-    }
     return {
         props: {
             // this hydrates the clientside Apollo cache in the `withApollo` HOC
