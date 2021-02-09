@@ -31,18 +31,9 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
           <script dangerouslySetInnerHTML={{ __html: this.renderSnippet() }} />
           <script async src="https://www.googletagmanager.com/gtag/js?id=AW-738487034"></script>
-          <script dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'AW-738487034');
-            `}}
-          />
-
+          {/* 구글 태그매니저 */}
           <script dangerouslySetInnerHTML={{
             __html: `
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -52,17 +43,22 @@ class MyDocument extends Document {
               })(window,document,'script','dataLayer','GTM-NNF4ZC5');
           `}}
           />
-
-          <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+          {/* 페이스북 픽셀 */}
           <script dangerouslySetInnerHTML={{
             __html: `
-              if(!wcs_add) var wcs_add = {};
-              wcs_add["wa"] = "4b0dd3814c87c8";
-              if(window.wcs) {
-                wcs_do();
-              }
-            `}}
-          />
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '468879750384716');
+              fbq('track', 'PageView');`}} />
+          <noscript dangerouslySetInnerHTML={{
+            __html: `<img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=468879750384716&ev=PageView&noscript=1"/>` }} />
         </Head>
         <body>
           <Main />
