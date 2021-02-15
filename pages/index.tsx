@@ -90,7 +90,7 @@ const IndexPage = (props: {
 
 	return (<>
 		<Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" name={props.user ? props.user.name : undefined}>
-			<div className="indexPage" style={{ width: '100%', maxWidth: '640px', margin: '0 auto', paddingBottom: '53px' }}>
+			<div className="indexPage">
 				<div className="landing_1_02">
 					<div><img src="/static/img/home/landing_1.png" alt="" /></div>
 					<div><img src="/static/img/home/landing_2.png" alt="" /></div>
@@ -496,9 +496,10 @@ const IndexPage = (props: {
 					</div>
 				</div>
 
-				<div style={{ padding: '48px 0' }}>
+				<div>
 					<div className="lounge">
-						<div style={{ marginBottom: '8px' }} className="lounge__title"><strong>플로브 라운지 안내</strong></div>
+						<div className="lounge__title"><strong><p>안경을 만나는 그 순간까지 <span></span>고려한 '플로브 라운지'</p></strong></div>
+						<div className="lounge__caption"><p>플로브 라운지 스토리부터 각 지점별 정보를 확인하세요.</p></div>
 						<div className="lounge__list">
 							<div className="lounge__thumb"><a href="/lounge/yeoksam"><div><img src="/static/img/home/lounge_y_0.jpg" alt="" /></div><p>라운지 역삼성당</p></a></div>
 							<div className="lounge__thumb"><a href="/lounge/gangnam"><div><img src="/static/img/home/lounge_g_0.jpg" alt="" /></div><p>라운지 강남</p></a></div>
