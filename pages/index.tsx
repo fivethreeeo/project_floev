@@ -27,9 +27,7 @@ const IndexPage = (props: {
 	const [tabIdx, setTabIdx] = useState<number>(0)
 	const [surveyModal, setSurveyModal] = useState<boolean>(false)
 
-	const collapseCallback = (key: any) => {
-		setTabIdx(key)
-	}
+	const collapseCallback = (key: string | string[]) => { key }
 
 	const serviceTabs = () => {
 		let component
