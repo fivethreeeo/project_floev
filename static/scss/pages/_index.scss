@@ -1303,9 +1303,15 @@
 				font-size:18px;
 				&:first-child {
 					padding-right:16px;
+					@include responsive("mobile") {
+						padding-right: 0;
+					}
 				}
 				&:nth-child(2) {
 					padding:0 8px;
+					@include responsive("mobile") {
+						padding:0 0;
+					}
 				}
 				&:last-child {
 					padding-left:16px;
