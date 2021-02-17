@@ -89,20 +89,45 @@ const IndexPage = (props: {
 	return (<>
 		<Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" name={props.user ? props.user.name : undefined}>
 			<div className="indexPage">
+				<div className="landing_1_02">
+					<div><img src="/static/img/home/landing_1.png" alt="" /></div>
+					<div><img src="/static/img/home/landing_2.png" alt="" /></div>
+					<div><img src="/static/img/home/landing_3.png" alt="" /></div>
+					<div><img src="/static/img/home/landing_4.png" alt="" /></div>
+					<div><img src="/static/img/home/landing_5.png" alt="" /></div>
+					<div className="main-visual__btn">
+						<button className="tn-0003 gtm-001 btn-cta btn-test" onClick={() => didYouVisit()}>20,000원 혜택받고 서비스 신청하기</button>
+						<Modal
+							className="modal-cookie"
+							visible={surveyModal}
+							centered
+							width="320px"
+							onCancel={() => {
+								setSurveyModal(false);
+							}}
+						>
+							<p>전에 작성해둔 설문내역이 있어요!<br />이어서 작성할까요?</p>
+							<div className="modal-btn-wrap">
+								<button type="button" className="modal-btn tn-0001" value="start" onClick={() => surveyFromStart()}>처음부터 할게요</button>
+								<button type="button" className="modal-btn continue tn-0002" onClick={() => surveyFromMiddle()}>이어서 작성할게요</button>
+							</div>
+						</Modal>
+					</div>
+				</div>
 
 				<div className="main-visual">
 					<div className="main-visual__inner">
 						<div className="main-visual__img-wrap">
-							<div className="main-visual__img"><img src="/static/img/home/main-after.jpg" alt="메인 비주얼 이미지1" /></div>
+							<div className="main-visual__img"><img src="/static/img/home/counselor_both.png" alt="메인 비주얼 이미지1" /></div>
 						</div>
 						<div className="main-visual__desc-wrap">
 							<div className="desc-wrap__inner">
 								<div className="main-visual__title">
-									<p className=""><strong>어? 너 안경<br />되게 잘 어울린다!</strong></p>
+									<p className=""><strong>아직도 얼굴형으로<br />안경 고르세요?</strong></p>
 								</div>
-								<p className="main-visual__caption">이런 말, 나도 들을 수 있을까?<br />진짜 나에게 맞는 안경 추천 서비스</p>
+								<p className="main-visual__caption">안경 고민을 설문하세요.<br />진짜 나에게 맞는 안경 추천 서비스</p>
 								<div className="main-visual__btn">
-									<button className="tn-0003 gtm-001 btn-cta btn-test" onClick={() => didYouVisit()}>20,000 혜택받고 서비스 신청하기</button>
+									<button className="tn-0003 gtm-001 btn-cta btn-test" onClick={() => didYouVisit()}>시작하기</button>
 									<Modal
 										className="modal-cookie"
 										visible={surveyModal}
@@ -123,7 +148,7 @@ const IndexPage = (props: {
 						</div>
 					</div>
 				</div>
-				
+
 				<div className="banner-event">
 					<div className="banner-event__inner">
 						<a href="/2020-winter-event">
@@ -157,7 +182,7 @@ const IndexPage = (props: {
 								<div className="score__name">서비스 만족도</div>
 							</div>
 						</div>
-						<div style={{display:'none'}} className="score__desc">
+						<div className="score__desc">
 							<div className="left">
 								<div>추천상담 만족도 평균 <span>9.1 / 10점</span></div>
 								<div>시력상담 만족도 평균 <span>9.0 / 10점</span></div>
@@ -306,7 +331,7 @@ const IndexPage = (props: {
 									<div className="find-story__tag">시각불편</div>
 									<div className="find-story__tag">테불편</div>
 								</div>
-							</div> 
+							</div>
 							<div className="find-story__card">
 								<div className="find-story__img-wrap">
 									<div className="find-story__img"><img src="/static/img/home/find_story_2.jpg" alt="" /></div>
@@ -386,56 +411,6 @@ const IndexPage = (props: {
 								</div>
 							</div>
 						</Carousel>
-					</div>
-				</div>
-
-				<div className="service-desc-1">
-					<div className="service-desc-1__top">
-						<div><strong>내 눈</strong> <img src="/static/img/home/ico-eye.svg" alt=""/> 에 건강하고<br/>일상에 스타일리시한<br/><strong>변화</strong> <img src="/static/img/home/ico-change.svg" alt=""/> 를 주는<br/>진짜 어울리는 <strong>안경</strong> <img className="gls" src="/static/img/home/ico-glasses.svg" alt=""/></div>
-						<div className="img-oval"><img src="/static/img/home/ser-oval.png" alt=""/></div>
-					</div>
-					<div className="service-desc-1__bottom">안경을 검색하면 나오는 수많은 정보와 꿀팁들,<br/>하지만 나를 모른다면? 지금 내 안경에 확신하시나요?<br/>플로브는 안경에 대한 모든 고민을<br/><strong>나에게 어울리는 안경으로 해결합니다.</strong></div>
-				</div>
-
-				<div className="stories">
-					<div className="stories__title">어떤 안경 찾으세요?</div>
-					<div className="stories__thumbs">
-						<div className="stories__thumb-img stories__thumb-img-1"></div>
-						<div className="stories__thumb-img stories__thumb-img-2"></div>
-						<div className="stories__thumb-img stories__thumb-img-3"></div>
-					</div>
-					<div className="stories__story-wrap stories__story-wrap-1">
-						<div className="before-img"><span><strong>Before</strong></span></div>
-						<div className="after-img"><span><strong>After</strong></span></div>
-						<div className="title">
-							<img src="/static/img/home/ico-c-ring.png" alt=""/><br/>
-							<p>특별한 날<br/><strong>특별한 나</strong>를 위해 쓰는 안경</p>
-						</div>
-						<div className="desc">
-							<p>웨딩촬영을 앞두고 잘 어울리는 안경을 고민하다가 여자친구와 함께 방문했어요. 뿔테는 처음이지만 너무 마음에 들어요! 가벼워서 신혼여행에서도 착용하려구요.</p>
-						</div>
-					</div>
-					<div className="stories__story-wrap stories__story-wrap-2">
-						<div className="before-img"><span><strong>Before</strong></span></div>
-						<div className="after-img"><span><strong>After</strong></span></div>
-						<div className="title">
-							<img src="/static/img/home/ico-c-building.png" alt=""/><br/>
-							<p>집이 아니라<br/><strong>회사에서</strong> 쓰는 안경</p>
-						</div>
-						<div className="desc">
-							<p>동그란 안경만 써봐서 새로운 디자인을 선택하기 망설여졌는데.. 제가 원했던 '무게감 있지만 세련된 이미지'가 정말 잘 표현되는 안경에 매우 만족합니다!</p>
-						</div>
-					</div>
-					<div className="stories__story-wrap stories__story-wrap-3">
-						<div className="before-img"><span><strong>Before</strong></span></div>
-						<div className="after-img"><span><strong>After</strong></span></div>
-						<div className="title">
-							<img src="/static/img/home/ico-c-eye.png" alt=""/><br/>
-							<p>콘택트렌즈에서 <br/><strong>나를 해방</strong>시키는 안경</p>
-						</div>
-						<div className="desc">
-							<p>하루 2/3의 시간을 콘택트렌즈와 함께하니 이제는 정말 건조해서 못 견디겠더라구요. 안경은 무조건 안 예쁘다! 라는 제 편견을 깔끔하게 지워 준 안경입니다.</p>
-						</div>
 					</div>
 				</div>
 
@@ -519,179 +494,78 @@ const IndexPage = (props: {
 					</div>
 				</div>
 
-				<div className="service-new">
-					<div className="service-new__title">
-						<p><strong>은근히 까다로운 안경 찾기,<br/>재대로 쉽게 즐기는 안경 추천 서비스</strong></p>
-						<div className="img"><img src="/static/img/home/serviceinfo-1.jpg" alt=""/></div>
-						<div className="bottom-img"><img src="/static/img/home/serviceinfo-2.jpg" alt=""/></div>
-					</div>
-					<div className="service-new__pt1">
-						<div className="inner">
-							<p className="p1">우연과 느낌에 의존한<br/>나의 안경 구매의<br/>불완전한 고리를 끊자 -</p>
-							<p className="p2"><strong>어떻게?</strong></p>
-							<div className="img"><img src="/static/img/home/serviceinfo-5.png" alt=""/></div>
+				<div>
+					<div className="lounge">
+						<div className="lounge__title"><strong><p>안경을 만나는 그 순간까지 <span></span>고려한 '플로브 라운지'</p></strong></div>
+						<div className="lounge__caption"><p>플로브 라운지 스토리부터 각 지점별 정보를 확인하세요.</p></div>
+						<div className="lounge__list">
+							<div className="lounge__thumb"><a href="/lounge/yeoksam"><div><img src="/static/img/home/lounge_y_0.jpg" alt="" /></div><p>라운지 역삼성당</p></a></div>
+							<div className="lounge__thumb"><a href="/lounge/gangnam"><div><img src="/static/img/home/lounge_g_0.jpg" alt="" /></div><p>라운지 강남</p></a></div>
+							<div className="lounge__thumb"><div><img src="/static/img/home/new_lounge.jpg" alt="" /></div></div>
 						</div>
 					</div>
-					<div className="service-new__pt2">
-						<div className="inner">
-							<p><strong>제대로! 나에게 맞게! 어울리는!</strong><br/>안경을 찾아주는 서비스로</p>
+
+					<div className="faq">
+						<div className="faq__title"><strong><p>플로브 서비스, 이런 점이 궁금해요!</p></strong></div>
+						<div className="faq__caption"><p>궁금한 내용을 클릭하시면 내용을 확인할 수 있습니다.</p></div>
+						<div className="faq__collapse">
+							<Collapse
+								className="my-accordion"
+								accordion
+								onChange={collapseCallback}
+								expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 270 : 90} />}
+								expandIconPosition={'right'}
+								ghost
+							>
+								<Collapse.Panel header="추천을 받고 구매하지 않아도 되나요?" key="1">
+									<div className="faq__answer">네 구매하지 않으셔도 됩니다.<br />안경 추천을 비롯한 서비스 비용은 모두 무료이며 안경/렌즈 구매는 선택입니다.</div>
+								</Collapse.Panel>
+								<Collapse.Panel header="받을 수 있는 가격 할인 혜택이 있나요?" key="2">
+									<div className="faq__answer">네 있습니다. 우선 기본적으로 플로브 정책 가는 아래의 할인이 적용되어 있어요.<br /><strong>안경테 10~20% / 안경 렌즈 20%</strong><br />추가로 플로브 할인 이벤트를 통해 최소 3만 원의 할인 혜택을 받을 수 있습니다.</div>
+								</Collapse.Panel>
+								<Collapse.Panel header="오늘 예약하고 바로 방문할 수 있나요?" key="3">
+									<div className="faq__answer">네, 당일 오후 3시 이전까지 예약이 가능합니다.</div>
+								</Collapse.Panel>
+								<Collapse.Panel header="친구와 함께 추천받을 수 있나요?" key="4">
+									<div className="faq__answer">네 함께 추천받을 수 있어요.<br />동시 서비스는 최대 2명까지 가능하고 총 서비스 시간은 100분입니다.</div>
+								</Collapse.Panel>
+								<Collapse.Panel header="안경을 선물하고 싶은데, 어떻게 예약해야 하나요?" key="5">
+									<div className="faq__answer">성공적인 선물을 위한 상담을 카카오톡으로 진행해요.<br />홈페이지 설문이 아닌 플로브 카카오톡 채널로 문의해주세요!</div>
+								</Collapse.Panel>
+								<Collapse.Panel header="구매한 안경을 당일에 받을 수 있나요?" key="6">
+									<div className="faq__answer">선택한 렌즈 사양에 따라 달라져요.<br />렌즈 브랜드 및 추가하는 옵션에 따라 렌즈 주문이 필요할 수 있어요. 이 경우 수령 날짜를 라운지에서 안내받을 수 있습니다.</div>
+								</Collapse.Panel>
+								<Collapse.Panel header="예약 없이 방문할 수 있나요?" key="7">
+									<div className="faq__answer">플로브는 100% 예약제로 운영됩니다.<br />플로브는 일반적인 안경원과 달라요. 안경을 구매하는 새로운 방식을 제안합니다. 나만을 위한 안경박스를 추천받기 위해서 홈페이지 설문을 꼭 진행해 주세요!</div>
+								</Collapse.Panel>
+								<Collapse.Panel header="안경을 원래 쓰지 않는데, 방문해도 되나요?" key="8">
+									<div className="faq__answer">네 가능해요.<br />내 눈에 대한 고민은 시력적인 불편함뿐만 아니라 보호하고 싶은 걱정스러운 마음도 포함됩니다.</div>
+								</Collapse.Panel>
+								<Collapse.Panel header="구매한 안경의 수리도 플로브에서 받을 수 있나요?" key="9">
+									<div className="faq__answer">네 가능해요.<br />카카오톡 채널로 문의해 주시면 접수 가능한 링크를 전달드려요.<br />플로브는 어려운 수리 판단과 안경 브랜드사와의 복잡한 소통을 고객님을 대신해서 진행해드립니다.</div>
+								</Collapse.Panel>
+								<Collapse.Panel header="맞춘 렌즈에 적응이 어려운데, 교환이 가능한가요?" key="10">
+									<div className="faq__answer">네 가능해요.<br />플로브는 렌즈로 인한 불편함을 해소하기 위해 한 달 이내 2회까지 동급 렌즈로 무상 교환해드립니다.</div>
+								</Collapse.Panel>
+							</Collapse>
 						</div>
 					</div>
-					<div className="service-new__pt3">
-						<div className="inner">
-							<div className="img"><img src="/static/img/home/serviceinfo-4.png" alt=""/></div>
+
+					<div className="banner-brand">
+						<div className="banner-brand__inner">
+							<a href="/brand">
+								<div className="event-desc">
+									<span className="event-text">어떤 안경을 추천받을지 궁금하신가요?</span>
+									<strong>플로브 추천 안경 브랜드 보러가기</strong>
+								</div>
+							</a>
 						</div>
 					</div>
 				</div>
 
-				<div className="service-process">
-					<div className="service-process__one">
-						<div className="num">1</div>
-						<div className="txt-wrap">
-							<div className="txt">플로브의 질문을 따라 나의 안경 고민을 전달해요.</div>
-							<div className="tag-wrap">
-								<div className="tag">플로브 안경 설문</div>
-							</div>
-						</div>
-					</div>
-					<div className="service-process__one">
-						<div className="num">2</div>
-						<div className="txt-wrap">
-							<div className="txt">플로브가 나에게 어울리는 안경을 선별해요.</div>
-							<div className="tag-wrap">
-								<div className="tag">시각생활 분석</div>
-								<div className="tag">원하는 이미지&스타일 분석</div>
-								<div className="tag">추천 안경테 구성</div>
-							</div>
-						</div>
-					</div>
-					<div className="service-process__one">
-						<div className="num">3</div>
-						<div className="txt-wrap">
-							<div className="txt">플로브 라운지에서 내가 원했던 안경을 만나요.</div>
-							<div className="tag-wrap">
-								<div className="tag">16개의 추천 안경테</div>
-								<div className="tag">안경 카운셀러와 맞춤 상담</div>
-								<div className="tag">플로브만의 라운지</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div className="service-pod">
-					<div className="title">
-						<div className="img"><img src="/static/img/home/servicepod-1.jpg" alt=""/></div>
-						<p><strong>새로운 안경 서비스</strong>는 어떻게 다를까?</p>
-						<div className="s-title">플로브 추천의<br/><strong>다섯가지 비법</strong><img src="/static/img/home/ico-hand.png" alt=""/></div>
-					</div>
-					<div className="service-pod__list">
-						<ul>
-							<li className="li-1">
-								<p className="p1">미리, 쉽게!<br/>전달하는 나의 안경고민</p>
-								<p className="p2">필요한 질문만 간편하게 쏙쏙!<br/>나의 안경생활, 취향을 간편하게 설문하세요.</p>
-							</li>
-							<li className="li-2 right">
-								<p className="p1">나와 같은 고민을 헀던<br/>사람들의 추천 데이터</p>
-								<p className="p2">단순히 안경사 한 사람의 판단이 아니에요. 누적된 데이터를 통해 나의 안경이 추천돼요.</p>
-							</li>
-							<li className="li-3">
-								<p className="p1">플로브가 자신있게<br/>큐레이션 하는 안경테</p>
-								<p className="p2">나만을 위해 추천되는 16개의 안경테는<br/>모두 플로브가 직접 까다롭게 고른 브랜드에요.</p>
-							</li>
-							<li  className="li-4 right">
-								<p className="p1">검안부터 안경 추천까지,<br/>top 안경 카운셀러</p>
-								<p className="p2">안경이 아닌 나에게 집중하는 플로브만의 상담 특화 안경 카운셀러와 함께해요.</p>
-							</li>
-							<li className="li-5">
-								<p className="p1">나에게 필요한 안경만<br/>효율적으로, 플로브 라운지</p>
-								<p className="p2">먼지 쌓인 안경 진열대는 없어요.<br/>나를 위한 추천으로 완성되는 특별한 공간을 경험해요.</p>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div className="lounge">
-					<div className="lounge__title"><strong><p>안경을 만나는 그 순간까지 <span></span>고려한 '플로브 라운지'</p></strong></div>
-					<div className="lounge__caption"><p>플로브 라운지 스토리부터 각 지점별 정보를 확인하세요.</p></div>
-					<div className="lounge__list">
-						<div className="lounge__thumb"><a href="/lounge/yeoksam"><div><img src="/static/img/home/lounge_y_0.jpg" alt="" /></div><p>라운지 역삼성당</p></a></div>
-						<div className="lounge__thumb"><a href="/lounge/gangnam"><div><img src="/static/img/home/lounge_g_0.jpg" alt="" /></div><p>라운지 강남</p></a></div>
-						<div className="lounge__thumb"><div><img src="/static/img/home/new_lounge.jpg" alt="" /></div></div>
-					</div>
-				</div>
-
-				<div className="banner-brand">
-					<div className="banner-brand__inner">
-						<a href="/brand">
-							<div className="event-desc">
-								<span className="event-text">어떤 안경을 추천받을지 궁금하신가요?</span>
-								<strong>플로브 추천 안경 브랜드 보러가기</strong>
-							</div>
-						</a>
-					</div>
-				</div>
-
-				<div className="faq">
-					<div className="faq__title"><strong><p>플로브 서비스, 이런 점이 궁금해요!</p></strong></div>
-					<div className="faq__caption"><p>궁금한 내용을 클릭하시면 내용을 확인할 수 있습니다.</p></div>
-					<div className="faq__collapse">
-						<Collapse
-							className="my-accordion"
-							accordion
-							onChange={collapseCallback}
-							expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 270 : 90} />}
-							expandIconPosition={'right'}
-							ghost
-						>
-							<Collapse.Panel header="추천을 받고 구매하지 않아도 되나요?" key="1">
-								<div className="faq__answer">네 구매하지 않으셔도 됩니다.<br />안경 추천을 비롯한 서비스 비용은 모두 무료이며 안경/렌즈 구매는 선택입니다.</div>
-							</Collapse.Panel>
-							<Collapse.Panel header="받을 수 있는 가격 할인 혜택이 있나요?" key="2">
-								<div className="faq__answer">네 있습니다. 우선 기본적으로 플로브 정책 가는 아래의 할인이 적용되어 있어요.<br /><strong>안경테 10~20% / 안경 렌즈 20%</strong><br />추가로 플로브 할인 이벤트를 통해 최소 3만 원의 할인 혜택을 받을 수 있습니다.</div>
-							</Collapse.Panel>
-							<Collapse.Panel header="오늘 예약하고 바로 방문할 수 있나요?" key="3">
-								<div className="faq__answer">네, 당일 오후 3시 이전까지 예약이 가능합니다.</div>
-							</Collapse.Panel>
-							<Collapse.Panel header="친구와 함께 추천받을 수 있나요?" key="4">
-								<div className="faq__answer">네 함께 추천받을 수 있어요.<br />동시 서비스는 최대 2명까지 가능하고 총 서비스 시간은 100분입니다.</div>
-							</Collapse.Panel>
-							<Collapse.Panel header="안경을 선물하고 싶은데, 어떻게 예약해야 하나요?" key="5">
-								<div className="faq__answer">성공적인 선물을 위한 상담을 카카오톡으로 진행해요.<br />홈페이지 설문이 아닌 플로브 카카오톡 채널로 문의해주세요!</div>
-							</Collapse.Panel>
-							<Collapse.Panel header="구매한 안경을 당일에 받을 수 있나요?" key="6">
-								<div className="faq__answer">선택한 렌즈 사양에 따라 달라져요.<br />렌즈 브랜드 및 추가하는 옵션에 따라 렌즈 주문이 필요할 수 있어요. 이 경우 수령 날짜를 라운지에서 안내받을 수 있습니다.</div>
-							</Collapse.Panel>
-							<Collapse.Panel header="예약 없이 방문할 수 있나요?" key="7">
-								<div className="faq__answer">플로브는 100% 예약제로 운영됩니다.<br />플로브는 일반적인 안경원과 달라요. 안경을 구매하는 새로운 방식을 제안합니다. 나만을 위한 안경박스를 추천받기 위해서 홈페이지 설문을 꼭 진행해 주세요!</div>
-							</Collapse.Panel>
-							<Collapse.Panel header="안경을 원래 쓰지 않는데, 방문해도 되나요?" key="8">
-								<div className="faq__answer">네 가능해요.<br />내 눈에 대한 고민은 시력적인 불편함뿐만 아니라 보호하고 싶은 걱정스러운 마음도 포함됩니다.</div>
-							</Collapse.Panel>
-							<Collapse.Panel header="구매한 안경의 수리도 플로브에서 받을 수 있나요?" key="9">
-								<div className="faq__answer">네 가능해요.<br />카카오톡 채널로 문의해 주시면 접수 가능한 링크를 전달드려요.<br />플로브는 어려운 수리 판단과 안경 브랜드사와의 복잡한 소통을 고객님을 대신해서 진행해드립니다.</div>
-							</Collapse.Panel>
-							<Collapse.Panel header="맞춘 렌즈에 적응이 어려운데, 교환이 가능한가요?" key="10">
-								<div className="faq__answer">네 가능해요.<br />플로브는 렌즈로 인한 불편함을 해소하기 위해 한 달 이내 2회까지 동급 렌즈로 무상 교환해드립니다.</div>
-							</Collapse.Panel>
-						</Collapse>
-					</div>
-				</div>
-
-				<div className="bottom-msg">
-					<p>모든 안경 추천 서비스는 <strong>무료,<br/></strong>안경 구매는 나의 <strong>선택!</strong></p>
-				</div>
-				<div className="bottom-card">
-					<div className="bottom-card__inner">
-						<div className="bottom-card__img"></div>
-						<div className="bottom-card__txt">
-							<p className="caption">플로브와 함께라면</p>
-							<p className="desc">안경 찾기는<br/><strong>쉬워지고</strong><br/>안경 쓰기는<br/><strong>즐거워질 거에요</strong></p>
-						</div>
-					</div>
-				</div>
 				<div className="bottom-cta">
 					<div className="bottom-cta__inner">
-						<button className="gtm-001 btn-cta tn-0004" onClick={() => didYouVisit()}><span>20,000 혜택받고 서비스 신청하기</span></button>
+						<button className="gtm-001 btn-cta tn-0004" onClick={() => didYouVisit()}><span>시작하기</span></button>
 					</div>
 				</div>
 
