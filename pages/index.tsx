@@ -444,86 +444,6 @@ const IndexPage = (props: {
 					</div>
 				</div>
 
-				<div className="service service__1">
-					<div className="service__inner">
-
-						<div className="service__tabs">
-							<div className={tabIdx === 0 ? `service__tab service__tab--selected` : `service__tab`} onClick={() => setTabIdx(0)}>무료 상담, 무료 추천</div>
-							<div className={tabIdx === 1 ? `service__tab service__tab--selected` : `service__tab`} onClick={() => setTabIdx(1)}>맞춤 안경박스</div>
-							<div className={tabIdx === 2 ? `service__tab service__tab--selected` : `service__tab`} onClick={() => setTabIdx(2)}>안경 카운셀러</div>
-							<div className={tabIdx === 3 ? `service__tab service__tab--selected` : `service__tab`} onClick={() => setTabIdx(3)}>렌즈 무료 교환</div>
-						</div>
-						{serviceTabs()}
-					</div>
-				</div>
-				<div className="service service__2">
-					<div className="service__inner">
-
-						<Carousel
-							arrows
-							className="service__carousel"
-							infinite
-						>
-							<div className="service__slide">
-								<div className="content-txt">
-									<div className="content-txt__inner">
-										<div className="tabname">무료 상담, 무료 추천</div>
-										<div className="title">안경상담부터 추천<br />큐레이션까지 모두 무료!</div>
-										<div className="caption">홈페이지 설문, 더 디테일한 카톡 상담, 라운지 안경 큐레이션 서비스까지 모두 무료로 체험할 수 있어요.</div>
-									</div>
-								</div>
-								<div className="content-img">
-									<div className="content-img__inner">
-										<img src="/static/img/home/home_service_1.jpg" alt="" />
-									</div>
-								</div>
-							</div>
-							<div className="service__slide">
-								<div className="content-txt">
-									<div className="content-txt__inner">
-										<div className="tabname">맞춤 안경박스</div>
-										<div className="title">고민이 사라지는<br />맞춤 안경박스</div>
-										<div className="caption">나에게 맞춘 16개의 안경이 담긴 안경박스를 플로브 라운지에서 즐겨보세요.</div>
-									</div>
-								</div>
-								<div className="content-img">
-									<div className="content-img__inner">
-										<img src="/static/img/home/home_service_2.jpg" alt="" />
-									</div>
-								</div>
-							</div>
-							<div className="service__slide">
-								<div className="content-txt">
-									<div className="content-txt__inner">
-										<div className="tabname">안경 카운셀러</div>
-										<div className="title">안경 카운셀러와<br />쉽고 정확한 안경 찾기</div>
-										<div className="caption">읽어주는 검안으로 쉬워지는 렌즈, 시각문제, 스타일까지 안경 카운셀러가 대신 고민하고 추천해드려요.</div>
-									</div>
-								</div>
-								<div className="content-img">
-									<div className="content-img__inner">
-										<img src="/static/img/home/home_service_3.jpg" alt="" />
-									</div>
-								</div>
-							</div>
-							<div className="service__slide">
-								<div className="content-txt">
-									<div className="content-txt__inner">
-										<div className="tabname">렌즈 무료 교환</div>
-										<div className="title">실패 없는 안경<br />렌즈 2회 무료 교환</div>
-										<div className="caption">교정시력에 딱 맞춰볼까?<br />불편한 렌즈는 한달 이내 무료로 2회 교환이 가능해요.</div>
-									</div>
-								</div>
-								<div className="content-img">
-									<div className="content-img__inner">
-										<img src="/static/img/home/home_service_4.jpg" alt="" />
-									</div>
-								</div>
-							</div>
-						</Carousel>
-					</div>
-				</div>
-
 				<div className="service-new">
 					<div className="service-new__title">
 						<p><strong>은근히 까다로운 안경 찾기,<br/>재대로 쉽게 즐기는 안경 추천 서비스</strong></p>
@@ -614,7 +534,85 @@ const IndexPage = (props: {
 						</ul>
 					</div>
 				</div>
+				<div className="service service__1">
+					<div className="service__inner">
 
+						<div className="service__tabs">
+							<div className={tabIdx === 0 ? `service__tab service__tab--selected` : `service__tab`} onClick={() => setTabIdx(0)}>무료 상담, 무료 추천</div>
+							<div className={tabIdx === 1 ? `service__tab service__tab--selected` : `service__tab`} onClick={() => setTabIdx(1)}>맞춤 안경박스</div>
+							<div className={tabIdx === 2 ? `service__tab service__tab--selected` : `service__tab`} onClick={() => setTabIdx(2)}>안경 카운셀러</div>
+							<div className={tabIdx === 3 ? `service__tab service__tab--selected` : `service__tab`} onClick={() => setTabIdx(3)}>렌즈 무료 교환</div>
+						</div>
+						{serviceTabs()}
+					</div>
+				</div>
+				<div className="service service__2">
+					<div className="service__inner">
+
+						<Carousel
+							arrows
+							className="service__carousel"
+							infinite
+						>
+							<div className="service__slide">
+								<div className="content-txt">
+									<div className="content-txt__inner">
+										<div className="tabname">무료 상담, 무료 추천</div>
+										<div className="title">안경상담부터 추천<br />큐레이션까지 모두 무료!</div>
+										<div className="caption">홈페이지 설문, 더 디테일한 카톡 상담, 라운지 안경 큐레이션 서비스까지 모두 무료로 체험할 수 있어요.</div>
+									</div>
+								</div>
+								<div className="content-img">
+									<div className="content-img__inner">
+										<img src="/static/img/home/home_service_1.jpg" alt="" />
+									</div>
+								</div>
+							</div>
+							<div className="service__slide">
+								<div className="content-txt">
+									<div className="content-txt__inner">
+										<div className="tabname">맞춤 안경박스</div>
+										<div className="title">고민이 사라지는<br />맞춤 안경박스</div>
+										<div className="caption">나에게 맞춘 16개의 안경이 담긴 안경박스를 플로브 라운지에서 즐겨보세요.</div>
+									</div>
+								</div>
+								<div className="content-img">
+									<div className="content-img__inner">
+										<img src="/static/img/home/home_service_2.jpg" alt="" />
+									</div>
+								</div>
+							</div>
+							<div className="service__slide">
+								<div className="content-txt">
+									<div className="content-txt__inner">
+										<div className="tabname">안경 카운셀러</div>
+										<div className="title">안경 카운셀러와<br />쉽고 정확한 안경 찾기</div>
+										<div className="caption">읽어주는 검안으로 쉬워지는 렌즈, 시각문제, 스타일까지 안경 카운셀러가 대신 고민하고 추천해드려요.</div>
+									</div>
+								</div>
+								<div className="content-img">
+									<div className="content-img__inner">
+										<img src="/static/img/home/home_service_3.jpg" alt="" />
+									</div>
+								</div>
+							</div>
+							<div className="service__slide">
+								<div className="content-txt">
+									<div className="content-txt__inner">
+										<div className="tabname">렌즈 무료 교환</div>
+										<div className="title">실패 없는 안경<br />렌즈 2회 무료 교환</div>
+										<div className="caption">교정시력에 딱 맞춰볼까?<br />불편한 렌즈는 한달 이내 무료로 2회 교환이 가능해요.</div>
+									</div>
+								</div>
+								<div className="content-img">
+									<div className="content-img__inner">
+										<img src="/static/img/home/home_service_4.jpg" alt="" />
+									</div>
+								</div>
+							</div>
+						</Carousel>
+					</div>
+				</div>
 				<div className="lounge">
 					<div className="lounge__title"><strong><p>안경을 만나는 그 순간까지 <span></span>고려한 '플로브 라운지'</p></strong></div>
 					<div className="lounge__caption"><p>플로브 라운지 스토리부터 각 지점별 정보를 확인하세요.</p></div>
