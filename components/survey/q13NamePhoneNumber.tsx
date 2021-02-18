@@ -8,7 +8,7 @@ import path from 'path';
 import moment from 'moment'
 import { resetSurvey } from '../../utils/surveyUtils'
 import { MAKE_SURVEY_PURCHASE_REQUEST } from '../../lib/mutation'
-
+import { SHA256 } from '../../utils/SHA256'
 
 export default function Q12NamePhoneNumber(props: {
     oldAnswers: Answers
@@ -167,17 +167,12 @@ export default function Q12NamePhoneNumber(props: {
             }
         })
     }
-    function hashCode(input: string) {
-        for (var i = 0, hash = 0xdeadbeef; i < input.length; i++)
-            hash = Math.imul(hash ^ input.charCodeAt(i), 2654435761);
-        return (hash ^ hash >>> 16) >>> 0;
-    };
 
     const submitPhoto = async () => {
         for (let i = 0; i < props.oldAnswers.photoFileList.length; i++) {
             const formData = new FormData()
             const file = props.oldAnswers.photoFileList[i].originFileObj
-            const fileName: string = moment().format().slice(0, 16) + "_" + hashCode(phoneNumber).toString() + "_prefer_" + i.toString() + path.extname(props.oldAnswers.photoFileList[i].name)
+            const fileName: string = moment().format().slice(0, 16) + "_" + SHA256(phoneNumber) + "_" + i.toString() + path.extname(props.oldAnswers.photoFileList[i].name)
             if (file !== undefined) {
                 formData.append("upload-image", file, fileName)
             }
@@ -192,7 +187,7 @@ export default function Q12NamePhoneNumber(props: {
         for (let i = 0; i < props.oldAnswers.preferFileList.length; i++) {
             const formData = new FormData()
             const file = props.oldAnswers.preferFileList[i].originFileObj
-            const fileName: string = moment().format().slice(0, 16) + "_" + hashCode(phoneNumber).toString() + "_" + i.toString() + path.extname(props.oldAnswers.photoFileList[i].name)
+            const fileName: string = moment().format().slice(0, 16) + "_" + SHA256(phoneNumber) + "_prefer_" + i.toString() + path.extname(props.oldAnswers.preferFileList[i].name)
             if (file !== undefined) {
                 formData.append("upload-image", file, fileName)
             }
