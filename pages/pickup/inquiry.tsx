@@ -48,9 +48,9 @@ const Inquiry = () => {
 
     function handleChangePhoneNumber(e: any) {
         const newPhoneNumber: string = e.target.value
-        setPhoneNumber(newPhoneNumber)
 
         if (validatePhoneNumber(newPhoneNumber)) {
+            setPhoneNumber(newPhoneNumber)
             setIsPhoneNumber(true)
         } else {
             setIsPhoneNumber(false)
@@ -65,10 +65,7 @@ const Inquiry = () => {
 
     function validatePhoneNumber(numberString: string) {
         const regex = /(^02.{0}|^01.{1}|[0-9]{3})([0-9]{3,4})([0-9]{4})/g
-        if (!regex.test(numberString)) {
-            return false
-        }
-        return true
+        return regex.test(numberString)
     }
 
     function parseSecondToMinute(num: number) {

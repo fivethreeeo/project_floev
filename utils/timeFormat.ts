@@ -52,16 +52,16 @@ export function get12hours(time: string) {
 }
 
 export function getDayDate(period: number, from: number) {
-    let timeData = []
+    let resultDate = []
     for (let i = from; i <= period; i++) {
-        let now = moment().add(i * 24 - 8, 'hours').format()
-        let now2 = moment().add(i * 24 - 8, 'hours').day()
-        let temp = { date: "", day: "" }
-        temp['date'] = now.slice(0, 4) + '-' + now.slice(5, 7) + '-' + now.slice(8, 10)
-        temp['day'] = getDay(now2)
-        timeData.push(temp)
+        let candidateDate = moment().add(i * 24, 'hours').format()
+        let candidateDay = moment().add(i * 24, 'hours').day()
+        let candidate = { date: "", day: "" }
+        candidate['date'] = candidateDate.slice(0, 10)
+        candidate['day'] = getDay(candidateDay)
+        resultDate.push(candidate)
     }
-    return timeData
+    return resultDate
 }
 
 export function getHour(time: string) {
