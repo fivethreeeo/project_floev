@@ -1352,57 +1352,11 @@
 
 	.banner-brand {
 		@include el-size (100%,64px);
-		@extend %padding-d;
-		margin: 120px 0 0;
-		background:$fv-gray-1;
-		@include responsive("mobile") {
-			margin: 64px 0 0;
-			padding: 0 24px;
-		  }
-		&__inner {
-			@include vw-mx-w(1280px);
-			@extend %padding-d;
-			@include responsive("mobile") {
-				@include vw-mx-w(560px);
-				padding: 0 24px;
-			  }
-		}
-		a {
-			display: block;
-		}
-		.event-desc {
-			@include flexbox(nowrap);
-			justify-content: center;
-			height:64px;
-			text-align: center;
-			font-size:17px;
-			line-height:64px;
-			font-weight:400;
-			@include responsive("mobile") {
-				text-align: left;
-				display:block;
-				padding-top:14px;
-				font-size:13px;
-				line-height:1.5;
-			}
-		}
-		.event-text {
-			display: block;
-			margin-right:24px;
-		}
-		strong {
-			display: block;
-			color:$fv-sienna;
-		}
-
-	}
-
-	.banner-brand {
-		@include el-size (100%,64px);
 		margin: 64px 0 0;
-		@extend %padding-m;
+		@extend %padding-d;
 		border-radius: 8px;
 		@include responsive("mobile") {
+			padding: 0 0 0 0;
 			margin: 40px 0 0;
 		}
 		background: none!important;
@@ -1412,7 +1366,7 @@
 			@include vw-mx-w(1280px);
 			@extend %padding-d;
 			@include responsive("mobile") {
-				@include vw-mx-w(480px);
+				@include vw-mx-w(560px);
 				padding: 0 24px;
 			  }
 		}
