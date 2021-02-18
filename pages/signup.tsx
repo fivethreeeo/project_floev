@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Layout from '../layout/DefaultLayout'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
+import { ApolloError, useMutation } from '@apollo/client'
 import cookie from 'cookie'
 import { GetServerSideProps } from 'next'
 import { createApolloClient } from '../lib/apolloClient'
@@ -60,6 +60,12 @@ const SignUp = () => {
                     name: name
                 });
                 router.push('/')
+            }
+        },
+        onError(error: ApolloError) {
+            if (error.message === 'Already Signed up (phoneNumber)') {
+                alert('이미 가입하신 적이 있으시군요!')
+                // status가 beforeSignup
             }
         }
     });
@@ -220,9 +226,7 @@ const SignUp = () => {
             setPhoneNumberState(1)
             return
         }
-        // validate email
         const regExp = /(^02.{0}|^01.{1}|[0-9]{3})([0-9]{3,4})([0-9]{4})/g
-
         if (!regExp.test(phoneNumber)) {
             setPhoneNumberState(1)
         } else {
