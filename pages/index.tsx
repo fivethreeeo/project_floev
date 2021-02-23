@@ -123,7 +123,7 @@ const IndexPage = (props: {
 						</div>
 					</div>
 				</div>
-				
+
 				<div className="banner-event">
 					<div className="banner-event__inner">
 						<a href="/2020-winter-event">
@@ -157,7 +157,7 @@ const IndexPage = (props: {
 								<div className="score__name">서비스 만족도</div>
 							</div>
 						</div>
-						<div style={{display:'none'}} className="score__desc">
+						<div style={{ display: 'none' }} className="score__desc">
 							<div className="left">
 								<div>추천상담 만족도 평균 <span>9.1 / 10점</span></div>
 								<div>시력상담 만족도 평균 <span>9.0 / 10점</span></div>
@@ -306,7 +306,7 @@ const IndexPage = (props: {
 									<div className="find-story__tag">시각불편</div>
 									<div className="find-story__tag">테불편</div>
 								</div>
-							</div> 
+							</div>
 							<div className="find-story__card">
 								<div className="find-story__img-wrap">
 									<div className="find-story__img"><img src="/static/img/home/find_story_2.jpg" alt="" /></div>
@@ -391,10 +391,10 @@ const IndexPage = (props: {
 
 				<div className="service-desc-1">
 					<div className="service-desc-1__top">
-						<div><strong>내 눈</strong> <img src="/static/img/home/ico-eye.svg" alt=""/> 에 건강하고<br/>일상에 스타일리시한<br/><strong>변화</strong> <img src="/static/img/home/ico-change.svg" alt=""/> 를 주는<br/>진짜 어울리는 <strong>안경</strong> <img className="gls" src="/static/img/home/ico-glasses.svg" alt=""/></div>
-						<div className="img-oval"><img src="/static/img/home/ser-oval.png" alt=""/></div>
+						<div><strong>내 눈</strong> <img src="/static/img/home/ico-eye.svg" alt="" /> 에 건강하고<br />일상에 스타일리시한<br /><strong>변화</strong> <img src="/static/img/home/ico-change.svg" alt="" /> 를 주는<br />진짜 어울리는 <strong>안경</strong> <img className="gls" src="/static/img/home/ico-glasses.svg" alt="" /></div>
+						<div className="img-oval"><img src="/static/img/home/ser-oval.png" alt="" /></div>
 					</div>
-					<div className="service-desc-1__bottom">안경을 검색하면 나오는 수많은 정보와 꿀팁들,<br/>하지만 나를 모른다면? 지금 내 안경에 확신하시나요?<br/>플로브는 안경에 대한 모든 고민을<br/><strong>나에게 어울리는 안경으로 해결합니다.</strong></div>
+					<div className="service-desc-1__bottom">안경을 검색하면 나오는 수많은 정보와 꿀팁들,<br />하지만 나를 모른다면? 지금 내 안경에 확신하시나요?<br />플로브는 안경에 대한 모든 고민을<br /><strong>나에게 어울리는 안경으로 해결합니다.</strong></div>
 				</div>
 
 				<div className="stories">
@@ -408,8 +408,8 @@ const IndexPage = (props: {
 						<div className="before-img"><span><strong>Before</strong></span></div>
 						<div className="after-img"><span><strong>After 1</strong></span></div>
 						<div className="title">
-							<img src="/static/img/home/ico-c-ring.png" alt=""/><br/>
-							<p>특별한 날<br/><strong>특별한 나</strong>를 위해 쓰는 안경</p>
+							<img src="/static/img/home/ico-c-ring.png" alt="" /><br />
+							<p>특별한 날<br /><strong>특별한 나</strong>를 위해 쓰는 안경</p>
 						</div>
 						<div className="desc">
 							<p>웨딩촬영을 앞두고 잘 어울리는 안경을 고민하다가 여자친구와 함께 방문했어요. 뿔테는 처음이지만 너무 마음에 들어요! 가벼워서 신혼여행에서도 착용하려구요.</p>
@@ -421,8 +421,8 @@ const IndexPage = (props: {
 						<div className="before-img"><span><strong>Before</strong></span></div>
 						<div className="after-img"><span><strong>After 1</strong></span></div>
 						<div className="title">
-							<img src="/static/img/home/ico-c-building.png" alt=""/><br/>
-							<p>집이 아니라<br/><strong>회사에서</strong> 쓰는 안경</p>
+							<img src="/static/img/home/ico-c-building.png" alt="" /><br />
+							<p>집이 아니라<br /><strong>회사에서</strong> 쓰는 안경</p>
 						</div>
 						<div className="desc">
 							<p>동그란 안경만 써봐서 새로운 디자인을 선택하기 망설여졌는데.. 제가 원했던 '무게감 있지만 세련된 이미지'가 정말 잘 표현되는 안경에 매우 만족합니다!</p>
@@ -434,8 +434,8 @@ const IndexPage = (props: {
 						<div className="before-img"><span><strong>Before</strong></span></div>
 						<div className="after-img"><span><strong>After 1</strong></span></div>
 						<div className="title">
-							<img src="/static/img/home/ico-c-eye.png" alt=""/><br/>
-							<p>콘택트렌즈에서 <br/><strong>나를 해방</strong>시키는 안경</p>
+							<img src="/static/img/home/ico-c-eye.png" alt="" /><br />
+							<p>콘택트렌즈에서 <br /><strong>나를 해방</strong>시키는 안경</p>
 						</div>
 						<div className="desc">
 							<p>하루 2/3의 시간을 콘택트렌즈와 함께하니 이제는 정말 건조해서 못 견디겠더라구요. 안경은 무조건 안 예쁘다! 라는 제 편견을 깔끔하게 지워 준 안경입니다.</p>
@@ -446,25 +446,25 @@ const IndexPage = (props: {
 
 				<div className="service-new">
 					<div className="service-new__title">
-						<p><strong>은근히 까다로운 안경 찾기,<br/>재대로 쉽게 즐기는 안경 추천 서비스</strong></p>
-						<div className="img"><img src="/static/img/home/serviceinfo-1.jpg" alt=""/></div>
-						<div className="bottom-img"><img src="/static/img/home/serviceinfo-2.jpg" alt=""/></div>
+						<p><strong>은근히 까다로운 안경 찾기,<br />재대로 쉽게 즐기는 안경 추천 서비스</strong></p>
+						<div className="img"><img src="/static/img/home/serviceinfo-1.jpg" alt="" /></div>
+						<div className="bottom-img"><img src="/static/img/home/serviceinfo-2.jpg" alt="" /></div>
 					</div>
 					<div className="service-new__pt1">
 						<div className="inner">
-							<p className="p1">우연과 느낌에 의존한<br/>나의 안경 구매의<br/>불완전한 고리를 끊자 -</p>
+							<p className="p1">우연과 느낌에 의존한<br />나의 안경 구매의<br />불완전한 고리를 끊자 -</p>
 							<p className="p2"><strong>어떻게?</strong></p>
-							<div className="img"><img src="/static/img/home/serviceinfo-5.png" alt=""/></div>
+							<div className="img"><img src="/static/img/home/serviceinfo-5.png" alt="" /></div>
 						</div>
 					</div>
 					<div className="service-new__pt2">
 						<div className="inner">
-							<p><strong>제대로! 나에게 맞게! 어울리는!</strong><br/>안경을 찾아주는 서비스로</p>
+							<p><strong>제대로! 나에게 맞게! 어울리는!</strong><br />안경을 찾아주는 서비스로</p>
 						</div>
 					</div>
 					<div className="service-new__pt3">
 						<div className="inner">
-							<div className="img"><img src="/static/img/home/serviceinfo-4.png" alt=""/></div>
+							<div className="img"><img src="/static/img/home/serviceinfo-4.png" alt="" /></div>
 						</div>
 					</div>
 				</div>
@@ -502,34 +502,34 @@ const IndexPage = (props: {
 						</div>
 					</div>
 				</div>
-				
+
 				<div className="service-pod">
 					<div className="title">
-						<div className="img"><img src="/static/img/home/servicepod-1.jpg" alt=""/></div>
+						<div className="img"><img src="/static/img/home/servicepod-1.jpg" alt="" /></div>
 						<p><strong>새로운 안경 서비스</strong>는 어떻게 다를까?</p>
-						<div className="s-title">플로브 추천의<br/><strong>다섯가지 비법</strong><img src="/static/img/home/ico-hand.png" alt=""/></div>
+						<div className="s-title">플로브 추천의<br /><strong>다섯가지 비법</strong><img src="/static/img/home/ico-hand.png" alt="" /></div>
 					</div>
 					<div className="service-pod__list">
 						<ul>
 							<li className="li-1">
-								<p className="p1">미리, 쉽게!<br/>전달하는 나의 안경고민</p>
-								<p className="p2">필요한 질문만 간편하게 쏙쏙!<br/>나의 안경생활, 취향을 간편하게 설문하세요.</p>
+								<p className="p1">미리, 쉽게!<br />전달하는 나의 안경고민</p>
+								<p className="p2">필요한 질문만 간편하게 쏙쏙!<br />나의 안경생활, 취향을 간편하게 설문하세요.</p>
 							</li>
 							<li className="li-2 right">
-								<p className="p1">나와 같은 고민을 헀던<br/>사람들의 추천 데이터</p>
+								<p className="p1">나와 같은 고민을 헀던<br />사람들의 추천 데이터</p>
 								<p className="p2">단순히 안경사 한 사람의 판단이 아니에요. 누적된 데이터를 통해 나의 안경이 추천돼요.</p>
 							</li>
 							<li className="li-3">
-								<p className="p1">플로브가 자신있게<br/>큐레이션 하는 안경테</p>
-								<p className="p2">나만을 위해 추천되는 16개의 안경테는<br/>모두 플로브가 직접 까다롭게 고른 브랜드에요.</p>
+								<p className="p1">플로브가 자신있게<br />큐레이션 하는 안경테</p>
+								<p className="p2">나만을 위해 추천되는 16개의 안경테는<br />모두 플로브가 직접 까다롭게 고른 브랜드에요.</p>
 							</li>
-							<li  className="li-4 right">
-								<p className="p1">검안부터 안경 추천까지,<br/>top 안경 카운셀러</p>
+							<li className="li-4 right">
+								<p className="p1">검안부터 안경 추천까지,<br />top 안경 카운셀러</p>
 								<p className="p2">안경이 아닌 나에게 집중하는 플로브만의 상담 특화 안경 카운셀러와 함께해요.</p>
 							</li>
 							<li className="li-5">
-								<p className="p1">나에게 필요한 안경만<br/>효율적으로, 플로브 라운지</p>
-								<p className="p2">먼지 쌓인 안경 진열대는 없어요.<br/>나를 위한 추천으로 완성되는 특별한 공간을 경험해요.</p>
+								<p className="p1">나에게 필요한 안경만<br />효율적으로, 플로브 라운지</p>
+								<p className="p2">먼지 쌓인 안경 진열대는 없어요.<br />나를 위한 추천으로 완성되는 특별한 공간을 경험해요.</p>
 							</li>
 						</ul>
 					</div>
@@ -681,14 +681,14 @@ const IndexPage = (props: {
 				</div>
 
 				<div className="bottom-msg">
-					<p>모든 안경 추천 서비스는 <strong>무료,<br/></strong>안경 구매는 나의 <strong>선택!</strong></p>
+					<p>모든 안경 추천 서비스는 <strong>무료,<br /></strong>안경 구매는 나의 <strong>선택!</strong></p>
 				</div>
 				<div className="bottom-card">
 					<div className="bottom-card__inner">
 						<div className="bottom-card__img"></div>
 						<div className="bottom-card__txt">
 							<p className="caption">플로브와 함께라면</p>
-							<p className="desc">안경 찾기는<br/><strong>쉬워지고</strong><br/>안경 쓰기는<br/><strong>즐거워질 거에요</strong></p>
+							<p className="desc">안경 찾기는<br /><strong>쉬워지고</strong><br />안경 쓰기는<br /><strong>즐거워질 거에요</strong></p>
 						</div>
 					</div>
 				</div>
@@ -707,7 +707,7 @@ const IndexPage = (props: {
 							<li><span>통신판매업신고</span><span>2019-서울강남-02689</span></li>
 							<li><span>주소</span><span>서울시 강남구 테헤란로4길 38-5, 6층</span></li>
 							<li><span>전화/이메일</span><span>1544-8767 | contact@floev.com</span></li>
-							<li><span>개인정보책임자</span><span>엄태산</span></li>
+							<li><span>개인정보책임자</span><span>장인배</span></li>
 						</ul>
 						<div className="company__link"><a href="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=6998601370" target="_blank">사업자정보확인</a> | <a href="/service-policy"><span>서비스 정책 안내</span></a> | <a href="https://www.instagram.com/floev_official/" target="_blank">instagram</a></div>
 					</div>

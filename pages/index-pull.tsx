@@ -578,7 +578,7 @@ const IndexPage = (props: {
 							<li><span>통신판매업신고</span><span>2019-서울강남-02689</span></li>
 							<li><span>주소</span><span>서울시 강남구 테헤란로4길 38-5, 6층</span></li>
 							<li><span>전화/이메일</span><span>1544-8767 | contact@floev.com</span></li>
-							<li><span>개인정보책임자</span><span>엄태산</span></li>
+							<li><span>개인정보책임자</span><span>장인배</span></li>
 						</ul>
 						<div className="company__link"><a href="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=6998601370" target="_blank">사업자정보확인</a> | <a href="/service-policy"><span>서비스 정책 안내</span></a> | <a href="https://www.instagram.com/floev_official/" target="_blank">instagram</a></div>
 					</div>
