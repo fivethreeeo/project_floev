@@ -32,6 +32,7 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <script dangerouslySetInnerHTML={{ __html: this.renderSnippet() }} />
+          <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
           <script async src="https://www.googletagmanager.com/gtag/js?id=AW-738487034"></script>
           {/* 페이스북 픽셀 */}
           <script dangerouslySetInnerHTML={{
