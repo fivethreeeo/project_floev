@@ -60,7 +60,7 @@
 		@include responsive("mobile") {
 			@include flexbox(nowrap);
 			align-items: flex-end;
-			background: url(/static/img/home/main-after-1.jpg) center center / cover no-repeat;
+			background: url(/static/img/home/main-after-4.jpg) top center / cover no-repeat;
 		  }
 		&__inner {
 			bottom: 0;
@@ -176,10 +176,10 @@
 		
 	}
 	.main-visual.visual-test-1 {
-		background: url(/static/img/home/main-after-2.jpg) center center / cover no-repeat;
+		background: url(/static/img/home/main-after-5.jpg) top center / cover no-repeat;
 	}
 	.main-visual.visual-test-2 {
-		background: url(/static/img/home/main-after-3.jpg) center center / cover no-repeat;
+		background: url(/static/img/home/main-after-6.jpg) top center / cover no-repeat;
 	}
 
 	.banner-event {
