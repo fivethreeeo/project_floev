@@ -8,33 +8,33 @@ import { availablePickupFittingRequestTime } from '../../utils/surveyUtils'
 import { GetServerSideProps } from 'next'
 import { createApolloClient } from '../../lib/apolloClient'
 import { CHECKUP_USER, GET_PICKUP_FITTING_REQUEST_LIST } from '../../lib/query'
-import { MAKE_PICKUP_REQUEST } from '../../lib/mutation'
+import { MAKE_FITTING_REQUEST } from '../../lib/mutation'
 import { LOUNGE } from '../../lib/constants'
 import { useMutation } from '@apollo/client'
 import { Spin } from 'antd'
 
 const fromToday = getDayDate(6, 0)
 
-
-const PickupCreate = (props: {
+const FittingCreate = (props: {
     user: User
     pickupFittingRequestList: FloevRequest[]
 }) => {
     const router = useRouter()
     // const [loungeCode, setLoungeCode] = useState<number>(LOUNGE.GANGNAM)
     const loungeCode = LOUNGE.GANGNAM
-    const [pickupRequestDate, setPickupRequestDate] = useState<string>(moment().format().slice(0, 10))
-    const [pickupRequestTime, setPickupRequestTime] = useState<string>('')
-    const [makePickUpRequest, { loading }] = useMutation(MAKE_PICKUP_REQUEST, {
+    const currentTime = moment().format().slice(0, 10)
+    const [fittingRequestDate, setFittingRequestDate] = useState<string>(currentTime)
+    const [fittingRequestTime, setFittingRequestTime] = useState<string>('')
+    const [makePickUpRequest, { loading }] = useMutation(MAKE_FITTING_REQUEST, {
         variables: {
             loungeCode: loungeCode,
-            requestDate: pickupRequestDate,
-            requestTime: pickupRequestTime,
+            requestDate: fittingRequestDate,
+            requestTime: fittingRequestTime,
             phoneNumber: props.user.phoneNumber
         },
         onCompleted() {
-            alert('픽업예약을 완료했어요!👏🏻')
-            router.push('/pickup')
+            alert('피팅예약을 완료했어요!👏🏻')
+            router.push('/fitting')
         },
         onError(error) {
             console.error(error.message)
@@ -47,19 +47,19 @@ const PickupCreate = (props: {
     });
 
     const onChangeDate = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setPickupRequestDate(fromToday[parseInt(e.currentTarget.value)].date)
+        setFittingRequestDate(fromToday[parseInt(e.currentTarget.value)].date)
     }
     const onChangeTime = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setPickupRequestTime(e.currentTarget.value)
+        setFittingRequestTime(e.currentTarget.value)
     }
 
-    const availableTimes = availablePickupFittingRequestTime(pickupRequestDate, loungeCode, props.pickupFittingRequestList)
+    const availableTimes = availablePickupFittingRequestTime(fittingRequestDate, loungeCode, props.pickupFittingRequestList)
     return (
         <Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" name={props.user ? props.user.name : undefined}>
             <div className="">
                 <div className="headroom"></div>
                 <div className="pickUpWrap">
-                    <h2>강남 라운지 픽업 예약</h2>
+                    <h2>강남 라운지 피팅 예약</h2>
 
                     {/* <p className="inputTit">라운지</p>
                     <div onChange={(e) => onChangeLounge(e)}>
@@ -83,17 +83,17 @@ const PickupCreate = (props: {
 
                     <select id="" name="time" required onChange={e => onChangeTime(e)}>
                         <option value="" defaultValue="" hidden>방문 시간을 선택해주세요.</option>
-                        {pickupRequestDate !== null && availableTimes.map(
+                        {fittingRequestDate !== null && availableTimes.map(
                             (item: any, index: any) => (
                                 <option key={index} value={item.time}>{item.time} </option>
                             ))}
                     </select>
 
-                    {pickupRequestDate && pickupRequestTime ?
+                    {fittingRequestDate && fittingRequestTime ?
                         (!loading ?
-                            (<button className="active" type="button" onClick={() => makePickUpRequest()}>픽업예약하기</button>) :
+                            (<button className="active" type="button" onClick={() => makePickUpRequest()}>피팅예약하기</button>) :
                             (<Spin size="large" tip="잠시만 기다려주세요.." />)) :
-                        (<button className="" type="button">픽업예약하기</button>)}
+                        (<button className="" type="button">피팅예약하기</button>)}
                 </div>
             </div>
 
@@ -113,6 +113,7 @@ const PickupCreate = (props: {
         </Layout >
     )
 }
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const client = createApolloClient(context)
     const { user } = await client.query({ query: CHECKUP_USER })
@@ -122,7 +123,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             return { user: null };
         });
     if (!user) {
-        redirect(context, "/pickup/inquiry")
+        redirect(context, "/fitting/inquiry")
         return { props: {} }
     }
     const { pickupFittingRequestList } = await client.query({ query: GET_PICKUP_FITTING_REQUEST_LIST })
@@ -132,7 +133,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             console.error(error.message)
             return { pickupFittingRequestList: null };
         });
-
     return {
         props: {
             user,
@@ -141,4 +141,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
 }
 
-export default PickupCreate
+export default FittingCreate

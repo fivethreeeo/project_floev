@@ -48,6 +48,12 @@ export const CHANGE_PURCHASE_REQUEST = gql`
         }
   }`
 
+
+export const CANCEL_PURCHASE_REQUEST = gql`
+mutation cancelPurchaseRequest($requestId: String!){
+    cancelPurchaseRequest(requestId: $requestId)
+}`
+
 export const MAKE_PICKUP_REQUEST = gql`
 mutation makePickupRequest(
         $phoneNumber: String!
@@ -86,14 +92,52 @@ export const CHANGE_PICKUP_REQUEST = gql`
         }
   }`
 
-export const CANCEL_PURCHASE_REQUEST = gql`
-mutation cancelPurchaseRequest($requestId: String!){
-    cancelPurchaseRequest(requestId: $requestId)
-}`
-
 export const CANCEL_PICKUP_REQUEST = gql`
 mutation cancelPickupRequest($requestId: String!){
     cancelPickupRequest(requestId: $requestId)
+}`
+
+export const MAKE_FITTING_REQUEST = gql`
+mutation makeFittingRequest(
+        $phoneNumber: String!
+        $loungeCode: Int!
+        $requestDate: String!
+        $requestTime: String!
+    ){
+      makeFittingRequest(
+        phoneNumber: $phoneNumber
+        loungeCode: $loungeCode
+        requestDate: $requestDate
+        requestTime: $requestTime
+    ){
+        id
+        date
+        loungeCode
+    }
+}`
+
+export const CHANGE_FITTING_REQUEST = gql`
+    mutation changeFittingRequest(
+        $requestId: String!
+        $loungeCode: Int!
+        $requestDate: String!
+        $requestTime: String!
+    ){
+      changeFittingRequest(
+            requestId: $requestId
+            loungeCode: $loungeCode
+            requestDate: $requestDate
+            requestTime: $requestTime
+        ){
+            id
+            date
+            loungeCode
+        }
+  }`
+
+export const CANCEL_FITTING_REQUEST = gql`
+mutation cancelFittingRequest($requestId: String!){
+  cancelFittingRequest(requestId: $requestId)
 }`
 
 export const SIGN_IN_WITH_PHONENUMBER = gql`

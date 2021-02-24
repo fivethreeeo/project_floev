@@ -1,9 +1,5 @@
 import { gql } from "@apollo/client";
 
-// requestType
-// PURCHASE: 0
-// PICKUP: 2
-
 export const GET_PURCHASE_REQUEST_LIST = gql`
     query getRequestList{
         getRequestList(requestType: 0){ 
@@ -13,9 +9,9 @@ export const GET_PURCHASE_REQUEST_LIST = gql`
     }
 `
 
-export const GET_PICKUP_REQUEST_LIST = gql`
-    query getRequestList{
-        getRequestList(requestType: 2){ 
+export const GET_PICKUP_FITTING_REQUEST_LIST = gql`
+    query getPickupFittingRequestList{
+        getPickupFittingRequestList{ 
             date
             loungeCode
         }

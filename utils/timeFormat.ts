@@ -77,3 +77,10 @@ export function getHour(time: string) {
 export function dayGap(targetDay: string, currentDay = moment().format('YYYY-MM-DD')) {
     return moment([targetDay.slice(0, 4), parseInt(targetDay.slice(5, 7)) - 1, targetDay.slice(8, 10)]).diff(moment([currentDay.slice(0, 4), parseInt(currentDay.slice(5, 7)) - 1, currentDay.slice(8, 10)]), 'days')
 }
+
+export function isAfterToday(targetDate: string) {
+    if (dayGap(targetDate) >= 0) {
+        return true
+    }
+    return false
+}

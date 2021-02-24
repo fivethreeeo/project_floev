@@ -35,13 +35,13 @@ export function availablePurchaseRequestTime(targetDate: string, targetLounge: n
     return nonOccupiedList
 }
 
-export function availablePickupFittingRequestTime(targetDate: string, targetLounge: number, pickupRequests: PickupRequest[]) {
+export function availablePickupFittingRequestTime(targetDate: string, targetLounge: number, pickupFittingRequests: FloevRequest[]) {
     // 인자로 받은 스케쥴에서 예약하고자 하는 날짜에 해당하는 일정만 받아옴
-    const occupiedTimeArray: PickupRequest[] = pickupRequests.filter((item: PickupRequest) => item.date.slice(0, 10) === targetDate && item.loungeCode === targetLounge)
+    const occupiedTimeArray: FloevRequest[] = pickupFittingRequests.filter((item: FloevRequest) => item.date.slice(0, 10) === targetDate && item.loungeCode === targetLounge)
 
     //그 일정에서 시간만 뽑아냄
     let occupiedTime: any[] = []
-    occupiedTimeArray.forEach((item: PickupRequest) =>
+    occupiedTimeArray.forEach((item: FloevRequest) =>
         occupiedTime.push(item.date.slice(11, 16)))
 
     // 라운지별 전체 시간 초기화
