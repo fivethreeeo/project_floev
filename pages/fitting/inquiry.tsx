@@ -12,7 +12,7 @@ import { useMutation } from "@apollo/client"
 import { Spin } from "antd"
 // import { NormalizedCache } from "@apollo/client"
 
-const PickupInquiry = () => {
+const FittingInquiry = () => {
     const router = useRouter();
     const [phoneNumber, setPhoneNumber] = useState<string>('')
     const [isPhoneNumber, setIsPhoneNumber] = useState<boolean>(false)
@@ -30,7 +30,7 @@ const PickupInquiry = () => {
                 document.cookie = cookie.serialize("token", data.signInWithPhoneNumber.token, {
                     maxAge: 12 * 60 * 60
                 })
-                router.replace('/pickup')
+                router.replace('/fitting')
             }
         },
         onError(error) {
@@ -118,7 +118,7 @@ const PickupInquiry = () => {
         <Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스">
             <div className="mypage-inquiry">
                 <div className="q-wrap q13">
-                    <div className="q-wrap__question-main">픽업예약조회</div>
+                    <div className="q-wrap__question-main">피팅예약조회</div>
                     <div className="q-wrap__question-sub">예약시 입력하신 휴대폰 번호를 입력해주세요.</div>
                     <div className="q-wrap__answer-wrap">
 
@@ -172,9 +172,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             return { user: null };
         });
     if (user !== null) {
-        redirect(context, "/pickup")
+        redirect(context, "/fitting")
+        return { props: {} }
     }
     return { props: {} }
 }
 
-export default PickupInquiry
+export default FittingInquiry

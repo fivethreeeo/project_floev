@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import { useRouter } from 'next/router'
 import Layout from '../../layout/DefaultLayout'
-import { getDayDate, getOnlyDate, getMDW, getHour, dayGap } from '../../utils/timeFormat'
-import { CHANGE_PICKUP_REQUEST, CANCEL_PICKUP_REQUEST } from '../../lib/mutation'
+import { getDayDate, getOnlyDate, getMDW, getHour, isAfterToday } from '../../utils/timeFormat'
+import { CHANGE_FITTING_REQUEST, CANCEL_FITTING_REQUEST } from '../../lib/mutation'
 import { CHECKUP_USER, GET_PICKUP_FITTING_REQUEST_LIST } from '../../lib/query'
 import { availablePickupFittingRequestTime } from '../../utils/surveyUtils'
 import moment from 'moment'
@@ -11,38 +11,40 @@ import { GetServerSideProps } from "next"
 import { createApolloClient } from "../../lib/apolloClient"
 import { useMutation } from "@apollo/client"
 import redirect from "../../lib/redirect"
-import { LOUNGE, REQUEST } from "../../lib/constants"
+import { LOUNGE } from "../../lib/constants"
+import { isFittingRequest, isRequestCanceled, isRequestListEmpty } from "../../utils/requestUtils"
 
 const fromToday = getDayDate(6, 0)
 const now = new Date(Date.now());
 
-const PickupPageIndex = (props: {
+const FittingPageIndex = (props: {
     user: User,
-    userPickupRequests: PickupRequest[]
-    pickupRequestList: PickupRequest[]
+    userFittingRequestList: FittingRequest[]
+    pickupFittingRequestList: PickupRequest[]
 }) => {
     // 유저 정보
-    const size = props.userPickupRequests.length
-    const tempPR: PickupRequest = {
+    const userFittingRequestSize = props.userFittingRequestList.length
+    const tempFittingRequest: FittingRequest = {
         id: '',
         date: '',
         loungeCode: 0,
         type: 0
     }
-    const [userRequest, setUserRequest] = useState<PickupRequest>(size !== 0 ? props.userPickupRequests[size - 1] : tempPR)
+    const [userFittingRequest, setUserFittingRequest] = useState<FittingRequest>(userFittingRequestSize !== 0 ? props.userFittingRequestList[userFittingRequestSize - 1] : tempFittingRequest)
 
     // 예약 변경용
     const router = useRouter()
     const [loungeCode, setLoungeCode] = useState<number>(LOUNGE.GANGNAM)
-    const [requestDate, setRequestDate] = useState<string>(moment().add(15, 'hours').format().slice(0, 10))
+    const tomorrow: string = moment().add(15, 'hours').format().slice(0, 10)
+    const [requestDate, setRequestDate] = useState<string>(tomorrow)
     const [requestTime, setRequestTime] = useState<string>('')
     const [feedback, setFeedback] = useState<string>('')
 
     const [modal1, setModal1] = useState<boolean>(false)
     const [modal2, setModal2] = useState<boolean>(false)
-    const [changePickupRequest, { loading: changeLoading }] = useMutation(CHANGE_PICKUP_REQUEST, {
+    const [changeFittingRequest, { loading: changeLoading }] = useMutation(CHANGE_FITTING_REQUEST, {
         variables: {
-            requestId: userRequest.id,
+            requestId: userFittingRequest.id,
             loungeCode: loungeCode,
             requestDate: requestDate,
             requestTime: requestTime
@@ -50,9 +52,9 @@ const PickupPageIndex = (props: {
         onCompleted(data: any) {
             if (data) {
                 setModal1(false)
-                setUserRequest(data.changePickupRequest)
+                setUserFittingRequest(data.changeFittingRequest)
                 // props.apolloStaticCache.cache.reset().then(() => { redirect({}, '/mypage') })
-                alert('픽업예약을 변경했어요!👏🏻')
+                alert('피팅예약을 변경했어요!👏🏻')
             }
         },
         onError(error) {
@@ -65,11 +67,11 @@ const PickupPageIndex = (props: {
             }
         }
     });
-    const [cancelPickupRequest, { loading: cancelLoading }] = useMutation(CANCEL_PICKUP_REQUEST, {
-        variables: { requestId: userRequest.id },
+    const [cancelFittingRequest, { loading: cancelLoading }] = useMutation(CANCEL_FITTING_REQUEST, {
+        variables: { requestId: userFittingRequest.id },
         onCompleted() {
-            alert('픽업예약을 취소했어요!')
-            router.push('/pickup')
+            alert('피팅예약을 취소했어요!')
+            router.push('/fitting')
         },
         onError(error) {
             console.error(error.message)
@@ -78,14 +80,14 @@ const PickupPageIndex = (props: {
             } else {
                 alert('알 수 없는 오류가 발생했어요!')
             }
-            router.push('/pickup')
+            router.push('/fitting')
         }
     });
 
     function handleChangeDate(e: any) {
         const newRequestDate = fromToday[e.currentTarget.id].date
         setRequestDate(newRequestDate)
-        setLoungeCode(0)
+        setLoungeCode(LOUNGE.GANGNAM)
         setRequestTime('')
     }
 
@@ -101,10 +103,10 @@ const PickupPageIndex = (props: {
     }
 
     function handleClickChange() {
-        changePickupRequest()
+        changeFittingRequest()
     }
     function handleClickCancel() {
-        cancelPickupRequest()
+        cancelFittingRequest()
     }
 
     function showModal(e: React.MouseEvent<HTMLButtonElement, MouseEvent>, modal: string) {
@@ -115,7 +117,7 @@ const PickupPageIndex = (props: {
             setModal2(true)
         }
     }
-    const availablePickupFittingTimes = availablePickupFittingRequestTime(requestDate, LOUNGE.GANGNAM, props.pickupRequestList)
+    const availablePickupFittingTimes = availablePickupFittingRequestTime(requestDate, LOUNGE.GANGNAM, props.pickupFittingRequestList)
     return (
         <Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" name={props.user ? props.user.name : undefined}>
             <div className="mypage">
@@ -126,7 +128,7 @@ const PickupPageIndex = (props: {
                     <div className="status-card">
                         <div className="inner-content">
                             <a className="mapLink" href={loungeCode === 1 ? "http://naver.me/xH2We7TP" : "http://naver.me/xfa1CFMZ"} target="_blank"><span>라운지 위치보기 &#xE001;</span></a>
-                            <p className="booking-info">고객님의 픽업 방문일정은 <strong>라운지 {loungeCode === 1 ? "역삼성당" : "강남"}</strong><br /><strong>{getMDW(userRequest.date)} {getHour(userRequest.date)}</strong> 입니다.</p>
+                            <p className="booking-info">고객님의 피팅 방문일정은 <strong>라운지 {loungeCode === 1 ? "역삼성당" : "강남"}</strong><br /><strong>{getMDW(userFittingRequest.date)} {getHour(userFittingRequest.date)}</strong> 입니다.</p>
                         </div>
                         <div className="inner-btn-wrap">
                             <button className="btn-change" onClick={(e) => showModal(e, 'modal1')}>일정변경하기</button>
@@ -229,11 +231,11 @@ const PickupPageIndex = (props: {
         </Layout >
     )
 }
-export const getServerSideProps: GetServerSideProps = async (context) => { //{req}: { req: any }
+export const getServerSideProps: GetServerSideProps = async (context) => {
     const client = createApolloClient(context)
 
     // 유저 로그인을 해서 유저가 없으면
-    const { user } = await client.query({ query: CHECKUP_USER }) //const {user} =
+    const { user } = await client.query({ query: CHECKUP_USER })
         .then(({ data }) => {
             return { user: data.checkUpUser };
         }).catch(() => {
@@ -241,20 +243,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{re
         });
     let goRedirect = false
     let destination = ''
-    let userPickupRequests: PickupRequest[] = []
+    let userFittingRequestList: FloevRequest[] = []
     if (user === null) {
         goRedirect = true
-        destination = "/pickup/inquiry"
+        destination = "/fitting/inquiry"
     } else {
-        user.requests.map((item: PickupRequest) => {
+        user.requests.map((userRequest: FloevRequest) => {
             // 오늘 이후의 픽업예약
-            if (dayGap(item.date.slice(0, 10)) >= 0 && item.type === REQUEST.PICKUP && item.status !== 'cancel') {
-                userPickupRequests.push(item)
+            const targetDate: string = userRequest.date.slice(0, 10)
+            if (isAfterToday(targetDate) && isFittingRequest(userRequest.type) && !isRequestCanceled(userRequest)) {
+                userFittingRequestList.push(userRequest)
             }
         })
-        if (userPickupRequests.length === 0) {
+        if (isRequestListEmpty(userFittingRequestList)) {
             goRedirect = true
-            destination = "/pickup/create"
+            destination = "/fitting/create"
         }
     }
     if (goRedirect) {
@@ -262,21 +265,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{re
         return { props: {} }
     }
 
-    const { pickupRequestList } = await client.query({ query: GET_PICKUP_FITTING_REQUEST_LIST })
+    const { pickupFittingRequestList } = await client.query({ query: GET_PICKUP_FITTING_REQUEST_LIST })
         .then(({ data }) => {
-            return { pickupRequestList: data.getRequestList };
+            return { pickupFittingRequestList: data.getPickupFittingRequestList };
         }).catch((error) => {
             console.error(error.message)
-            return { pickupRequestList: null };
+            return { pickupFittingRequestList: null };
         });
 
     return {
         props: {
             user,
-            userPickupRequests,
-            pickupRequestList
+            userFittingRequestList,
+            pickupFittingRequestList
         }
     }
 }
 
-export default PickupPageIndex
+export default FittingPageIndex
