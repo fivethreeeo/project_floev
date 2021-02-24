@@ -93,7 +93,7 @@ const IndexPage = (props: {
 				<div className="main-visual">
 					<div className="main-visual__inner">
 						<div className="main-visual__img-wrap">
-							<div className="main-visual__img"><img src="/static/img/home/main-after.jpg" alt="메인 비주얼 이미지1" /></div>
+							<div className="main-visual__img"><img src="/static/img/home/main-after-1.jpg" alt="메인 비주얼 이미지1" /></div>
 						</div>
 						<div className="main-visual__desc-wrap">
 							<div className="desc-wrap__inner">
@@ -405,42 +405,38 @@ const IndexPage = (props: {
 						<div className="stories__thumb-img stories__thumb-img-3"></div>
 					</div>
 					<div className="stories__story-wrap stories__story-wrap-1">
-						<div className="before-img"><span><strong>Before</strong></span></div>
-						<div className="after-img"><span><strong>After 1</strong></span></div>
-						<div className="title">
-							<img src="/static/img/home/ico-c-ring.png" alt="" /><br />
-							<p>특별한 날<br /><strong>특별한 나</strong>를 위해 쓰는 안경</p>
+						<div className="after-img-big"></div>
+						<div className="after-before-wrap">
+							<div className="before-img"><span><strong>Before</strong></span></div>
+							<div className="after-img"><span><strong>After</strong></span></div>
 						</div>
-						<div className="desc">
-							<p>웨딩촬영을 앞두고 잘 어울리는 안경을 고민하다가 여자친구와 함께 방문했어요. 뿔테는 처음이지만 너무 마음에 들어요! 가벼워서 신혼여행에서도 착용하려구요.</p>
+						<div className="txt-wrap">
+							<div className="title"><img src="/static/img/home/ico-c-ring.png" alt="" /><br /><p>특별한 날<br /><strong>특별한 나</strong>를 위해 쓰는 안경</p></div>
+							<div className="desc"><p>웨딩촬영을 앞두고 잘 어울리는 안경을 고민하다가 여자친구와 함께 방문했어요. 뿔테는 처음이지만 너무 마음에 들어요! 가벼워서 신혼여행에서도 착용하려구요.</p></div>
 						</div>
-						<div className="after-img-2"><span><strong>After 2</strong></span></div>
-						<div className="story-div"></div>
 					</div>
 					<div className="stories__story-wrap stories__story-wrap-2">
-						<div className="before-img"><span><strong>Before</strong></span></div>
-						<div className="after-img"><span><strong>After 1</strong></span></div>
-						<div className="title">
-							<img src="/static/img/home/ico-c-building.png" alt="" /><br />
-							<p>집이 아니라<br /><strong>회사에서</strong> 쓰는 안경</p>
+						<div className="after-img-big"></div>
+						<div className="after-before-wrap">
+							<div className="before-img"><span><strong>Before</strong></span></div>
+							<div className="after-img"><span><strong>After</strong></span></div>
 						</div>
-						<div className="desc">
-							<p>동그란 안경만 써봐서 새로운 디자인을 선택하기 망설여졌는데.. 제가 원했던 '무게감 있지만 세련된 이미지'가 정말 잘 표현되는 안경에 매우 만족합니다!</p>
+						<div className="txt-wrap">
+							<div className="title"><img src="/static/img/home/ico-c-building.png" alt="" /><br /><p>집이 아니라<br /><strong>회사에서</strong> 쓰는 안경</p></div>
+							<div className="desc"><p>동그란 안경만 써봐서 새로운 디자인을 선택하기 망설여졌는데.. 제가 원했던 '무게감 있지만 세련된 이미지'가 정말 잘 표현되는 안경에 매우 만족합니다!</p></div>
 						</div>
-						<div className="after-img-2"><span><strong>After 2</strong></span></div>
-						<div className="story-div"></div>
 					</div>
+
 					<div className="stories__story-wrap stories__story-wrap-3">
-						<div className="before-img"><span><strong>Before</strong></span></div>
-						<div className="after-img"><span><strong>After 1</strong></span></div>
-						<div className="title">
-							<img src="/static/img/home/ico-c-eye.png" alt="" /><br />
-							<p>콘택트렌즈에서 <br /><strong>나를 해방</strong>시키는 안경</p>
+						<div className="after-img-big"></div>
+						<div className="after-before-wrap">
+							<div className="before-img"><span><strong>Before</strong></span></div>
+							<div className="after-img"><span><strong>After</strong></span></div>
 						</div>
-						<div className="desc">
-							<p>하루 2/3의 시간을 콘택트렌즈와 함께하니 이제는 정말 건조해서 못 견디겠더라구요. 안경은 무조건 안 예쁘다! 라는 제 편견을 깔끔하게 지워 준 안경입니다.</p>
+						<div className="txt-wrap">
+							<div className="title"><img src="/static/img/home/ico-c-eye.png" alt="" /><br /><p>콘택트렌즈에서 <br /><strong>나를 해방</strong>시키는 안경</p></div>
+							<div className="desc"><p>하루 2/3의 시간을 콘택트렌즈와 함께하니 이제는 정말 건조해서 못 견디겠더라구요. 안경은 무조건 안 예쁘다! 라는 제 편견을 깔끔하게 지워 준 안경입니다.</p></div>
 						</div>
-						<div className="after-img-2"><span><strong>After 2</strong></span></div>
 					</div>
 				</div>
 
