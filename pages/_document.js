@@ -59,6 +59,8 @@ class MyDocument extends Document {
               'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
               })(window,document,'script','dataLayer','GTM-NNF4ZC5');
             `}} />
+            {/* Google Optimize */}
+            <script src="https://www.googleoptimize.com/optimize.js?id=GTM-K2ZP9MN"></script>
         </Head>
         <body>
           <Main />
