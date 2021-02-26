@@ -60,7 +60,6 @@ class MyDocument extends Document {
               })(window,document,'script','dataLayer','GTM-NNF4ZC5');
             `}} />
             {/* Google Optimize */}
-            <script src="https://www.googleoptimize.com/optimize.js?id=GTM-K2ZP9MN"></script>
             <style jsx>{`
               .async-hide { opacity: 0 !important}
             `}</style>
@@ -72,6 +71,7 @@ class MyDocument extends Document {
                 })(window,document.documentElement,'async-hide','dataLayer',4000,
                 {'GTM-K2ZP9MN':true});
               `}} />
+            <script src="https://www.googleoptimize.com/optimize.js?id=GTM-K2ZP9MN"></script>
         </Head>
         <body>
           <Main />
