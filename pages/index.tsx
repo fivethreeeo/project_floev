@@ -102,7 +102,7 @@ const IndexPage = (props: {
 									<p className="test-alt1"><strong>아직도 얼굴형으로<br />안경 고르세요?</strong></p>
 								</div>
 								<p className="main-visual__caption test-origin1">이런 말, 나도 들을 수 있을까?<br />진짜 나에게 맞는 안경 추천 서비스</p>
-								<p className="main-visual__caption test-alt1">이런 말, 나도 들을 수 있을까?<br />진짜 나에게 맞는 안경 추천 서비스</p>
+								<p className="main-visual__caption test-alt1">진짜 나에게 맞는 안경 추천 서비스</p>
 								<div className="main-visual__btn">
 									<button className="tn-0003 gtm-001 btn-cta btn-test test-origin2" onClick={() => didYouVisit()}>20,000원 혜택받고 서비스 신청하기</button>
 									<button className="tn-0003 gtm-001 btn-cta btn-test test-alt2" onClick={() => didYouVisit()}>플로브 시작하기</button>
