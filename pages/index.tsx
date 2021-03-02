@@ -97,15 +97,10 @@ const IndexPage = (props: {
 						</div>
 						<div className="main-visual__desc-wrap">
 							<div className="desc-wrap__inner">
-								<div className="main-visual__title">
-									<p className="test-origin1"><strong>어? 너 안경<br />되게 잘 어울린다!</strong></p>
-									<p className="test-alt1"><strong>아직도 얼굴형으로<br />안경 고르세요?</strong></p>
-								</div>
-								<p className="main-visual__caption test-origin1">이런 말, 나도 들을 수 있을까?<br />진짜 나에게 맞는 안경 추천 서비스</p>
-								<p className="main-visual__caption test-alt1">진짜 나에게 맞는 안경 추천 서비스</p>
+								<div className="main-visual__title"><p><strong>아직도 얼굴형으로<br />안경 고르세요?</strong></p></div>
+								<p className="main-visual__caption">진짜 나에게 맞는 안경 추천 서비스</p>
 								<div className="main-visual__btn">
-									<button className="tn-0003 gtm-001 btn-cta btn-test test-origin2" onClick={() => didYouVisit()}>20,000원 혜택받고 서비스 신청하기</button>
-									<button className="tn-0003 gtm-001 btn-cta btn-test test-alt2" onClick={() => didYouVisit()}>플로브 시작하기</button>
+									<button className="tn-0003 gtm-001 btn-cta btn-test" onClick={() => didYouVisit()}>플로브 시작하기</button>
 									<Modal
 										className="modal-cookie"
 										visible={surveyModal}
@@ -693,8 +688,7 @@ const IndexPage = (props: {
 				</div>
 				<div className="bottom-cta">
 					<div className="bottom-cta__inner">
-						<button className="gtm-001 btn-cta tn-0004 test-origin2" onClick={() => didYouVisit()}><span>20,000원 혜택받고 서비스 신청하기</span></button>
-						<button className="gtm-001 btn-cta tn-0004 test-alt2" onClick={() => didYouVisit()}><span>플로브 시작하기</span></button>
+						<button className="gtm-001 btn-cta tn-0004" onClick={() => didYouVisit()}><span>플로브 시작하기</span></button>
 					</div>
 				</div>
 
