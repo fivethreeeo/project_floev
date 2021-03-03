@@ -137,16 +137,16 @@ const IndexPage = (props: {
 
 				<div className="score">
 					<div className="score__inner">
-						<div className="score__date">(2021/1/31 기준)</div>
-						<div className="score__title">플로브에서 <span className="num">1,775명</span>이 <span className="br"></span><span>안경 추천상담</span>을 받았어요.</div>
+						<div className="score__date">(2021/03/02 기준)</div>
+						<div className="score__title">플로브에서 <span className="num">1,897명</span>이 <span className="br"></span><span>안경 추천상담</span>을 받았어요.</div>
 						<div className="score__board">
 							<div className="score__each">
-								<div className="score__glasses"><span className="num">28,400</span><span className="type">장</span></div>
+								<div className="score__glasses"><span className="num">30,352</span><span className="type">장</span></div>
 								<div className="score__name">추천된 안경</div>
 							</div>
 							<div className="line"></div>
 							<div className="score__each">
-								<div className="score__time"><span className="num">106,500</span><span className="type">분</span></div>
+								<div className="score__time"><span className="num">112,600</span><span className="type">분</span></div>
 								<div className="score__name">추천상담 시간</div>
 							</div>
 							<div className="line"></div>
