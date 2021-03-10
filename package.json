@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "author": "sanscreate",
   "scripts": {
-    "dev": "NODE_OPTIONS='--inspect' next dev",
+    "dev": "NODE_OPTIONS='--inspect' next dev -p 3030",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3001",
     "type-check": "tsc",
     "analyze": "cross-env ANALYZE=true next build",
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",

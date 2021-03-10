@@ -8,7 +8,7 @@ export enum REQUEST {
 }
 
 export enum LOUNGE {
-    HEADQUARTER,
+    INIT,
     YEUKSAM,
     GANGNAM
 }

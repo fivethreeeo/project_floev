@@ -19,7 +19,7 @@ const now = new Date(Date.now());
 const PickupPageIndex = (props: {
     user: User,
     userPickupRequests: PickupRequest[]
-    pickupRequestList: PickupRequest[]
+    pickupFittingRequestList: PickupRequest[]
 }) => {
     // 유저 정보
     const size = props.userPickupRequests.length
@@ -115,7 +115,7 @@ const PickupPageIndex = (props: {
             setModal2(true)
         }
     }
-    const availablePickupFittingTimes = availablePickupFittingRequestTime(requestDate, LOUNGE.GANGNAM, props.pickupRequestList)
+    const availablePickupFittingTimes = availablePickupFittingRequestTime(requestDate, LOUNGE.GANGNAM, props.pickupFittingRequestList)
     return (
         <Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" name={props.user ? props.user.name : undefined}>
             <div className="mypage">
@@ -262,19 +262,19 @@ export const getServerSideProps: GetServerSideProps = async (context) => { //{re
         return { props: {} }
     }
 
-    const { pickupRequestList } = await client.query({ query: GET_PICKUP_FITTING_REQUEST_LIST })
+    const { pickupFittingRequestList } = await client.query({ query: GET_PICKUP_FITTING_REQUEST_LIST })
         .then(({ data }) => {
-            return { pickupRequestList: data.getRequestList };
+            return { pickupFittingRequestList: data.getPickupFittingRequestList };
         }).catch((error) => {
             console.error(error.message)
-            return { pickupRequestList: null };
+            return { pickupFittingRequestList: null };
         });
 
     return {
         props: {
             user,
             userPickupRequests,
-            pickupRequestList
+            pickupFittingRequestList
         }
     }
 }

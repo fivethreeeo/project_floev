@@ -10,6 +10,8 @@ import { resetSurvey } from '../../utils/surveyUtils'
 import { MAKE_SURVEY_PURCHASE_REQUEST } from '../../lib/mutation'
 import { SHA256 } from '../../utils/SHA256'
 
+const IMAGE_SERVER_URL = process.env.IMAGE_SERVER_URL
+
 export default function Q12NamePhoneNumber(props: {
     oldAnswers: Answers
     answersUpdate: (answersParam: Answers) => void
@@ -173,7 +175,7 @@ export default function Q12NamePhoneNumber(props: {
             if (file !== undefined) {
                 formData.append("upload-image", file, fileName)
             }
-            await axios.post('https://image.floev.com/upload', formData, {
+            await axios.post(IMAGE_SERVER_URL + '/upload', formData, {
                 headers: { "content-type": "multipart/form-data" }
             }).then(res => {
                 console.log(res.status)
@@ -188,7 +190,7 @@ export default function Q12NamePhoneNumber(props: {
             if (file !== undefined) {
                 formData.append("upload-image", file, fileName)
             }
-            await axios.post('https://image.floev.com/upload', formData, {
+            await axios.post(IMAGE_SERVER_URL + '/upload', formData, {
                 headers: { "content-type": "multipart/form-data" }
             }).then(res => {
                 console.log(res.status)
