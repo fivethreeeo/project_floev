@@ -50,6 +50,19 @@ class MyDocument extends Document {
           <noscript dangerouslySetInnerHTML={{
             __html: `<img height="1" width="1" style="display:none"
             src="https://www.facebook.com/tr?id=468879750384716&ev=PageView&noscript=1"/>` }} />
+            {/* Google Optimize */}
+            <style jsx>{`
+              .async-hide { opacity: 0 !important}
+            `}</style>
+            <script dangerouslySetInnerHTML={{
+              __html: `
+                (function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
+                h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
+                (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
+                })(window,document.documentElement,'async-hide','dataLayer',4000,
+                {'GTM-K2ZP9MN':true});
+              `}} />
+            <script src="https://www.googleoptimize.com/optimize.js?id=GTM-K2ZP9MN"></script>
         </Head>
         <body>
           <Main />

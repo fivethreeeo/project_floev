@@ -93,16 +93,14 @@ const IndexPage = (props: {
 				<div className="main-visual">
 					<div className="main-visual__inner">
 						<div className="main-visual__img-wrap">
-							<div className="main-visual__img"><img src="/static/img/home/main-after.jpg" alt="메인 비주얼 이미지1" /></div>
+							<div className="main-visual__img"><img src="/static/img/home/main-after-1.jpg" alt="메인 비주얼 이미지1" /></div>
 						</div>
 						<div className="main-visual__desc-wrap">
 							<div className="desc-wrap__inner">
-								<div className="main-visual__title">
-									<p className=""><strong>어? 너 안경<br />되게 잘 어울린다!</strong></p>
-								</div>
-								<p className="main-visual__caption">이런 말, 나도 들을 수 있을까?<br />진짜 나에게 맞는 안경 추천 서비스</p>
+								<div className="main-visual__title"><p><strong>아직도 얼굴형으로<br />안경 고르세요?</strong></p></div>
+								<p className="main-visual__caption">진짜 나에게 맞는 안경 추천 서비스</p>
 								<div className="main-visual__btn">
-									<button className="tn-0003 gtm-001 btn-cta btn-test" onClick={() => didYouVisit()}>20,000원 혜택받고 서비스 신청하기</button>
+									<button className="tn-0003 gtm-001 btn-cta btn-test" onClick={() => didYouVisit()}>플로브 시작하기</button>
 									<Modal
 										className="modal-cookie"
 										visible={surveyModal}
@@ -139,16 +137,16 @@ const IndexPage = (props: {
 
 				<div className="score">
 					<div className="score__inner">
-						<div className="score__date">(2021/1/31 기준)</div>
-						<div className="score__title">플로브에서 <span className="num">1,775명</span>이 <span className="br"></span><span>안경 추천상담</span>을 받았어요.</div>
+						<div className="score__date">(2021/03/02 기준)</div>
+						<div className="score__title">플로브에서 <span className="num">1,897명</span>이 <span className="br"></span><span>안경 추천상담</span>을 받았어요.</div>
 						<div className="score__board">
 							<div className="score__each">
-								<div className="score__glasses"><span className="num">28,400</span><span className="type">장</span></div>
+								<div className="score__glasses"><span className="num">30,352</span><span className="type">장</span></div>
 								<div className="score__name">추천된 안경</div>
 							</div>
 							<div className="line"></div>
 							<div className="score__each">
-								<div className="score__time"><span className="num">106,500</span><span className="type">분</span></div>
+								<div className="score__time"><span className="num">112,600</span><span className="type">분</span></div>
 								<div className="score__name">추천상담 시간</div>
 							</div>
 							<div className="line"></div>
@@ -405,42 +403,38 @@ const IndexPage = (props: {
 						<div className="stories__thumb-img stories__thumb-img-3"></div>
 					</div>
 					<div className="stories__story-wrap stories__story-wrap-1">
-						<div className="before-img"><span><strong>Before</strong></span></div>
-						<div className="after-img"><span><strong>After 1</strong></span></div>
-						<div className="title">
-							<img src="/static/img/home/ico-c-ring.png" alt="" /><br />
-							<p>특별한 날<br /><strong>특별한 나</strong>를 위해 쓰는 안경</p>
+						<div className="after-img-big"></div>
+						<div className="after-before-wrap">
+							<div className="before-img"><span><strong>Before</strong></span></div>
+							<div className="after-img"><span><strong>After</strong></span></div>
 						</div>
-						<div className="desc">
-							<p>웨딩촬영을 앞두고 잘 어울리는 안경을 고민하다가 여자친구와 함께 방문했어요. 뿔테는 처음이지만 너무 마음에 들어요! 가벼워서 신혼여행에서도 착용하려구요.</p>
+						<div className="txt-wrap">
+							<div className="title"><img src="/static/img/home/ico-c-ring.png" alt="" /><br /><p>특별한 날<br /><strong>특별한 나</strong>를 위해 쓰는 안경</p></div>
+							<div className="desc"><p>웨딩촬영을 앞두고 잘 어울리는 안경을 고민하다가 여자친구와 함께 방문했어요. 뿔테는 처음이지만 너무 마음에 들어요! 가벼워서 신혼여행에서도 착용하려구요.</p></div>
 						</div>
-						<div className="after-img-2"><span><strong>After 2</strong></span></div>
-						<div className="story-div"></div>
 					</div>
 					<div className="stories__story-wrap stories__story-wrap-2">
-						<div className="before-img"><span><strong>Before</strong></span></div>
-						<div className="after-img"><span><strong>After 1</strong></span></div>
-						<div className="title">
-							<img src="/static/img/home/ico-c-building.png" alt="" /><br />
-							<p>집이 아니라<br /><strong>회사에서</strong> 쓰는 안경</p>
+						<div className="after-img-big"></div>
+						<div className="after-before-wrap">
+							<div className="before-img"><span><strong>Before</strong></span></div>
+							<div className="after-img"><span><strong>After</strong></span></div>
 						</div>
-						<div className="desc">
-							<p>동그란 안경만 써봐서 새로운 디자인을 선택하기 망설여졌는데.. 제가 원했던 '무게감 있지만 세련된 이미지'가 정말 잘 표현되는 안경에 매우 만족합니다!</p>
+						<div className="txt-wrap">
+							<div className="title"><img src="/static/img/home/ico-c-building.png" alt="" /><br /><p>집이 아니라<br /><strong>회사에서</strong> 쓰는 안경</p></div>
+							<div className="desc"><p>동그란 안경만 써봐서 새로운 디자인을 선택하기 망설여졌는데.. 제가 원했던 '무게감 있지만 세련된 이미지'가 정말 잘 표현되는 안경에 매우 만족합니다!</p></div>
 						</div>
-						<div className="after-img-2"><span><strong>After 2</strong></span></div>
-						<div className="story-div"></div>
 					</div>
+
 					<div className="stories__story-wrap stories__story-wrap-3">
-						<div className="before-img"><span><strong>Before</strong></span></div>
-						<div className="after-img"><span><strong>After 1</strong></span></div>
-						<div className="title">
-							<img src="/static/img/home/ico-c-eye.png" alt="" /><br />
-							<p>콘택트렌즈에서 <br /><strong>나를 해방</strong>시키는 안경</p>
+						<div className="after-img-big"></div>
+						<div className="after-before-wrap">
+							<div className="before-img"><span><strong>Before</strong></span></div>
+							<div className="after-img"><span><strong>After</strong></span></div>
 						</div>
-						<div className="desc">
-							<p>하루 2/3의 시간을 콘택트렌즈와 함께하니 이제는 정말 건조해서 못 견디겠더라구요. 안경은 무조건 안 예쁘다! 라는 제 편견을 깔끔하게 지워 준 안경입니다.</p>
+						<div className="txt-wrap">
+							<div className="title"><img src="/static/img/home/ico-c-eye.png" alt="" /><br /><p>콘택트렌즈에서 <br /><strong>나를 해방</strong>시키는 안경</p></div>
+							<div className="desc"><p>하루 2/3의 시간을 콘택트렌즈와 함께하니 이제는 정말 건조해서 못 견디겠더라구요. 안경은 무조건 안 예쁘다! 라는 제 편견을 깔끔하게 지워 준 안경입니다.</p></div>
 						</div>
-						<div className="after-img-2"><span><strong>After 2</strong></span></div>
 					</div>
 				</div>
 
@@ -694,7 +688,7 @@ const IndexPage = (props: {
 				</div>
 				<div className="bottom-cta">
 					<div className="bottom-cta__inner">
-						<button className="gtm-001 btn-cta tn-0004" onClick={() => didYouVisit()}><span>20,000원 혜택받고 서비스 신청하기</span></button>
+						<button className="gtm-001 btn-cta tn-0004" onClick={() => didYouVisit()}><span>플로브 시작하기</span></button>
 					</div>
 				</div>
 
