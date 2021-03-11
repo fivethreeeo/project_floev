@@ -247,8 +247,6 @@ export default function Q12NamePhoneNumber(props: {
                             onClick={() => handleClick()}><span>인증하고 예약완료하기</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>) :
                         (<Spin size="large" tip="잠시만 기다려주세요.." />))
                 }
-                <button className="q-wrap__btn q-wrap__btn-next tn-0026" type={'submit'}
-                    onClick={() => submitPhoto()}><span>이미지</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>
             </div>
 
         </div>
