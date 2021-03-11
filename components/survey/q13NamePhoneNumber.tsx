@@ -10,7 +10,7 @@ import { resetSurvey } from '../../utils/surveyUtils'
 import { MAKE_SURVEY_PURCHASE_REQUEST } from '../../lib/mutation'
 import { SHA256 } from '../../utils/SHA256'
 
-const IMAGE_SERVER_URL = process.env.IMAGE_SERVER_URL
+const IMAGE_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://image.floev.com' : 'http://localhost:3033'
 
 export default function Q12NamePhoneNumber(props: {
     oldAnswers: Answers
@@ -247,6 +247,8 @@ export default function Q12NamePhoneNumber(props: {
                             onClick={() => handleClick()}><span>인증하고 예약완료하기</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>) :
                         (<Spin size="large" tip="잠시만 기다려주세요.." />))
                 }
+                <button className="q-wrap__btn q-wrap__btn-next tn-0026" type={'submit'}
+                    onClick={() => submitPhoto()}><span>이미지</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>
             </div>
 
         </div>
