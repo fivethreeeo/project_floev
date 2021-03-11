@@ -25,7 +25,7 @@ const Layout = ({
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
-      <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width" />
+      <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=0" />
       <meta property="og:title" content="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" />
       <meta property="og:description" content="좋은 품질의 안경, 전문적인 검안과 서비스를 제공합니다." />
       <meta property="og:type" content="website" />
