@@ -108,7 +108,7 @@ const PickupCreate = (props: {
                     select {width:100%;height:36px;border-radius:4px;border:1px solid #d6d7d8;font-size:14px;padding:0 12px;margin-bottom:4px}
                     input:focus,select:focus {border:1px solid #33343a}
                     button {width:100%;height:48px;background-color:#ccc;color:#fff;font-size:16px;border-radius:4px;margin-top:24px}
-                    .active {background-color:#c3512a}
+                    .active {background-color:#d24816}
                 `}</style>
         </Layout >
     )

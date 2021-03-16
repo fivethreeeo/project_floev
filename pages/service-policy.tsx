@@ -103,8 +103,8 @@ const policyPage = () => {
 .wrap {width:100%;max-width:640px;margin:0 auto;margin-top:56px;}
 .pageTitle {font-size: 20px;font-weight: bold;text-align: center;margin-bottom: 40px;}
 
-strong {color:#C3512A}
-.red {color:#C3512A}
+strong {color:#d24816}
+.red {color:#d24816}
 
 .serPolWrap {padding:80px 16px 80px}
 .inner-wrap {padding-bottom:24px}
@@ -114,7 +114,7 @@ strong {color:#C3512A}
 .main-tit {font-weight:700;text-align:center}
 
 .tit-bx {margin-bottom:48px}
-.tit-bx-p-1 {float:left;font-size:16px;color:#C3512A}
+.tit-bx-p-1 {float:left;font-size:16px;color:#d24816}
 .tit-bx-p-2 {clear:left;float:left;font-size:28px;font-weight:700}
 .tit-bx-img {float:left;height:102px} 
 .tit-bx-img.img1 {width:100px;margin:-54px 0 0 20px} 

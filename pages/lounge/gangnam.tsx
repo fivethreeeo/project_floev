@@ -52,7 +52,7 @@ const gangnamPage = () => {
 </div>
           <style jsx>{`
           strong {color:#64433F}
-          .newColor {color:#C3512A}
+          .newColor {color:#d24816}
 
           .loungeWrap {margin-top:48px;padding-bottom:80px}
           .section .imgWrap {float:none;width:100%;margin:0 0 16px 0;}
@@ -70,7 +70,7 @@ const gangnamPage = () => {
           .title .txtWrap p {color:#fff;font-size:32px;line-height:46px;font-weight:bold}
           .title .txtWrap p:nth-child(3) {margin:24px 0 0 4px;font-size:14px;line-height:24px;font-weight:400}
           .title .map {margin-top:24px;width:160px;height:40px;border-radius:4px;overflow:hidden;text-align:center}
-          .title .map p {line-height:40px;font-size:14px;font-weight:400;color:#fff;background:#C3512a}
+          .title .map p {line-height:40px;font-size:14px;font-weight:400;color:#fff;background:#d24816}
           .title .map p a {display:block;color:#fff}
           
           .end {padding-bottom:40px}
