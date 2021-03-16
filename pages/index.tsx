@@ -124,12 +124,12 @@ const IndexPage = (props: {
 
 				<div className="banner-event">
 					<div className="banner-event__inner">
-						<a href="/2020-winter-event">
+						<a href="/event_styletogo">
 
 							<div className="event-desc">
 								<span className="event-tag">이벤트</span>
-								<span className="event-text">리뷰 남기면</span>
-								<strong><span className="event-strong-m-only">리뷰 남기면, </span>최대 3만원 할인 혜택! &#xE001;</strong>
+								<span className="event-text"><strong>3만원 할인에</strong></span>
+								<strong><span className="event-strong-m-only">3만원 할인에 </span>20만원 크레딧까지 &#xE001;</strong>
 							</div>
 						</a>
 					</div>
