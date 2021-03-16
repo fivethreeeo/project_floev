@@ -242,13 +242,13 @@
     /* 예약내역박스 */
     .status-card {margin:16px auto 0;padding:36px 20px 24px;max-width:360px;border-radius:8px;box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.16);background-color:#ffffff;}
     .booking-info {font-size:16px;line-height:1.7;text-align:center;margin-bottom:28px}
-    .booking-info strong {color:#C3512A}
+    .booking-info strong {color:$fv-sienna}
     .mapLink {display:block;font-size:13px;color:#ADAEB0;text-align:right;padding:0 24px 2px 0}
     .inner-btn-wrap button {width: calc( 50% - 4px ); border-radius:4px;font-size:14px;padding:8px 0}
     .inner-btn-wrap a {display:block;width:100%;border-radius:4px;font-size:14px;padding:8px 0;text-align:center}
     .btn-cancel {background:#fff;border:1px solid #979797;margin:0 8px 0 0}
     .btn-change {background:#33343a;color:#fff}
-    .btn-start {background:#C3512A;color:#fff}
+    .btn-start {background:$fv-sienna;color:#fff}
 
     @media (min-width:640px) {
       .mapLink {padding:0 40px 2px 0}

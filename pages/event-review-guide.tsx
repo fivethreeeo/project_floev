@@ -8,7 +8,7 @@ const EventPage = () => {
         <Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스">
         <div className="global640"><div className="goBackBtnWrap"><div className="goBackBtn" onClick={() => Router.back()}></div></div></div>
         <div className="wrap">
-        <p className="fontR" style={{fontSize:'12px',color:'#c3512a'}}>review event</p>
+        <p className="fontR" style={{fontSize:'12px',color:'#d24816'}}>review event</p>
             <p style={{marginTop:'28px',fontSize:'28px'}}>네이버 맵/카카오 맵<br/>플로브 구매 리뷰<br/>남겨주실거죠?</p>
 
             <div className="clearDiv">

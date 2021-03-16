@@ -184,7 +184,7 @@
 		}
 		.event-text {
 			margin-top:21px;
-			margin-right:8px;
+			margin-right:0px;
 			@include responsive("mobile") {
 				display:none;
 			}
