@@ -11,6 +11,7 @@ import { MAKE_SURVEY_PURCHASE_REQUEST } from '../../lib/mutation'
 import { SHA256 } from '../../utils/SHA256'
 
 const IMAGE_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://image.floev.com' : 'http://localhost:3033'
+const IMAGE_ADMIN_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://imageadmin.floev.com' : 'http://localhost:3034'
 
 export default function Q12NamePhoneNumber(props: {
     oldAnswers: Answers
@@ -32,6 +33,11 @@ export default function Q12NamePhoneNumber(props: {
     const [isActive, setIsActive] = useState<boolean>(false)
     const [isError, setIsError] = useState<boolean>(false)
 
+    const [preferFileNameList, setPreferFileNameList] = useState<string[]>(props.oldAnswers.preferFileNameList)
+    const [photoFileNameList, setPhotoFileNameList] = useState<string[]>(props.oldAnswers.photoFileNameList)
+    const [preferRequestUrls, setPreferRequestUrls] = useState<string[]>([])
+    const [photoRequestUrls, setPhotoRequestUrls] = useState<string[]>([])
+
     const [makeSurveyPurchaseRequest, { loading }] = useMutation(MAKE_SURVEY_PURCHASE_REQUEST, {
         variables: {
             customer: props.oldAnswers.customer, birth: props.oldAnswers.birth,
@@ -39,7 +45,10 @@ export default function Q12NamePhoneNumber(props: {
             purposes: props.oldAnswers.purposes, purposeEtc: props.oldAnswers.purposeEtc,
             painDegree: props.oldAnswers.painDegree, painDegreeEtc: props.oldAnswers.painDegreeEtc,
             painTypes: props.oldAnswers.painTypes, painTypesEtc: props.oldAnswers.painTypesEtc,
-            prefer: props.oldAnswers.prefer, size: props.oldAnswers.size,
+            prefer: props.oldAnswers.prefer,
+            preferRequestUrls: preferRequestUrls,
+            photoRequestUrls: photoRequestUrls,
+            size: props.oldAnswers.size,
             loungeCode: props.oldAnswers.loungeCode,
             requestDate: props.oldAnswers.requestDate,
             requestTime: props.oldAnswers.requestTime,
@@ -152,7 +161,41 @@ export default function Q12NamePhoneNumber(props: {
         setLeftSecond(181);
     }
 
-    function requestAuthNumber() {
+    function setPreferFileNameRequestUrl() {
+        const tempPreferFileNameList: string[] = []
+        const tempPreferRequestUrls: string[] = []
+        for (let i = 0; i < props.oldAnswers.preferFileList.length; i++) {
+            const preferFileName: string = moment().format().slice(0, 16) + "_" + SHA256(phoneNumber) + "_prefer_" + i.toString() + path.extname(props.oldAnswers.preferFileList[i].name)
+            tempPreferFileNameList.push(preferFileName)
+
+            const preferRequestUrl: string = IMAGE_ADMIN_SERVER_URL + "/api/user/" + preferFileName
+            tempPreferRequestUrls.push(preferRequestUrl)
+        }
+        setPreferFileNameList(tempPreferFileNameList)
+        setPreferRequestUrls(tempPreferRequestUrls)
+    }
+
+    function setPhotoFileNameRequestUrl() {
+        const tempPhotoFileNameList: string[] = []
+        const tempPhotoRequestUrls: string[] = []
+        for (let i = 0; i < props.oldAnswers.photoFileList.length; i++) {
+            const photoFileName: string = moment().format().slice(0, 16) + "_" + SHA256(phoneNumber) + "_" + i.toString() + path.extname(props.oldAnswers.photoFileList[i].name)
+            tempPhotoFileNameList.push(photoFileName)
+
+            const photoRequestUrl: string = IMAGE_ADMIN_SERVER_URL + "/api/user/" + photoFileName
+            tempPhotoRequestUrls.push(photoRequestUrl)
+        }
+        setPhotoFileNameList(tempPhotoFileNameList)
+        setPhotoRequestUrls(tempPhotoRequestUrls)
+    }
+
+
+    function setFileNameRequestUrl() {
+        setPreferFileNameRequestUrl()
+        setPhotoFileNameRequestUrl()
+    }
+
+    function requestAuthNumberAndSetFileNameRequestUrl() {
         setIsSentAuth(true)
         setTimerOn()
 
@@ -165,15 +208,14 @@ export default function Q12NamePhoneNumber(props: {
                 new Promise(setTimerOn)
             }
         })
+        setFileNameRequestUrl()
     }
-
-    const submitPhoto = async () => {
+    async function submitPhotoFiles() {
         for (let i = 0; i < props.oldAnswers.photoFileList.length; i++) {
             const formData = new FormData()
             const file = props.oldAnswers.photoFileList[i].originFileObj
-            const fileName: string = moment().format().slice(0, 16) + "_" + SHA256(phoneNumber) + "_" + i.toString() + path.extname(props.oldAnswers.photoFileList[i].name)
             if (file !== undefined) {
-                formData.append("upload-image", file, fileName)
+                formData.append("upload-image", file, photoFileNameList[i])
             }
             await axios.post(IMAGE_SERVER_URL + '/upload', formData, {
                 headers: { "content-type": "multipart/form-data" }
@@ -183,12 +225,13 @@ export default function Q12NamePhoneNumber(props: {
                 console.error(err)
             })
         }
+    }
+    async function submitPreferFiles() {
         for (let i = 0; i < props.oldAnswers.preferFileList.length; i++) {
             const formData = new FormData()
             const file = props.oldAnswers.preferFileList[i].originFileObj
-            const fileName: string = moment().format().slice(0, 16) + "_" + SHA256(phoneNumber) + "_prefer_" + i.toString() + path.extname(props.oldAnswers.preferFileList[i].name)
             if (file !== undefined) {
-                formData.append("upload-image", file, fileName)
+                formData.append("upload-image", file, preferFileNameList[i])
             }
             await axios.post(IMAGE_SERVER_URL + '/upload', formData, {
                 headers: { "content-type": "multipart/form-data" }
@@ -198,6 +241,11 @@ export default function Q12NamePhoneNumber(props: {
                 console.error(err)
             })
         }
+    }
+
+    const submitPhoto = async () => {
+        submitPhotoFiles()
+        submitPreferFiles()
     }
     function handleClick() {
         submitPhoto()
@@ -216,13 +264,13 @@ export default function Q12NamePhoneNumber(props: {
                 {!isSentAuth ?
                     // 인증번호 보내기 전
                     isPhoneNumber ?
-                        (<button className="btn-num tn-0028" onClick={() => requestAuthNumber()}>인증번호전송</button>) :
+                        (<button className="btn-num tn-0028" onClick={() => requestAuthNumberAndSetFileNameRequestUrl()}>인증번호전송</button>) :
                         (<button className="btn-num">인증번호전송</button>) :
                     // 인증번호 보낸 후
                     (<div className="input-text-num">
                         <input className="q-wrap__input-text" type="text" placeholder={'인증번호 4자리'} value={authNumber} onChange={e => handleChangeAuthNumber(e)} maxLength={4} />
                         {isAuthenticated ?
-                            (<button className="btn-resend tn-0029" onClick={() => requestAuthNumber()}>재전송</button>) :
+                            (<button className="btn-resend tn-0029" onClick={() => requestAuthNumberAndSetFileNameRequestUrl()}>재전송</button>) :
                             (<button className="btn-resend">재전송</button>)}
 
                         {leftSecond <= 180 ?
