@@ -27,6 +27,10 @@ const EventPage = () => {
               <p>1. 스타일가이드togo를 찍는다!</p>
               <p>2. 필수 해시태그와 함께 개인 인스타그램에 업로드한다.<br/></p>
               <p>*필수 해시태그 :<br/><strong>#FindYourFloev #안경추천서비스 #플로브</strong></p>
+              <br/>
+              <div>이벤트 기간 : 2021년 3월 17일 (수)~ 4월 11일 (일)</div>
+              <div>당첨자 발표 : 2021년 4월 16일(금) 예정<br/>(플로브 인스타그램 공지)</div>
+              <div>당첨자 경품 : 플로브 크레딧 20만원 (2명)</div>
             </div>
             <div className="hr_outer_2"><div className="hr"></div></div>
             <div className="h6">
@@ -58,13 +62,14 @@ const EventPage = () => {
           .desc1 div{padding:11px 12px 9px;font-size:12px;text-align:left;background:rgba(0,0,0,0.3);border-radius:8px}
           .desc1 span {font-weight:700;display:block;padding-bottom:4px;}
           .title2 {margin:40px auto 16px;padding:7px 0 5px;width:56px;border-radius:20px;font-size:12px;font-weight:bold;background:rgba(51,52,58,0.9)}
-          .desc2 {margin:0 auto;width:300px;text-align:left;font-weight:500}
+          .desc2 {margin:0 auto;width:320px;text-align:left;font-weight:500}
           .desc2 p {font-size:16px;line-height:1.8}
           .desc2 p:last-child {font-weight:400;font-size:14px;margin-top:-3px}
-          .title3 {margin:40px auto 32px;padding:7px 0 5px;width:80px;border-radius:20px;font-size:12px;font-weight:bold;background:rgba(51,52,58,0.9)}
-          .desc3 {margin:0 auto;width:300px;text-align:left;font-weight:500}
+          .title3 {margin:40px auto 16px;padding:7px 0 5px;width:80px;border-radius:20px;font-size:12px;font-weight:bold;background:rgba(51,52,58,0.9)}
+          .desc3 {margin:0 auto;width:320px;text-align:left;font-weight:500}
           .desc3 p {font-size:16px;line-height:1.8}
           .desc3 p:last-child {font-weight:400;font-size:14px;margin-top:12px;line-height:1.4}
+          .desc3 div {font-weight:400;font-size:14px;margin-bottom:8px}
 
           .h6 {margin:0 auto;width:300px;text-align:left;font-size:12px;line-height:1.75}
         `}</style>
