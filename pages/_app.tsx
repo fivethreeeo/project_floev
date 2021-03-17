@@ -62,7 +62,9 @@ declare global {
     painTypes: string[], painTypesEtc: string
     prefer: string
     preferFileList: UploadFile[]
+    preferFileNameList: string[]
     photoFileList: UploadFile[]
+    photoFileNameList: string[]
     size: string
     loungeCode: number
     requestDate: string
