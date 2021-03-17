@@ -6,7 +6,8 @@ export const MAKE_SURVEY_PURCHASE_REQUEST = gql`
         $purposes: [String!], $purposeEtc: String,
         $painDegree: Int!, $painDegreeEtc: String,
         $painTypes: [String!], $painTypesEtc: String,
-        $prefer: String!, $size: String, $loungeCode: Int!,
+        $prefer: String!, $preferRequestUrls: [String!], $photoRequestUrls:[String!],
+        $size: String, $loungeCode: Int!,
         $requestDate: String!, $requestTime: String!,
         $name: String!, $phoneNumber: String!, $authNumber: String!) {
     makeSurveyPurchaseRequest(
@@ -14,7 +15,8 @@ export const MAKE_SURVEY_PURCHASE_REQUEST = gql`
         purposes: $purposes, purposeEtc: $purposeEtc,
         painDegree: $painDegree, painDegreeEtc: $painDegreeEtc,
         painTypes: $painTypes, painTypesEtc: $painTypesEtc,
-        prefer: $prefer, size: $size, loungeCode: $loungeCode
+        prefer: $prefer, preferRequestUrls: $preferRequestUrls, photoRequestUrls:$photoRequestUrls
+        size: $size, loungeCode: $loungeCode
         requestDate: $requestDate, requestTime: $requestTime,
         name: $name, phoneNumber: $phoneNumber, authNumber: $authNumber) {
     token
