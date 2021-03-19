@@ -60,6 +60,10 @@ declare global {
     purposeEtc: string
     painDegree: number, painDegreeEtc: string
     painTypes: string[], painTypesEtc: string
+    preferFrameColors: string[]
+    preferFrameShapes: string[]
+    preferLensShapes: string[]
+    preferMoods: string[]
     prefer: string
     preferFileList: UploadFile[]
     preferFileNameList: string[]

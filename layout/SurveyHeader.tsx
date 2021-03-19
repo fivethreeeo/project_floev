@@ -34,15 +34,23 @@ export default function SurveyHeader(props: {
             step = 10
         } else if (props.currentStep <= 12) {
             step = 11
-        } else {
+        } else if (props.currentStep <= 13) {
             step = 12
+        } else if (props.currentStep <= 14) {
+            step = 13
+        } else if (props.currentStep <= 15) {
+            step = 14
+        } else if (props.currentStep <= 16) {
+            step = 15
+        } else {
+            step = 16
         }
         return step
     }
     return (<>
         <div className="survey-header">
             <div className="progress">
-                <Progress percent={((chunkStep()) / 13) * 100} showInfo={false} className="progress__bar" />
+                <Progress percent={((chunkStep()) / 17) * 100} showInfo={false} className="progress__bar" />
 
                 <div className="progress__steps">
 
@@ -59,11 +67,11 @@ export default function SurveyHeader(props: {
                     <div className={props.currentStep >= 9 ? "progress__step-arrow progress__step-arrow--active" : "progress__step-arrow"}>&#xE001;</div>
 
                     {/* q10, q11 -> className에 각각 progress__step-name--active, progress__step-arrow--active 추가 */}
-                    <div className={props.currentStep >= 10 ? "progress__step-name progress__step-name--active" : "progress__step-name"}>내 안경</div>
-                    <div className={props.currentStep >= 10 ? "progress__step-arrow progress__step-arrow--active" : "progress__step-arrow"}>&#xE001;</div>
+                    <div className={props.currentStep >= 14 ? "progress__step-name progress__step-name--active" : "progress__step-name"}>내 안경</div>
+                    <div className={props.currentStep >= 14 ? "progress__step-arrow progress__step-arrow--active" : "progress__step-arrow"}>&#xE001;</div>
 
                     {/* q12, q13 -> className에 각각 progress__step-name--active 추가 */}
-                    <div className={props.currentStep >= 12 ? "progress__step-name progress__step-name--active" : "progress__step-name"}>일정예약</div>
+                    <div className={props.currentStep >= 16 ? "progress__step-name progress__step-name--active" : "progress__step-name"}>일정예약</div>
                 </div>
             </div>
         </div>
