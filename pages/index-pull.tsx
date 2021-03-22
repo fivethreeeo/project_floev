@@ -90,11 +90,11 @@ const IndexPage = (props: {
 		<Layout title="플로브 - 나의 눈을 위한 안경 큐레이션 서비스" name={props.user ? props.user.name : undefined}>
 			<div className="indexPage">
 				<div className="landing_1_02">
-					<div><img src="/static/img/home/landing_1.png" alt="" /></div>
-					<div><img src="/static/img/home/landing_2.png" alt="" /></div>
-					<div><img src="/static/img/home/landing_3.png" alt="" /></div>
-					<div><img src="/static/img/home/landing_4.png" alt="" /></div>
-					<div><img src="/static/img/home/landing_5.png" alt="" /></div>
+					<div><img src="/img/home/landing_1.png" alt="" /></div>
+					<div><img src="/img/home/landing_2.png" alt="" /></div>
+					<div><img src="/img/home/landing_3.png" alt="" /></div>
+					<div><img src="/img/home/landing_4.png" alt="" /></div>
+					<div><img src="/img/home/landing_5.png" alt="" /></div>
 					<div className="main-visual__btn">
 						<button className="tn-0003 gtm-001 btn-cta btn-test" onClick={() => didYouVisit()}>20,000원 혜택받고 서비스 신청하기</button>
 						<Modal
@@ -118,7 +118,7 @@ const IndexPage = (props: {
 				<div className="main-visual">
 					<div className="main-visual__inner">
 						<div className="main-visual__img-wrap">
-							<div className="main-visual__img"><img src="/static/img/home/counselor_both.png" alt="메인 비주얼 이미지1" /></div>
+							<div className="main-visual__img"><img src="/img/home/counselor_both.png" alt="메인 비주얼 이미지1" /></div>
 						</div>
 						<div className="main-visual__desc-wrap">
 							<div className="desc-wrap__inner">
@@ -217,7 +217,7 @@ const IndexPage = (props: {
 						>
 							<div className="find-story__card">
 								<div className="find-story__img-wrap">
-									<div className="find-story__img"><img src="/static/img/home/find_story_1.jpg" alt="" /></div>
+									<div className="find-story__img"><img src="/img/home/find_story_1.jpg" alt="" /></div>
 								</div>
 								<div className="find-story__desc-wrap">
 									<div className="find-story__story-title">평소 호피나 골드브라운 계열의 콤비만 착용했었는데,</div>
@@ -230,7 +230,7 @@ const IndexPage = (props: {
 							</div>
 							<div className="find-story__card">
 								<div className="find-story__img-wrap">
-									<div className="find-story__img"><img src="/static/img/home/find_story_2.jpg" alt="" /></div>
+									<div className="find-story__img"><img src="/img/home/find_story_2.jpg" alt="" /></div>
 								</div>
 								<div className="find-story__desc-wrap">
 									<div className="find-story__story-title">안경을 쓰면 하염없이 못생겨지는 사람</div>
@@ -244,7 +244,7 @@ const IndexPage = (props: {
 							</div>
 							<div className="find-story__card">
 								<div className="find-story__img-wrap">
-									<div className="find-story__img"><img src="/static/img/home/find_story_3.jpg" alt="" /></div>
+									<div className="find-story__img"><img src="/img/home/find_story_3.jpg" alt="" /></div>
 								</div>
 								<div className="find-story__desc-wrap">
 									<div className="find-story__story-title">항상 값싼 안경만 찾아 쓰면서 고생했을 내 눈</div>
@@ -257,7 +257,7 @@ const IndexPage = (props: {
 							</div>
 							<div className="find-story__card">
 								<div className="find-story__img-wrap">
-									<div className="find-story__img"><img src="/static/img/home/find_story_4.jpg" alt="" /></div>
+									<div className="find-story__img"><img src="/img/home/find_story_4.jpg" alt="" /></div>
 								</div>
 								<div className="find-story__desc-wrap">
 									<div className="find-story__story-title">라섹을 했기 때문에 보는 것에는 문제가 없지만,</div>
@@ -270,7 +270,7 @@ const IndexPage = (props: {
 							</div>
 							<div className="find-story__card">
 								<div className="find-story__img-wrap">
-									<div className="find-story__img"><img src="/static/img/home/find_story_5.jpg" alt="" /></div>
+									<div className="find-story__img"><img src="/img/home/find_story_5.jpg" alt="" /></div>
 								</div>
 								<div className="find-story__desc-wrap">
 									<div className="find-story__story-title">막연하게 안경 취향을 찾고 싶었는데</div>
@@ -283,7 +283,7 @@ const IndexPage = (props: {
 							</div>
 							<div className="find-story__card">
 								<div className="find-story__img-wrap">
-									<div className="find-story__img"><img src="/static/img/home/find_story_6.jpg" alt="" /></div>
+									<div className="find-story__img"><img src="/img/home/find_story_6.jpg" alt="" /></div>
 								</div>
 								<div className="find-story__desc-wrap">
 									<div className="find-story__story-title">안경테 디자인은 항상 비슷하게, 렌즈는 n번 압축 정도?</div>
@@ -295,7 +295,7 @@ const IndexPage = (props: {
 							</div>
 							<div className="find-story__card">
 								<div className="find-story__img-wrap">
-									<div className="find-story__img"><img src="/static/img/home/find_story_7.jpg" alt="" /></div>
+									<div className="find-story__img"><img src="/img/home/find_story_7.jpg" alt="" /></div>
 								</div>
 								<div className="find-story__desc-wrap">
 									<div className="find-story__story-title">안과나 안경점에 갈 정도는 아니라고 생각했지만..</div>
@@ -321,7 +321,7 @@ const IndexPage = (props: {
 						>
 							<div className="find-story__card">
 								<div className="find-story__img-wrap">
-									<div className="find-story__img"><img src="/static/img/home/find_story_1.jpg" alt="" /></div>
+									<div className="find-story__img"><img src="/img/home/find_story_1.jpg" alt="" /></div>
 								</div>
 								<div className="find-story__desc-wrap">
 									<div className="find-story__story-title">평소 호피나 골드브라운 계열의 콤비만 착용했었는데,</div>
@@ -334,7 +334,7 @@ const IndexPage = (props: {
 							</div>
 							<div className="find-story__card">
 								<div className="find-story__img-wrap">
-									<div className="find-story__img"><img src="/static/img/home/find_story_2.jpg" alt="" /></div>
+									<div className="find-story__img"><img src="/img/home/find_story_2.jpg" alt="" /></div>
 								</div>
 								<div className="find-story__desc-wrap">
 									<div className="find-story__story-title">안경을 쓰면 하염없이 못생겨지는 사람</div>
@@ -348,7 +348,7 @@ const IndexPage = (props: {
 							</div>
 							<div className="find-story__card">
 								<div className="find-story__img-wrap">
-									<div className="find-story__img"><img src="/static/img/home/find_story_3.jpg" alt="" /></div>
+									<div className="find-story__img"><img src="/img/home/find_story_3.jpg" alt="" /></div>
 								</div>
 								<div className="find-story__desc-wrap">
 									<div className="find-story__story-title">항상 값싼 안경만 찾아 쓰면서 고생했을 내 눈</div>
@@ -361,7 +361,7 @@ const IndexPage = (props: {
 							</div>
 							<div className="find-story__card">
 								<div className="find-story__img-wrap">
-									<div className="find-story__img"><img src="/static/img/home/find_story_4.jpg" alt="" /></div>
+									<div className="find-story__img"><img src="/img/home/find_story_4.jpg" alt="" /></div>
 								</div>
 								<div className="find-story__desc-wrap">
 									<div className="find-story__story-title">라섹을 했기 때문에 보는 것에는 문제가 없지만,</div>
@@ -374,7 +374,7 @@ const IndexPage = (props: {
 							</div>
 							<div className="find-story__card">
 								<div className="find-story__img-wrap">
-									<div className="find-story__img"><img src="/static/img/home/find_story_5.jpg" alt="" /></div>
+									<div className="find-story__img"><img src="/img/home/find_story_5.jpg" alt="" /></div>
 								</div>
 								<div className="find-story__desc-wrap">
 									<div className="find-story__story-title">막연하게 안경 취향을 찾고 싶었는데</div>
@@ -387,7 +387,7 @@ const IndexPage = (props: {
 							</div>
 							<div className="find-story__card">
 								<div className="find-story__img-wrap">
-									<div className="find-story__img"><img src="/static/img/home/find_story_6.jpg" alt="" /></div>
+									<div className="find-story__img"><img src="/img/home/find_story_6.jpg" alt="" /></div>
 								</div>
 								<div className="find-story__desc-wrap">
 									<div className="find-story__story-title">안경테 디자인은 항상 비슷하게, 렌즈는 n번 압축 정도?</div>
@@ -399,7 +399,7 @@ const IndexPage = (props: {
 							</div>
 							<div className="find-story__card">
 								<div className="find-story__img-wrap">
-									<div className="find-story__img"><img src="/static/img/home/find_story_7.jpg" alt="" /></div>
+									<div className="find-story__img"><img src="/img/home/find_story_7.jpg" alt="" /></div>
 								</div>
 								<div className="find-story__desc-wrap">
 									<div className="find-story__story-title">안과나 안경점에 갈 정도는 아니라고 생각했지만..</div>
@@ -444,7 +444,7 @@ const IndexPage = (props: {
 								</div>
 								<div className="content-img">
 									<div className="content-img__inner">
-										<img src="/static/img/home/home_service_1.jpg" alt="" />
+										<img src="/img/home/home_service_1.jpg" alt="" />
 									</div>
 								</div>
 							</div>
@@ -458,7 +458,7 @@ const IndexPage = (props: {
 								</div>
 								<div className="content-img">
 									<div className="content-img__inner">
-										<img src="/static/img/home/home_service_2.jpg" alt="" />
+										<img src="/img/home/home_service_2.jpg" alt="" />
 									</div>
 								</div>
 							</div>
@@ -472,7 +472,7 @@ const IndexPage = (props: {
 								</div>
 								<div className="content-img">
 									<div className="content-img__inner">
-										<img src="/static/img/home/home_service_3.jpg" alt="" />
+										<img src="/img/home/home_service_3.jpg" alt="" />
 									</div>
 								</div>
 							</div>
@@ -486,7 +486,7 @@ const IndexPage = (props: {
 								</div>
 								<div className="content-img">
 									<div className="content-img__inner">
-										<img src="/static/img/home/home_service_4.jpg" alt="" />
+										<img src="/img/home/home_service_4.jpg" alt="" />
 									</div>
 								</div>
 							</div>
@@ -499,9 +499,9 @@ const IndexPage = (props: {
 						<div className="lounge__title"><strong><p>안경을 만나는 그 순간까지 <span></span>고려한 '플로브 라운지'</p></strong></div>
 						<div className="lounge__caption"><p>플로브 라운지 스토리부터 각 지점별 정보를 확인하세요.</p></div>
 						<div className="lounge__list">
-							<div className="lounge__thumb"><a href="/lounge/yeoksam"><div><img src="/static/img/home/lounge_y_0.jpg" alt="" /></div><p>라운지 역삼성당</p></a></div>
-							<div className="lounge__thumb"><a href="/lounge/gangnam"><div><img src="/static/img/home/lounge_g_0.jpg" alt="" /></div><p>라운지 강남</p></a></div>
-							<div className="lounge__thumb"><div><img src="/static/img/home/new_lounge.jpg" alt="" /></div></div>
+							<div className="lounge__thumb"><a href="/lounge/yeoksam"><div><img src="/img/home/lounge_y_0.jpg" alt="" /></div><p>라운지 역삼성당</p></a></div>
+							<div className="lounge__thumb"><a href="/lounge/gangnam"><div><img src="/img/home/lounge_g_0.jpg" alt="" /></div><p>라운지 강남</p></a></div>
+							<div className="lounge__thumb"><div><img src="/img/home/new_lounge.jpg" alt="" /></div></div>
 						</div>
 					</div>
 

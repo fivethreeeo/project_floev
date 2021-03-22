@@ -1,0 +1,127 @@
+/*
+플로브웹 폰트 가이드
+
+1. 적용 폰트와 범위
+    - Radikal : 영문, 숫자, 기호
+    - Spoqa Han Sans Neo : 한글
+    - Radikal > Spoqa Han Sans Neo > local font 순서로 적용
+
+2. 폰트 사이즈 선언
+    - Radikal, Spoqa Han Sans Neo 두 가지 폰트 동일 적용.
+    - 100(Thin)
+    - 300(Light)
+    - 400(Regular/Default)
+    - 500(Medium)
+    - 700(Bold)
+*/
+
+// ------------------- Radikal -------------------
+@font-face {
+    font-family: "Radikal";
+    src: url("/font/Radikal/Radikal-Thin.eot") format("embedded-opentype"),
+    url("/font/Radikal/Radikal-Thin.woff2") format("woff2"),
+    url("/font/Radikal/Radikal-Thin.woff") format("woff"),
+    url("/font/Radikal/Radikal-Thin.otf") format("opentype");
+    font-weight: 100;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Radikal";
+    src: url("/font/Radikal/Radikal-Light.eot") format("embedded-opentype"),
+    url("/font/Radikal/Radikal-Light.woff2") format("woff2"),
+    url("/font/Radikal/Radikal-Light.woff") format("woff"),
+    url("/font/Radikal/Radikal-Light.otf") format("opentype");
+    font-weight: 300;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Radikal";
+    src: url("/font/Radikal/Radikal.eot") format("embedded-opentype"),
+    url("/font/Radikal/Radikal.woff2") format("woff2"),
+    url("/font/Radikal/Radikal.woff") format("woff"),
+    url("/font/Radikal/Radikal.otf") format("opentype");
+    font-weight: 400;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Radikal";
+    src: url("/font/Radikal/Radikal-Medium.eot") format("embedded-opentype"),
+        url("/font/Radikal/Radikal-Medium.woff2") format("woff2"),
+        url("/font/Radikal/Radikal-Medium.woff") format("woff"),
+        url("/font/Radikal/Radikal-Medium.otf") format("opentype");
+    font-weight: 500;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Radikal";
+    src: url("/font/Radikal/Radikal-Bold.eot") format("embedded-opentype"),
+    url("/font/Radikal/Radikal-Bold.woff2") format("woff2"),
+    url("/font/Radikal/Radikal-Bold.woff") format("woff"),
+    url("/font/Radikal/Radikal-Bold.otf") format("opentype");
+    font-weight: 700;
+    font-display: swap;
+}
+
+// ------------------- SpoqaHanSansNeo -------------------
+@font-face {
+    font-family: "SpoqaHanSansNeo";
+    src: url("/font/SpoqaHanSansNeo/SpoqaHanSansNeo-Thin.eot") format("embedded-opentype"),
+    url("/font/SpoqaHanSansNeo/SpoqaHanSansNeo-Thin.woff2") format("woff2"),
+    url("/font/SpoqaHanSansNeo/SpoqaHanSansNeo-Thin.woff") format("woff"),
+    url("/font/SpoqaHanSansNeo/SpoqaHanSansNeo-Thin.otf") format("opentype");
+    font-weight: 100;
+    font-display: swap;
+}
+@font-face {
+    font-family: "SpoqaHanSansNeo";
+    src: url("/font/SpoqaHanSansNeo/SpoqaHanSansNeo-Light.eot") format("embedded-opentype"),
+    url("/font/SpoqaHanSansNeo/SpoqaHanSansNeo-Light.woff2") format("woff2"),
+    url("/font/SpoqaHanSansNeo/SpoqaHanSansNeo-Light.woff") format("woff"),
+    url("/font/SpoqaHanSansNeo/SpoqaHanSansNeo-Light.otf") format("opentype");
+    font-weight: 300;
+    font-display: swap;
+}
+@font-face {
+    font-family: "SpoqaHanSansNeo";
+    src: url("/font/SpoqaHanSansNeo/SpoqaHanSansNeo-Regular.eot") format("embedded-opentype"),
+    url("/font/SpoqaHanSansNeo/SpoqaHanSansNeo-Regular.woff2") format("woff2"),
+    url("/font/SpoqaHanSansNeo/SpoqaHanSansNeo-Regular.woff") format("woff"),
+    url("/font/SpoqaHanSansNeo/SpoqaHanSansNeo-Regular.otf") format("opentype");
+    font-weight: 400;
+    font-display: swap;
+}
+@font-face {
+    font-family: "SpoqaHanSansNeo";
+    src: url("/font/SpoqaHanSansNeo/SpoqaHanSansNeo-Medium.eot") format("embedded-opentype"),
+    url("/font/SpoqaHanSansNeo/SpoqaHanSansNeo-Medium.woff2") format("woff2"),
+    url("/font/SpoqaHanSansNeo/SpoqaHanSansNeo-Medium.woff") format("woff"),
+    url("/font/SpoqaHanSansNeo/SpoqaHanSansNeo-Medium.otf") format("opentype");
+    font-weight: 500;
+    font-display: swap;
+}
+@font-face {
+    font-family: "SpoqaHanSansNeo";
+    src: url("/font/SpoqaHanSansNeo/SpoqaHanSansNeo-Bold.eot") format("embedded-opentype"),
+    url("/font/SpoqaHanSansNeo/SpoqaHanSansNeo-Bold.woff2") format("woff2"),
+    url("/font/SpoqaHanSansNeo/SpoqaHanSansNeo-Bold.woff") format("woff"),
+    url("/font/SpoqaHanSansNeo/SpoqaHanSansNeo-Bold.otf") format("opentype");
+    font-weight: 700;
+    font-display: swap;
+}
+
+
+
+//@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
+body,
+th,
+td,
+input,
+select,
+textarea,
+button,
+a {
+    font-family: "Radikal", "SpoqaHanSansNeo", "Apple SD Gothic Neo",
+    "Apple SD 산돌고딕 Neo", "NanumBarunGothic", "나눔바른고딕", "Malgun Gothic",
+    "맑은 고딕", sans-serif;
+}
