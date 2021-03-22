@@ -3,47 +3,19 @@ import { Progress } from 'antd'
 
 
 export default function SurveyHeader(props: {
-    currentStep: number;
+    stepIndex: number;
     onPrev: () => void;
     onClose: () => void;
 }) {
-    // const [currentStep, setCurrentStep] = useState(props.currentStep)
     const chunkStep = () => {
         let step = 0
-        if (props.currentStep <= 1) {
+        if (props.stepIndex <= 3) {
             step = 2
-        } else if (props.currentStep <= 2) {
-            step = 2
-        } else if (props.currentStep <= 3) {
-            step = 2
-        } else if (props.currentStep <= 4) {
-            step = 3
-        } else if (props.currentStep <= 5) {
-            step = 4
-        } else if (props.currentStep <= 6) {
-            step = 5
-        } else if (props.currentStep <= 7) {
-            step = 6
-        } else if (props.currentStep <= 8) {
-            step = 7
-        } else if (props.currentStep <= 9) {
-            step = 8
-        } else if (props.currentStep <= 10) {
-            step = 9
-        } else if (props.currentStep <= 11) {
-            step = 10
-        } else if (props.currentStep <= 12) {
-            step = 11
-        } else if (props.currentStep <= 13) {
-            step = 12
-        } else if (props.currentStep <= 14) {
-            step = 13
-        } else if (props.currentStep <= 15) {
-            step = 14
-        } else if (props.currentStep <= 16) {
-            step = 15
+        } else if (props.stepIndex <= 19) {
+            step = props.stepIndex - 1
+            console.log(step)
         } else {
-            step = 16
+            step = 20
         }
         return step
     }
@@ -55,23 +27,23 @@ export default function SurveyHeader(props: {
                 <div className="progress__steps">
 
                     {/* q1, q2, q3, q4 -> className에 각각 progress__step-name--active, progress__step-arrow--active 추가 */}
-                    <div className={props.currentStep > 0 ? "progress__step-name progress__step-name--active" : "progress__step-name"}>기본정보</div>
-                    <div className={props.currentStep > 0 ? "progress__step-arrow progress__step-arrow--active" : "progress__step-arrow"}>&#xE001;</div>
+                    <div className={props.stepIndex > 0 ? "progress__step-name progress__step-name--active" : "progress__step-name"}>기본정보</div>
+                    <div className={props.stepIndex > 0 ? "progress__step-arrow progress__step-arrow--active" : "progress__step-arrow"}>&#xE001;</div>
 
                     {/* q5, q6, q7, q8 -> className에 각각 progress__step-name--active, progress__step-arrow--active 추가 */}
-                    <div className={props.currentStep >= 5 ? "progress__step-name progress__step-name--active" : "progress__step-name"}>안경생활</div>
-                    <div className={props.currentStep >= 5 ? "progress__step-arrow progress__step-arrow--active" : "progress__step-arrow"}>&#xE001;</div>
+                    <div className={props.stepIndex >= 5 ? "progress__step-name progress__step-name--active" : "progress__step-name"}>안경생활</div>
+                    <div className={props.stepIndex >= 5 ? "progress__step-arrow progress__step-arrow--active" : "progress__step-arrow"}>&#xE001;</div>
 
-                    {/* q9 -> className에 각각 progress__step-name--active, progress__step-arrow--active 추가 */}
-                    <div className={props.currentStep >= 9 ? "progress__step-name progress__step-name--active" : "progress__step-name"}>취향</div>
-                    <div className={props.currentStep >= 9 ? "progress__step-arrow progress__step-arrow--active" : "progress__step-arrow"}>&#xE001;</div>
+                    {/* q9_1, q9_2, q9_3, q9_4 -> className에 각각 progress__step-name--active, progress__step-arrow--active 추가 */}
+                    <div className={props.stepIndex >= 9 ? "progress__step-name progress__step-name--active" : "progress__step-name"}>취향</div>
+                    <div className={props.stepIndex >= 9 ? "progress__step-arrow progress__step-arrow--active" : "progress__step-arrow"}>&#xE001;</div>
 
                     {/* q10, q11 -> className에 각각 progress__step-name--active, progress__step-arrow--active 추가 */}
-                    <div className={props.currentStep >= 14 ? "progress__step-name progress__step-name--active" : "progress__step-name"}>내 안경</div>
-                    <div className={props.currentStep >= 14 ? "progress__step-arrow progress__step-arrow--active" : "progress__step-arrow"}>&#xE001;</div>
+                    <div className={props.stepIndex >= 13 ? "progress__step-name progress__step-name--active" : "progress__step-name"}>내 안경</div>
+                    <div className={props.stepIndex >= 13 ? "progress__step-arrow progress__step-arrow--active" : "progress__step-arrow"}>&#xE001;</div>
 
                     {/* q12, q13 -> className에 각각 progress__step-name--active 추가 */}
-                    <div className={props.currentStep >= 16 ? "progress__step-name progress__step-name--active" : "progress__step-name"}>일정예약</div>
+                    <div className={props.stepIndex >= 15 ? "progress__step-name progress__step-name--active" : "progress__step-name"}>일정예약</div>
                 </div>
             </div>
         </div>

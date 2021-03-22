@@ -28,9 +28,9 @@ const steps = [
     Q1Customer, Q2CustomerWith, Q3CustomerOther,
     Q4BirthGender, Q5HasWorn, Q6Purpose,
     Q7PainDegree, Q8PainTypes,
-    Q9_1PreferFrameColors, Q9_2PreferFrameShapes, Q9_3PreferLensShapes, Q9_4PreferMoods,
-    Q10Photo, Q11Photo,
-    Q12Request, Q13NamePhoneNumber
+    Q9_1PreferFrameColors, Q9_2PreferFrameShapes, Q9_3PreferLensShapes, Q9_4PreferMoods, // stepIndex 9, 10, 11, 12
+    Q10Photo, Q11Photo, // stepIndex 13, 14
+    Q12Request, Q13NamePhoneNumber // stepIndex 15, 16
 ]
 const max = steps.length
 
@@ -45,6 +45,17 @@ const SurveyPage = (props: {
     const tempPreferMoods = (localStorage.getItem('floev[preferMoods]') ?? '').split(',')
     const tempCurrentStep: number = parseInt(localStorage.getItem('floev[currentStep]') ?? '0')
     const [currentStep, setCurrentStep] = useState<number>(tempCurrentStep >= 10 && tempCurrentStep < 91 ? 10 : tempCurrentStep);
+    function currentStepToStepIndex(currentStep: number) {
+        let index = currentStep
+        if (currentStep > 90) {
+            index = currentStep - 90 + 8
+        } else if (currentStep >= 10) {
+            index = currentStep + 3
+        }
+        return index
+    }
+    const [stepIndex, setStepIndex] = useState<number>(currentStepToStepIndex(currentStep))
+
     const [answers, setAnswers] = useState<Answers>({
         customer: parseInt(localStorage.getItem('floev[customer]') ?? '-1'),
         birth: parseInt(localStorage.getItem('floev[birth]') ?? '-1'),
@@ -67,7 +78,7 @@ const SurveyPage = (props: {
         photoFileNameList: [],
         size: localStorage.getItem('floev[size]') ?? '',
         loungeCode: parseInt((localStorage.getItem('floev[loungeCode]') ?? '0')),
-        requestDate: localStorage.getItem('floev[requestDate]') ?? moment().add(15, 'hours').format().slice(0, 10),
+        requestDate: localStorage.getItem('floev[requestDate]') ?? moment().subtract(9, 'hours').format().slice(0, 10),
         requestTime: localStorage.getItem('floev[requestTime]') ?? '',
         name: localStorage.getItem('floev[name]') ?? '',
         phoneNumber: localStorage.getItem('floev[phoneNumber]') ?? '',
@@ -78,11 +89,10 @@ const SurveyPage = (props: {
         setAnswers(answersParam)
     }
 
-    let StepComponent = steps[currentStep]
-
     function updateStep(step: number) {
         setCurrentStep(step)
         localStorage.setItem('floev[currentStep]', String(step))
+        setStepIndex(currentStepToStepIndex(step))
     }
 
     function handleNext() {
@@ -176,6 +186,8 @@ const SurveyPage = (props: {
         Router.push('/')
     }
 
+    let StepComponent = steps[stepIndex]
+
     return (
         <>
             <Head>
@@ -203,7 +215,7 @@ const SurveyPage = (props: {
                 <div className="survey">
                     {currentStep > 0 &&
                         <SurveyHeader
-                            currentStep={currentStep}
+                            stepIndex={stepIndex}
                             onPrev={() => handlePrev()}
                             onClose={() => onClose()}
                         />}
