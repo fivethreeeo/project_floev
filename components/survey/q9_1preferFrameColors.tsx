@@ -27,7 +27,7 @@ export default function preferFrameColors(props: {
         answersParam.preferFrameColors = newPreferFrameColors
         props.answersUpdate(answersParam)
 
-        localStorage.setItem('floev[currentStep]', '20')
+        localStorage.setItem('floev[currentStep]', '91')
         localStorage.setItem('floev[preferFrameColors]', newPreferFrameColors.toString())
     }
 

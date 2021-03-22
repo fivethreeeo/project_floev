@@ -27,7 +27,7 @@ export default function preferFrameShapes(props: {
         answersParam.preferFrameShapes = newPreferFrameShapes
         props.answersUpdate(answersParam)
 
-        localStorage.setItem('floev[currentStep]', '20')
+        localStorage.setItem('floev[currentStep]', '92')
         localStorage.setItem('floev[preferFrameShapes]', newPreferFrameShapes.toString())
     }
 

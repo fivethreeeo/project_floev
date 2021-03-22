@@ -27,7 +27,7 @@ export default function preferMoods(props: {
         answersParam.preferMoods = newPreferMoods
         props.answersUpdate(answersParam)
 
-        localStorage.setItem('floev[currentStep]', '20')
+        localStorage.setItem('floev[currentStep]', '94')
         localStorage.setItem('floev[preferMoods]', newPreferMoods.toString())
     }
 

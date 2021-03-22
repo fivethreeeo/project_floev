@@ -27,7 +27,7 @@ export default function preferLensShapes(props: {
         answersParam.preferLensShapes = newPreferLensShapes
         props.answersUpdate(answersParam)
 
-        localStorage.setItem('floev[currentStep]', '20')
+        localStorage.setItem('floev[currentStep]', '93')
         localStorage.setItem('floev[preferLensShapes]', newPreferLensShapes.toString())
     }
 

@@ -43,8 +43,8 @@ const SurveyPage = (props: {
     const tempPreferFrameShapes = (localStorage.getItem('floev[preferFrameShapes]') ?? '').split(',')
     const tempPreferLensShapes = (localStorage.getItem('floev[preferLensShapes]') ?? '').split(',')
     const tempPreferMoods = (localStorage.getItem('floev[preferMoods]') ?? '').split(',')
-    const [currentStep, setCurrentStep] = useState<number>(
-        parseInt(localStorage.getItem('floev[currentStep]') ?? '0') > 9 ? 9 : parseInt(localStorage.getItem('floev[currentStep]') ?? '0'));
+    const tempCurrentStep: number = parseInt(localStorage.getItem('floev[currentStep]') ?? '0')
+    const [currentStep, setCurrentStep] = useState<number>(tempCurrentStep >= 10 && tempCurrentStep < 91 ? 10 : tempCurrentStep);
     const [answers, setAnswers] = useState<Answers>({
         customer: parseInt(localStorage.getItem('floev[customer]') ?? '-1'),
         birth: parseInt(localStorage.getItem('floev[birth]') ?? '-1'),
@@ -102,10 +102,14 @@ const SurveyPage = (props: {
             if (answers.hasWorn === HASWORN.YES) {
                 updateStep(7)
             } else if (answers.hasWorn === HASWORN.NO) {
-                updateStep(9)
+                updateStep(91)
             } else {
                 updateStep(7)
             }
+        } else if (currentStep === 8) {
+            updateStep(91)
+        } else if (currentStep === 94) {
+            updateStep(10)
         } else if (currentStep === 10) {
             if (answers.hasWorn === HASWORN.YES) {
                 updateStep(11)
@@ -143,7 +147,7 @@ const SurveyPage = (props: {
             } else {
                 updateStep(1)
             }
-        } else if (currentStep === 9) {
+        } else if (currentStep === 91) {
             if (answers.hasWorn === HASWORN.YES) {
                 updateStep(8)
             } else if (answers.hasWorn === HASWORN.NO) {
@@ -151,6 +155,8 @@ const SurveyPage = (props: {
             } else {
                 updateStep(6)
             }
+        } else if (currentStep === 10) {
+            updateStep(94)
         } else if (currentStep === 12) {
             if (answers.hasWorn === HASWORN.YES) {
                 updateStep(11)
