@@ -14,7 +14,10 @@ import Q5HasWorn, { HASWORN } from './q5HasWorn'
 import Q6Purpose from './q6Purposes'
 import Q7PainDegree from './q7PainDegree'
 import Q8PainTypes from './q8PainTypes'
-import Q9Prefer from './q9Prefer'
+import Q9_1PreferFrameColors from './q9_1preferFrameColors'
+import Q9_2PreferFrameShapes from './q9_2preferFrameShapes'
+import Q9_3PreferLensShapes from './q9_3preferLensShapes'
+import Q9_4PreferMoods from './q9_4preferMoods'
 import Q10Photo from './q10Photo'
 import Q11Photo from './q11Size'
 import Q12Request from './q12Request'
@@ -24,7 +27,8 @@ const steps = [
     Q0Start,
     Q1Customer, Q2CustomerWith, Q3CustomerOther,
     Q4BirthGender, Q5HasWorn, Q6Purpose,
-    Q7PainDegree, Q8PainTypes, Q9Prefer,
+    Q7PainDegree, Q8PainTypes,
+    Q9_1PreferFrameColors, Q9_2PreferFrameShapes, Q9_3PreferLensShapes, Q9_4PreferMoods,
     Q10Photo, Q11Photo,
     Q12Request, Q13NamePhoneNumber
 ]
@@ -35,6 +39,10 @@ const SurveyPage = (props: {
 }) => {
     const tempPurposes = (localStorage.getItem('floev[purposes]') ?? '').split(',')
     const tempPainTypes = (localStorage.getItem('floev[painTypes]') ?? '').split(',')
+    const tempPreferFrameColors = (localStorage.getItem('floev[preferFrameColors]') ?? '').split(',')
+    const tempPreferFrameShapes = (localStorage.getItem('floev[preferFrameShapes]') ?? '').split(',')
+    const tempPreferLensShapes = (localStorage.getItem('floev[preferLensShapes]') ?? '').split(',')
+    const tempPreferMoods = (localStorage.getItem('floev[preferMoods]') ?? '').split(',')
     const [currentStep, setCurrentStep] = useState<number>(
         parseInt(localStorage.getItem('floev[currentStep]') ?? '0') > 9 ? 9 : parseInt(localStorage.getItem('floev[currentStep]') ?? '0'));
     const [answers, setAnswers] = useState<Answers>({
@@ -48,6 +56,10 @@ const SurveyPage = (props: {
         painDegreeEtc: localStorage.getItem('floev[painDegreeEtc]') ?? '',
         painTypes: tempPainTypes[0] === "" ? [] : tempPainTypes,
         painTypesEtc: localStorage.getItem('floev[painTypesEtc]') ?? '',
+        preferFrameColors: tempPreferFrameColors[0] === "" ? [] : tempPreferFrameColors,
+        preferFrameShapes: tempPreferFrameShapes[0] === "" ? [] : tempPreferFrameShapes,
+        preferLensShapes: tempPreferLensShapes[0] === "" ? [] : tempPreferLensShapes,
+        preferMoods: tempPreferMoods[0] === "" ? [] : tempPreferMoods,
         prefer: localStorage.getItem('floev[prefer]') ?? '',
         preferFileList: [],
         preferFileNameList: [],

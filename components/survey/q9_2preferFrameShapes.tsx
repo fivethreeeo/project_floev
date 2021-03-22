@@ -39,20 +39,28 @@ export default function preferFrameShapes(props: {
 
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfs_1" onChange={() => { }} value="온테" checked={preferFrameShapes.includes("온테")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pfs_1">온테</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfs_2" onChange={() => { }} value="반무테" checked={preferFrameShapes.includes("반무테")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pfs_2">반무테</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfs_3" onChange={() => { }} value="무테" checked={preferFrameShapes.includes("무테")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pfs_3">무테</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfs_4" onChange={() => { }} value="투브릿지" checked={preferFrameShapes.includes("투브릿지")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pfs_4">투브릿지</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfs_5" onChange={() => { }} value="하금테" checked={preferFrameShapes.includes("하금테")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pfs_5">하금테</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfs_6" onChange={() => { }} value="메탈테" checked={preferFrameShapes.includes("메탈테")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pfs_6">메탈테</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfs_7" onChange={() => { }} value="뿔테" checked={preferFrameShapes.includes("뿔테")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pfs_7">뿔테</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfs_8" onChange={() => { }} value="얇은" checked={preferFrameShapes.includes("얇은")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pfs_8">얇은</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfs_9" onChange={() => { }} value="두꺼운" checked={preferFrameShapes.includes("두꺼운")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pfs_9">두꺼운</label>
             </div>

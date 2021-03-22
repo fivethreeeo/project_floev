@@ -39,22 +39,30 @@ export default function preferFrameColors(props: {
 
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfc_1" onChange={() => { }} value="투명" checked={preferFrameColors.includes("투명")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pfc_1">투명</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfc_2" onChange={() => { }} value="블랙" checked={preferFrameColors.includes("블랙")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pfc_2">블랙</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfc_3" onChange={() => { }} value="그레이" checked={preferFrameColors.includes("그레이")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pfc_3">그레이</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfc_4" onChange={() => { }} value="실버" checked={preferFrameColors.includes("실버")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pfc_4">실버</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfc_5" onChange={() => { }} value="골드" checked={preferFrameColors.includes("골드")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pfc_5">골드</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfc_6" onChange={() => { }} value="로즈골드" checked={preferFrameColors.includes("로즈골드")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pfc_6">로즈골드</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfc_7" onChange={() => { }} value="브라운" checked={preferFrameColors.includes("브라운")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pfc_7">브라운</label>
-                <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfc_6" onChange={() => { }} value="무채색" checked={preferFrameColors.includes("무채색")} />
-                <label className="q-wrap__label-checkbox" htmlFor="q_pfc_6">무채색</label>
-                <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfc_7" onChange={() => { }} value="화려한색" checked={preferFrameColors.includes("화려한색")} />
-                <label className="q-wrap__label-checkbox" htmlFor="q_pfc_7">화려한색</label>
+
+                <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfc_8" onChange={() => { }} value="무채색" checked={preferFrameColors.includes("무채색")} />
+                <label className="q-wrap__label-checkbox" htmlFor="q_pfc_8">무채색</label>
+
+                <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfc_9" onChange={() => { }} value="화려한색" checked={preferFrameColors.includes("화려한색")} />
+                <label className="q-wrap__label-checkbox" htmlFor="q_pfc_9">화려한색</label>
             </div>
             <div className="q-wrap__btn-wrap">
                 <button className="q-wrap__btn q-wrap__btn-prev" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>

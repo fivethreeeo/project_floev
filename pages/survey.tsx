@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import { createApolloClient } from '../lib/apolloClient';
 import { GET_PURCHASE_REQUEST_LIST } from '../lib/query'
 
-const DynamicComponent = dynamic(() => import('../components/survey/surveyComp_new'), {
+const DynamicComponent = dynamic(() => import('../components/survey/surveyComp'), {
     ssr: false,
 })
 

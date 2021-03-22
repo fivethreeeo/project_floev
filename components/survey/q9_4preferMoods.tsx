@@ -39,28 +39,40 @@ export default function preferMoods(props: {
 
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pm_1" onChange={() => { }} value="정장에 어울리는" checked={preferMoods.includes("정장에 어울리는")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pm_1">정장에 어울리는</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pm_2" onChange={() => { }} value="캐주얼에 어울리는" checked={preferMoods.includes("캐주얼에 어울리는")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pm_2">캐주얼에 어울리는</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pm_3" onChange={() => { }} value="다양한 옷에 어울리는" checked={preferMoods.includes("다양한 옷에 어울리는")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pm_3">다양한 옷에 어울리는</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pm_4" onChange={() => { }} value="안경이 포인트되는" checked={preferMoods.includes("안경이 포인트되는")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pm_4">안경이 포인트되는</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pm_5" onChange={() => { }} value="자연스러운" checked={preferMoods.includes("자연스러운")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pm_5">자연스러운</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pm_6" onChange={() => { }} value="지적인" checked={preferMoods.includes("지적인")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pm_6">지적인</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pm_7" onChange={() => { }} value="깔끔한" checked={preferMoods.includes("깔끔한")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pm_7">깔끔한</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pm_8" onChange={() => { }} value="세련" checked={preferMoods.includes("세련")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pm_8">세련</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pm_9" onChange={() => { }} value="차가운" checked={preferMoods.includes("차가운")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pm_9">차가운</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pm_10" onChange={() => { }} value="따뜻한" checked={preferMoods.includes("따뜻한")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pm_10">따뜻한</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pm_11" onChange={() => { }} value="부드러운" checked={preferMoods.includes("부드러운")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pm_11">부드러운</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pm_12" onChange={() => { }} value="스마트한" checked={preferMoods.includes("스마트한")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pm_12">스마트한</label>
+
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pm_13" onChange={() => { }} value="심플한" checked={preferMoods.includes("심플한")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pm_13">심플한</label>
 
