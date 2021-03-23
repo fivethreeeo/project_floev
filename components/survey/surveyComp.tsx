@@ -18,6 +18,7 @@ import Q9_1PreferFrameColors from './q9_1preferFrameColors'
 import Q9_2PreferFrameShapes from './q9_2preferFrameShapes'
 import Q9_3PreferLensShapes from './q9_3preferLensShapes'
 import Q9_4PreferMoods from './q9_4preferMoods'
+import Q9_5Prefer from './q9_5prefer'
 import Q10Photo from './q10Photo'
 import Q11Photo from './q11Size'
 import Q12Request from './q12Request'
@@ -28,9 +29,10 @@ const steps = [
     Q1Customer, Q2CustomerWith, Q3CustomerOther,
     Q4BirthGender, Q5HasWorn, Q6Purpose,
     Q7PainDegree, Q8PainTypes,
-    Q9_1PreferFrameColors, Q9_2PreferFrameShapes, Q9_3PreferLensShapes, Q9_4PreferMoods, // stepIndex 9, 10, 11, 12
-    Q10Photo, Q11Photo, // stepIndex 13, 14
-    Q12Request, Q13NamePhoneNumber // stepIndex 15, 16
+    Q9_1PreferFrameColors, Q9_2PreferFrameShapes, Q9_3PreferLensShapes, Q9_4PreferMoods, Q9_5Prefer,
+    // stepIndex 9, 10, 11, 12, 13
+    Q10Photo, Q11Photo, // stepIndex 14, 15
+    Q12Request, Q13NamePhoneNumber // stepIndex 16, 17
 ]
 const max = steps.length
 
@@ -50,7 +52,7 @@ const SurveyPage = (props: {
         if (currentStep > 90) {
             index = currentStep - 90 + 8
         } else if (currentStep >= 10) {
-            index = currentStep + 3
+            index = currentStep + 4
         }
         return index
     }
@@ -71,7 +73,7 @@ const SurveyPage = (props: {
         preferFrameShapes: tempPreferFrameShapes[0] === "" ? [] : tempPreferFrameShapes,
         preferLensShapes: tempPreferLensShapes[0] === "" ? [] : tempPreferLensShapes,
         preferMoods: tempPreferMoods[0] === "" ? [] : tempPreferMoods,
-        prefer: localStorage.getItem('floev[prefer]') ?? '',
+        prefer: localStorage.getItem('floev[painDegreeEtc]') ?? '',
         preferFileList: [],
         preferFileNameList: [],
         photoFileList: [],
@@ -118,7 +120,7 @@ const SurveyPage = (props: {
             }
         } else if (currentStep === 8) {
             updateStep(91)
-        } else if (currentStep === 94) {
+        } else if (currentStep === 95) {
             updateStep(10)
         } else if (currentStep === 10) {
             if (answers.hasWorn === HASWORN.YES) {
@@ -166,7 +168,7 @@ const SurveyPage = (props: {
                 updateStep(6)
             }
         } else if (currentStep === 10) {
-            updateStep(94)
+            updateStep(95)
         } else if (currentStep === 12) {
             if (answers.hasWorn === HASWORN.YES) {
                 updateStep(11)

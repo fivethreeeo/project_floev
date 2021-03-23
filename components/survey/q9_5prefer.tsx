@@ -4,7 +4,7 @@ import { UploadChangeParam, UploadFile } from 'antd/lib/upload/interface'
 import { PlusOutlined } from '@ant-design/icons';
 import { getBase64 } from '../../utils/surveyUtils'
 
-export default function Q9Prefer(props: {
+export default function Q9_5Prefer(props: {
     oldAnswers: Answers
     answersUpdate: (answersParam: Answers) => void
     currentStep: number
@@ -48,7 +48,7 @@ export default function Q9Prefer(props: {
         props.answersUpdate(answersParam)
 
         // for caching
-        localStorage.setItem('floev[currentStep]', '9')
+        localStorage.setItem('floev[currentStep]', '95')
         localStorage.setItem('floev[prefer]', newPrefer)
     }
 

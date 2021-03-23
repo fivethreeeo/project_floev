@@ -11,10 +11,10 @@ export default function SurveyHeader(props: {
         let step = 0
         if (props.stepIndex <= 3) {
             step = 2
-        } else if (props.stepIndex <= 19) {
+        } else if (props.stepIndex < 21) {
             step = props.stepIndex - 1
         } else {
-            step = 20
+            step = 21
         }
         return step
     }
@@ -38,11 +38,11 @@ export default function SurveyHeader(props: {
                     <div className={props.stepIndex >= 9 ? "progress__step-arrow progress__step-arrow--active" : "progress__step-arrow"}>&#xE001;</div>
 
                     {/* q10, q11 -> className에 각각 progress__step-name--active, progress__step-arrow--active 추가 */}
-                    <div className={props.stepIndex >= 13 ? "progress__step-name progress__step-name--active" : "progress__step-name"}>내 안경</div>
-                    <div className={props.stepIndex >= 13 ? "progress__step-arrow progress__step-arrow--active" : "progress__step-arrow"}>&#xE001;</div>
+                    <div className={props.stepIndex >= 14 ? "progress__step-name progress__step-name--active" : "progress__step-name"}>내 안경</div>
+                    <div className={props.stepIndex >= 14 ? "progress__step-arrow progress__step-arrow--active" : "progress__step-arrow"}>&#xE001;</div>
 
                     {/* q12, q13 -> className에 각각 progress__step-name--active 추가 */}
-                    <div className={props.stepIndex >= 15 ? "progress__step-name progress__step-name--active" : "progress__step-name"}>일정예약</div>
+                    <div className={props.stepIndex >= 16 ? "progress__step-name progress__step-name--active" : "progress__step-name"}>일정예약</div>
                 </div>
             </div>
         </div>

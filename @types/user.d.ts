@@ -1,4 +1,4 @@
-declare interface User {
+interface User {
     id: string | undefined
     name: string | undefined
     email: string | undefined
@@ -9,4 +9,17 @@ declare interface User {
     status: string | undefined
     clickUpProfileId: string | undefined
     requests: PurchaseRequest[]
+}
+
+class UserInput {
+    birth
+    gender
+    name
+    phoneNumber
+    constructor(birth: number, gender: string, name: string, phoneNumber: string) {
+        this.birth = birth
+        this.gender = gender
+        this.name = name
+        this.phoneNumber = phoneNumber
+    }
 }

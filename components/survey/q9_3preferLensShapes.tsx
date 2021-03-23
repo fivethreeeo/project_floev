@@ -57,8 +57,6 @@ export default function preferLensShapes(props: {
 
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pls_7" onChange={() => { }} value="알이 작은" checked={preferLensShapes.includes("알이 작은")} />
                 <label className="q-wrap__label-checkbox" htmlFor="q_pls_7">알이 작은</label>
-
-                <input className="q-wrap__input-checkbox" type="checkbox" id="q_pls_6" onChange={() => { }} value="무채색" checked={preferLensShapes.includes("무채색")} />
             </div>
             <div className="q-wrap__btn-wrap">
                 <button className="q-wrap__btn q-wrap__btn-prev" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
