@@ -13,7 +13,6 @@ export default function SurveyHeader(props: {
             step = 2
         } else if (props.stepIndex <= 19) {
             step = props.stepIndex - 1
-            console.log(step)
         } else {
             step = 20
         }
