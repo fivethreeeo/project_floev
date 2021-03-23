@@ -23,7 +23,8 @@ const PickupCreate = (props: {
     const router = useRouter()
     // const [loungeCode, setLoungeCode] = useState<number>(LOUNGE.GANGNAM)
     const loungeCode = LOUNGE.GANGNAM
-    const [pickupRequestDate, setPickupRequestDate] = useState<string>(moment().format().slice(0, 10))
+    const currentTime = moment().subtract(9, 'hours').format().slice(0, 10)
+    const [pickupRequestDate, setPickupRequestDate] = useState<string>(currentTime)
     const [pickupRequestTime, setPickupRequestTime] = useState<string>('')
     const [makePickUpRequest, { loading }] = useMutation(MAKE_PICKUP_REQUEST, {
         variables: {

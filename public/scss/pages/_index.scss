@@ -16,7 +16,7 @@
 		@include responsive("mobile") {
 			@include flexbox(nowrap);
 			align-items: flex-end;
-			background: url(/static/img/home/main-after-4.jpg) top center / cover no-repeat;
+			background: url(/img/home/main-after-4.jpg) top center / cover no-repeat;
 		  }
 		&__inner {
 			bottom: 0;
@@ -132,10 +132,10 @@
 		
 	}
 	.main-visual.visual-test-1 {
-		background: url(/static/img/home/main-after-5.jpg) top center / cover no-repeat;
+		background: url(/img/home/main-after-5.jpg) top center / cover no-repeat;
 	}
 	.main-visual.visual-test-2 {
-		background: url(/static/img/home/main-after-6.jpg) top center / cover no-repeat;
+		background: url(/img/home/main-after-6.jpg) top center / cover no-repeat;
 	}
 
 	.banner-event {
@@ -425,17 +425,17 @@
 				}
 			}
 			.slick-arrow.slick-next {
-				background: url(/static/img/home/arrow-tp-right.png) no-repeat center center / 48px 48px,$fv-gray-3;
+				background: url(/img/home/arrow-tp-right.png) no-repeat center center / 48px 48px,$fv-gray-3;
 				right:-24px;
 				&:hover {
-					background:url(/static/img/home/arrow-tp-right.png) no-repeat center center / 48px 48px,$fv-sienna;
+					background:url(/img/home/arrow-tp-right.png) no-repeat center center / 48px 48px,$fv-sienna;
 				}
 			}
 			.slick-arrow.slick-prev {
-				background: url(/static/img/home/arrow-tp-left.png) no-repeat center center / 48px 48px,$fv-gray-3;
+				background: url(/img/home/arrow-tp-left.png) no-repeat center center / 48px 48px,$fv-gray-3;
 				left:-24px;
 				&:hover {
-					background:url(/static/img/home/arrow-tp-left.png) no-repeat center center / 48px 48px,$fv-sienna;
+					background:url(/img/home/arrow-tp-left.png) no-repeat center center / 48px 48px,$fv-sienna;
 				}
 			}
 		}
@@ -558,7 +558,7 @@
 		}
 		&__thumb-img-1 {
 			margin-right: 16px;
-			background: url(/static/img/home/storythumb-1.jpg) center center / cover no-repeat;
+			background: url(/img/home/storythumb-1.jpg) center center / cover no-repeat;
 			@include responsive("mobile") {
 				margin-right:4px;
 			}
@@ -566,7 +566,7 @@
 		&__thumb-img-2 {
 			//margin-top:80px;
 			margin-right: 16px;
-			background: url(/static/img/home/storythumb-2.jpg) center center / cover no-repeat;
+			background: url(/img/home/storythumb-2.jpg) center center / cover no-repeat;
 			@include responsive("mobile") {
 				margin-top:60px;
 				margin-right:4px;
@@ -575,7 +575,7 @@
 		&__thumb-img-3 {
 			//margin-top: 160px;
 			margin-right: 16px;
-			background: url(/static/img/home/storythumb-3.jpg) center center / cover no-repeat;
+			background: url(/img/home/storythumb-3.jpg) center center / cover no-repeat;
 			@include responsive("mobile") {
 				margin-top:120px;
 				margin-right:0;
@@ -717,31 +717,31 @@
 		}
 
 		&__story-wrap-1 .before-img {
-			background: url(/static/img/home/before2.jpg) center center / cover no-repeat;
+			background: url(/img/home/before2.jpg) center center / cover no-repeat;
 		}
 		&__story-wrap-2 .before-img {
-			background: url(/static/img/home/before1.jpg) center center / cover no-repeat;
+			background: url(/img/home/before1.jpg) center center / cover no-repeat;
 		}
 		&__story-wrap-3 .before-img {
-			background: url(/static/img/home/before3.jpg) center center / cover no-repeat;
+			background: url(/img/home/before3.jpg) center center / cover no-repeat;
 		}
 		&__story-wrap-1 .after-img {
-			background: url(/static/img/home/after2.jpg) center center / cover no-repeat;
+			background: url(/img/home/after2.jpg) center center / cover no-repeat;
 		}
 		&__story-wrap-2 .after-img {
-			background: url(/static/img/home/after1.jpg) center center / cover no-repeat;
+			background: url(/img/home/after1.jpg) center center / cover no-repeat;
 		}
 		&__story-wrap-3 .after-img {
-			background: url(/static/img/home/after3.jpg) center center / cover no-repeat;
+			background: url(/img/home/after3.jpg) center center / cover no-repeat;
 		}
 		&__story-wrap-1 .after-img-big {
-			background: url(/static/img/home/men1-after-long.jpg) top center / cover no-repeat;
+			background: url(/img/home/men1-after-long.jpg) top center / cover no-repeat;
 		}
 		&__story-wrap-2 .after-img-big {
-			background: url(/static/img/home/men2-after-long.jpg) top center / cover no-repeat;
+			background: url(/img/home/men2-after-long.jpg) top center / cover no-repeat;
 		}
 		&__story-wrap-3 .after-img-big {
-			background: url(/static/img/home/women-after-long.jpg) top center / cover no-repeat;
+			background: url(/img/home/women-after-long.jpg) top center / cover no-repeat;
 		}
 	}
 
@@ -872,7 +872,7 @@
 			}
 		}
 		&__pt3 {
-			background: url(/static/img/home/serviceinfo-3.jpg) center center / cover no-repeat;
+			background: url(/img/home/serviceinfo-3.jpg) center center / cover no-repeat;
 			height: 600px;
 			@include responsive("mobile") {
 				height: 300px;
@@ -1029,41 +1029,41 @@
 				padding-left: 40%;
 			}
 			.li-1 {
-				background: url(/static/img/home/floev_1.png) right 40px top 16px, $fv-gray-1;
+				background: url(/img/home/floev_1.png) right 40px top 16px, $fv-gray-1;
 				background-repeat: no-repeat;
 				background-size: 28%;
 				@include responsive("mobile") {
-					background: url(/static/img/home/floev_1.png) right 12px top 20px, $fv-gray-1;
+					background: url(/img/home/floev_1.png) right 12px top 20px, $fv-gray-1;
 					background-repeat: no-repeat;
 					background-size: 23%;
 				}
 			}
 			.li-2 {
-				background: url(/static/img/home/floev_2.png) left 24px center, $fv-gray-1;
+				background: url(/img/home/floev_2.png) left 24px center, $fv-gray-1;
 				background-repeat: no-repeat;
 				background-size: 25%;
 				@include responsive("mobile") {
-					background: url(/static/img/home/floev_2.png) left 16px center, $fv-gray-1;
+					background: url(/img/home/floev_2.png) left 16px center, $fv-gray-1;
 					background-repeat: no-repeat;
 					background-size: 30%;
 				}
 			}
 			.li-3 {
-				background: url(/static/img/home/floev_3.png) right center, $fv-gray-1;
+				background: url(/img/home/floev_3.png) right center, $fv-gray-1;
 				background-repeat: no-repeat;
 				background-size: 30%;
 			}
 			.li-4 {
-				background: url(/static/img/home/floev_4.png) top left / cover no-repeat, #D5B9A7;
+				background: url(/img/home/floev_4.png) top left / cover no-repeat, #D5B9A7;
 				background-size: 80%;
 				@include responsive("mobile") {
-					background: url(/static/img/home/floev_4.png) top left / cover no-repeat;
+					background: url(/img/home/floev_4.png) top left / cover no-repeat;
 					background-repeat: no-repeat;
 					background-size: 100%;
 				}
 			}
 			.li-5 {
-				background: url(/static/img/home/floev_5.jpg) center center / cover no-repeat;
+				background: url(/img/home/floev_5.jpg) center center / cover no-repeat;
 				color: $fv-white;
 			}
 		}
@@ -1559,7 +1559,7 @@
 		&__img {
 			width: 60%;
 			height:400px;
-			background: url(/static/img/home/bottom-card.jpg) center center / cover no-repeat;
+			background: url(/img/home/bottom-card.jpg) center center / cover no-repeat;
 			@include responsive("mobile") {
 				height:240px;
 			  }
@@ -1602,7 +1602,7 @@
 			@include flexbox(nowrap);
 			justify-content: center;
 			align-items: center;
-			background: url(/static/img/home/bottom-9.jpg) center center / cover no-repeat;
+			background: url(/img/home/bottom-9.jpg) center center / cover no-repeat;
 			@include responsive("mobile") {
 				border-radius: 0;
 			  }

@@ -30,7 +30,7 @@ const Layout = ({
       <meta property="og:description" content="좋은 품질의 안경, 전문적인 검안과 서비스를 제공합니다." />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://floev.com" />
-      <meta property="og:image" content="https://floev.com/static/img/newLanding/og.jpg" />
+      <meta property="og:image" content="https://floev.com/img/newLanding/og.jpg" />
       <meta name="facebook-domain-verification" content="h2rt1xuljax0nvwa9e821ig88cstv4" />
     </Head>
     <Header name={name} isBack={true}></Header>
@@ -39,7 +39,7 @@ const Layout = ({
       <div className="global1280">
         <div className="kakaoLinkWrap">
           <div id="channel-add-button" className="kakaoBtn" onClick={() => addChannel()}>
-            <img src="/static/img/newLanding/kakao.png" alt="" />
+            <img src="/img/newLanding/kakao.png" alt="" />
           </div>
         </div>
       </div>

@@ -16,7 +16,7 @@ const serviceTab = (props: {
         </div>
         <div className="content-img">
             <div className="content-img__inner">
-                <img src={`/static/img/home/home_service_${props.imgNum}.jpg`} alt="" />
+                <img src={`/img/home/home_service_${props.imgNum}.jpg`} alt="" />
             </div>
         </div>
     </div>
