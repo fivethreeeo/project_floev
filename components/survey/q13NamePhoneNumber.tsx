@@ -45,6 +45,10 @@ export default function Q12NamePhoneNumber(props: {
             purposes: props.oldAnswers.purposes, purposeEtc: props.oldAnswers.purposeEtc,
             painDegree: props.oldAnswers.painDegree, painDegreeEtc: props.oldAnswers.painDegreeEtc,
             painTypes: props.oldAnswers.painTypes, painTypesEtc: props.oldAnswers.painTypesEtc,
+            preferFrameColors: props.oldAnswers.preferFrameColors,
+            preferFrameShapes: props.oldAnswers.preferFrameShapes,
+            preferLensShapes: props.oldAnswers.preferLensShapes,
+            preferMoods: props.oldAnswers.preferMoods,
             prefer: props.oldAnswers.prefer,
             preferRequestUrls: preferRequestUrls,
             photoRequestUrls: photoRequestUrls,
@@ -289,10 +293,10 @@ export default function Q12NamePhoneNumber(props: {
             <div className="q-wrap__btn-wrap">
                 <button className="q-wrap__btn q-wrap__btn-prev tn-0027" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
                 {authNumber.length !== 4 || !isActive ?
-                    (<button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled"><span>인증하고 예약완료하기</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>) :
+                    (<button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled"><span>인증하고 예약완료하기</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
                     (!loading ?
                         (<button className="q-wrap__btn q-wrap__btn-next tn-0026" type={'submit'}
-                            onClick={() => handleClick()}><span>인증하고 예약완료하기</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>) :
+                            onClick={() => handleClick()}><span>인증하고 예약완료하기</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
                         (<Spin size="large" tip="잠시만 기다려주세요.." />))
                 }
             </div>

@@ -6,7 +6,10 @@ export const MAKE_SURVEY_PURCHASE_REQUEST = gql`
         $purposes: [String!], $purposeEtc: String,
         $painDegree: Int!, $painDegreeEtc: String,
         $painTypes: [String!], $painTypesEtc: String,
-        $prefer: String!, $preferRequestUrls: [String!], $photoRequestUrls:[String!],
+        $preferFrameColors: [String!], $preferFrameShapes: [String!],
+        $preferLensShapes: [String!], $preferMoods: [String!],
+        $prefer: String,
+        $preferRequestUrls: [String!], $photoRequestUrls:[String!],
         $size: String, $loungeCode: Int!,
         $requestDate: String!, $requestTime: String!,
         $name: String!, $phoneNumber: String!, $authNumber: String!) {
@@ -15,7 +18,10 @@ export const MAKE_SURVEY_PURCHASE_REQUEST = gql`
         purposes: $purposes, purposeEtc: $purposeEtc,
         painDegree: $painDegree, painDegreeEtc: $painDegreeEtc,
         painTypes: $painTypes, painTypesEtc: $painTypesEtc,
-        prefer: $prefer, preferRequestUrls: $preferRequestUrls, photoRequestUrls:$photoRequestUrls
+        preferFrameColors: $preferFrameColors, preferFrameShapes: $preferFrameShapes,
+        preferLensShapes: $preferLensShapes, preferMoods: $preferMoods,
+        prefer: $prefer,
+        preferRequestUrls: $preferRequestUrls, photoRequestUrls:$photoRequestUrls
         size: $size, loungeCode: $loungeCode
         requestDate: $requestDate, requestTime: $requestTime,
         name: $name, phoneNumber: $phoneNumber, authNumber: $authNumber) {

@@ -156,7 +156,7 @@ select:-webkit-autofill:focus {
 
 /* 뒤로가기 버튼 */
 .goBackBtnWrap {position:fixed;width:100%;max-width:640px;height:40px;z-index:5000}
-.goBackBtnWrap .goBackBtn {cursor:pointer;float:left;margin:20px 0 0 20px;width:40px;height:40px;background:url(/static/img/newLanding/goBackBtn.png) center center / cover no-repeat;border-radius:100%}
+.goBackBtnWrap .goBackBtn {cursor:pointer;float:left;margin:20px 0 0 20px;width:40px;height:40px;background:url(/img/newLanding/goBackBtn.png) center center / cover no-repeat;border-radius:100%}
 .goBackBtnWrap .goBackBtn a {display:block;height:40px}
 .headroom {display:block;content:'';clear:both;height:80px}
 /* 브랜드 페이지 */

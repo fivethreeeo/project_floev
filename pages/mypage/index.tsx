@@ -33,7 +33,8 @@ const MyPageIndex = (props: {
     // 예약 변경용
     const router = useRouter()
     const [loungeCode, setLoungeCode] = useState<number>(0)
-    const [requestDate, setRequestDate] = useState<string>(moment().add(15, 'hours').format().slice(0, 10))
+    const currentTime = moment().subtract(9, 'hours').format().slice(0, 10)
+    const [requestDate, setRequestDate] = useState<string>(currentTime)
     const [requestTime, setRequestTime] = useState<string>('')
 
     const [modal1, setModal1] = useState<boolean>(false)

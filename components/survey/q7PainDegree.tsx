@@ -69,8 +69,8 @@ export default function Q7PainDegree(props: {
             <div className="q-wrap__btn-wrap">
                 <button className="q-wrap__btn q-wrap__btn-prev tn-0015" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
                 {painDegree < 0 ? (
-                    <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>) :
-                    (<button className="q-wrap__btn q-wrap__btn-next tn-0014" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="static/img/survey/ic-arrows-right.png" alt="" /></button>)
+                    <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
+                    (<button className="q-wrap__btn q-wrap__btn-next tn-0014" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
                 }
             </div>
         </div>
