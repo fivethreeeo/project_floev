@@ -54,8 +54,8 @@ export default function Q9_5Prefer(props: {
 
     return (<>
         <div className="q-wrap q9">
-            <div className="q-wrap__question-main">prefer 주관식(선택입력사항)</div>
-            {/*<div className="q-wrap__question-sub">선호하는 브랜드, 스타일, 색상 또는 기피하는 색상. 원하는 분위기, 착용감 등을 자유롭게 남겨주세요. 이미지를 보내주셔도 좋아요.</div>*/}
+            <div className="q-wrap__question-main">안경에 대한 고민, 플로브에게 요청하고 싶은 내용을 자유롭게 남겨주세요.</div>
+            <div className="q-wrap__question-sub">기타 선호하는 브랜드, 스타일, 색상 또는 기피하는 색상. 원하는 분위기, 착용감 등을 자유롭게 남겨주세요. 이미지를 보내주셔도 좋아요.</div>
             <div className="q-wrap__answer-wrap">
                 <textarea className="q-wrap__textarea"
                     placeholder='예시)'

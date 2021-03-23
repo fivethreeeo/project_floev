@@ -33,7 +33,7 @@ export default function preferMoods(props: {
 
     return (<>
         <div className="q-wrap q8">
-            <div className="q-wrap__question-main">preferMoods</div>
+            <div className="q-wrap__question-main">안경으로 어떤 분위기를 내고 싶으신가요?</div>
             {/*<div className="q-wrap__question-sub">플로브 안경 추천 서비스는 가장 나은 안경을 고민하고 해소할 수 있는 방법을 제안해요.</div>*/}
             <div className="q-wrap__answer-wrap q-wrap__checkbox-wrap" onChange={(e) => handleChangePreferMoods(e)}>
 
