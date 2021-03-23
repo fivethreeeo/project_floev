@@ -33,7 +33,7 @@ export default function preferLensShapes(props: {
 
     return (<>
         <div className="q-wrap q8">
-            <div className="q-wrap__question-main">어떤 모양의 렌즈 선호하시나요?</div>
+            <div className="q-wrap__question-main">어떤 모양의 렌즈를 선호하시나요?</div>
             {/*<div className="q-wrap__question-sub">플로브 안경 추천 서비스는 가장 나은 안경을 고민하고 해소할 수 있는 방법을 제안해요.</div>*/}
             <div className="q-wrap__answer-wrap q-wrap__checkbox-wrap" onChange={(e) => handleChangePreferLensShapes(e)}>
 
