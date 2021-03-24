@@ -9,17 +9,6 @@ import { createApolloClient } from '../lib/apolloClient'
 import { resetSurvey } from '../utils/surveyUtils'
 import ServiceTab from '../components/index/serviceTab'
 
-// 타입 정의
-declare global {
-	// Window 객체 타입
-	interface Window {
-		Kakao: any
-		analytics: any
-		gtag: Function
-	}
-	function fbq(track: string, event: string): void;
-}
-
 const IndexPage = (props: {
 	user: User
 }) => {
@@ -64,12 +53,25 @@ const IndexPage = (props: {
 		return component
 	}
 
+	function naverPixelSurvey() {
+		let _nasa = {
+			cnv: ''
+		};
+		if (window.wcs) {
+			_nasa["cnv"] = window.wcs.cnv("2", "1");
+		}
+	}
+	function routeSurvey() {
+		fbq('track', 'Search');
+		naverPixelSurvey()
+		router.push('/survey')
+	}
+
 	function didYouVisit() {
 		if (localStorage.getItem('floev[currentStep]') !== null) {
 			setSurveyModal(true)
 		} else {
-			fbq('track', 'Search');
-			router.push('/survey')
+			routeSurvey()
 		}
 	}
 	function surveyFromMiddle() {
@@ -77,13 +79,11 @@ const IndexPage = (props: {
 		if (currentStep > 9) {
 			localStorage.setItem('floev[currentStep]', '9')
 		}
-		fbq('track', 'Search');
-		router.push('/survey')
+		routeSurvey()
 	}
 	function surveyFromStart() {
 		resetSurvey()
-		fbq('track', 'Search');
-		router.push('/survey')
+		routeSurvey()
 	}
 
 	return (<>
@@ -479,7 +479,7 @@ const IndexPage = (props: {
 							<div className="txt">플로브가 나에게 어울리는 안경을 선별해요.</div>
 							<div className="tag-wrap">
 								<div className="tag">시각생활 분석</div>
-								<div className="tag">원하는 이미지&스타일 분석</div>
+								<div className="tag">원하는 이미지&amp;스타일 분석</div>
 								<div className="tag">추천 안경테 구성</div>
 							</div>
 						</div>

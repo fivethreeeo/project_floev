@@ -53,6 +53,22 @@ export default function Q12Request(props: {
         localStorage.setItem('floev[loungeCode]', String(newLoungeCode))
     }
 
+    function naverPixelRequest() {
+        let _nasa = {
+            cnv: ''
+        };
+        if (window.wcs) {
+            _nasa["cnv"] = window.wcs.cnv("4", "1");
+            window.wcs.inflow("floev.com");
+            window.wcs_do(_nasa);
+        }
+    }
+
+    function onClickRequest() {
+        naverPixelRequest()
+        props.onNext()
+    }
+
     const availableYeuksamTimes = availablePurchaseRequestTime(requestDate, LOUNGE.YEUKSAM, props.purchaseRequest)
     const availableGangNumTimes = availablePurchaseRequestTime(requestDate, LOUNGE.GANGNAM, props.purchaseRequest)
 
@@ -131,7 +147,7 @@ export default function Q12Request(props: {
                 <button className="q-wrap__btn q-wrap__btn-prev tn-0025" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
                 {requestDate === "" || loungeCode === 0 || requestTime === "" ? (
                     <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
-                    (<button className="q-wrap__btn q-wrap__btn-next tn-0024" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
+                    (<button className="q-wrap__btn q-wrap__btn-next tn-0024" type="button" onClick={() => onClickRequest()}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
                 }
             </div>
         </div>

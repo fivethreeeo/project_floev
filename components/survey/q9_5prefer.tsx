@@ -47,7 +47,6 @@ export default function Q9_5Prefer(props: {
         answersParam.prefer = newPrefer
         props.answersUpdate(answersParam)
 
-        // for caching
         localStorage.setItem('floev[currentStep]', '95')
         localStorage.setItem('floev[prefer]', newPrefer)
     }
