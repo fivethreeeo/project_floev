@@ -14,10 +14,10 @@ import Q5HasWorn, { HASWORN } from './q5HasWorn'
 import Q6Purpose from './q6Purposes'
 import Q7PainDegree from './q7PainDegree'
 import Q8PainTypes from './q8PainTypes'
-import Q9_1PreferFrameColors from './q9_1preferFrameColors'
-import Q9_2PreferFrameShapes from './q9_2preferFrameShapes'
-import Q9_3PreferLensShapes from './q9_3preferLensShapes'
-import Q9_4PreferMoods from './q9_4preferMoods'
+// import Q9_1PreferFrameColors from './q9_1preferFrameColors'
+// import Q9_2PreferFrameShapes from './q9_2preferFrameShapes'
+// import Q9_3PreferLensShapes from './q9_3preferLensShapes'
+// import Q9_4PreferMoods from './q9_4preferMoods'
 import Q9_5Prefer from './q9_5prefer'
 import Q10Photo from './q10Photo'
 import Q11Photo from './q11Size'
@@ -29,7 +29,8 @@ const steps = [
     Q1Customer, Q2CustomerWith, Q3CustomerOther,
     Q4BirthGender, Q5HasWorn, Q6Purpose,
     Q7PainDegree, Q8PainTypes,
-    Q9_1PreferFrameColors, Q9_2PreferFrameShapes, Q9_3PreferLensShapes, Q9_4PreferMoods, Q9_5Prefer,
+    // Q9_1PreferFrameColors, Q9_2PreferFrameShapes, Q9_3PreferLensShapes, Q9_4PreferMoods,
+    Q9_5Prefer,
     // stepIndex 9, 10, 11, 12, 13
     Q10Photo, Q11Photo, // stepIndex 14, 15
     Q12Request, Q13NamePhoneNumber // stepIndex 16, 17
@@ -45,18 +46,21 @@ const SurveyPage = (props: {
     const tempPreferFrameShapes = (localStorage.getItem('floev[preferFrameShapes]') ?? '').split(',')
     const tempPreferLensShapes = (localStorage.getItem('floev[preferLensShapes]') ?? '').split(',')
     const tempPreferMoods = (localStorage.getItem('floev[preferMoods]') ?? '').split(',')
-    const tempCurrentStep: number = parseInt(localStorage.getItem('floev[currentStep]') ?? '0')
-    const [currentStep, setCurrentStep] = useState<number>(tempCurrentStep >= 10 && tempCurrentStep < 91 ? 10 : tempCurrentStep);
-    function currentStepToStepIndex(currentStep: number) {
-        let index = currentStep
-        if (currentStep > 90) {
-            index = currentStep - 90 + 8
-        } else if (currentStep >= 10) {
-            index = currentStep + 4
-        }
-        return index
-    }
-    const [stepIndex, setStepIndex] = useState<number>(currentStepToStepIndex(currentStep))
+    const [currentStep, setCurrentStep] = useState<number>(
+        parseInt(localStorage.getItem('floev[currentStep]') ?? '0') > 9 ? 9 : parseInt(localStorage.getItem('floev[currentStep]') ?? '0'));
+
+    // const tempCurrentStep: number = parseInt(localStorage.getItem('floev[currentStep]') ?? '0')
+    // const [currentStep, setCurrentStep] = useState<number>(tempCurrentStep >= 10 && tempCurrentStep < 91 ? 10 : tempCurrentStep);
+    // function currentStepToStepIndex(currentStep: number) {
+    //     let index = currentStep
+    //     if (currentStep > 90) {
+    //         index = currentStep - 90 + 8
+    //     } else if (currentStep >= 10) {
+    //         index = currentStep + 4
+    //     }
+    //     return index
+    // }
+    // const [stepIndex, setStepIndex] = useState<number>(currentStepToStepIndex(currentStep))
 
     const [answers, setAnswers] = useState<Answers>({
         customer: parseInt(localStorage.getItem('floev[customer]') ?? '-1'),
@@ -94,7 +98,7 @@ const SurveyPage = (props: {
     function updateStep(step: number) {
         setCurrentStep(step)
         localStorage.setItem('floev[currentStep]', String(step))
-        setStepIndex(currentStepToStepIndex(step))
+        // setStepIndex(currentStepToStepIndex(step))
     }
 
     function handleNext() {
@@ -114,15 +118,17 @@ const SurveyPage = (props: {
             if (answers.hasWorn === HASWORN.YES) {
                 updateStep(7)
             } else if (answers.hasWorn === HASWORN.NO) {
-                updateStep(91)
+                updateStep(9)
             } else {
                 updateStep(7)
             }
-        } else if (currentStep === 8) {
-            updateStep(91)
-        } else if (currentStep === 95) {
-            updateStep(10)
-        } else if (currentStep === 10) {
+        }
+        // else if (currentStep === 8) {
+        //     updateStep(91)
+        // } else if (currentStep === 95) {
+        //     updateStep(10)
+        // }
+        else if (currentStep === 10) {
             if (answers.hasWorn === HASWORN.YES) {
                 updateStep(11)
             } else if (answers.hasWorn === HASWORN.NO) {
@@ -159,7 +165,7 @@ const SurveyPage = (props: {
             } else {
                 updateStep(1)
             }
-        } else if (currentStep === 91) {
+        } else if (currentStep === 9) {
             if (answers.hasWorn === HASWORN.YES) {
                 updateStep(8)
             } else if (answers.hasWorn === HASWORN.NO) {
@@ -167,9 +173,11 @@ const SurveyPage = (props: {
             } else {
                 updateStep(6)
             }
-        } else if (currentStep === 10) {
-            updateStep(95)
-        } else if (currentStep === 12) {
+        }
+        // else if (currentStep === 10) {
+        //     updateStep(95)
+        // }
+        else if (currentStep === 12) {
             if (answers.hasWorn === HASWORN.YES) {
                 updateStep(11)
             } else if (answers.hasWorn === HASWORN.NO) {
@@ -188,7 +196,7 @@ const SurveyPage = (props: {
         Router.push('/')
     }
 
-    let StepComponent = steps[stepIndex]
+    let StepComponent = steps[currentStep]
 
     return (
         <>
@@ -217,7 +225,7 @@ const SurveyPage = (props: {
                 <div className="survey">
                     {currentStep > 0 &&
                         <SurveyHeader
-                            stepIndex={stepIndex}
+                            currentStep={currentStep}
                             onPrev={() => handlePrev()}
                             onClose={() => onClose()}
                         />}
