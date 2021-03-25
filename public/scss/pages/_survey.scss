@@ -58,12 +58,19 @@
             &__color {
                 padding: 10px 16px 10px 12px;
             }
+            &__lens-shape {
+                padding: 12px 18px 10px;
+            }
         }
 
         &__input-checkbox:checked+.q-wrap__label-checkbox {
             color: $fv-white;
             border: 1px solid $fv-gray-9;
             background: $fv-gray-9;
+        }
+
+        &__input-checkbox:checked+.q-wrap__label-checkbox__lens-shape img {
+            filter: invert(100%);
         }
 
         &__input-radio {
@@ -185,6 +192,17 @@
         &__clear {@include bg-color (#f7f7f7)}
         &__colorless {background:linear-gradient(-120deg, white, gray, black)}
         &__colorful {background:linear-gradient(-120deg, #4285f4, #fbbc05, #ea4335)}
+    }
+    .lens-shape {
+        &__basic {
+            width:100%;
+            display:block;
+            margin-bottom: 2px;
+        }
+        &__name {
+            text-align: center;
+            display: block;
+        }
     }
 
     // 서베이 문항 - q0 / 시작
