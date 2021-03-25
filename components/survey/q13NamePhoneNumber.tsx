@@ -38,6 +38,17 @@ export default function Q12NamePhoneNumber(props: {
     const [preferRequestUrls, setPreferRequestUrls] = useState<string[]>([])
     const [photoRequestUrls, setPhotoRequestUrls] = useState<string[]>([])
 
+    function naverPixelComplete() {
+        let _nasa = {
+            cnv: ''
+        };
+        if (window.wcs) {
+            _nasa["cnv"] = window.wcs.cnv("1", "1");
+            window.wcs.inflow("floev.com");
+            window.wcs_do(_nasa);
+        }
+    }
+
     const [makeSurveyPurchaseRequest, { loading }] = useMutation(MAKE_SURVEY_PURCHASE_REQUEST, {
         variables: {
             customer: props.oldAnswers.customer, birth: props.oldAnswers.birth,
@@ -71,6 +82,7 @@ export default function Q12NamePhoneNumber(props: {
                 });
                 resetSurvey()
                 fbq('track', 'Schedule');
+                naverPixelComplete()
                 router.replace('/complete')
             }
         },
