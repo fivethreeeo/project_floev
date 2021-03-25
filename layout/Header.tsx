@@ -12,23 +12,6 @@ export default function Header({
 		document.cookie = 'token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 	}
 
-	// const checkRequest = () => {
-	// 	if (requests === undefined || requests.length === 0) {
-	// 		alert('조회된 예약내역이 없어요!')
-	// 	} else {
-	// 		let afterToday: PurchaseRequest[] = []
-	// 		requests.map((item) => {
-	// 			if (item.date.slice(0, 10) >= moment().format().slice(0, 16) && item.type === 0) {
-	// 				afterToday.push(item)
-	// 			}
-	// 		})
-	// 		if (afterToday.length === 0) {
-	// 			alert('플로브를 다시 찾아와주셨군요! 환영합니다!😃\n고객님의 조회된 예약내역이 없어요, 새로운 설문을 해주시면 서비스 예약을 도와드릴게요!🥳')
-	// 		} else {
-	// 			router.push('/mypage')
-	// 		}
-	// 	}
-	// }
 	return (
 		<>
 			<header className="header">

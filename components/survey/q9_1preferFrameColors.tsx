@@ -34,9 +34,7 @@ export default function preferFrameColors(props: {
     return (<>
         <div className="q-wrap q8">
             <div className="q-wrap__question-main">선호하는 안경 색상을 모두 선택해주세요.</div>
-            {/*<div className="q-wrap__question-sub">플로브 안경 추천 서비스는 가장 나은 안경을 고민하고 해소할 수 있는 방법을 제안해요.</div>*/}
             <div className="q-wrap__answer-wrap q-wrap__checkbox-wrap" onChange={(e) => handleChangePreferFrameColors(e)}>
-
 
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfc_2" onChange={() => { }} value="블랙" checked={preferFrameColors.includes("블랙")} />
                 <label className="q-wrap__label-checkbox q-wrap__label-checkbox__color" htmlFor="q_pfc_2"><div className="label-frame-color"><span className="frame-color__basic frame-color__bk"></span><span className="frame-color__name">블랙</span></div></label>
@@ -62,7 +60,7 @@ export default function preferFrameColors(props: {
                 <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfc_8" onChange={() => { }} value="무채색" checked={preferFrameColors.includes("무채색")} />
                 <label className="q-wrap__label-checkbox q-wrap__label-checkbox__color" htmlFor="q_pfc_8"><div className="label-frame-color"><span className="frame-color__basic frame-color__colorless"></span><span className="frame-color__name">무채색</span></div></label>
 
-                <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfc_9" onChange={() => { }} value="화려한색" checked={preferFrameColors.includes("유채색")} />
+                <input className="q-wrap__input-checkbox" type="checkbox" id="q_pfc_9" onChange={() => { }} value="유채색" checked={preferFrameColors.includes("유채색")} />
                 <label className="q-wrap__label-checkbox q-wrap__label-checkbox__color" htmlFor="q_pfc_9"><div className="label-frame-color"><span className="frame-color__basic frame-color__colorful"></span><span className="frame-color__name">유채색</span></div></label>
             </div>
             <div className="q-wrap__btn-wrap">

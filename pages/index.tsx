@@ -76,8 +76,8 @@ const IndexPage = (props: {
 	}
 	function surveyFromMiddle() {
 		const currentStep = parseInt(localStorage.getItem('floev[currentStep]') ?? '0')
-		if (currentStep > 9) {
-			localStorage.setItem('floev[currentStep]', '9')
+		if (currentStep > 9 && currentStep < 91) {
+			localStorage.setItem('floev[currentStep]', '95')
 		}
 		routeSurvey()
 	}
