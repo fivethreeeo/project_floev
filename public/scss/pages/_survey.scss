@@ -55,12 +55,22 @@
             border: 1px solid $fv-gray-4;
             cursor: pointer;
             transition: ease 0.1s;
+            &__color {
+                padding: 10px 16px 10px 12px;
+            }
+            &__lens-shape {
+                padding: 12px 18px 10px;
+            }
         }
 
         &__input-checkbox:checked+.q-wrap__label-checkbox {
             color: $fv-white;
             border: 1px solid $fv-gray-9;
             background: $fv-gray-9;
+        }
+
+        &__input-checkbox:checked+.q-wrap__label-checkbox__lens-shape img {
+            filter: invert(100%);
         }
 
         &__input-radio {
@@ -158,6 +168,40 @@
             @include responsive("mobile") {
                 line-height: 50px;
             }  
+        }
+    }
+
+    .label-frame-color {
+        @include flexbox(nowrap);
+    }
+    .frame-color {
+        &__basic, &__name {
+            height: 18px;
+        }
+        &__basic {
+            @include el-size(18px,18px);
+            border-radius: 16px;
+            margin-right: 6px;
+        }
+        &__bk {@include bg-color (#000)}
+        &__gry {@include bg-color (#aaa)}
+        &__slv {background:linear-gradient(-120deg, #C0C0C0, #f7f7f7, #C0C0C0)}
+        &__gd {background:linear-gradient(-120deg, #BF953F, #FCF6BA, #B38728)}
+        &__rsgd {background:linear-gradient(-120deg, #E0B58D, #FFE5DD, #E0B58D)}
+        &__bn {@include bg-color (#724F31)}
+        &__clear {@include bg-color (#f7f7f7)}
+        &__colorless {background:linear-gradient(-120deg, white, gray, black)}
+        &__colorful {background:linear-gradient(-120deg, #4285f4, #fbbc05, #ea4335)}
+    }
+    .lens-shape {
+        &__basic {
+            width:100%;
+            display:block;
+            margin-bottom: 2px;
+        }
+        &__name {
+            text-align: center;
+            display: block;
         }
     }
 

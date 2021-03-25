@@ -20,7 +20,6 @@ import Q9_3PreferLensShapes from './q9_3preferLensShapes'
 import Q9_4PreferMoods from './q9_4preferMoods'
 import Q9_5Prefer from './q9_5prefer'
 import Q10Photo from './q10Photo'
-import Q11Photo from './q11Size'
 import Q12Request from './q12Request'
 import Q13NamePhoneNumber from './q13NamePhoneNumber'
 
@@ -29,10 +28,14 @@ const steps = [
     Q1Customer, Q2CustomerWith, Q3CustomerOther,
     Q4BirthGender, Q5HasWorn, Q6Purpose,
     Q7PainDegree, Q8PainTypes,
-    Q9_1PreferFrameColors, Q9_2PreferFrameShapes, Q9_3PreferLensShapes, Q9_4PreferMoods, Q9_5Prefer,
-    // stepIndex 9, 10, 11, 12, 13
-    Q10Photo, Q11Photo, // stepIndex 14, 15
-    Q12Request, Q13NamePhoneNumber // stepIndex 16, 17
+    Q9_1PreferFrameColors, // currentStep 91, stepIndex 9
+    Q9_2PreferFrameShapes, // currentStep 92, stepIndex 10
+    Q9_3PreferLensShapes, // currentStep 93, stepIndex 11
+    Q9_4PreferMoods, // currentStep 94, stepIndex 12
+    Q9_5Prefer,  // currentStep 95, stepIndex 13
+    Q10Photo, // currentStep 10, stepIndex 14
+    Q12Request, // currentStep 12, stepIndex 15
+    Q13NamePhoneNumber // currentStep 13, stepIndex 16
 ]
 const max = steps.length
 
@@ -51,8 +54,10 @@ const SurveyPage = (props: {
         let index = currentStep
         if (currentStep > 90) {
             index = currentStep - 90 + 8
-        } else if (currentStep >= 10) {
-            index = currentStep + 4
+        } else if (currentStep === 10) {
+            index = 14
+        } else if (currentStep >= 12) {
+            index = currentStep + 3
         }
         return index
     }
@@ -123,11 +128,7 @@ const SurveyPage = (props: {
         } else if (currentStep === 95) {
             updateStep(10)
         } else if (currentStep === 10) {
-            if (answers.hasWorn === HASWORN.YES) {
-                updateStep(11)
-            } else if (answers.hasWorn === HASWORN.NO) {
-                updateStep(12)
-            }
+            updateStep(12)
         } else {
             updateStep(currentStep + 1)
         }

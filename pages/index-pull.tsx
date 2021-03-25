@@ -9,17 +9,6 @@ import { createApolloClient } from '../lib/apolloClient'
 import { resetSurvey } from '../utils/surveyUtils'
 import ServiceTab from '../components/index/serviceTab'
 
-// 타입 정의
-declare global {
-	// Window 객체 타입
-	interface Window {
-		Kakao: any
-		analytics: any
-		gtag: Function
-	}
-	function fbq(track: string, event: string): void;
-}
-
 const IndexPage = (props: {
 	user: User
 }) => {

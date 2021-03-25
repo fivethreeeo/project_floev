@@ -50,6 +50,11 @@ $min-desktopp: 842px;
   background-size: $size-w $size-h;
 }
 
+/* background-color */
+@mixin bg-color($bg-color) {
+  background-color: $bg-color;
+}
+
 /* flexbox */
 @mixin flexbox($wrap) {
   display: -webkit-box;
