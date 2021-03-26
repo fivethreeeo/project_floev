@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
 import Layout from '../layout/DefaultLayout'
@@ -8,6 +8,9 @@ import { CHECKUP_USER } from '../lib/query'
 import { createApolloClient } from '../lib/apolloClient'
 import { resetSurvey } from '../utils/surveyUtils'
 import ServiceTab from '../components/index/serviceTab'
+import cuid from 'cuid'
+import DeviceDetector from 'device-detector-js'
+const deviceDetector = new DeviceDetector();
 
 const IndexPage = (props: {
 	user: User
@@ -15,6 +18,24 @@ const IndexPage = (props: {
 	const router = useRouter()
 	const [tabIdx, setTabIdx] = useState<number>(0)
 	const [surveyModal, setSurveyModal] = useState<boolean>(false)
+
+	useEffect(() => {
+		// 먼저 로컬 스토리지에서 deviceId를 찾는다.
+		const _tuid = localStorage.getItem('_tuid')
+		if (_tuid) {
+			// 이 아이디를 가지고 추적함
+			// 서버로부터 정보를 status 정보를 가져옴
+			console.log(_tuid)
+		} else {
+			// 새로 생성함
+			const deviceId = cuid() + "H"
+			localStorage.setItem('_did', deviceId)
+			localStorage.setItem('_tuid', deviceId)
+		}
+		const device = deviceDetector.parse(navigator.userAgent);
+		console.log(JSON.stringify(device))
+
+	}, [])
 
 	const collapseCallback = (key: string | string[]) => { key }
 

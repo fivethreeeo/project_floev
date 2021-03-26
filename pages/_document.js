@@ -63,6 +63,20 @@ class MyDocument extends Document {
                 {'GTM-K2ZP9MN':true});
               `}} />
           <script src="https://www.googleoptimize.com/optimize.js?id=GTM-K2ZP9MN"></script>
+          <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async defer></script>
+          <script dangerouslySetInnerHTML={{
+            __html: `
+              window.onLoadCallback = function(){
+                gapi.load('auth2', () => {
+                  gapi.auth2.init({
+                      client_id: "128000656537-140ltg16dguciihmm2f0u55e8u4g6muk.apps.googleusercontent.com",
+                  }).then((res) =>{
+                    console.info(res)
+                  }, (err) =>{
+                    console.error(err)
+                  })
+                });    
+              }`}} />
         </Head>
         <body>
           <Main />
