@@ -294,9 +294,7 @@ const MyPageIndex = (props: {
 }
 export const getServerSideProps: GetServerSideProps = async (context) => { //{req}: { req: any }
     const client = createApolloClient(context)
-
-    // 유저 로그인을 해서 유저가 없으면
-    const { user } = await client.query({ query: CHECKUP_USER }) //const {user} =
+    const { user } = await client.query({ query: CHECKUP_USER })
         .then(({ data }) => {
             return { user: data.checkUpUser };
         }).catch(() => {

@@ -1,6 +1,9 @@
 import React from 'react'
+import * as Creep from '../../lib/hatchery'
+import { EVENT } from '../../lib/constants'
 
 export default function Q0Start(props: {
+    hatchery: Hatchery
     oldAnswers: Answers
     answersUpdate: (answers: Answers) => void
     currentStep: number
@@ -8,7 +11,13 @@ export default function Q0Start(props: {
     onPrev: () => void
     onNext: () => void
 }) {
-
+    const handleClickStart = async () => {
+        await Creep.recordEvent({
+            hatchery: props.hatchery,
+            event: Creep.createPostDataOf(EVENT.SURVEY.Q0.START)
+        })
+        props.onNext()
+    }
     return (<>
         <div className="q-wrap q0">
             <div className="q0__title">
@@ -36,7 +45,7 @@ export default function Q0Start(props: {
                 </ul>
                 <div className="vertical-line"></div>
             </div>
-            <div className="q0__btn-start tn-0005" onClick={() => props.onNext()}>설문 시작하기</div>
+            <div className="q0__btn-start tn-0005" onClick={() => handleClickStart()}>설문 시작하기</div>
         </div>
     </>)
 }

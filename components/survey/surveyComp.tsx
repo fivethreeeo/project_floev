@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Router from 'next/router'
 import Head from 'next/head'
 import SurveyHeader from '../../layout/SurveyHeader'
 import Layout from '../../layout/DefaultLayout'
 import moment from 'moment'
+import { zerg } from '../../lib/constants'
+import * as Creep from '../../lib/hatchery'
 
 import Q0Start from './q0Start'
 import Q1Customer, { CUSTOMER } from './q1Customer'
@@ -40,8 +42,19 @@ const steps = [
 const max = steps.length
 
 const SurveyPage = (props: {
+    user: User
     purchaseRequest: PurchaseRequest[]
 }) => {
+    const [hatchery, setHatchery] = useState<Hatchery>(zerg)
+
+    useEffect(() => {
+        const createHatchery = async () => {
+            const newHatchery: Hatchery = await Creep.initHatchery(props.user)
+            setHatchery(newHatchery)
+        }
+        createHatchery()
+    }, [])
+
     const tempPurposes = (localStorage.getItem('floev[purposes]') ?? '').split(',')
     const tempPainTypes = (localStorage.getItem('floev[painTypes]') ?? '').split(',')
     const tempPreferFrameColors = (localStorage.getItem('floev[preferFrameColors]') ?? '').split(',')
@@ -223,6 +236,7 @@ const SurveyPage = (props: {
                             onClose={() => onClose()}
                         />}
                     <StepComponent
+                        hatchery={hatchery}
                         oldAnswers={answers}
                         answersUpdate={() => handleAnswersUpdate(answers)}
                         currentStep={currentStep}

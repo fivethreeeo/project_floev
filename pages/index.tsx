@@ -4,13 +4,12 @@ import { GetServerSideProps } from 'next'
 import Layout from '../layout/DefaultLayout'
 import { Carousel, Collapse, Modal } from 'antd'
 import { CaretRightOutlined } from '@ant-design/icons'
-import { CHECKUP_USER } from '../lib/query'
+import { CHECKUP_USER_SIMPLE } from '../lib/query'
 import { createApolloClient } from '../lib/apolloClient'
 import { resetSurvey } from '../utils/surveyUtils'
 import ServiceTab from '../components/index/serviceTab'
-import cuid from 'cuid'
-import DeviceDetector from 'device-detector-js'
-const deviceDetector = new DeviceDetector();
+import * as Creep from '../lib/hatchery'
+import { zerg, EVENT } from '../lib/constants'
 
 const IndexPage = (props: {
 	user: User
@@ -18,23 +17,18 @@ const IndexPage = (props: {
 	const router = useRouter()
 	const [tabIdx, setTabIdx] = useState<number>(0)
 	const [surveyModal, setSurveyModal] = useState<boolean>(false)
+	const [hatchery, setHatchery] = useState<Hatchery>(zerg)
 
 	useEffect(() => {
-		// 먼저 로컬 스토리지에서 deviceId를 찾는다.
-		const _tuid = localStorage.getItem('_tuid')
-		if (_tuid) {
-			// 이 아이디를 가지고 추적함
-			// 서버로부터 정보를 status 정보를 가져옴
-			console.log(_tuid)
-		} else {
-			// 새로 생성함
-			const deviceId = cuid() + "H"
-			localStorage.setItem('_did', deviceId)
-			localStorage.setItem('_tuid', deviceId)
+		const createHatchery = async () => {
+			const newHatchery: Hatchery = await Creep.initHatchery(props.user)
+			await Creep.recordEvent({
+				hatchery: newHatchery,
+				event: Creep.createPostDataOf(EVENT.LOADED_A_PAGE)
+			})
+			setHatchery(newHatchery)
 		}
-		const device = deviceDetector.parse(navigator.userAgent);
-		console.log(JSON.stringify(device))
-
+		createHatchery()
 	}, [])
 
 	const collapseCallback = (key: string | string[]) => { key }
@@ -88,21 +82,34 @@ const IndexPage = (props: {
 		router.push('/survey')
 	}
 
-	function didYouVisit() {
+	async function didYouVisit(eventName: string) {
+		await Creep.recordEvent({
+			hatchery: hatchery,
+			event: Creep.createPostDataOf(eventName)
+		})
+
 		if (localStorage.getItem('floev[currentStep]') !== null) {
 			setSurveyModal(true)
 		} else {
 			routeSurvey()
 		}
 	}
-	function surveyFromMiddle() {
+	async function surveyFromMiddle() {
+		await Creep.recordEvent({
+			hatchery: hatchery,
+			event: Creep.createPostDataOf(EVENT.SURVEY.FROM_MIDDLE)
+		})
 		const currentStep = parseInt(localStorage.getItem('floev[currentStep]') ?? '0')
 		if (currentStep > 9 && currentStep < 91) {
 			localStorage.setItem('floev[currentStep]', '95')
 		}
 		routeSurvey()
 	}
-	function surveyFromStart() {
+	async function surveyFromStart() {
+		await Creep.recordEvent({
+			hatchery: hatchery,
+			event: Creep.createPostDataOf(EVENT.SURVEY.FROM_START)
+		})
 		resetSurvey()
 		routeSurvey()
 	}
@@ -121,7 +128,7 @@ const IndexPage = (props: {
 								<div className="main-visual__title"><p><strong>아직도 얼굴형으로<br />안경 고르세요?</strong></p></div>
 								<p className="main-visual__caption">진짜 나에게 맞는 안경 추천 서비스</p>
 								<div className="main-visual__btn">
-									<button className="tn-0003 gtm-001 btn-cta btn-test" onClick={() => didYouVisit()}>플로브 시작하기</button>
+									<button className="tn-0003 gtm-001 btn-cta btn-test" onClick={() => didYouVisit(EVENT.CTA.TOP)}>플로브 시작하기</button>
 									<Modal
 										className="modal-cookie"
 										visible={surveyModal}
@@ -709,7 +716,7 @@ const IndexPage = (props: {
 				</div>
 				<div className="bottom-cta">
 					<div className="bottom-cta__inner">
-						<button className="gtm-001 btn-cta tn-0004" onClick={() => didYouVisit()}><span>플로브 시작하기</span></button>
+						<button className="gtm-001 btn-cta tn-0004" onClick={() => didYouVisit(EVENT.CTA.BOTTOM)}><span>플로브 시작하기</span></button>
 					</div>
 				</div>
 
@@ -734,7 +741,7 @@ const IndexPage = (props: {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	const client = createApolloClient(context)
-	const { user } = await client.query({ query: CHECKUP_USER })
+	const { user } = await client.query({ query: CHECKUP_USER_SIMPLE })
 		.then(({ data }) => {
 			return { user: data.checkUpUser };
 		})
