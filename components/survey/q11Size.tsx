@@ -1,15 +1,6 @@
 import React, { useState } from 'react'
 
-export default function Q11Size(props: {
-    hatchery: Hatchery
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function Q11Size(props: SurveyProps) {
     const [size1, setSize1] = useState<string>('')
     const [size2, setSize2] = useState<string>('')
     const [size3, setSize3] = useState<string>('')

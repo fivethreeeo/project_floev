@@ -1,16 +1,7 @@
 import React, { useState } from 'react'
 
 
-export default function preferFrameShapes(props: {
-    hatchery: Hatchery
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function preferFrameShapes(props: SurveyProps) {
     const [preferFrameShapes, setPreferFrameShapes] = useState<Array<string>>(props.oldAnswers.preferFrameShapes)
 
     function handleChangePreferFrameShapes(e: any) {

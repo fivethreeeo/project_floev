@@ -5,16 +5,7 @@ export enum HASWORN {
     NO
 }
 
-export default function Q5HasWorn(props: {
-    hatchery: Hatchery
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function Q5HasWorn(props: SurveyProps) {
     const [hasWorn, setHasWorn] = useState<number>(props.oldAnswers.hasWorn)
 
     function handleChange(e: any) {

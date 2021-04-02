@@ -1,23 +1,7 @@
 import React, { useState } from 'react'
+import { PAINDEGREE } from '../../lib/constants'
 
-enum PAINDEGREE {
-    NEVER,
-    SOMETIMES,
-    OFTEN,
-    ALWAYS,
-    NOIDEA
-}
-
-export default function Q7PainDegree(props: {
-    hatchery: Hatchery
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function Q7PainDegree(props: SurveyProps) {
     const [painDegree, setPainDegree] = useState<number>(props.oldAnswers.painDegree)
     const [painDegreeEtc, setPainDegreeEtc] = useState<string>(props.oldAnswers.painDegreeEtc)
 

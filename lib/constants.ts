@@ -13,6 +13,14 @@ export enum LOUNGE {
     GANGNAM
 }
 
+export enum PAINDEGREE {
+    NEVER,
+    SOMETIMES,
+    OFTEN,
+    ALWAYS,
+    NOIDEA
+}
+
 export const zerg: Hatchery = {
     deviceId: '',
     userId: '',
@@ -31,6 +39,7 @@ export const EVENT = {
         FROM_START: "처음부터 할게요",
         Q0: { START: "q0 start - 시작하기" },
         Q1: { NEXT: "q1 customer - 다음", PREV: "q1 customer - 이전" },
+        Q2: { NEXT: "q2 customerWith - 다음", PREV: "q2 customerWith - 이전" },
         Q4: { NEXT: "q4 birthGender - 다음", PREV: "q4 birthGender - 이전" },
         Q5: { NEXT: "q5 hasworn - 다음", PREV: "q5 hasworn - 이전" },
         Q6: { NEXT: "q6 purposes - 다음", PREV: "q6 purposes - 이전" },

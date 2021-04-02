@@ -55,6 +55,10 @@ const SurveyPage = (props: {
         createHatchery()
     }, [])
 
+    function handleUpdateHatchery(newHatchery: Hatchery) {
+        setHatchery(newHatchery)
+    }
+
     const tempPurposes = (localStorage.getItem('floev[purposes]') ?? '').split(',')
     const tempPainTypes = (localStorage.getItem('floev[painTypes]') ?? '').split(',')
     const tempPreferFrameColors = (localStorage.getItem('floev[preferFrameColors]') ?? '').split(',')
@@ -237,6 +241,7 @@ const SurveyPage = (props: {
                         />}
                     <StepComponent
                         hatchery={hatchery}
+                        updateHatchery={(newHatchery: Hatchery) => handleUpdateHatchery(newHatchery)}
                         oldAnswers={answers}
                         answersUpdate={() => handleAnswersUpdate(answers)}
                         currentStep={currentStep}

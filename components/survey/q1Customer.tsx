@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import * as Creep from '../../lib/hatchery'
+import { EVENT } from '../../lib/constants'
 
 export enum CUSTOMER {
     SELF,
@@ -6,16 +8,7 @@ export enum CUSTOMER {
     OTHER
 }
 
-export default function Q1Customer(props: {
-    hatchery: Hatchery
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function Q1Customer(props: SurveyProps) {
     const [customer, setCustomer] = useState<number>(props.oldAnswers.customer)
 
     function handleChange(e: any) {
@@ -30,6 +23,21 @@ export default function Q1Customer(props: {
         localStorage.setItem('floev[customer]', String(newCustomer))
     }
 
+    async function handleClickPrev() {
+        await Creep.recordEvent({
+            hatchery: props.hatchery,
+            event: Creep.createPostDataOf(EVENT.SURVEY.Q1.PREV)
+        })
+        props.onPrev()
+    }
+    async function handleClickNext() {
+        await Creep.recordEvent({
+            hatchery: props.hatchery,
+            event: Creep.createPostDataOf(EVENT.SURVEY.Q1.NEXT)
+        })
+        props.onNext()
+    }
+
     return (<>
         <div className="q-wrap q1">
             <div className="q-wrap__question-main">누가 추천받을 안경인가요?</div>
@@ -42,10 +50,10 @@ export default function Q1Customer(props: {
                 <label className="q-wrap__label-radio-100" htmlFor="q1_2">친구(연인)와 함께 추천받고 싶어요</label>
             </div>
             <div className="q-wrap__btn-wrap">
-                <button className="q-wrap__btn q-wrap__btn-prev tn-0007" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-prev tn-0007" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={handleClickPrev}>이전</button>
                 {customer < 0 ? (
                     <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
-                    (<button className="q-wrap__btn q-wrap__btn-next tn-0006" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
+                    (<button className="q-wrap__btn q-wrap__btn-next tn-0006" type="button" onClick={handleClickNext}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
                 }
             </div>
         </div>

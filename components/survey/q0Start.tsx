@@ -2,16 +2,8 @@ import React from 'react'
 import * as Creep from '../../lib/hatchery'
 import { EVENT } from '../../lib/constants'
 
-export default function Q0Start(props: {
-    hatchery: Hatchery
-    oldAnswers: Answers
-    answersUpdate: (answers: Answers) => void
-    currentStep: number
-    max: number
-    onPrev: () => void
-    onNext: () => void
-}) {
-    const handleClickStart = async () => {
+export default function Q0Start(props: SurveyProps) {
+    async function handleClickStart() {
         await Creep.recordEvent({
             hatchery: props.hatchery,
             event: Creep.createPostDataOf(EVENT.SURVEY.Q0.START)

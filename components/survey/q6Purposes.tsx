@@ -1,15 +1,6 @@
 import React, { useState } from 'react'
 
-export default function Q6Purpose(props: {
-    hatchery: Hatchery
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function Q6Purpose(props: SurveyProps) {
     const [purposes, setPurposes] = useState<Array<string>>(props.oldAnswers.purposes)
     const [purposeEtc, setPurposeEtc] = useState<string>(props.oldAnswers.purposeEtc)
 

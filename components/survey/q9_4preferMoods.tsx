@@ -1,16 +1,7 @@
 import React, { useState } from 'react'
 
 
-export default function preferMoods(props: {
-    hatchery: Hatchery
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function preferMoods(props: SurveyProps) {
     const [preferMoods, setPreferMoods] = useState<Array<string>>(props.oldAnswers.preferMoods)
 
     function handleChangePreferMoods(e: any) {

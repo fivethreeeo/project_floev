@@ -5,16 +5,7 @@ import { UploadChangeParam, UploadFile } from 'antd/lib/upload/interface';
 import { HASWORN } from './q5HasWorn'
 import { getBase64 } from '../../utils/surveyUtils'
 
-export default function Q10Photo(props: {
-    hatchery: Hatchery
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function Q10Photo(props: SurveyProps) {
     const photoTitle = () => {
         let title
         if (props.oldAnswers.hasWorn === HASWORN.YES) {

@@ -13,16 +13,7 @@ import { SHA256 } from '../../utils/SHA256'
 const IMAGE_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://image.floev.com' : 'http://localhost:3033'
 const IMAGE_ADMIN_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://imageadmin.floev.com' : 'http://localhost:3034'
 
-export default function Q12NamePhoneNumber(props: {
-    hatchery: Hatchery
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function Q12NamePhoneNumber(props: SurveyProps) {
     const router = useRouter()
     const [name, setName] = useState<string>(props.oldAnswers.name)
     const [phoneNumber, setPhoneNumber] = useState<string>(props.oldAnswers.phoneNumber)

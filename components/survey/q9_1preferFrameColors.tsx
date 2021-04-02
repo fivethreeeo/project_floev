@@ -1,16 +1,7 @@
 import React, { useState } from 'react'
 
 
-export default function preferFrameColors(props: {
-    hatchery: Hatchery
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function preferFrameColors(props: SurveyProps) {
     const [preferFrameColors, setPreferFrameColors] = useState<Array<string>>(props.oldAnswers.preferFrameColors)
 
     function handleChangePreferFrameColors(e: any) {

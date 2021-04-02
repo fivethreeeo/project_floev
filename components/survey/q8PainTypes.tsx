@@ -1,16 +1,7 @@
 import React, { useState } from 'react'
 
 
-export default function Q8Paintypes(props: {
-    hatchery: Hatchery
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function Q8Paintypes(props: SurveyProps) {
     const [painTypes, setPainTypes] = useState<Array<string>>(props.oldAnswers.painTypes)
     const [painTypesEtc, setPainTypesEtc] = useState<string>(props.oldAnswers.painTypesEtc)
 

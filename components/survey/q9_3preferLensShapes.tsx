@@ -1,16 +1,7 @@
 import React, { useState } from 'react'
 
 
-export default function preferLensShapes(props: {
-    hatchery: Hatchery
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function preferLensShapes(props: SurveyProps) {
     const [preferLensShapes, setPreferLensShapes] = useState<Array<string>>(props.oldAnswers.preferLensShapes)
 
     function handleChangePreferLensShapes(e: any) {

@@ -1,15 +1,22 @@
 import React from 'react'
+import * as Creep from '../../lib/hatchery'
+import { EVENT } from '../../lib/constants'
 
-export default function Q2CustomerWith(props: {
-    hatchery: Hatchery
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function Q2CustomerWith(props: SurveyProps) {
+    async function handleClickPrev() {
+        await Creep.recordEvent({
+            hatchery: props.hatchery,
+            event: Creep.createPostDataOf(EVENT.SURVEY.Q2.PREV)
+        })
+        props.onPrev()
+    }
+    async function handleClickNext() {
+        await Creep.recordEvent({
+            hatchery: props.hatchery,
+            event: Creep.createPostDataOf(EVENT.SURVEY.Q2.NEXT)
+        })
+        props.onNext()
+    }
 
     return (<>
         <div className="q-wrap q2">
@@ -19,8 +26,8 @@ export default function Q2CustomerWith(props: {
                 <p style={{ fontSize: '16px', textAlign: 'center', textDecoration: 'underline' }}>https://floev.com/survey</p>
             </div>
             <div className="q-wrap__btn-wrap">
-                <button className="q-wrap__btn q-wrap__btn-prev" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
-                <button className="q-wrap__btn q-wrap__btn-next" type="button" onClick={() => props.onNext()}><span>내 설문 시작하기</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>
+                <button className="q-wrap__btn q-wrap__btn-prev" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={handleClickPrev}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-next" type="button" onClick={handleClickNext}><span>내 설문 시작하기</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>
             </div>
         </div>
     </>)

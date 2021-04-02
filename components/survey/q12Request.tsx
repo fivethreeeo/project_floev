@@ -6,16 +6,7 @@ import { LOUNGE } from '../../lib/constants'
 const fromToday = getDayDate(7, 0)
 const now = new Date(Date.now());
 
-export default function Q12Request(props: {
-    hatchery: Hatchery
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function Q12Request(props: SurveyProps) {
     const [loungeCode, setLoungeCode] = useState<number>(props.oldAnswers.loungeCode)
     const [requestDate, setRequestDate] = useState<string>(props.oldAnswers.requestDate)
     const [requestTime, setRequestTime] = useState<string>(props.oldAnswers.requestTime)

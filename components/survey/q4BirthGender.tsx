@@ -1,15 +1,8 @@
 import React, { useState } from 'react'
+import * as Creep from '../../lib/hatchery'
+import { EVENT } from '../../lib/constants'
 
-export default function Q4BirthGender(props: {
-    hatchery: Hatchery
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function Q4BirthGender(props: SurveyProps) {
     const [birth, setBirth] = useState<number>(props.oldAnswers.birth)
     const [gender, setGender] = useState<string>(props.oldAnswers.gender)
 
@@ -21,7 +14,6 @@ export default function Q4BirthGender(props: {
         answersParam.birth = newBirth
         props.answersUpdate(answersParam)
 
-        // for caching
         localStorage.setItem('floev[currentStep]', '4')
         localStorage.setItem('floev[birth]', String(newBirth))
     }
@@ -34,7 +26,6 @@ export default function Q4BirthGender(props: {
         answersParam.gender = newGender
         props.answersUpdate(answersParam)
 
-        // for caching
         localStorage.setItem('floev[currentStep]', '2')
         localStorage.setItem('floev[gender]', newGender)
     }
@@ -44,6 +35,24 @@ export default function Q4BirthGender(props: {
         for (let i = 2004; i >= 1955; i--)
             options.push(<option key={i} value={i}>{i}</option>)
         return options
+    }
+
+    async function handleClickPrev() {
+        await Creep.recordEvent({
+            hatchery: props.hatchery,
+            event: Creep.createPostDataOf(EVENT.SURVEY.Q4.PREV)
+        })
+        props.onPrev()
+    }
+    async function handleClickNext() {
+        // 이때 status egg status 업데이트
+        // 기존 hatcheryId로 검색했을 때 birth/gender 와 새롭게 입력된 birth/gender 비교
+
+        await Creep.recordEvent({
+            hatchery: props.hatchery,
+            event: Creep.createPostDataOf(EVENT.SURVEY.Q4.NEXT)
+        })
+        props.onNext()
     }
 
     return (<>
@@ -63,10 +72,10 @@ export default function Q4BirthGender(props: {
                 </div>
             </div>
             <div className="q-wrap__btn-wrap">
-                <button className="q-wrap__btn q-wrap__btn-prev tn-0009" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-prev tn-0009" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={handleClickPrev}>이전</button>
                 {birth < 0 || gender === '' ? (
                     <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
-                    (<button className="q-wrap__btn q-wrap__btn-next tn-0008" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
+                    (<button className="q-wrap__btn q-wrap__btn-next tn-0008" type="button" onClick={handleClickNext}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
                 }
             </div>
         </div>

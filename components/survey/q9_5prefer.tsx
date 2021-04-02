@@ -4,16 +4,7 @@ import { UploadChangeParam, UploadFile } from 'antd/lib/upload/interface'
 import { PlusOutlined } from '@ant-design/icons';
 import { getBase64 } from '../../utils/surveyUtils'
 
-export default function Q9_5Prefer(props: {
-    hatchery: Hatchery
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function Q9_5Prefer(props: SurveyProps) {
     const [prefer, setPrefer] = useState<string>(props.oldAnswers.prefer)
     const [previewVisible, setPreviewVisible] = useState(false)
     const [previewImage, setPreviewImage] = useState('')

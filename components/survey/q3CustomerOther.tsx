@@ -1,15 +1,6 @@
 import React from 'react'
 
-export default function Q3WithCustomer(props: {
-    hatchery: Hatchery
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function Q3WithCustomer(props: SurveyProps) {
 
     return (<>
         <p>카톡 상담 안내</p>
