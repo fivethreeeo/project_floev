@@ -5,6 +5,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { getBase64 } from '../../utils/surveyUtils'
 
 export default function Q9_5Prefer(props: {
+    hatchery: Hatchery
     oldAnswers: Answers
     answersUpdate: (answersParam: Answers) => void
     currentStep: number

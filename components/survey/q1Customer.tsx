@@ -7,6 +7,7 @@ export enum CUSTOMER {
 }
 
 export default function Q1Customer(props: {
+    hatchery: Hatchery
     oldAnswers: Answers
     answersUpdate: (answersParam: Answers) => void
     currentStep: number
@@ -25,7 +26,6 @@ export default function Q1Customer(props: {
         answersParam.customer = newCustomer
         props.answersUpdate(answersParam)
 
-        // for caching
         localStorage.setItem('floev[currentStep]', '1')
         localStorage.setItem('floev[customer]', String(newCustomer))
     }

@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function Q3WithCustomer(props: {
+    hatchery: Hatchery
     oldAnswers: Answers
     answersUpdate: (answersParam: Answers) => void
     currentStep: number

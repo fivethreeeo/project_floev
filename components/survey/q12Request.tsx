@@ -7,6 +7,7 @@ const fromToday = getDayDate(7, 0)
 const now = new Date(Date.now());
 
 export default function Q12Request(props: {
+    hatchery: Hatchery
     oldAnswers: Answers
     answersUpdate: (answersParam: Answers) => void
     currentStep: number

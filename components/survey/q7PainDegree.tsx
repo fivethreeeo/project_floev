@@ -9,6 +9,7 @@ enum PAINDEGREE {
 }
 
 export default function Q7PainDegree(props: {
+    hatchery: Hatchery
     oldAnswers: Answers
     answersUpdate: (answersParam: Answers) => void
     currentStep: number

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 export default function Q11Size(props: {
+    hatchery: Hatchery
     oldAnswers: Answers
     answersUpdate: (answersParam: Answers) => void
     currentStep: number

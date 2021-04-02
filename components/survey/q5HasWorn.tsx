@@ -6,6 +6,7 @@ export enum HASWORN {
 }
 
 export default function Q5HasWorn(props: {
+    hatchery: Hatchery
     oldAnswers: Answers
     answersUpdate: (answersParam: Answers) => void
     currentStep: number

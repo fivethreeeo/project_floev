@@ -14,6 +14,7 @@ const IMAGE_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://image.
 const IMAGE_ADMIN_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://imageadmin.floev.com' : 'http://localhost:3034'
 
 export default function Q12NamePhoneNumber(props: {
+    hatchery: Hatchery
     oldAnswers: Answers
     answersUpdate: (answersParam: Answers) => void
     currentStep: number

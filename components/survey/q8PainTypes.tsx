@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 
 export default function Q8Paintypes(props: {
+    hatchery: Hatchery
     oldAnswers: Answers
     answersUpdate: (answersParam: Answers) => void
     currentStep: number
