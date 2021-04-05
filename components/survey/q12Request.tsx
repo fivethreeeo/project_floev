@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { availablePurchaseRequestTime } from '../../utils/surveyUtils'
 import { getDayDate, getOnlyDate, getWeekday } from '../../utils/timeFormat'
 import { LOUNGE } from '../../lib/constants'
-import * as Creep from '../../lib/hatchery'
 import { EVENT } from '../../lib/constants'
 
 const fromToday = getDayDate(7, 0)
@@ -57,20 +56,9 @@ export default function Q12Request(props: SurveyProps) {
             window.wcs_do(_nasa);
         }
     }
-    async function handleClickPrev() {
-        await Creep.recordEvent({
-            hatchery: props.hatchery,
-            event: Creep.createPostDataOf(EVENT.SURVEY.Q12.PREV)
-        })
-        props.onPrev()
-    }
     async function handleClickNext() {
         naverPixelRequest()
-        await Creep.recordEvent({
-            hatchery: props.hatchery,
-            event: Creep.createPostDataOf(EVENT.SURVEY.Q12.NEXT)
-        })
-        props.onNext()
+        props.onNext(EVENT.SURVEY.Q12.NEXT)
     }
 
     const availableYeuksamTimes = availablePurchaseRequestTime(requestDate, LOUNGE.YEUKSAM, props.purchaseRequest)
@@ -148,7 +136,7 @@ export default function Q12Request(props: SurveyProps) {
             </div>
 
             <div className="q-wrap__btn-wrap">
-                <button className="q-wrap__btn q-wrap__btn-prev tn-0025" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={handleClickPrev}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-prev tn-0025" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev(EVENT.SURVEY.Q12.PREV)}>이전</button>
                 {requestDate === "" || loungeCode === 0 || requestTime === "" ? (
                     <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
                     (<button className="q-wrap__btn q-wrap__btn-next tn-0024" type="button" onClick={handleClickNext}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)

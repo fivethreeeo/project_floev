@@ -91,7 +91,7 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
             }// 백엔드 에러와 일치시키기
             else if (error.message === "Duplicated") {
                 alert('죄송합니다. 이미 예약된 시간입니다.')
-                props.onPrev()
+                props.onPrev(EVENT.SURVEY.Q13.DUP)
             }
         }
     });
@@ -199,7 +199,6 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
         setPhotoRequestUrls(tempPhotoRequestUrls)
     }
 
-
     function setFileNameRequestUrl() {
         setPreferFileNameRequestUrl()
         setPhotoFileNameRequestUrl()
@@ -269,14 +268,6 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
         makeSurveyPurchaseRequest()
     }
 
-    async function handleClickPrev() {
-        await Creep.recordEvent({
-            hatchery: props.hatchery,
-            event: Creep.createPostDataOf(EVENT.SURVEY.Q13.PREV)
-        })
-        props.onPrev()
-    }
-
     return (<>
         <div className="q-wrap q13">
             <div className="q-wrap__question-main">인증을 통해 예약을 확정해주세요.</div>
@@ -312,7 +303,7 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
 
 
             <div className="q-wrap__btn-wrap">
-                <button className="q-wrap__btn q-wrap__btn-prev tn-0027" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={handleClickPrev}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-prev tn-0027" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev(EVENT.SURVEY.Q13.PREV)}>이전</button>
                 {authNumber.length !== 4 || !isActive ?
                     (<button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled"><span>인증하고 예약완료하기</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
                     (!loading ?

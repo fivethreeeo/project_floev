@@ -4,11 +4,11 @@ import Head from 'next/head'
 import SurveyHeader from '../../layout/SurveyHeader'
 import Layout from '../../layout/DefaultLayout'
 import moment from 'moment'
-import { HASWORN, zerg } from '../../lib/constants'
+import { CUSTOMER, HASWORN, zerg } from '../../lib/constants'
 import * as Creep from '../../lib/hatchery'
 
 import Q0Start from './q0Start'
-import Q1Customer, { CUSTOMER } from './q1Customer'
+import Q1Customer from './q1Customer'
 import Q2CustomerWith from './q2CustomerWith'
 import Q3CustomerOther from './q3CustomerOther'
 import Q4BirthGender from './q4BirthGender'
@@ -119,7 +119,7 @@ const SurveyPage = (props: {
         setStepIndex(currentStepToStepIndex(step))
     }
 
-    function handleNext() {
+    function handleNext(eventName: string) {
         if (currentStep === 1) {
             if (answers.customer === CUSTOMER.SELF) {
                 updateStep(4)
@@ -162,9 +162,14 @@ const SurveyPage = (props: {
                 name: localStorage.getItem('floev[name]')
             })
         }
+
+        Creep.recordEvent({
+            hatchery: hatchery,
+            event: Creep.createPostDataOf(eventName)
+        })
     }
 
-    function handlePrev() {
+    function handlePrev(eventName: string) {
         if (currentStep === 3) {
             updateStep(1)
         } else if (currentStep === 4) {
@@ -200,10 +205,11 @@ const SurveyPage = (props: {
         }
         localStorage.removeItem('floev[requestDate]')
         localStorage.removeItem('floev[requestTime]')
-    }
 
-    function onClose() {
-        Router.push('/')
+        Creep.recordEvent({
+            hatchery: hatchery,
+            event: Creep.createPostDataOf(eventName)
+        })
     }
 
     let StepComponent = steps[stepIndex]
@@ -234,11 +240,8 @@ const SurveyPage = (props: {
             <Layout title="플로브 - 안경 설문">
                 <div className="survey">
                     {currentStep > 0 &&
-                        <SurveyHeader
-                            stepIndex={stepIndex}
-                            onPrev={() => handlePrev()}
-                            onClose={() => onClose()}
-                        />}
+                        <SurveyHeader stepIndex={stepIndex} />
+                    }
                     <StepComponent
                         hatchery={hatchery}
                         updateHatchery={(newHatchery: Hatchery) => handleUpdateHatchery(newHatchery)}
@@ -247,8 +250,8 @@ const SurveyPage = (props: {
                         currentStep={currentStep}
                         max={max}
                         purchaseRequest={props.purchaseRequest}
-                        onPrev={() => handlePrev()}
-                        onNext={() => handleNext()}
+                        onPrev={(eventName: string) => handlePrev(eventName)}
+                        onNext={(eventName: string) => handleNext(eventName)}
                     />
                 </div>
             </Layout>

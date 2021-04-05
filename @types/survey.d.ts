@@ -7,8 +7,8 @@ interface SurveyProps {
     currentStep: number
     max: number
     purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
+    onPrev: (eventName: string) => void
+    onNext: (eventName: string) => void
 }
 
 declare class PurchaseSurveyInput {

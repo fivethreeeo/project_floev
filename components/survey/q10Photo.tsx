@@ -4,7 +4,6 @@ import { PlusOutlined } from '@ant-design/icons';
 import { UploadChangeParam, UploadFile } from 'antd/lib/upload/interface';
 import { HASWORN } from '../../lib/constants';
 import { getBase64 } from '../../utils/surveyUtils'
-import * as Creep from '../../lib/hatchery'
 import { EVENT } from '../../lib/constants'
 
 export default function Q10Photo(props: SurveyProps) {
@@ -55,20 +54,9 @@ export default function Q10Photo(props: SurveyProps) {
         }
     }
 
-    async function handleClickPrev() {
-        await Creep.recordEvent({
-            hatchery: props.hatchery,
-            event: Creep.createPostDataOf(EVENT.SURVEY.Q10.PREV)
-        })
-        props.onPrev()
-    }
     async function handleClickNext() {
         naverPixelPhoto()
-        await Creep.recordEvent({
-            hatchery: props.hatchery,
-            event: Creep.createPostDataOf(EVENT.SURVEY.Q10.NEXT)
-        })
-        props.onNext()
+        props.onNext(EVENT.SURVEY.Q10.NEXT)
     }
 
     return (<>
@@ -101,7 +89,7 @@ export default function Q10Photo(props: SurveyProps) {
                 </div>
             </div>
             <div className="q-wrap__btn-wrap">
-                <button className="q-wrap__btn q-wrap__btn-prev tn-0021" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={handleClickPrev}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-prev tn-0021" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev(EVENT.SURVEY.Q10.PREV)}>이전</button>
                 {photoFileList.length === 0 ? (
                     <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
                     (<button className="q-wrap__btn q-wrap__btn-next tn-0020" type="button" onClick={handleClickNext}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)

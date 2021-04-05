@@ -36,23 +36,11 @@ export default function Q4BirthGender(props: SurveyProps) {
             options.push(<option key={i} value={i}>{i}</option>)
         return options
     }
-
-    async function handleClickPrev() {
-        await Creep.recordEvent({
-            hatchery: props.hatchery,
-            event: Creep.createPostDataOf(EVENT.SURVEY.Q4.PREV)
-        })
-        props.onPrev()
-    }
     async function handleClickNext() {
         // 이때 status egg status 업데이트
         // 기존 hatcheryId로 검색했을 때 birth/gender 와 새롭게 입력된 birth/gender 비교
 
-        await Creep.recordEvent({
-            hatchery: props.hatchery,
-            event: Creep.createPostDataOf(EVENT.SURVEY.Q4.NEXT)
-        })
-        props.onNext()
+        props.onNext(EVENT.SURVEY.Q4.NEXT)
     }
 
     return (<>
@@ -72,7 +60,7 @@ export default function Q4BirthGender(props: SurveyProps) {
                 </div>
             </div>
             <div className="q-wrap__btn-wrap">
-                <button className="q-wrap__btn q-wrap__btn-prev tn-0009" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={handleClickPrev}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-prev tn-0009" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev(EVENT.SURVEY.Q4.PREV)}>이전</button>
                 {birth < 0 || gender === '' ? (
                     <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
                     (<button className="q-wrap__btn q-wrap__btn-next tn-0008" type="button" onClick={handleClickNext}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
