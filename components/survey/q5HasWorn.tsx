@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
-
-export enum HASWORN {
-    YES,
-    NO
-}
+import * as Creep from '../../lib/hatchery'
+import { EVENT, HASWORN } from '../../lib/constants'
 
 export default function Q5HasWorn(props: SurveyProps) {
     const [hasWorn, setHasWorn] = useState<number>(props.oldAnswers.hasWorn)
@@ -28,9 +25,23 @@ export default function Q5HasWorn(props: SurveyProps) {
         }
         props.answersUpdate(answersParam)
 
-        // for caching
         localStorage.setItem('floev[currentStep]', '5')
         localStorage.setItem('floev[hasWorn]', String(newHasWorn))
+    }
+
+    async function handleClickPrev() {
+        await Creep.recordEvent({
+            hatchery: props.hatchery,
+            event: Creep.createPostDataOf(EVENT.SURVEY.Q5.PREV)
+        })
+        props.onPrev()
+    }
+    async function handleClickNext() {
+        await Creep.recordEvent({
+            hatchery: props.hatchery,
+            event: Creep.createPostDataOf(EVENT.SURVEY.Q5.NEXT)
+        })
+        props.onNext()
     }
 
     return (<>
@@ -44,10 +55,10 @@ export default function Q5HasWorn(props: SurveyProps) {
                 <label className="q-wrap__label-radio-100" htmlFor="q5_2">아니요. 첫 안경이에요</label>
             </div>
             <div className="q-wrap__btn-wrap">
-                <button className="q-wrap__btn q-wrap__btn-prev tn-0011" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-prev tn-0011" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={handleClickPrev}>이전</button>
                 {hasWorn < 0 ? (
                     <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
-                    (<button className="q-wrap__btn q-wrap__btn-next tn-0010" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
+                    (<button className="q-wrap__btn q-wrap__btn-next tn-0010" type="button" onClick={handleClickNext}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
                 }
             </div>
         </div>

@@ -3,6 +3,8 @@ import { Modal, Upload } from 'antd'
 import { UploadChangeParam, UploadFile } from 'antd/lib/upload/interface'
 import { PlusOutlined } from '@ant-design/icons';
 import { getBase64 } from '../../utils/surveyUtils'
+import * as Creep from '../../lib/hatchery'
+import { EVENT } from '../../lib/constants'
 
 export default function Q9_5Prefer(props: SurveyProps) {
     const [prefer, setPrefer] = useState<string>(props.oldAnswers.prefer)
@@ -42,6 +44,20 @@ export default function Q9_5Prefer(props: SurveyProps) {
         localStorage.setItem('floev[currentStep]', '95')
         localStorage.setItem('floev[prefer]', newPrefer)
     }
+    async function handleClickPrev() {
+        await Creep.recordEvent({
+            hatchery: props.hatchery,
+            event: Creep.createPostDataOf(EVENT.SURVEY.Q9_5.PREV)
+        })
+        props.onPrev()
+    }
+    async function handleClickNext() {
+        await Creep.recordEvent({
+            hatchery: props.hatchery,
+            event: Creep.createPostDataOf(EVENT.SURVEY.Q9_5.NEXT)
+        })
+        props.onNext()
+    }
 
     return (<>
         <div className="q-wrap q9">
@@ -75,8 +91,8 @@ export default function Q9_5Prefer(props: SurveyProps) {
                 </Modal>
             </div>
             <div className="q-wrap__btn-wrap">
-                <button className="q-wrap__btn q-wrap__btn-prev tn-0019" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
-                <button className="q-wrap__btn q-wrap__btn-next tn-0020" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>
+                <button className="q-wrap__btn q-wrap__btn-prev tn-0019" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={handleClickPrev}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-next tn-0020" type="button" onClick={handleClickNext}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>
             </div>
         </div>
     </>)

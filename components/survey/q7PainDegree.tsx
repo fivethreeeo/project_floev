@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { PAINDEGREE } from '../../lib/constants'
+import * as Creep from '../../lib/hatchery'
+import { EVENT, PAINDEGREE } from '../../lib/constants'
 
 export default function Q7PainDegree(props: SurveyProps) {
     const [painDegree, setPainDegree] = useState<number>(props.oldAnswers.painDegree)
@@ -28,6 +29,22 @@ export default function Q7PainDegree(props: SurveyProps) {
         localStorage.setItem('floev[currentStep]', '7')
         localStorage.setItem('floev[painDegreeEtc]', newPainDegreeEtc)
     }
+
+    async function handleClickPrev() {
+        await Creep.recordEvent({
+            hatchery: props.hatchery,
+            event: Creep.createPostDataOf(EVENT.SURVEY.Q7.PREV)
+        })
+        props.onPrev()
+    }
+    async function handleClickNext() {
+        await Creep.recordEvent({
+            hatchery: props.hatchery,
+            event: Creep.createPostDataOf(EVENT.SURVEY.Q7.NEXT)
+        })
+        props.onNext()
+    }
+
     return (<>
         <div className="q-wrap q7">
             <div className="q-wrap__question-main">안경/콘택트렌즈를 착용하지 않고 일상생활이 어느정도 가능하신가요?</div>
@@ -52,10 +69,10 @@ export default function Q7PainDegree(props: SurveyProps) {
                 ></textarea>
             </div>
             <div className="q-wrap__btn-wrap">
-                <button className="q-wrap__btn q-wrap__btn-prev tn-0015" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-prev tn-0015" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={handleClickPrev}>이전</button>
                 {painDegree < 0 ? (
                     <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
-                    (<button className="q-wrap__btn q-wrap__btn-next tn-0014" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
+                    (<button className="q-wrap__btn q-wrap__btn-next tn-0014" type="button" onClick={handleClickNext}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
                 }
             </div>
         </div>

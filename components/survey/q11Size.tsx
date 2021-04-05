@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import * as Creep from '../../lib/hatchery'
+import { EVENT } from '../../lib/constants'
 
 export default function Q11Size(props: SurveyProps) {
     const [size1, setSize1] = useState<string>('')
@@ -41,6 +43,21 @@ export default function Q11Size(props: SurveyProps) {
         localStorage.setItem('floev[size]', totalSize)
     }
 
+    async function handleClickPrev() {
+        await Creep.recordEvent({
+            hatchery: props.hatchery,
+            event: Creep.createPostDataOf(EVENT.SURVEY.Q11.PREV)
+        })
+        props.onPrev()
+    }
+    async function handleClickNext() {
+        await Creep.recordEvent({
+            hatchery: props.hatchery,
+            event: Creep.createPostDataOf(EVENT.SURVEY.Q11.NEXT)
+        })
+        props.onNext()
+    }
+
     return (<>
         <div className="q-wrap q11">
             <div className="q-wrap__question-main">내 안경의 사이즈를 입력해주세요.</div>
@@ -48,16 +65,14 @@ export default function Q11Size(props: SurveyProps) {
             <div className="q-wrap__answer-wrap">
                 <img src="/img/survey/size-info.jpg" alt="" />
                 <input className="input-text input-text-size-1" type="text" tabIndex={1} placeholder={'46'} value={size1} maxLength={2} onChange={e => handleChange1(e.target.value)} />
-                {/* 칸 채우면 다음 칸으로 이동하는 이벤트 */}
 
                 <input className="input-text input-text-size-2" type="text" tabIndex={2} placeholder={'24'} value={size2} maxLength={2} onChange={e => handleChange2(e.target.value)} />
-                {/* 칸 채우면 다음 칸으로 이동하는 이벤트 */}
 
                 <input className="input-text input-text-size-3" type="text" tabIndex={3} placeholder={'145'} value={size3} maxLength={3} onChange={e => handleChange3(e.target.value)} />
             </div>
             <div className="q-wrap__btn-wrap">
-                <button className="q-wrap__btn q-wrap__btn-prev tn-0023" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
-                <button className="q-wrap__btn q-wrap__btn-next tn-0022" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>
+                <button className="q-wrap__btn q-wrap__btn-prev tn-0023" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={handleClickPrev}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-next tn-0022" type="button" onClick={handleClickNext}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>
             </div>
         </div>
     </>)

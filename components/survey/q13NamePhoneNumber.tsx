@@ -9,6 +9,8 @@ import moment from 'moment'
 import { resetSurvey } from '../../utils/surveyUtils'
 import { MAKE_SURVEY_PURCHASE_REQUEST } from '../../lib/mutation'
 import { SHA256 } from '../../utils/SHA256'
+import * as Creep from '../../lib/hatchery'
+import { EVENT } from '../../lib/constants'
 
 const IMAGE_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://image.floev.com' : 'http://localhost:3033'
 const IMAGE_ADMIN_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://imageadmin.floev.com' : 'http://localhost:3034'
@@ -203,10 +205,13 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
         setPhotoFileNameRequestUrl()
     }
 
-    function requestAuthNumberAndSetFileNameRequestUrl() {
+    async function requestAuthNumberAndSetFileNameRequestUrl(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+        Creep.recordEvent({
+            hatchery: props.hatchery,
+            event: Creep.createPostDataOf(e.currentTarget.value)
+        })
         setIsSentAuth(true)
         setTimerOn()
-
         axios.post("https://api.floev.com/auth/create", {
             phoneNumber: phoneNumber
         }).then((result: any) => {
@@ -255,9 +260,21 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
         submitPhotoFiles()
         submitPreferFiles()
     }
-    function handleClick() {
+    function handleClickpPurchaseRequest(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+        Creep.recordEvent({
+            hatchery: props.hatchery,
+            event: Creep.createPostDataOf(e.currentTarget.value)
+        })
         submitPhoto()
         makeSurveyPurchaseRequest()
+    }
+
+    async function handleClickPrev() {
+        await Creep.recordEvent({
+            hatchery: props.hatchery,
+            event: Creep.createPostDataOf(EVENT.SURVEY.Q13.PREV)
+        })
+        props.onPrev()
     }
 
     return (<>
@@ -272,13 +289,13 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
                 {!isSentAuth ?
                     // 인증번호 보내기 전
                     isPhoneNumber ?
-                        (<button className="btn-num tn-0028" onClick={() => requestAuthNumberAndSetFileNameRequestUrl()}>인증번호전송</button>) :
+                        (<button className="btn-num tn-0028" value={EVENT.SURVEY.Q13.AUTH} onClick={(e) => requestAuthNumberAndSetFileNameRequestUrl(e)}>인증번호전송</button>) :
                         (<button className="btn-num">인증번호전송</button>) :
                     // 인증번호 보낸 후
                     (<div className="input-text-num">
                         <input className="q-wrap__input-text" type="text" placeholder={'인증번호 4자리'} value={authNumber} onChange={e => handleChangeAuthNumber(e)} maxLength={4} />
                         {isAuthenticated ?
-                            (<button className="btn-resend tn-0029" onClick={() => requestAuthNumberAndSetFileNameRequestUrl()}>재전송</button>) :
+                            (<button className="btn-resend tn-0029" value={EVENT.SURVEY.Q13.REAUTH} onClick={(e) => requestAuthNumberAndSetFileNameRequestUrl(e)}>재전송</button>) :
                             (<button className="btn-resend">재전송</button>)}
 
                         {leftSecond <= 180 ?
@@ -295,12 +312,11 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
 
 
             <div className="q-wrap__btn-wrap">
-                <button className="q-wrap__btn q-wrap__btn-prev tn-0027" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-prev tn-0027" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={handleClickPrev}>이전</button>
                 {authNumber.length !== 4 || !isActive ?
                     (<button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled"><span>인증하고 예약완료하기</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
                     (!loading ?
-                        (<button className="q-wrap__btn q-wrap__btn-next tn-0026" type={'submit'}
-                            onClick={() => handleClick()}><span>인증하고 예약완료하기</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
+                        (<button className="q-wrap__btn q-wrap__btn-next tn-0026" type={'submit'} value={EVENT.SURVEY.Q13.FINISH} onClick={e => handleClickpPurchaseRequest(e)}><span>인증하고 예약완료하기</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
                         (<Spin size="large" tip="잠시만 기다려주세요.." />))
                 }
             </div>

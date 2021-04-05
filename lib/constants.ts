@@ -21,6 +21,11 @@ export enum PAINDEGREE {
     NOIDEA
 }
 
+export enum HASWORN {
+    YES,
+    NO
+}
+
 export const zerg: Hatchery = {
     deviceId: '',
     userId: '',
