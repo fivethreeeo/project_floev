@@ -140,17 +140,12 @@ function createEventData(eventName: string) {
         eventTimestamp: moment().format("YYYY-MM-DDTHH:mm:ss.SSSSSS")
     }
 }
-function createDeviceData() {
-    const device: Device = deviceDetector.parse(navigator.userAgent);
-    console.log(JSON.stringify(device))
-    return device
-}
 
 export const postData = (hatchery: Hatchery, eventName: string) => {
     return {
         hatchery: hatchery,
         event: createEventData(eventName),
-        device: createDeviceData()
+        device: deviceDetector.parse(navigator.userAgent)
     }
 }
 

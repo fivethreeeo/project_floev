@@ -12,10 +12,9 @@ interface HatcheryEvent {
     eventTimestamp: string
 }
 
-interface Device extends DeviceDetector.DeviceDetectorResult { }
-
 interface PostData {
     hatchery: Hatchery
     event: HatcheryEvent
-    device: Device
+    device: any
+    // ipAddress: string
 }
