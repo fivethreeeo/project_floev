@@ -4,7 +4,7 @@ import SurveyHeader from '../../layout/SurveyHeader'
 import Layout from '../../layout/DefaultLayout'
 import moment from 'moment'
 import { CUSTOMER, HASWORN, zerg } from '../../lib/constants'
-import * as Creep from '../../lib/hatchery'
+import { initializeHatchery, recordEvent, postData } from '../../lib/hatchery'
 
 import Q0Start from './q0Start'
 import Q1Customer from './q1Customer'
@@ -48,7 +48,7 @@ const SurveyPage = (props: {
 
     useEffect(() => {
         const createHatchery = async () => {
-            const newHatchery: Hatchery = await Creep.initHatchery(props.user)
+            const newHatchery: Hatchery = await initializeHatchery(props.user)
             setHatchery(newHatchery)
         }
         createHatchery()
@@ -161,8 +161,7 @@ const SurveyPage = (props: {
                 name: localStorage.getItem('floev[name]')
             })
         }
-
-        Creep.recordEvent(Creep.createPostData(hatchery, Creep.createEventData(eventName)))
+        recordEvent(postData(hatchery, eventName))
     }
 
     function handlePrev(eventName: string) {
@@ -202,10 +201,7 @@ const SurveyPage = (props: {
         localStorage.removeItem('floev[requestDate]')
         localStorage.removeItem('floev[requestTime]')
 
-        Creep.recordEvent({
-            hatchery: hatchery,
-            event: Creep.createEventData(eventName)
-        })
+        recordEvent(postData(hatchery, eventName))
     }
 
     let StepComponent = steps[stepIndex]

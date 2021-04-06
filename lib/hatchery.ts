@@ -119,7 +119,7 @@ async function getStatus(userId: string | null, hatcheryId: string, deviceId: st
     return status ?? ''
 }
 
-export async function initHatchery(user: User) {
+export async function initializeHatchery(user: User) {
     const deviceId = getDeviceId()
     const userId = getUserId(user)
     const hatcheryId = await getHatcheryIdWithCurrentSessionId(userId, deviceId)
@@ -132,7 +132,7 @@ export async function initHatchery(user: User) {
     }
 }
 
-export function createEventData(eventName: string) {
+function createEventData(eventName: string) {
     // const device = deviceDetector.parse(navigator.userAgent);
     // console.log(JSON.stringify(device))
 
@@ -144,10 +144,10 @@ export function createEventData(eventName: string) {
     }
 }
 
-export function createPostData(hatchery: Hatchery, event: HatcheryEvent) {
+export const postData = (hatchery: Hatchery, eventName: string) => {
     return {
         hatchery: hatchery,
-        event: event
+        event: createEventData(eventName)
     }
 }
 

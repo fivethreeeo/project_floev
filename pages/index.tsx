@@ -8,7 +8,7 @@ import { CHECKUP_USER_SIMPLE } from '../lib/query'
 import { createApolloClient } from '../lib/apolloClient'
 import { resetSurvey } from '../utils/surveyUtils'
 import ServiceTab from '../components/index/serviceTab'
-import * as Creep from '../lib/hatchery'
+import { initializeHatchery, recordEvent, postData } from '../lib/hatchery'
 import { zerg, EVENT } from '../lib/constants'
 
 const IndexPage = (props: {
@@ -22,12 +22,9 @@ const IndexPage = (props: {
 	// TODO 속도 문제도 신경 써주어야 함 -> 먼저 사이트를 띄워주고 initHatchery 할 수 있도록
 	useEffect(() => {
 		const createHatchery = async () => {
-			const newHatchery: Hatchery = await Creep.initHatchery(props.user)
+			const newHatchery: Hatchery = await initializeHatchery(props.user)
 			setHatchery(newHatchery)
-			Creep.recordEvent({
-				hatchery: newHatchery,
-				event: Creep.createEventData(EVENT.LOADED_A_PAGE)
-			})
+			recordEvent(postData(newHatchery, EVENT.LOADED_A_PAGE))
 		}
 		createHatchery()
 	}, [])
@@ -84,10 +81,7 @@ const IndexPage = (props: {
 	}
 
 	async function didYouVisit(eventName: string) {
-		Creep.recordEvent({
-			hatchery: hatchery,
-			event: Creep.createEventData(eventName)
-		})
+		recordEvent(postData(hatchery, eventName))
 		if (localStorage.getItem('floev[currentStep]') !== null) {
 			setSurveyModal(true)
 		} else {
@@ -95,10 +89,8 @@ const IndexPage = (props: {
 		}
 	}
 	async function surveyFromMiddle() {
-		Creep.recordEvent({
-			hatchery: hatchery,
-			event: Creep.createEventData(EVENT.SURVEY.FROM_MIDDLE)
-		})
+		recordEvent(postData(hatchery, EVENT.SURVEY.FROM_MIDDLE))
+
 		const currentStep = parseInt(localStorage.getItem('floev[currentStep]') ?? '0')
 		if (currentStep > 9 && currentStep < 91) {
 			localStorage.setItem('floev[currentStep]', '95')
@@ -106,10 +98,7 @@ const IndexPage = (props: {
 		routeSurvey()
 	}
 	async function surveyFromStart() {
-		Creep.recordEvent({
-			hatchery: hatchery,
-			event: Creep.createEventData(EVENT.SURVEY.FROM_START)
-		})
+		recordEvent(postData(hatchery, EVENT.SURVEY.FROM_START))
 		resetSurvey()
 		routeSurvey()
 	}
