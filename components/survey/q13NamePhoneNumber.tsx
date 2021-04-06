@@ -9,8 +9,9 @@ import moment from 'moment'
 import { resetSurvey } from '../../utils/surveyUtils'
 import { MAKE_SURVEY_PURCHASE_REQUEST } from '../../lib/mutation'
 import { SHA256 } from '../../utils/SHA256'
-import { initializeHatchery, recordEvent, postData } from '../../lib/hatchery'
-import { EVENT } from '../../lib/constants'
+import { recordEvent, postData, eggTo, createCreature } from '../../lib/hatchery'
+import { EVENT, ZERG } from '../../lib/constants'
+import cuid from 'cuid'
 
 const IMAGE_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://image.floev.com' : 'http://localhost:3033'
 const IMAGE_ADMIN_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://imageadmin.floev.com' : 'http://localhost:3034'
@@ -19,6 +20,8 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
     const router = useRouter()
     const [name, setName] = useState<string>(props.oldAnswers.name)
     const [phoneNumber, setPhoneNumber] = useState<string>(props.oldAnswers.phoneNumber)
+    const oldName = props.oldAnswers.name
+    const oldPhoneNumber = props.oldAnswers.phoneNumber
     const [isPhoneNumber, setIsPhoneNumber] = useState<boolean>(false)
     const [authNumber, setAuthNumber] = useState<string>('')
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
@@ -77,6 +80,26 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
                 resetSurvey()
                 fbq('track', 'Schedule');
                 naverPixelComplete()
+
+                const userId = data.makeSurveyPurchaseRequest.user
+                const creature: Hatchery = props.hatchery
+                creature.userId = userId
+                creature.status = ZERG.CREATURE
+                creature.name = name
+                creature.phoneNumber = phoneNumber
+                if (oldName === '' || oldPhoneNumber === '') {
+                    eggTo(creature)
+                } else if (oldName !== name || oldPhoneNumber !== phoneNumber) {
+                    creature.hatcheryId = cuid() + 'H'
+                    creature.currentSessionId = 1
+                    createCreature(creature)
+                    localStorage.setItem('_hid', creature.hatcheryId)
+                    sessionStorage.setItem('_sid', String(creature.currentSessionId))
+                    sessionStorage.setItem('current_event', '0')
+                }
+                localStorage.setItem('_uid', userId)
+                localStorage.setItem('_sts', creature.status)
+                props.updateHatchery(creature)
                 router.replace('/complete')
             }
         },
@@ -226,6 +249,7 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
             if (file !== undefined) {
                 formData.append("upload-image", file, photoFileNameList[i])
             }
+            // TODO await 제거
             await axios.post(IMAGE_SERVER_URL + '/upload', formData, {
                 headers: { "content-type": "multipart/form-data" }
             }).then(res => {
@@ -242,6 +266,7 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
             if (file !== undefined) {
                 formData.append("upload-image", file, preferFileNameList[i])
             }
+            // TODO await 제거
             await axios.post(IMAGE_SERVER_URL + '/upload', formData, {
                 headers: { "content-type": "multipart/form-data" }
             }).then(res => {

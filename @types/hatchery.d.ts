@@ -6,6 +6,8 @@ interface Hatchery {
     currentSessionId: number
     birth: number | null
     gender: string | null
+    name: string | null
+    phoneNumber: string | null
 }
 
 interface HatcheryEvent {

@@ -1,11 +1,13 @@
 import cuid from 'cuid'
 import React, { useState } from 'react'
 import { EVENT, ZERG } from '../../lib/constants'
-import { createEgg, lavaToEgg } from '../../lib/hatchery'
+import { createEgg, lavaTo } from '../../lib/hatchery'
 
 export default function Q4BirthGender(props: SurveyProps) {
     const [birth, setBirth] = useState<number>(props.oldAnswers.birth)
     const [gender, setGender] = useState<string>(props.oldAnswers.gender)
+    const oldBirth = props.oldAnswers.birth
+    const oldGender = props.oldAnswers.gender
 
     function handleChangeBirth(e: any) {
         const newBirth: number = parseInt(e.target.value)
@@ -38,30 +40,29 @@ export default function Q4BirthGender(props: SurveyProps) {
         return options
     }
     async function handleClickNext() {
-        const oldBirth = parseInt(localStorage.getItem('floev[birth]') ?? '-1')
-        const oldGender = localStorage.getItem('floev[gender]') ?? ''
-        let newHatchery: Hatchery = props.hatchery
-        newHatchery.birth = birth
-        newHatchery.gender = gender
+        const egg: Hatchery = props.hatchery
+        egg.birth = birth
+        egg.gender = gender
         if (oldBirth === -1 || oldGender === '') {
-            newHatchery.status = ZERG.EGG
-            lavaToEgg(newHatchery)
+            egg.status = ZERG.EGG
+            lavaTo(egg)
             localStorage.setItem('_sts', ZERG.EGG)
-        } else if (oldBirth !== newHatchery.birth || oldGender !== newHatchery.gender) {
-            newHatchery.hatcheryId = cuid() + 'H'
-            newHatchery.currentSessionId = 1
-            newHatchery.userId = null
-            newHatchery.status = ZERG.EGG
-            createEgg(newHatchery)
-            localStorage.setItem('_hid', newHatchery.hatcheryId)
-            sessionStorage.setItem('_sid', String(newHatchery.currentSessionId))
+        } else if (oldBirth !== egg.birth || oldGender !== egg.gender) {
+            egg.hatcheryId = cuid() + 'H'
+            egg.currentSessionId = 1
+            egg.userId = null
+            egg.status = ZERG.EGG
+            createEgg(egg)
+            localStorage.setItem('_hid', egg.hatcheryId)
+            sessionStorage.setItem('_sid', String(egg.currentSessionId))
+            sessionStorage.setItem('current_event', '0')
             localStorage.setItem('_sts', ZERG.EGG)
         } else {
             // no status change
         }
-        localStorage.setItem('floev[birth]', String(newHatchery.birth))
-        localStorage.setItem('floev[gender]', newHatchery.gender)
-        props.updateHatchery(newHatchery)
+        localStorage.setItem('floev[birth]', String(egg.birth))
+        localStorage.setItem('floev[gender]', egg.gender)
+        props.updateHatchery(egg)
         props.onNext(EVENT.SURVEY.Q4.NEXT)
     }
 

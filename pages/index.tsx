@@ -22,7 +22,7 @@ const IndexPage = (props: {
 	// TODO 속도 문제도 신경 써주어야 함 -> 먼저 사이트를 띄워주고 initHatchery 할 수 있도록
 	useEffect(() => {
 		const createHatchery = async () => {
-			const newHatchery: Hatchery = await initializeHatchery(props.user)
+			const newHatchery: Hatchery = await initializeHatchery()
 			setHatchery(newHatchery)
 			recordEvent(postData(newHatchery, EVENT.LOADED_A_PAGE))
 		}

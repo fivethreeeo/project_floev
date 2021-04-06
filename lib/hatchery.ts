@@ -15,12 +15,6 @@ function getDeviceId() {
     return deviceId
 }
 
-function getUserId(user: User) {
-    const userId = user ? user.id : localStorage.getItem('_uid')
-    userId ? localStorage.setItem('_uid', userId) : ''
-    return userId
-}
-
 function getSessionId() {
     return parseInt(sessionStorage.getItem('_sid') ?? '0')
     /* _sid가 0이 될 수 없으나 Type check pass 위해 삽입함 */
@@ -32,13 +26,13 @@ function getCurrentEventId() {
     return currentEventId
 }
 
-async function getHatcheryIdWithCurrentSessionIdBy(userId: string, deviceId: string) {
-    return await axios.get(REQUEST_URL + '/hatchery/user/' + userId + '/' + deviceId)
+async function findHatcheryAndSession(hatcheryInput: Hatchery) {
+    return await axios.post(REQUEST_URL + '/hatchery/user/', hatcheryInput)
         .then(res => {
-            console.log("  getHatcheryIdWithCurrentSessionIdBy res.data: " + res.data)
+            console.log("  findHatchery res.data: " + res.data)
             return res.data
         }).catch(err => {
-            console.error("  getHatcheryIdByUserId Error: " + err.message)
+            console.error("  findHatchery Error: " + err.message)
         })
 }
 
@@ -58,47 +52,9 @@ function initializeEvent() {
     sessionStorage.setItem('current_event', '0')
 }
 
-// 같은 디바이스에 다른 유저가 로그인할 수도 있음 -> 이때에는 hatchery id를 보면 안 되고... No -> 무조건 로그인 시에는 유저에 해처리 아이디까지 업데이트해놓도록 해놓자. -> 그럼 캐시에 있는 해처리 아이디는 무조건 유저아이디와 연동될 수밖에 없음
-// userId가 업데이트(status가 creature)되는 시점에 모두 업데이트
-
-async function getHatcheryIdWithCurrentSessionId(userId: string | null, deviceId: string) {
-    let hatcheryId = localStorage.getItem('_hid')
-    let currentSessionId = 0
-
-    if (hatcheryId) {
-        const _sid = sessionStorage.getItem('_sid')
-        if (_sid) {
-            currentSessionId = parseInt(_sid)
-        } else {
-            currentSessionId = await getCurrentSessionIdBy(hatcheryId, deviceId)
-            initializeEvent()
-        }
-    } else {
-        if (userId) {
-            const temp = await getHatcheryIdWithCurrentSessionIdBy(userId, deviceId)
-            hatcheryId = temp.hatcheryId
-            currentSessionId = temp.currentSessionId
-        } else {
-            const lava: Hatchery = {
-                deviceId: getDeviceId(),
-                userId: null,
-                hatcheryId: cuid() + "H",
-                currentSessionId: 1,
-                status: ZERG.LAVA,
-                birth: null,
-                gender: null
-            }
-            createLava(lava)
-        }
-        initializeEvent()
-    }
-    localStorage.setItem('_hid', hatcheryId ?? '')
-    sessionStorage.setItem('_sid', String(currentSessionId)) // 넘겨줄 필요없이 세션 처리는 여기서 끝!
-    return hatcheryId ?? ''
-}
-
-async function getStatusBy(hatcheryId: string, deviceId: string) {
-    return await axios.get(REQUEST_URL + '/hatchery/' + hatcheryId + '/status/' + deviceId)
+async function getStatusByHatcheryId() {
+    const hatcheryId = localStorage.getItem('_hid')
+    return await axios.get(REQUEST_URL + '/hatchery/' + hatcheryId + '/status')
         .then(res => {
             return res.data.status
         }).catch(err => {
@@ -106,58 +62,129 @@ async function getStatusBy(hatcheryId: string, deviceId: string) {
         })
 }
 
-async function getStatus(userId: string | null, hatcheryId: string, deviceId: string) {
-    let status = localStorage.getItem('_sts')
-    if (!status) {
-        if (userId) {
-            status = ZERG.CREATURE
-        } else {
-            status = await getStatusBy(hatcheryId, deviceId)
-        }
-        localStorage.setItem('_sts', status ?? '')
-    }
-    return status ?? ''
-}
-
-export async function initializeHatchery(user: User) {
+export async function initializeHatchery() {
     const deviceId = getDeviceId()
-    const userId = getUserId(user)
-    const hatcheryId = await getHatcheryIdWithCurrentSessionId(userId, deviceId)
-    const status = await getStatus(userId, hatcheryId, deviceId)
+    const userId = localStorage.get('_uid')
+
+    if (!userId) {
+        const hatcheryId = localStorage.getItem('_hid')
+        if (!hatcheryId) {
+            const lava: Hatchery = {
+                deviceId: deviceId,
+                userId: null,
+                hatcheryId: cuid() + 'H',
+                currentSessionId: 1,
+                status: ZERG.LAVA,
+                birth: null,
+                gender: null,
+                name: null,
+                phoneNumber: null,
+            }
+            createLava(lava)
+            localStorage.setItem('_hid', lava.hatcheryId)
+            sessionStorage.setItem('_sid', String(lava.currentSessionId))
+            initializeEvent()
+            localStorage.setItem('_sts', lava.status)
+        } else {
+            const _sid = sessionStorage.getItem('_sid')
+            let currentSessionId
+            if (!_sid) {
+                currentSessionId = await getCurrentSessionIdBy(hatcheryId, deviceId)
+                sessionStorage.setItem('_sid', String(currentSessionId))
+                initializeEvent()
+            } else {
+                currentSessionId = parseInt(_sid)
+            }
+            let status = localStorage.getItem('_sts')
+            if (!status) {
+                status = await getStatusByHatcheryId()
+                localStorage.setItem('_sts', status ?? '')
+            }
+        }
+    } else {
+        localStorage.setItem('_sts', ZERG.CREATURE)
+        let hatcheryId = localStorage.getItem('_hid')
+        if (!hatcheryId) {
+            const hatcheryInput: Hatchery = {
+                deviceId: deviceId,
+                userId: userId,
+                hatcheryId: 'No data', // Dummy 값
+                currentSessionId: 0, // Dummy 값
+                status: ZERG.CREATURE,
+                birth: parseInt(localStorage.get('floev[birth]') ?? '-1'),
+                gender: localStorage.get('floev[gender]'),
+                name: localStorage.get('floev[name]'),
+                phoneNumber: localStorage.get('floev[phoneNumber]'),
+            }
+            const hatcheryOutput = await findHatcheryAndSession(hatcheryInput)
+            localStorage.setItem('_hid', hatcheryOutput.hatcheryId ?? '')
+            sessionStorage.setItem('_sid', String(hatcheryOutput.currentSessionId))
+            initializeEvent()
+        } else {
+            const _sid = sessionStorage.getItem('_sid')
+            let currentSessionId
+            if (!_sid) {
+                currentSessionId = await getCurrentSessionIdBy(hatcheryId, deviceId)
+                sessionStorage.setItem('_sid', String(currentSessionId))
+                initializeEvent()
+            } else {
+                currentSessionId = parseInt(_sid)
+            }
+        }
+    }
     return {
         deviceId: deviceId,
         userId: userId,
-        hatcheryId: hatcheryId,
+        hatcheryId: localStorage.getItem('_hid'),
         currentSessionId: getSessionId(),
-        status: status,
+        status: localStorage.getItem('_sts'),
         birth: parseInt(localStorage.getItem('floev[birth]') ?? '-1'),
-        gender: localStorage.getItem('floev[gender]')
+        gender: localStorage.getItem('floev[gender]'),
+        name: localStorage.getItem('floev[name]'),
+        phoneNumber: localStorage.getItem('floev[phoneNumber]')
     }
 }
 
 function createLava(lava: Hatchery) {
     axios.post(REQUEST_URL + '/hatchery/lava', lava)
-        .catch(err => {
+        .then(() => {
+            console.log("  createLava SUCCESS")
+        }).catch(err => {
             console.error("  createLava Error: " + err.message)
         })
 }
 
 export function createEgg(egg: Hatchery) {
-    axios.post('http://localhost:3035/hatchery/egg', egg)
-        .then(() => {
-            console.log("  createEgg SUCCESS")
-        }).catch(err => {
-            console.error("  createEgg Error: " + err.message)
-        })
-}
-
-export function lavaToEgg(hatchery: Hatchery) {
-    axios.post(REQUEST_URL + '/hatchery/' + hatchery.hatcheryId + '/egg')
+    axios.post(REQUEST_URL + '/hatchery/egg', egg)
         .then(() => {
             process.env.NODE_ENV === 'development'
-                ? console.log("  layEgg SUCCESS")
-                : ''
-        }).catch(err => console.error("  getHatcheryIdByUserId Error: " + err.message))
+                ? console.log("  createEgg SUCCESS") : ''
+        }).catch(err => console.error("  createEgg Error: " + err.message))
+}
+
+export function createCreature(creature: Hatchery) {
+    axios.post(REQUEST_URL + '/hatchery/creature', creature)
+        .then(() => {
+            process.env.NODE_ENV === 'development'
+                ? console.log("  createCreature SUCCESS") : ''
+        }).catch(err => console.error("  createEgg Error: " + err.message))
+}
+
+
+export function lavaTo(egg: Hatchery) {
+    axios.post(REQUEST_URL + '/hatchery/lava/egg', egg)
+        .then(() => {
+            process.env.NODE_ENV === 'development'
+                ? console.log("  lavaToEgg SUCCESS") : ''
+        }).catch(err => console.error("  lavaToEgg Error: " + err.message))
+}
+
+export function eggTo(creature: Hatchery) {
+    axios.post(REQUEST_URL + '/hatchery/egg/creature', creature)
+        .then(() => {
+            process.env.NODE_ENV === 'development'
+                ? console.log("  eggToCreature SUCCESS") : ''
+        }).catch(err => console.error("  eggToCreature Error: " + err.message))
 }
 
 function createEventData(eventName: string) {
