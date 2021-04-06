@@ -19,14 +19,15 @@ const IndexPage = (props: {
 	const [surveyModal, setSurveyModal] = useState<boolean>(false)
 	const [hatchery, setHatchery] = useState<Hatchery>(zerg)
 
+	// TODO 속도 문제도 신경 써주어야 함 -> 먼저 사이트를 띄워주고 initHatchery 할 수 있도록
 	useEffect(() => {
 		const createHatchery = async () => {
 			const newHatchery: Hatchery = await Creep.initHatchery(props.user)
-			await Creep.recordEvent({
-				hatchery: newHatchery,
-				event: Creep.createPostDataOf(EVENT.LOADED_A_PAGE)
-			})
 			setHatchery(newHatchery)
+			Creep.recordEvent({
+				hatchery: newHatchery,
+				event: Creep.createEventData(EVENT.LOADED_A_PAGE)
+			})
 		}
 		createHatchery()
 	}, [])
@@ -83,11 +84,10 @@ const IndexPage = (props: {
 	}
 
 	async function didYouVisit(eventName: string) {
-		await Creep.recordEvent({
+		Creep.recordEvent({
 			hatchery: hatchery,
-			event: Creep.createPostDataOf(eventName)
+			event: Creep.createEventData(eventName)
 		})
-
 		if (localStorage.getItem('floev[currentStep]') !== null) {
 			setSurveyModal(true)
 		} else {
@@ -95,9 +95,9 @@ const IndexPage = (props: {
 		}
 	}
 	async function surveyFromMiddle() {
-		await Creep.recordEvent({
+		Creep.recordEvent({
 			hatchery: hatchery,
-			event: Creep.createPostDataOf(EVENT.SURVEY.FROM_MIDDLE)
+			event: Creep.createEventData(EVENT.SURVEY.FROM_MIDDLE)
 		})
 		const currentStep = parseInt(localStorage.getItem('floev[currentStep]') ?? '0')
 		if (currentStep > 9 && currentStep < 91) {
@@ -106,9 +106,9 @@ const IndexPage = (props: {
 		routeSurvey()
 	}
 	async function surveyFromStart() {
-		await Creep.recordEvent({
+		Creep.recordEvent({
 			hatchery: hatchery,
-			event: Creep.createPostDataOf(EVENT.SURVEY.FROM_START)
+			event: Creep.createEventData(EVENT.SURVEY.FROM_START)
 		})
 		resetSurvey()
 		routeSurvey()

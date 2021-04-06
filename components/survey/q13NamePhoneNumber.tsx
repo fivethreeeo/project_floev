@@ -207,7 +207,7 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
     async function requestAuthNumberAndSetFileNameRequestUrl(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         Creep.recordEvent({
             hatchery: props.hatchery,
-            event: Creep.createPostDataOf(e.currentTarget.value)
+            event: Creep.createEventData(e.currentTarget.value)
         })
         setIsSentAuth(true)
         setTimerOn()
@@ -262,7 +262,7 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
     function handleClickpPurchaseRequest(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         Creep.recordEvent({
             hatchery: props.hatchery,
-            event: Creep.createPostDataOf(e.currentTarget.value)
+            event: Creep.createEventData(e.currentTarget.value)
         })
         submitPhoto()
         makeSurveyPurchaseRequest()

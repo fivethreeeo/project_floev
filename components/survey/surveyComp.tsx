@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Router from 'next/router'
 import Head from 'next/head'
 import SurveyHeader from '../../layout/SurveyHeader'
 import Layout from '../../layout/DefaultLayout'
@@ -163,10 +162,7 @@ const SurveyPage = (props: {
             })
         }
 
-        Creep.recordEvent({
-            hatchery: hatchery,
-            event: Creep.createPostDataOf(eventName)
-        })
+        Creep.recordEvent(Creep.createPostData(hatchery, Creep.createEventData(eventName)))
     }
 
     function handlePrev(eventName: string) {
@@ -208,7 +204,7 @@ const SurveyPage = (props: {
 
         Creep.recordEvent({
             hatchery: hatchery,
-            event: Creep.createPostDataOf(eventName)
+            event: Creep.createEventData(eventName)
         })
     }
 

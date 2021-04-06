@@ -6,7 +6,7 @@ interface Hatchery {
 }
 
 interface HatcheryEvent {
-    sessionId: string
+    sessionId: number
     eventId: number
     eventName: string
     eventTimestamp: string
