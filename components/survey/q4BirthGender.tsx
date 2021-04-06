@@ -6,8 +6,8 @@ import { createEgg, lavaTo } from '../../lib/hatchery'
 export default function Q4BirthGender(props: SurveyProps) {
     const [birth, setBirth] = useState<number>(props.oldAnswers.birth)
     const [gender, setGender] = useState<string>(props.oldAnswers.gender)
-    const oldBirth = props.oldAnswers.birth
-    const oldGender = props.oldAnswers.gender
+    const oldBirth = parseInt(localStorage.getItem('floev[birth]') ?? '-1')
+    const oldGender = localStorage.getItem('floev[gender]') ?? ''
 
     function handleChangeBirth(e: any) {
         const newBirth: number = parseInt(e.target.value)

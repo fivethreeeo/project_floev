@@ -48,7 +48,7 @@ const SurveyPage = (props: {
 
     useEffect(() => {
         const createHatchery = async () => {
-            const newHatchery: Hatchery = await initializeHatchery(props.user)
+            const newHatchery: Hatchery = await initializeHatchery()
             setHatchery(newHatchery)
         }
         createHatchery()

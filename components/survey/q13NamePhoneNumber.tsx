@@ -20,8 +20,8 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
     const router = useRouter()
     const [name, setName] = useState<string>(props.oldAnswers.name)
     const [phoneNumber, setPhoneNumber] = useState<string>(props.oldAnswers.phoneNumber)
-    const oldName = props.oldAnswers.name
-    const oldPhoneNumber = props.oldAnswers.phoneNumber
+    const oldName = localStorage.getItem('floev[name]') ?? ''
+    const oldPhoneNumber = localStorage.getItem('floev[phoneNumber]') ?? ''
     const [isPhoneNumber, setIsPhoneNumber] = useState<boolean>(false)
     const [authNumber, setAuthNumber] = useState<string>('')
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
@@ -81,12 +81,13 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
                 fbq('track', 'Schedule');
                 naverPixelComplete()
 
-                const userId = data.makeSurveyPurchaseRequest.user
+                const userId = data.makeSurveyPurchaseRequest.user.id
                 const creature: Hatchery = props.hatchery
                 creature.userId = userId
                 creature.status = ZERG.CREATURE
                 creature.name = name
                 creature.phoneNumber = phoneNumber
+
                 if (oldName === '' || oldPhoneNumber === '') {
                     eggTo(creature)
                 } else if (oldName !== name || oldPhoneNumber !== phoneNumber) {
@@ -96,6 +97,8 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
                     localStorage.setItem('_hid', creature.hatcheryId)
                     sessionStorage.setItem('_sid', String(creature.currentSessionId))
                     sessionStorage.setItem('current_event', '0')
+                } else {
+                    eggTo(creature)
                 }
                 localStorage.setItem('_uid', userId)
                 localStorage.setItem('_sts', creature.status)
@@ -283,7 +286,7 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
     }
     function handleClickpPurchaseRequest(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         recordEvent(postData(props.hatchery, e.currentTarget.value))
-        submitPhoto()
+        // submitPhoto()
         makeSurveyPurchaseRequest()
     }
 

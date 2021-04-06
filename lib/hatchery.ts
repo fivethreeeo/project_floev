@@ -64,7 +64,7 @@ async function getStatusByHatcheryId() {
 
 export async function initializeHatchery() {
     const deviceId = getDeviceId()
-    const userId = localStorage.get('_uid')
+    const userId = localStorage.getItem('_uid')
 
     if (!userId) {
         const hatcheryId = localStorage.getItem('_hid')
@@ -111,10 +111,10 @@ export async function initializeHatchery() {
                 hatcheryId: 'No data', // Dummy 값
                 currentSessionId: 0, // Dummy 값
                 status: ZERG.CREATURE,
-                birth: parseInt(localStorage.get('floev[birth]') ?? '-1'),
-                gender: localStorage.get('floev[gender]'),
-                name: localStorage.get('floev[name]'),
-                phoneNumber: localStorage.get('floev[phoneNumber]'),
+                birth: parseInt(localStorage.getItem('floev[birth]') ?? '-1'),
+                gender: localStorage.getItem('floev[gender]'),
+                name: localStorage.getItem('floev[name]'),
+                phoneNumber: localStorage.getItem('floev[phoneNumber]'),
             }
             const hatcheryOutput = await findHatcheryAndSession(hatcheryInput)
             localStorage.setItem('_hid', hatcheryOutput.hatcheryId ?? '')
@@ -135,9 +135,9 @@ export async function initializeHatchery() {
     return {
         deviceId: deviceId,
         userId: userId,
-        hatcheryId: localStorage.getItem('_hid'),
+        hatcheryId: localStorage.getItem('_hid') ?? '',
         currentSessionId: getSessionId(),
-        status: localStorage.getItem('_sts'),
+        status: localStorage.getItem('_sts') ?? '',
         birth: parseInt(localStorage.getItem('floev[birth]') ?? '-1'),
         gender: localStorage.getItem('floev[gender]'),
         name: localStorage.getItem('floev[name]'),
