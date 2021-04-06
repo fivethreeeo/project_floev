@@ -6,7 +6,7 @@ import DeviceDetector from 'device-detector-js'
 const deviceDetector = new DeviceDetector();
 
 const REQUEST_URL = process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3035'
+    ? (process.env.USER === "root" ? 'https://htest.floev.kr' : 'http://localhost:3035')
     : 'https://hatchery.floev.kr'
 
 function getDeviceId() {
