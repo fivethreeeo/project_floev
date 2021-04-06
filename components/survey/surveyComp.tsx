@@ -3,7 +3,7 @@ import Head from 'next/head'
 import SurveyHeader from '../../layout/SurveyHeader'
 import Layout from '../../layout/DefaultLayout'
 import moment from 'moment'
-import { CUSTOMER, HASWORN, zerg } from '../../lib/constants'
+import { CUSTOMER, HASWORN, drone } from '../../lib/constants'
 import { initializeHatchery, recordEvent, postData } from '../../lib/hatchery'
 
 import Q0Start from './q0Start'
@@ -44,7 +44,7 @@ const SurveyPage = (props: {
     user: User
     purchaseRequest: PurchaseRequest[]
 }) => {
-    const [hatchery, setHatchery] = useState<Hatchery>(zerg)
+    const [hatchery, setHatchery] = useState<Hatchery>(drone)
 
     useEffect(() => {
         const createHatchery = async () => {

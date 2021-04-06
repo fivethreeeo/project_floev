@@ -9,7 +9,7 @@ import { createApolloClient } from '../lib/apolloClient'
 import { resetSurvey } from '../utils/surveyUtils'
 import ServiceTab from '../components/index/serviceTab'
 import { initializeHatchery, recordEvent, postData } from '../lib/hatchery'
-import { zerg, EVENT } from '../lib/constants'
+import { drone, EVENT } from '../lib/constants'
 
 const IndexPage = (props: {
 	user: User
@@ -17,7 +17,7 @@ const IndexPage = (props: {
 	const router = useRouter()
 	const [tabIdx, setTabIdx] = useState<number>(0)
 	const [surveyModal, setSurveyModal] = useState<boolean>(false)
-	const [hatchery, setHatchery] = useState<Hatchery>(zerg)
+	const [hatchery, setHatchery] = useState<Hatchery>(drone)
 
 	// TODO 속도 문제도 신경 써주어야 함 -> 먼저 사이트를 띄워주고 initHatchery 할 수 있도록
 	useEffect(() => {

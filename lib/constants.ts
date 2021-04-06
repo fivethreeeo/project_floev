@@ -32,11 +32,16 @@ export enum HASWORN {
     NO
 }
 
-export const zerg: Hatchery = {
+export const drone: Hatchery = {
     deviceId: '',
     userId: '',
     hatcheryId: '',
-    status: ''
+    currentSessionId: 0,
+    status: '',
+    birth: 0,
+    gender: '',
+    name: '',
+    phoneNumber: ''
 }
 
 export const EVENT = {
