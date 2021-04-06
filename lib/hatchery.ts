@@ -2,8 +2,8 @@ import axios from "axios"
 import cuid from "cuid"
 import moment from "moment"
 import { ZERG } from '../lib/constants'
-// import DeviceDetector from 'device-detector-js'
-// const deviceDetector = new DeviceDetector();
+import DeviceDetector from 'device-detector-js'
+const deviceDetector = new DeviceDetector();
 
 const REQUEST_URL = process.env.NODE_ENV === 'development'
     ? 'http://localhost:3035'
@@ -133,9 +133,6 @@ export async function initializeHatchery(user: User) {
 }
 
 function createEventData(eventName: string) {
-    // const device = deviceDetector.parse(navigator.userAgent);
-    // console.log(JSON.stringify(device))
-
     return {
         sessionId: getSessionId(),
         eventId: getCurrentEventId(),
@@ -143,11 +140,17 @@ function createEventData(eventName: string) {
         eventTimestamp: moment().format("YYYY-MM-DDTHH:mm:ss.SSSSSS")
     }
 }
+function createDeviceData() {
+    const device: Device = deviceDetector.parse(navigator.userAgent);
+    console.log(JSON.stringify(device))
+    return device
+}
 
 export const postData = (hatchery: Hatchery, eventName: string) => {
     return {
         hatchery: hatchery,
-        event: createEventData(eventName)
+        event: createEventData(eventName),
+        device: createDeviceData()
     }
 }
 
