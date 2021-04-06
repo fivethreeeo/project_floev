@@ -9,7 +9,7 @@ import moment from 'moment'
 import { resetSurvey } from '../../utils/surveyUtils'
 import { MAKE_SURVEY_PURCHASE_REQUEST } from '../../lib/mutation'
 import { SHA256 } from '../../utils/SHA256'
-import * as Creep from '../../lib/hatchery'
+import { initializeHatchery, recordEvent, postData } from '../../lib/hatchery'
 import { EVENT } from '../../lib/constants'
 
 const IMAGE_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://image.floev.com' : 'http://localhost:3033'
@@ -205,10 +205,7 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
     }
 
     async function requestAuthNumberAndSetFileNameRequestUrl(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-        Creep.recordEvent({
-            hatchery: props.hatchery,
-            event: Creep.createEventData(e.currentTarget.value)
-        })
+        recordEvent(postData(props.hatchery, e.currentTarget.value))
         setIsSentAuth(true)
         setTimerOn()
         axios.post("https://api.floev.com/auth/create", {
@@ -260,10 +257,7 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
         submitPreferFiles()
     }
     function handleClickpPurchaseRequest(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-        Creep.recordEvent({
-            hatchery: props.hatchery,
-            event: Creep.createEventData(e.currentTarget.value)
-        })
+        recordEvent(postData(props.hatchery, e.currentTarget.value))
         submitPhoto()
         makeSurveyPurchaseRequest()
     }

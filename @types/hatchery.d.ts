@@ -3,6 +3,9 @@ interface Hatchery {
     userId: string | null
     hatcheryId: string
     status: string
+    currentSessionId: number
+    birth: number | null
+    gender: string | null
 }
 
 interface HatcheryEvent {

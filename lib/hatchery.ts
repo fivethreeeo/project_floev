@@ -54,13 +54,6 @@ async function getCurrentSessionIdBy(hatcheryId: string, deviceId: string) {
         })
 }
 
-function createNewHatchery(hatcheryId: string, deviceId: string) {
-    axios.post(REQUEST_URL + '/hatchery/' + hatcheryId + '/' + deviceId)
-        .catch(err => {
-            console.error("  createNewHatchery Error: " + err.message)
-        })
-}
-
 function initializeEvent() {
     sessionStorage.setItem('current_event', '0')
 }
@@ -86,9 +79,16 @@ async function getHatcheryIdWithCurrentSessionId(userId: string | null, deviceId
             hatcheryId = temp.hatcheryId
             currentSessionId = temp.currentSessionId
         } else {
-            hatcheryId = cuid() + "H"
-            currentSessionId = 1
-            createNewHatchery(hatcheryId, deviceId)
+            const lava: Hatchery = {
+                deviceId: getDeviceId(),
+                userId: null,
+                hatcheryId: cuid() + "H",
+                currentSessionId: 1,
+                status: ZERG.LAVA,
+                birth: null,
+                gender: null
+            }
+            createLava(lava)
         }
         initializeEvent()
     }
@@ -128,8 +128,36 @@ export async function initializeHatchery(user: User) {
         deviceId: deviceId,
         userId: userId,
         hatcheryId: hatcheryId,
+        currentSessionId: getSessionId(),
         status: status,
+        birth: parseInt(localStorage.getItem('floev[birth]') ?? '-1'),
+        gender: localStorage.getItem('floev[gender]')
     }
+}
+
+function createLava(lava: Hatchery) {
+    axios.post(REQUEST_URL + '/hatchery/lava', lava)
+        .catch(err => {
+            console.error("  createLava Error: " + err.message)
+        })
+}
+
+export function createEgg(egg: Hatchery) {
+    axios.post('http://localhost:3035/hatchery/egg', egg)
+        .then(() => {
+            console.log("  createEgg SUCCESS")
+        }).catch(err => {
+            console.error("  createEgg Error: " + err.message)
+        })
+}
+
+export function lavaToEgg(hatchery: Hatchery) {
+    axios.post(REQUEST_URL + '/hatchery/' + hatchery.hatcheryId + '/egg')
+        .then(() => {
+            process.env.NODE_ENV === 'development'
+                ? console.log("  layEgg SUCCESS")
+                : ''
+        }).catch(err => console.error("  getHatcheryIdByUserId Error: " + err.message))
 }
 
 function createEventData(eventName: string) {
