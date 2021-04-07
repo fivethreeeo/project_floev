@@ -82,8 +82,8 @@ export const resetSurvey = () => {
     if (process.browser) {
         localStorage.removeItem('floev[currentStep]')
         localStorage.removeItem('floev[customer]')
-        localStorage.removeItem('floev[birth]')
-        localStorage.removeItem('floev[gender]')
+        // localStorage.removeItem('floev[birth]')
+        // localStorage.removeItem('floev[gender]')
         localStorage.removeItem('floev[hasWorn]')
         localStorage.removeItem('floev[purposes]')
         localStorage.removeItem('floev[purposeEtc]')
@@ -100,7 +100,7 @@ export const resetSurvey = () => {
         localStorage.removeItem('floev[loungeCode]')
         localStorage.removeItem('floev[requestDate]')
         localStorage.removeItem('floev[requestTime]')
-        localStorage.removeItem('floev[name]')
-        localStorage.removeItem('floev[phoneNumber]')
+        // localStorage.removeItem('floev[name]')
+        // localStorage.removeItem('floev[phoneNumber]')
     }
 }

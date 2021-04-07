@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
 import Layout from '../layout/DefaultLayout'
 import { Carousel, Collapse, Modal } from 'antd'
 import { CaretRightOutlined } from '@ant-design/icons'
-import { CHECKUP_USER } from '../lib/query'
+import { CHECKUP_USER_SIMPLE } from '../lib/query'
 import { createApolloClient } from '../lib/apolloClient'
 import { resetSurvey } from '../utils/surveyUtils'
 import ServiceTab from '../components/index/serviceTab'
+import { initializeHatchery, recordEvent, postData } from '../lib/hatchery'
+import { drone, EVENT } from '../lib/constants'
 
 const IndexPage = (props: {
 	user: User
@@ -15,6 +17,17 @@ const IndexPage = (props: {
 	const router = useRouter()
 	const [tabIdx, setTabIdx] = useState<number>(0)
 	const [surveyModal, setSurveyModal] = useState<boolean>(false)
+	const [hatchery, setHatchery] = useState<Hatchery>(drone)
+
+	// TODO 속도 문제도 신경 써주어야 함 -> 먼저 사이트를 띄워주고 initHatchery 할 수 있도록
+	useEffect(() => {
+		const createHatchery = async () => {
+			const newHatchery: Hatchery = await initializeHatchery()
+			setHatchery(newHatchery)
+			recordEvent(postData(newHatchery, EVENT.INDEX.PAGE))
+		}
+		createHatchery()
+	}, [])
 
 	const collapseCallback = (key: string | string[]) => { key }
 
@@ -67,21 +80,25 @@ const IndexPage = (props: {
 		router.push('/survey')
 	}
 
-	function didYouVisit() {
+	async function didYouVisit(eventName: string) {
+		recordEvent(postData(hatchery, eventName))
 		if (localStorage.getItem('floev[currentStep]') !== null) {
 			setSurveyModal(true)
 		} else {
 			routeSurvey()
 		}
 	}
-	function surveyFromMiddle() {
+	async function surveyFromMiddle() {
+		recordEvent(postData(hatchery, EVENT.SURVEY.FROM_MIDDLE))
+
 		const currentStep = parseInt(localStorage.getItem('floev[currentStep]') ?? '0')
 		if (currentStep > 9 && currentStep < 91) {
 			localStorage.setItem('floev[currentStep]', '95')
 		}
 		routeSurvey()
 	}
-	function surveyFromStart() {
+	async function surveyFromStart() {
+		recordEvent(postData(hatchery, EVENT.SURVEY.FROM_START))
 		resetSurvey()
 		routeSurvey()
 	}
@@ -100,7 +117,7 @@ const IndexPage = (props: {
 								<div className="main-visual__title"><p><strong>아직도 얼굴형으로<br />안경 고르세요?</strong></p></div>
 								<p className="main-visual__caption">진짜 나에게 맞는 안경 추천 서비스</p>
 								<div className="main-visual__btn">
-									<button className="tn-0003 gtm-001 btn-cta btn-test" onClick={() => didYouVisit()}>플로브 시작하기</button>
+									<button className="tn-0003 gtm-001 btn-cta btn-test" onClick={() => didYouVisit(EVENT.INDEX.CTA.TOP)}>플로브 시작하기</button>
 									<Modal
 										className="modal-cookie"
 										visible={surveyModal}
@@ -688,7 +705,7 @@ const IndexPage = (props: {
 				</div>
 				<div className="bottom-cta">
 					<div className="bottom-cta__inner">
-						<button className="gtm-001 btn-cta tn-0004" onClick={() => didYouVisit()}><span>플로브 시작하기</span></button>
+						<button className="gtm-001 btn-cta tn-0004" onClick={() => didYouVisit(EVENT.INDEX.CTA.BOTTOM)}><span>플로브 시작하기</span></button>
 					</div>
 				</div>
 
@@ -713,7 +730,7 @@ const IndexPage = (props: {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	const client = createApolloClient(context)
-	const { user } = await client.query({ query: CHECKUP_USER })
+	const { user } = await client.query({ query: CHECKUP_USER_SIMPLE })
 		.then(({ data }) => {
 			return { user: data.checkUpUser };
 		})

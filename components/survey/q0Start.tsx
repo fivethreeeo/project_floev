@@ -1,14 +1,7 @@
 import React from 'react'
+import { EVENT } from '../../lib/constants'
 
-export default function Q0Start(props: {
-    oldAnswers: Answers
-    answersUpdate: (answers: Answers) => void
-    currentStep: number
-    max: number
-    onPrev: () => void
-    onNext: () => void
-}) {
-
+export default function Q0Start(props: SurveyProps) {
     return (<>
         <div className="q-wrap q0">
             <div className="q0__title">
@@ -36,7 +29,7 @@ export default function Q0Start(props: {
                 </ul>
                 <div className="vertical-line"></div>
             </div>
-            <div className="q0__btn-start tn-0005" onClick={() => props.onNext()}>설문 시작하기</div>
+            <div className="q0__btn-start tn-0005" onClick={() => props.onNext(EVENT.SURVEY.Q0.START)}>설문 시작하기</div>
         </div>
     </>)
 }

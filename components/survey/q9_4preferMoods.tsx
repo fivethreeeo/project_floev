@@ -1,15 +1,7 @@
 import React, { useState } from 'react'
+import { EVENT } from '../../lib/constants'
 
-
-export default function preferMoods(props: {
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function preferMoods(props: SurveyProps) {
     const [preferMoods, setPreferMoods] = useState<Array<string>>(props.oldAnswers.preferMoods)
 
     function handleChangePreferMoods(e: any) {
@@ -90,10 +82,10 @@ export default function preferMoods(props: {
 
             </div>
             <div className="q-wrap__btn-wrap">
-                <button className="q-wrap__btn q-wrap__btn-prev tn-0037" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-prev tn-0037" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev(EVENT.SURVEY.Q9_4.PREV)}>이전</button>
                 {preferMoods.length === 0 ? (
                     <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
-                    (<button className="q-wrap__btn q-wrap__btn-next tn-0036" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
+                    (<button className="q-wrap__btn q-wrap__btn-next tn-0036" type="button" onClick={() => props.onNext(EVENT.SURVEY.Q9_4.NEXT)}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
                 }
             </div>
         </div>

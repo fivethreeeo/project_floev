@@ -1,16 +1,17 @@
-import React, { useState } from 'react'
-import Router from 'next/router'
+import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import SurveyHeader from '../../layout/SurveyHeader'
 import Layout from '../../layout/DefaultLayout'
 import moment from 'moment'
+import { CUSTOMER, HASWORN, drone } from '../../lib/constants'
+import { initializeHatchery, recordEvent, postData } from '../../lib/hatchery'
 
 import Q0Start from './q0Start'
-import Q1Customer, { CUSTOMER } from './q1Customer'
+import Q1Customer from './q1Customer'
 import Q2CustomerWith from './q2CustomerWith'
 import Q3CustomerOther from './q3CustomerOther'
 import Q4BirthGender from './q4BirthGender'
-import Q5HasWorn, { HASWORN } from './q5HasWorn'
+import Q5HasWorn from './q5HasWorn'
 import Q6Purpose from './q6Purposes'
 import Q7PainDegree from './q7PainDegree'
 import Q8PainTypes from './q8PainTypes'
@@ -40,8 +41,23 @@ const steps = [
 const max = steps.length
 
 const SurveyPage = (props: {
+    user: User
     purchaseRequest: PurchaseRequest[]
 }) => {
+    const [hatchery, setHatchery] = useState<Hatchery>(drone)
+
+    useEffect(() => {
+        const createHatchery = async () => {
+            const newHatchery: Hatchery = await initializeHatchery()
+            setHatchery(newHatchery)
+        }
+        createHatchery()
+    }, [])
+
+    function handleUpdateHatchery(newHatchery: Hatchery) {
+        setHatchery(newHatchery)
+    }
+
     const tempPurposes = (localStorage.getItem('floev[purposes]') ?? '').split(',')
     const tempPainTypes = (localStorage.getItem('floev[painTypes]') ?? '').split(',')
     const tempPreferFrameColors = (localStorage.getItem('floev[preferFrameColors]') ?? '').split(',')
@@ -102,7 +118,7 @@ const SurveyPage = (props: {
         setStepIndex(currentStepToStepIndex(step))
     }
 
-    function handleNext() {
+    function handleNext(eventName: string) {
         if (currentStep === 1) {
             if (answers.customer === CUSTOMER.SELF) {
                 updateStep(4)
@@ -145,9 +161,10 @@ const SurveyPage = (props: {
                 name: localStorage.getItem('floev[name]')
             })
         }
+        recordEvent(postData(hatchery, eventName))
     }
 
-    function handlePrev() {
+    function handlePrev(eventName: string) {
         if (currentStep === 3) {
             updateStep(1)
         } else if (currentStep === 4) {
@@ -183,10 +200,8 @@ const SurveyPage = (props: {
         }
         localStorage.removeItem('floev[requestDate]')
         localStorage.removeItem('floev[requestTime]')
-    }
 
-    function onClose() {
-        Router.push('/')
+        recordEvent(postData(hatchery, eventName))
     }
 
     let StepComponent = steps[stepIndex]
@@ -217,19 +232,18 @@ const SurveyPage = (props: {
             <Layout title="플로브 - 안경 설문">
                 <div className="survey">
                     {currentStep > 0 &&
-                        <SurveyHeader
-                            stepIndex={stepIndex}
-                            onPrev={() => handlePrev()}
-                            onClose={() => onClose()}
-                        />}
+                        <SurveyHeader stepIndex={stepIndex} />
+                    }
                     <StepComponent
+                        hatchery={hatchery}
+                        updateHatchery={(newHatchery: Hatchery) => handleUpdateHatchery(newHatchery)}
                         oldAnswers={answers}
                         answersUpdate={() => handleAnswersUpdate(answers)}
                         currentStep={currentStep}
                         max={max}
                         purchaseRequest={props.purchaseRequest}
-                        onPrev={() => handlePrev()}
-                        onNext={() => handleNext()}
+                        onPrev={(eventName: string) => handlePrev(eventName)}
+                        onNext={(eventName: string) => handleNext(eventName)}
                     />
                 </div>
             </Layout>

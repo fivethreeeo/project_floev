@@ -1,11 +1,8 @@
 import React from 'react'
 import { Progress } from 'antd'
 
-
 export default function SurveyHeader(props: {
     stepIndex: number;
-    onPrev: () => void;
-    onClose: () => void;
 }) {
     return (<>
         <div className="survey-header">

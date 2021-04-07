@@ -1,3 +1,16 @@
+
+interface SurveyProps {
+    hatchery: Hatchery
+    updateHatchery: (newHatchery: Hatchery) => void
+    oldAnswers: Answers
+    answersUpdate: (answers: Answers) => void
+    currentStep: number
+    max: number
+    purchaseRequest: PurchaseRequest[]
+    onPrev: (eventName: string) => void
+    onNext: (eventName: string) => void
+}
+
 declare class PurchaseSurveyInput {
     hasWorn
     purposes

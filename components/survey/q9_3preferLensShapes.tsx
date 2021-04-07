@@ -1,15 +1,7 @@
 import React, { useState } from 'react'
+import { EVENT } from '../../lib/constants'
 
-
-export default function preferLensShapes(props: {
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function preferLensShapes(props: SurveyProps) {
     const [preferLensShapes, setPreferLensShapes] = useState<Array<string>>(props.oldAnswers.preferLensShapes)
 
     function handleChangePreferLensShapes(e: any) {
@@ -30,7 +22,6 @@ export default function preferLensShapes(props: {
         localStorage.setItem('floev[currentStep]', '93')
         localStorage.setItem('floev[preferLensShapes]', newPreferLensShapes.toString())
     }
-
     return (<>
         <div className="q-wrap q8">
             <div className="q-wrap__question-main">선호하는 안경의 모양을 모두 선택해주세요.</div>
@@ -69,10 +60,10 @@ export default function preferLensShapes(props: {
 
             </div>
             <div className="q-wrap__btn-wrap">
-                <button className="q-wrap__btn q-wrap__btn-prev tn-0035" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-prev tn-0035" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev(EVENT.SURVEY.Q9_3.PREV)}>이전</button>
                 {preferLensShapes.length === 0 ? (
                     <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
-                    (<button className="q-wrap__btn q-wrap__btn-next tn-0034" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
+                    (<button className="q-wrap__btn q-wrap__btn-next tn-0034" type="button" onClick={() => props.onNext(EVENT.SURVEY.Q9_3.NEXT)}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
                 }
             </div>
         </div>

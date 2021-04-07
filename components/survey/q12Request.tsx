@@ -2,19 +2,12 @@ import React, { useState } from 'react'
 import { availablePurchaseRequestTime } from '../../utils/surveyUtils'
 import { getDayDate, getOnlyDate, getWeekday } from '../../utils/timeFormat'
 import { LOUNGE } from '../../lib/constants'
+import { EVENT } from '../../lib/constants'
 
 const fromToday = getDayDate(7, 0)
 const now = new Date(Date.now());
 
-export default function Q12Request(props: {
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function Q12Request(props: SurveyProps) {
     const [loungeCode, setLoungeCode] = useState<number>(props.oldAnswers.loungeCode)
     const [requestDate, setRequestDate] = useState<string>(props.oldAnswers.requestDate)
     const [requestTime, setRequestTime] = useState<string>(props.oldAnswers.requestTime)
@@ -63,10 +56,9 @@ export default function Q12Request(props: {
             window.wcs_do(_nasa);
         }
     }
-
-    function onClickRequest() {
+    function handleClickNext() {
         naverPixelRequest()
-        props.onNext()
+        props.onNext(EVENT.SURVEY.Q12.NEXT)
     }
 
     const availableYeuksamTimes = availablePurchaseRequestTime(requestDate, LOUNGE.YEUKSAM, props.purchaseRequest)
@@ -144,10 +136,10 @@ export default function Q12Request(props: {
             </div>
 
             <div className="q-wrap__btn-wrap">
-                <button className="q-wrap__btn q-wrap__btn-prev tn-0025" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-prev tn-0025" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev(EVENT.SURVEY.Q12.PREV)}>이전</button>
                 {requestDate === "" || loungeCode === 0 || requestTime === "" ? (
                     <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
-                    (<button className="q-wrap__btn q-wrap__btn-next tn-0024" type="button" onClick={() => onClickRequest()}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
+                    (<button className="q-wrap__btn q-wrap__btn-next tn-0024" type="button" onClick={handleClickNext}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
                 }
             </div>
         </div>
