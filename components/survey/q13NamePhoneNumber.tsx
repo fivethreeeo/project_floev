@@ -90,7 +90,7 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
 
                 if (oldName === '' || oldPhoneNumber === '') {
                     eggTo(creature)
-                } else if (oldName !== name || oldPhoneNumber !== phoneNumber) {
+                } else if (oldPhoneNumber !== phoneNumber) {
                     creature.hatcheryId = cuid() + 'H'
                     creature.currentSessionId = 1
                     createCreature(creature)
