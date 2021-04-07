@@ -286,7 +286,7 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
     }
     function handleClickpPurchaseRequest(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         recordEvent(postData(props.hatchery, e.currentTarget.value))
-        // submitPhoto()
+        submitPhoto()
         makeSurveyPurchaseRequest()
     }
 
