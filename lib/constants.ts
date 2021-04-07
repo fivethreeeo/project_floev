@@ -45,10 +45,12 @@ export const drone: Hatchery = {
 }
 
 export const EVENT = {
-    LOADED_A_PAGE: "Loaded a page",
-    CTA: {
-        TOP: "상단 CTA 클릭",
-        BOTTOM: "하단 CTA 클릭",
+    INDEX: {
+        PAGE: "Loaded index page",
+        CTA: {
+            TOP: "상단 CTA 클릭",
+            BOTTOM: "하단 CTA 클릭",
+        },
     },
     SURVEY: {
         FROM_MIDDLE: "이어서 작성할게요",

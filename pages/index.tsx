@@ -24,7 +24,7 @@ const IndexPage = (props: {
 		const createHatchery = async () => {
 			const newHatchery: Hatchery = await initializeHatchery()
 			setHatchery(newHatchery)
-			recordEvent(postData(newHatchery, EVENT.LOADED_A_PAGE))
+			recordEvent(postData(newHatchery, EVENT.INDEX.PAGE))
 		}
 		createHatchery()
 	}, [])
@@ -117,7 +117,7 @@ const IndexPage = (props: {
 								<div className="main-visual__title"><p><strong>아직도 얼굴형으로<br />안경 고르세요?</strong></p></div>
 								<p className="main-visual__caption">진짜 나에게 맞는 안경 추천 서비스</p>
 								<div className="main-visual__btn">
-									<button className="tn-0003 gtm-001 btn-cta btn-test" onClick={() => didYouVisit(EVENT.CTA.TOP)}>플로브 시작하기</button>
+									<button className="tn-0003 gtm-001 btn-cta btn-test" onClick={() => didYouVisit(EVENT.INDEX.CTA.TOP)}>플로브 시작하기</button>
 									<Modal
 										className="modal-cookie"
 										visible={surveyModal}
@@ -705,7 +705,7 @@ const IndexPage = (props: {
 				</div>
 				<div className="bottom-cta">
 					<div className="bottom-cta__inner">
-						<button className="gtm-001 btn-cta tn-0004" onClick={() => didYouVisit(EVENT.CTA.BOTTOM)}><span>플로브 시작하기</span></button>
+						<button className="gtm-001 btn-cta tn-0004" onClick={() => didYouVisit(EVENT.INDEX.CTA.BOTTOM)}><span>플로브 시작하기</span></button>
 					</div>
 				</div>
 
