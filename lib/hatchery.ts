@@ -194,9 +194,9 @@ export function eggTo(creature: Hatchery) {
         }).catch(err => console.error("  eggToCreature Error: " + err.message))
 }
 
-function createEventData(eventName: string) {
+function createEventData(eventName: string, sessionId: number) {
     return {
-        sessionId: getSessionId(),
+        sessionId: sessionId,
         eventId: getCurrentEventId(),
         eventName: eventName,
         eventTimestamp: moment().format("YYYY-MM-DDTHH:mm:ss.SSSSSS")
@@ -206,7 +206,7 @@ function createEventData(eventName: string) {
 export const postData = (hatchery: Hatchery, eventName: string) => {
     return {
         hatchery: hatchery,
-        event: createEventData(eventName),
+        event: createEventData(eventName, hatchery.currentSessionId),
         device: deviceDetector.parse(navigator.userAgent)
     }
 }
