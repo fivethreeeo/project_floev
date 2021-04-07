@@ -54,7 +54,7 @@ export default function Q10Photo(props: SurveyProps) {
         }
     }
 
-    async function handleClickNext() {
+    function handleClickNext() {
         naverPixelPhoto()
         props.onNext(EVENT.SURVEY.Q10.NEXT)
     }

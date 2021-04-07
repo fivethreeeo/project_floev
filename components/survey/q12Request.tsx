@@ -56,7 +56,7 @@ export default function Q12Request(props: SurveyProps) {
             window.wcs_do(_nasa);
         }
     }
-    async function handleClickNext() {
+    function handleClickNext() {
         naverPixelRequest()
         props.onNext(EVENT.SURVEY.Q12.NEXT)
     }
