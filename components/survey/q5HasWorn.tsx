@@ -1,19 +1,7 @@
 import React, { useState } from 'react'
+import { EVENT, HASWORN } from '../../lib/constants'
 
-export enum HASWORN {
-    YES,
-    NO
-}
-
-export default function Q5HasWorn(props: {
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function Q5HasWorn(props: SurveyProps) {
     const [hasWorn, setHasWorn] = useState<number>(props.oldAnswers.hasWorn)
 
     function handleChange(e: any) {
@@ -36,7 +24,6 @@ export default function Q5HasWorn(props: {
         }
         props.answersUpdate(answersParam)
 
-        // for caching
         localStorage.setItem('floev[currentStep]', '5')
         localStorage.setItem('floev[hasWorn]', String(newHasWorn))
     }
@@ -52,10 +39,10 @@ export default function Q5HasWorn(props: {
                 <label className="q-wrap__label-radio-100" htmlFor="q5_2">아니요. 첫 안경이에요</label>
             </div>
             <div className="q-wrap__btn-wrap">
-                <button className="q-wrap__btn q-wrap__btn-prev tn-0011" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-prev tn-0011" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev(EVENT.SURVEY.Q5.PREV)}>이전</button>
                 {hasWorn < 0 ? (
                     <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
-                    (<button className="q-wrap__btn q-wrap__btn-next tn-0010" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
+                    (<button className="q-wrap__btn q-wrap__btn-next tn-0010" type="button" onClick={() => props.onNext(EVENT.SURVEY.Q5.NEXT)}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
                 }
             </div>
         </div>

@@ -9,22 +9,19 @@ import moment from 'moment'
 import { resetSurvey } from '../../utils/surveyUtils'
 import { MAKE_SURVEY_PURCHASE_REQUEST } from '../../lib/mutation'
 import { SHA256 } from '../../utils/SHA256'
+import { recordEvent, postData, eggTo, createCreature } from '../../lib/hatchery'
+import { EVENT, ZERG } from '../../lib/constants'
+import cuid from 'cuid'
 
 const IMAGE_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://image.floev.com' : 'http://localhost:3033'
 const IMAGE_ADMIN_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://imageadmin.floev.com' : 'http://localhost:3034'
 
-export default function Q12NamePhoneNumber(props: {
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function Q12NamePhoneNumber(props: SurveyProps) {
     const router = useRouter()
     const [name, setName] = useState<string>(props.oldAnswers.name)
     const [phoneNumber, setPhoneNumber] = useState<string>(props.oldAnswers.phoneNumber)
+    const oldName = localStorage.getItem('floev[name]') ?? ''
+    const oldPhoneNumber = localStorage.getItem('floev[phoneNumber]') ?? ''
     const [isPhoneNumber, setIsPhoneNumber] = useState<boolean>(false)
     const [authNumber, setAuthNumber] = useState<string>('')
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
@@ -83,6 +80,29 @@ export default function Q12NamePhoneNumber(props: {
                 resetSurvey()
                 fbq('track', 'Schedule');
                 naverPixelComplete()
+
+                const userId = data.makeSurveyPurchaseRequest.user.id
+                const creature: Hatchery = props.hatchery
+                creature.userId = userId
+                creature.status = ZERG.CREATURE
+                creature.name = name
+                creature.phoneNumber = phoneNumber
+
+                if (oldName === '' || oldPhoneNumber === '') {
+                    eggTo(creature)
+                } else if (oldPhoneNumber !== phoneNumber) {
+                    creature.hatcheryId = cuid() + 'H'
+                    creature.currentSessionId = 1
+                    createCreature(creature)
+                    localStorage.setItem('_hid', creature.hatcheryId)
+                    sessionStorage.setItem('_sid', String(creature.currentSessionId))
+                    sessionStorage.setItem('current_event', '0')
+                } else {
+                    eggTo(creature)
+                }
+                localStorage.setItem('_uid', userId)
+                localStorage.setItem('_sts', creature.status)
+                props.updateHatchery(creature)
                 router.replace('/complete')
             }
         },
@@ -97,7 +117,7 @@ export default function Q12NamePhoneNumber(props: {
             }// 백엔드 에러와 일치시키기
             else if (error.message === "Duplicated") {
                 alert('죄송합니다. 이미 예약된 시간입니다.')
-                props.onPrev()
+                props.onPrev(EVENT.SURVEY.Q13.DUP)
             }
         }
     });
@@ -205,16 +225,15 @@ export default function Q12NamePhoneNumber(props: {
         setPhotoRequestUrls(tempPhotoRequestUrls)
     }
 
-
     function setFileNameRequestUrl() {
         setPreferFileNameRequestUrl()
         setPhotoFileNameRequestUrl()
     }
 
-    function requestAuthNumberAndSetFileNameRequestUrl() {
+    async function requestAuthNumberAndSetFileNameRequestUrl(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+        recordEvent(postData(props.hatchery, e.currentTarget.value))
         setIsSentAuth(true)
         setTimerOn()
-
         axios.post("https://api.floev.com/auth/create", {
             phoneNumber: phoneNumber
         }).then((result: any) => {
@@ -233,6 +252,7 @@ export default function Q12NamePhoneNumber(props: {
             if (file !== undefined) {
                 formData.append("upload-image", file, photoFileNameList[i])
             }
+            // TODO await 제거
             await axios.post(IMAGE_SERVER_URL + '/upload', formData, {
                 headers: { "content-type": "multipart/form-data" }
             }).then(res => {
@@ -249,6 +269,7 @@ export default function Q12NamePhoneNumber(props: {
             if (file !== undefined) {
                 formData.append("upload-image", file, preferFileNameList[i])
             }
+            // TODO await 제거
             await axios.post(IMAGE_SERVER_URL + '/upload', formData, {
                 headers: { "content-type": "multipart/form-data" }
             }).then(res => {
@@ -263,7 +284,8 @@ export default function Q12NamePhoneNumber(props: {
         submitPhotoFiles()
         submitPreferFiles()
     }
-    function handleClick() {
+    function handleClickpPurchaseRequest(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+        recordEvent(postData(props.hatchery, e.currentTarget.value))
         submitPhoto()
         makeSurveyPurchaseRequest()
     }
@@ -280,13 +302,13 @@ export default function Q12NamePhoneNumber(props: {
                 {!isSentAuth ?
                     // 인증번호 보내기 전
                     isPhoneNumber ?
-                        (<button className="btn-num tn-0028" onClick={() => requestAuthNumberAndSetFileNameRequestUrl()}>인증번호전송</button>) :
+                        (<button className="btn-num tn-0028" value={EVENT.SURVEY.Q13.AUTH} onClick={(e) => requestAuthNumberAndSetFileNameRequestUrl(e)}>인증번호전송</button>) :
                         (<button className="btn-num">인증번호전송</button>) :
                     // 인증번호 보낸 후
                     (<div className="input-text-num">
                         <input className="q-wrap__input-text" type="text" placeholder={'인증번호 4자리'} value={authNumber} onChange={e => handleChangeAuthNumber(e)} maxLength={4} />
                         {isAuthenticated ?
-                            (<button className="btn-resend tn-0029" onClick={() => requestAuthNumberAndSetFileNameRequestUrl()}>재전송</button>) :
+                            (<button className="btn-resend tn-0029" value={EVENT.SURVEY.Q13.REAUTH} onClick={(e) => requestAuthNumberAndSetFileNameRequestUrl(e)}>재전송</button>) :
                             (<button className="btn-resend">재전송</button>)}
 
                         {leftSecond <= 180 ?
@@ -303,12 +325,11 @@ export default function Q12NamePhoneNumber(props: {
 
 
             <div className="q-wrap__btn-wrap">
-                <button className="q-wrap__btn q-wrap__btn-prev tn-0027" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-prev tn-0027" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev(EVENT.SURVEY.Q13.PREV)}>이전</button>
                 {authNumber.length !== 4 || !isActive ?
                     (<button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled"><span>인증하고 예약완료하기</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
                     (!loading ?
-                        (<button className="q-wrap__btn q-wrap__btn-next tn-0026" type={'submit'}
-                            onClick={() => handleClick()}><span>인증하고 예약완료하기</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
+                        (<button className="q-wrap__btn q-wrap__btn-next tn-0026" type={'submit'} value={EVENT.SURVEY.Q13.FINISH} onClick={e => handleClickpPurchaseRequest(e)}><span>인증하고 예약완료하기</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
                         (<Spin size="large" tip="잠시만 기다려주세요.." />))
                 }
             </div>

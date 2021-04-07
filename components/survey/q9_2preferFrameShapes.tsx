@@ -1,15 +1,7 @@
 import React, { useState } from 'react'
+import { EVENT } from '../../lib/constants'
 
-
-export default function preferFrameShapes(props: {
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function preferFrameShapes(props: SurveyProps) {
     const [preferFrameShapes, setPreferFrameShapes] = useState<Array<string>>(props.oldAnswers.preferFrameShapes)
 
     function handleChangePreferFrameShapes(e: any) {
@@ -78,10 +70,10 @@ export default function preferFrameShapes(props: {
 
             </div>
             <div className="q-wrap__btn-wrap">
-                <button className="q-wrap__btn q-wrap__btn-prev tn-0033" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-prev tn-0033" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev(EVENT.SURVEY.Q9_2.PREV)}>이전</button>
                 {preferFrameShapes.length === 0 ? (
                     <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
-                    (<button className="q-wrap__btn q-wrap__btn-next tn-0032" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
+                    (<button className="q-wrap__btn q-wrap__btn-next tn-0032" type="button" onClick={() => props.onNext(EVENT.SURVEY.Q9_2.NEXT)}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
                 }
             </div>
         </div>

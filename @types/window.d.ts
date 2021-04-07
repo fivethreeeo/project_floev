@@ -6,6 +6,7 @@ interface Window {
     gtag: Function
     wcs: any
     wcs_do: any
+    gapi: any
 }
 
 /* Google Pixel*/

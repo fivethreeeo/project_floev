@@ -35,3 +35,12 @@ export const CHECKUP_USER = gql`
         }
     }
 `
+
+export const CHECKUP_USER_SIMPLE = gql`
+    query checkUpUser{
+        checkUpUser{
+            id
+            name
+        }
+    }
+`

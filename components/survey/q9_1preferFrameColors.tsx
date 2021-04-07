@@ -1,15 +1,7 @@
 import React, { useState } from 'react'
+import { EVENT } from '../../lib/constants'
 
-
-export default function preferFrameColors(props: {
-    oldAnswers: Answers
-    answersUpdate: (answersParam: Answers) => void
-    currentStep: number
-    max: number
-    purchaseRequest: PurchaseRequest[]
-    onPrev: () => void
-    onNext: () => void
-}) {
+export default function preferFrameColors(props: SurveyProps) {
     const [preferFrameColors, setPreferFrameColors] = useState<Array<string>>(props.oldAnswers.preferFrameColors)
 
     function handleChangePreferFrameColors(e: any) {
@@ -64,10 +56,10 @@ export default function preferFrameColors(props: {
                 <label className="q-wrap__label-checkbox q-wrap__label-checkbox__color" htmlFor="q_pfc_9"><div className="label-frame-color"><span className="frame-color__basic frame-color__colorful"></span><span className="frame-color__name">유채색</span></div></label>
             </div>
             <div className="q-wrap__btn-wrap">
-                <button className="q-wrap__btn q-wrap__btn-prev tn-0031" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev()}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-prev tn-0031" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev(EVENT.SURVEY.Q9_1.PREV)}>이전</button>
                 {preferFrameColors.length === 0 ? (
                     <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
-                    (<button className="q-wrap__btn q-wrap__btn-next tn-0030" type="button" onClick={() => props.onNext()}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
+                    (<button className="q-wrap__btn q-wrap__btn-next tn-0030" type="button" onClick={() => props.onNext(EVENT.SURVEY.Q9_1.NEXT)}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
                 }
             </div>
         </div>

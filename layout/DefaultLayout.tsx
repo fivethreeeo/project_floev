@@ -24,6 +24,7 @@ const Layout = ({
       <meta property="og:url" content="https://floev.com" />
       <meta property="og:image" content="https://floev.com/img/newLanding/og.jpg" />
       <meta name="facebook-domain-verification" content="h2rt1xuljax0nvwa9e821ig88cstv4" />
+      <meta name="google-signin-client_id" content="128000656537-140ltg16dguciihmm2f0u55e8u4g6muk.apps.googleusercontent.com"></meta>
     </Head>
     <Header name={name} isBack={true}></Header>
     {children}
