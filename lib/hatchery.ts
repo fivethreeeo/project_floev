@@ -155,7 +155,8 @@ export async function initializeHatchery() {
 function createLava(lava: Hatchery) {
     axios.post(REQUEST_URL + '/hatchery/lava', lava)
         .then(() => {
-            console.log("  createLava SUCCESS")
+            process.env.NODE_ENV === 'development'
+                ? console.log("  createLava SUCCESS") : ''
         }).catch(err => {
             console.error("  createLava Error: " + err.message)
         })
