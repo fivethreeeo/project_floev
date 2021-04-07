@@ -38,19 +38,17 @@ async function findHatcheryAndSession(hatcheryInput: Hatchery) {
 }
 
 async function getCurrentSessionIdBy(hatcheryId: string, deviceId: string) {
-    return await axios.get(REQUEST_URL + '/hatchery/' + hatcheryId + '/current-session-id/' + deviceId)
-        .then(res => {
-            const currentSessionId = res.data.currentSessionId
-            return currentSessionId
-        }).catch(err => {
-            console.error("  getCurrentSessionIdBy(hatcheryId) Error: " + err.message)
-            const currentSessionId = 0
-            return currentSessionId
-        })
-}
-
-function initializeEvent() {
-    sessionStorage.setItem('current_event', '0')
+    return await axios.post(REQUEST_URL + '/hatchery/current-session-id', {
+        hatcheryId: hatcheryId,
+        deviceId: deviceId // lava 생성시 필요함
+    }).then(res => {
+        const currentSessionId = res.data.currentSessionId
+        return currentSessionId
+    }).catch(err => {
+        console.error("  getCurrentSessionIdBy(hatcheryId) Error: " + err.message)
+        const currentSessionId = 0
+        return currentSessionId
+    })
 }
 
 async function getStatusByHatcheryId() {
@@ -63,6 +61,24 @@ async function getStatusByHatcheryId() {
         })
 }
 
+function initializeEvent() {
+    sessionStorage.setItem('current_event', '0')
+}
+
+function initializeLava() {
+    return {
+        deviceId: getDeviceId(),
+        userId: null,
+        hatcheryId: cuid() + 'H',
+        currentSessionId: 1,
+        status: ZERG.LAVA,
+        birth: null,
+        gender: null,
+        name: null,
+        phoneNumber: null,
+    }
+}
+
 export async function initializeHatchery() {
     const deviceId = getDeviceId()
     const userId = localStorage.getItem('_uid')
@@ -70,17 +86,7 @@ export async function initializeHatchery() {
     if (!userId) {
         const hatcheryId = localStorage.getItem('_hid')
         if (!hatcheryId) {
-            const lava: Hatchery = {
-                deviceId: deviceId,
-                userId: null,
-                hatcheryId: cuid() + 'H',
-                currentSessionId: 1,
-                status: ZERG.LAVA,
-                birth: null,
-                gender: null,
-                name: null,
-                phoneNumber: null,
-            }
+            const lava: Hatchery = initializeLava()
             createLava(lava)
             localStorage.setItem('_hid', lava.hatcheryId)
             sessionStorage.setItem('_sid', String(lava.currentSessionId))
