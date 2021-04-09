@@ -18,6 +18,11 @@ interface HatcheryEvent {
     status: string
 }
 
+interface Utm {
+    utm_source: string
+    utm_
+}
+
 interface PostData {
     hatchery: Hatchery
     event: HatcheryEvent

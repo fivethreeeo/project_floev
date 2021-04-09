@@ -29,6 +29,7 @@ export default function Q4BirthGender(props: SurveyProps) {
         props.answersUpdate(answersParam)
 
         localStorage.setItem('floev[currentStep]', '2')
+        localStorage.setItem('floev[gender]', newGender)
     }
 
     const createOptions = () => {
@@ -37,12 +38,10 @@ export default function Q4BirthGender(props: SurveyProps) {
             options.push(<option key={i} value={i}>{i}</option>)
         return options
     }
-    async function handleClickNext() {
+    function handleClickNext() {
         let egg: Hatchery = props.hatchery
         egg.birth = birth
         egg.gender = gender
-        localStorage.setItem('floev[birth]', String(egg.birth))
-        localStorage.setItem('floev[gender]', egg.gender)
 
         if (props.hatchery.status === ZERG.LAVA) {
             egg = lavaTo(egg)

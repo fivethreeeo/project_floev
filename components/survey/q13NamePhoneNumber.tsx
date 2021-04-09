@@ -320,7 +320,6 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
                         (<button className="q-wrap__btn q-wrap__btn-next tn-0026" type={'submit'} onClick={handleClickpPurchaseRequest}><span>인증하고 예약완료하기</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
                         (<Spin size="large" tip="잠시만 기다려주세요.." />))
                 }
-                {/* <button className="q-wrap__btn q-wrap__btn-next tn-0026" type={'submit'} onClick={handleClickpPurchaseRequest}><span>테스트용</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button> */}
             </div>
 
         </div>
