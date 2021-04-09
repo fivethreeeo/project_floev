@@ -30,6 +30,5 @@ interface PostData {
     hatchery: Hatchery
     event: HatcheryEvent
     device: any
-    // ipAddress: string
     utm: Utm
 }
