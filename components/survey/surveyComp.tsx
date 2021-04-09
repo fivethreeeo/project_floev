@@ -3,7 +3,7 @@ import Head from 'next/head'
 import SurveyHeader from '../../layout/SurveyHeader'
 import Layout from '../../layout/DefaultLayout'
 import moment from 'moment'
-import { CUSTOMER, HASWORN, drone } from '../../lib/constants'
+import { CUSTOMER, HASWORN, drone, EVENT } from '../../lib/constants'
 import { initializeHatchery, recordEvent, postData } from '../../lib/hatchery'
 
 import Q0Start from './q0Start'
@@ -23,6 +23,7 @@ import Q9_5Prefer from './q9_5prefer'
 import Q10Photo from './q10Photo'
 import Q12Request from './q12Request'
 import Q13NamePhoneNumber from './q13NamePhoneNumber'
+import { useRouter } from 'next/router'
 
 const steps = [
     Q0Start,
@@ -44,12 +45,21 @@ const SurveyPage = (props: {
     user: User
     purchaseRequest: PurchaseRequest[]
 }) => {
+    const router = useRouter()
     const [hatchery, setHatchery] = useState<Hatchery>(drone)
+    const utm = {
+        utm_source: router.query.utm_source,
+        utm_medium: router.query.utm_medium,
+        utm_campaign: router.query.utm_medium,
+        utm_term: router.query.utm_term,
+        utm_content: router.query.utm_content
+    }
 
     useEffect(() => {
         const createHatchery = async () => {
             const newHatchery: Hatchery = await initializeHatchery()
             setHatchery(newHatchery)
+            recordEvent(postData(newHatchery, EVENT.SURVEY.PAGE, utm))
         }
         createHatchery()
     }, [])
