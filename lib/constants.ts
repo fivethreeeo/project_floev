@@ -44,6 +44,14 @@ export const drone: Hatchery = {
     phoneNumber: ''
 }
 
+export const utmInit = {
+    utm_source: undefined,
+    utm_medium: undefined,
+    utm_campaign: undefined,
+    utm_term: undefined,
+    utm_content: undefined
+}
+
 export const EVENT = {
     INDEX: {
         PAGE: "Loaded index page",
@@ -53,6 +61,7 @@ export const EVENT = {
         },
     },
     SURVEY: {
+        PAGE: "Loaded survey page",
         FROM_MIDDLE: "이어서 작성할게요",
         FROM_START: "처음부터 할게요",
         Q0: { START: "q0 start - 시작하기" },

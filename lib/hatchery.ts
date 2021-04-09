@@ -1,7 +1,7 @@
 import axios from "axios"
 import cuid from "cuid"
 import moment from "moment"
-import { ZERG } from '../lib/constants'
+import { utmInit, ZERG } from '../lib/constants'
 import DeviceDetector from 'device-detector-js'
 const deviceDetector = new DeviceDetector();
 
@@ -275,11 +275,12 @@ function createEventData(eventName: string) {
     }
 }
 
-export const postData = (hatchery: Hatchery, eventName: string) => {
+export const postData = (hatchery: Hatchery, eventName: string, utm: Utm = utmInit) => {
     return {
         hatchery: hatchery,
         event: createEventData(eventName),
-        device: deviceDetector.parse(navigator.userAgent)
+        device: deviceDetector.parse(navigator.userAgent),
+        utm: utm
     }
 }
 
