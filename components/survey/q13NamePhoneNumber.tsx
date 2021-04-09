@@ -11,7 +11,6 @@ import { MAKE_SURVEY_PURCHASE_REQUEST } from '../../lib/mutation'
 import { SHA256 } from '../../utils/SHA256'
 import { recordEvent, postData, eggTo, createCreature } from '../../lib/hatchery'
 import { EVENT, ZERG } from '../../lib/constants'
-import cuid from 'cuid'
 
 const IMAGE_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://image.floev.com' : 'http://localhost:3033'
 const IMAGE_ADMIN_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://imageadmin.floev.com' : 'http://localhost:3034'
@@ -20,7 +19,6 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
     const router = useRouter()
     const [name, setName] = useState<string>(props.oldAnswers.name)
     const [phoneNumber, setPhoneNumber] = useState<string>(props.oldAnswers.phoneNumber)
-    const oldName = localStorage.getItem('floev[name]') ?? ''
     const oldPhoneNumber = localStorage.getItem('floev[phoneNumber]') ?? ''
     const [isPhoneNumber, setIsPhoneNumber] = useState<boolean>(false)
     const [authNumber, setAuthNumber] = useState<string>('')
@@ -82,26 +80,17 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
                 naverPixelComplete()
 
                 const userId = data.makeSurveyPurchaseRequest.user.id
-                const creature: Hatchery = props.hatchery
+                let creature: Hatchery = props.hatchery
                 creature.userId = userId
-                creature.status = ZERG.CREATURE
                 creature.name = name
                 creature.phoneNumber = phoneNumber
-
-                if (oldName === '' || oldPhoneNumber === '') {
-                    eggTo(creature)
-                } else if (oldPhoneNumber !== phoneNumber) {
-                    creature.hatcheryId = cuid() + 'H'
-                    creature.currentSessionId = 1
-                    createCreature(creature)
-                    localStorage.setItem('_hid', creature.hatcheryId)
-                    sessionStorage.setItem('_sid', String(creature.currentSessionId))
-                    sessionStorage.setItem('current_event', '0')
-                } else {
-                    eggTo(creature)
-                }
                 localStorage.setItem('_uid', userId)
-                localStorage.setItem('_sts', creature.status)
+                if (props.hatchery.status === ZERG.EGG) {
+                    creature = eggTo(creature)
+                } else if (oldPhoneNumber !== phoneNumber) {
+                    creature = createCreature()
+                }
+                recordEvent(postData(props.hatchery, EVENT.SURVEY.Q13.FINISH))
                 props.updateHatchery(creature)
                 router.replace('/complete')
             }
@@ -284,8 +273,7 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
         submitPhotoFiles()
         submitPreferFiles()
     }
-    function handleClickpPurchaseRequest(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-        recordEvent(postData(props.hatchery, e.currentTarget.value))
+    function handleClickpPurchaseRequest() {
         submitPhoto()
         makeSurveyPurchaseRequest()
     }
@@ -329,7 +317,7 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
                 {authNumber.length !== 4 || !isActive ?
                     (<button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled"><span>인증하고 예약완료하기</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
                     (!loading ?
-                        (<button className="q-wrap__btn q-wrap__btn-next tn-0026" type={'submit'} value={EVENT.SURVEY.Q13.FINISH} onClick={e => handleClickpPurchaseRequest(e)}><span>인증하고 예약완료하기</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
+                        (<button className="q-wrap__btn q-wrap__btn-next tn-0026" type={'submit'} onClick={handleClickpPurchaseRequest}><span>인증하고 예약완료하기</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
                         (<Spin size="large" tip="잠시만 기다려주세요.." />))
                 }
             </div>
