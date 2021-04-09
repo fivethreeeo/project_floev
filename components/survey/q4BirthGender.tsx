@@ -1,4 +1,3 @@
-import cuid from 'cuid'
 import React, { useState } from 'react'
 import { EVENT, ZERG } from '../../lib/constants'
 import { createEgg, lavaTo } from '../../lib/hatchery'
@@ -18,7 +17,7 @@ export default function Q4BirthGender(props: SurveyProps) {
         props.answersUpdate(answersParam)
 
         localStorage.setItem('floev[currentStep]', '4')
-        localStorage.setItem('floev[newBirth]', String(newBirth))
+        localStorage.setItem('floev[birth]', String(newBirth))
     }
 
     function handleChangeGender(e: any) {
@@ -30,7 +29,6 @@ export default function Q4BirthGender(props: SurveyProps) {
         props.answersUpdate(answersParam)
 
         localStorage.setItem('floev[currentStep]', '2')
-        localStorage.setItem('floev[newGender]', newGender)
     }
 
     const createOptions = () => {
@@ -39,29 +37,20 @@ export default function Q4BirthGender(props: SurveyProps) {
             options.push(<option key={i} value={i}>{i}</option>)
         return options
     }
-    function handleClickNext() {
-        const egg: Hatchery = props.hatchery
+    async function handleClickNext() {
+        let egg: Hatchery = props.hatchery
         egg.birth = birth
         egg.gender = gender
-        if (oldBirth === -1 || oldGender === '') {
-            egg.status = ZERG.EGG
-            lavaTo(egg)
-            localStorage.setItem('_sts', ZERG.EGG)
-        } else if (oldBirth !== egg.birth || oldGender !== egg.gender) {
-            egg.hatcheryId = cuid() + 'H'
-            egg.currentSessionId = 1
-            egg.userId = null
-            egg.status = ZERG.EGG
-            createEgg(egg)
-            localStorage.setItem('_hid', egg.hatcheryId)
-            sessionStorage.setItem('_sid', String(egg.currentSessionId))
-            sessionStorage.setItem('current_event', '0')
-            localStorage.setItem('_sts', ZERG.EGG)
-        } else {
-            // no status change
-        }
         localStorage.setItem('floev[birth]', String(egg.birth))
         localStorage.setItem('floev[gender]', egg.gender)
+
+        if (props.hatchery.status === ZERG.LAVA) {
+            egg = lavaTo(egg)
+        } else if (oldBirth !== egg.birth || oldGender !== egg.gender) {
+            egg = createEgg()
+        } else {
+            // egg, creature 상태에서는 변화 없음
+        }
         props.updateHatchery(egg)
         props.onNext(EVENT.SURVEY.Q4.NEXT)
     }

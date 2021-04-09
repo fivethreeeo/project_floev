@@ -15,6 +15,7 @@ interface HatcheryEvent {
     eventId: number
     eventName: string
     eventTimestamp: string
+    status: string
 }
 
 interface PostData {
