@@ -18,13 +18,19 @@ const IndexPage = (props: {
 	const [tabIdx, setTabIdx] = useState<number>(0)
 	const [surveyModal, setSurveyModal] = useState<boolean>(false)
 	const [hatchery, setHatchery] = useState<Hatchery>(drone)
+	const utm = {
+		utm_source: router.query.utm_source,
+		utm_medium: router.query.utm_medium,
+		utm_campaign: router.query.utm_medium,
+		utm_term: router.query.utm_term,
+		utm_content: router.query.utm_content
+	}
 
-	// TODO 속도 문제도 신경 써주어야 함 -> 먼저 사이트를 띄워주고 initHatchery 할 수 있도록
 	useEffect(() => {
 		const createHatchery = async () => {
 			const newHatchery: Hatchery = await initializeHatchery()
 			setHatchery(newHatchery)
-			recordEvent(postData(newHatchery, EVENT.INDEX.PAGE))
+			recordEvent(postData(newHatchery, EVENT.INDEX.PAGE, utm))
 		}
 		createHatchery()
 	}, [])

@@ -19,8 +19,11 @@ interface HatcheryEvent {
 }
 
 interface Utm {
-    utm_source: string
-    utm_
+    utm_source: string | string[] | undefined
+    utm_medium: string | string[] | undefined
+    utm_campaign: string | string[] | undefined
+    utm_term: string | string[] | undefined
+    utm_content: string | string[] | undefined
 }
 
 interface PostData {
@@ -28,4 +31,5 @@ interface PostData {
     event: HatcheryEvent
     device: any
     // ipAddress: string
+    utm: Utm
 }
