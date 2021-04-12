@@ -14,7 +14,7 @@ $t-gy-2: #f5f5f7;
     &__outer {
         position: relative;
         z-index: 5000;
-        @include el-size(100%,1000px);
+        @include el-size(100%,auto);
         background: $t-wt;
         overflow: hidden;
     }
