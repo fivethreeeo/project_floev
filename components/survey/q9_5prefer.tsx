@@ -76,7 +76,7 @@ export default function Q9_5Prefer(props: SurveyProps) {
             </div>
             <div className="q-wrap__btn-wrap">
                 <button className="q-wrap__btn q-wrap__btn-prev tn-0019" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev(EVENT.SURVEY.Q9_5.PREV)}>이전</button>
-                <button className="q-wrap__btn q-wrap__btn-next tn-0020" type="button" onClick={() => props.onNext(EVENT.SURVEY.Q9_5.NEXT)}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>
+                <button className="q-wrap__btn q-wrap__btn-next tn-0018" type="button" onClick={() => props.onNext(EVENT.SURVEY.Q9_5.NEXT)}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>
             </div>
         </div>
     </>)
