@@ -51,3 +51,9 @@ declare class ImageUrls {
         this.photoUrls = photoRequestUrls
     }
 }
+
+interface EmailModal {
+    visible: boolean
+    onCancel: () => void
+    testAgenda: string
+}
