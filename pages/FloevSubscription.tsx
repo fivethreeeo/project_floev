@@ -73,13 +73,12 @@ const FloevSubscription = () => {
 									<p className="card__p2"><span className="point-box"></span>애쉬크로프트부터 ic!베를린까지<br/>나에게 어울리면서 퀄리티까지<br/>보장되는 플로브 취급 26개 브랜드<br/>(평균 안경테 가격 10~70만원대)</p>
 								</div>
 							</div>
-
-						</div>
-
-						{/* container__btn-more-wrap */}
-						<div className="container__btn-more-wrap">
-							<div className="btn-more">
-								<button onClick={(e) => showModal(e, 'modal3')}>더 알아보기</button>	
+							
+							{/* btn-more-wrap */}
+							<div className="btn-more-wrap">
+								<div className="btn-more">
+									<button onClick={(e) => showModal(e, 'modal3')}>더 알아보기</button>
+								</div>
 							</div>
 						</div>
 					</div>

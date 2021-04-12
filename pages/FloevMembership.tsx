@@ -22,6 +22,7 @@ const FloevMembership = () => {
 
 						{/* container__membership */}
 						<div className="container__membership">
+							
 							{/* section__1 */}
 							<div className="section section__1">
 								<div className="img__1"><img src="/img/test8/membership/1.jpg" alt=""/></div>
@@ -33,14 +34,17 @@ const FloevMembership = () => {
 									<p className="p__3">가격과 품질을 고민하는 당신을 위한<br/>합리적인 안경 멤버십 서비스</p>
 								</div>
 							</div>
+
 							{/* section__2 */}
 							<div className="section section__2">
 								<div className="img__2"><img src="/img/test8/membership/2.jpg" alt=""/></div>
 							</div>
+
 							{/* section__3 */}
 							<div className="section section__3">
 								<div className="p__1">플로브 멤버십으로 <strong>최대 40% 할인</strong> 받고 안경 선택에 대한 고민과 눈에 대한 걱정 모두 줄여보세요.</div>
 							</div>
+
 							{/* section__4 */}
 							<div className="section section__4">
 								<p className="p__1"><strong>가격대별 멤버십 혜택 안내</strong></p>
@@ -56,6 +60,7 @@ const FloevMembership = () => {
 									</div>
 								</div>
 							</div>
+
 							{/* section__5 */}
 							<div className="section section__5">
 								<div className="same left">
@@ -81,6 +86,7 @@ const FloevMembership = () => {
 									</div>
 								</div>
 							</div>
+
 							{/* section__6 */}
 							<div className="section section__6">
 								<div className="card">
@@ -94,12 +100,12 @@ const FloevMembership = () => {
 									<p className="card__p2"><span className="point-box"></span>애쉬크로프트부터 ic!베를린까지<br/>나에게 어울리면서 퀄리티까지<br/>보장되는 플로브 취급 26개 브랜드<br/>(평균 안경테 가격 10~70만원대)</p>
 								</div>
 							</div>
-						</div>
 
-						{/* container__btn-more-wrap */}
-						<div className="container__btn-more-wrap">
-							<div className="btn-more">
-								<button onClick={(e) => showModal(e, 'modal3')}>더 알아보기</button>	
+							{/* btn-more-wrap */}
+							<div className="btn-more-wrap">
+								<div className="btn-more">
+									<button onClick={(e) => showModal(e, 'modal3')}>더 알아보기</button>
+								</div>
 							</div>
 						</div>
 					</div>

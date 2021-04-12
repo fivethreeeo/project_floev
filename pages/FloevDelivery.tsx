@@ -107,17 +107,14 @@ const FloevDelivery = () => {
 								</div>
 							</div>
 							
-						</div>
-
-						{/* container__btn-more-wrap */}
-						<div className="container__btn-more-wrap">
-							<div className="btn-more">
-								<button onClick={(e) => showModal(e, 'modal3')}>더 알아보기</button>
+							{/* btn-more-wrap */}
+							<div className="btn-more-wrap">
+								<div className="btn-more">
+									<button onClick={(e) => showModal(e, 'modal3')}>더 알아보기</button>
+								</div>
 							</div>
 						</div>
-
 					</div>
-
 				</div>
 			</div>
 
