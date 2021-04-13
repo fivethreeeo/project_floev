@@ -106,11 +106,11 @@ const FloevDelivery = () => {
 									<p className="p__2">바쁜 생활로 따로 시간 내기가 어려운 분</p>
 								</div>
 							</div>
-							
+
 							{/* btn-more-wrap */}
 							<div className="btn-more-wrap">
 								<div className="btn-more">
-									<button onClick={(e) => showModal(e, 'modal3')}>더 알아보기</button>
+									<button onClick={(e) => showModal(e, 'modal3')}>플로브 새벽피팅 더 알아보기</button>
 								</div>
 							</div>
 						</div>

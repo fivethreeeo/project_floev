@@ -28,37 +28,132 @@ $t-gy-2: #f5f5f7;
     z-index: 6000!important
 }
 
+
 // Modal
 .test8-modal {
-
+    height:80vh!important;
     .email-form {
         margin: 64px 0 0 0;
         padding: 0 24px;
+        .err {
+            padding: 2px 0 0 4px;
+            color:#d24816;
+            font-size:12px;
+
+        }
+        .desc {
+            margin-bottom: 24px;
+            .p__1 {
+                font-size:17px;
+                font-weight: 500;
+                margin-bottom: 12px;
+            }
+            .p__2 {
+                word-break: keep-all;
+                font-size:14px;
+                line-height: 1.7;
+            }
+        }
+        .desc__2 {
+            margin-top:12px;
+            line-height:1.7;
+            font-size:11px;
+            color:$fv-gray-6;
+        }
         &__input-box__input {
             width: 100%;
-            height: 48px;
-            border: 1px solid #ced4da;
+            height: 40px;
+            border: 1px solid #CED4DA;
+            border-radius: 6px;
+            background: $fv-gray-0;
+            padding: 12px;
         }
         &__btn-box__submit {
+            margin-top: 8px;
             width: 100%;
-            height: 48px;
-            background: #1d1d1f;
+            height: 44px;
             color: #fff;
+            font-size:16px;
+            line-height:45px;
+            background: #1d1d1f;
+            border-radius: 6px;
         }
     }
 
     .complete-m {
-        margin: 64px 0 0 0;
+        margin: 100px 0 0 0;
         padding: 0 24px;
+        .p__1 {
+            text-align: center;
+            font-weight: 400;
+            font-size:16px;
+        }
+        .p__2 {
+            font-size:18px;
+            font-weight:700;
+            text-align: center;
+        }
         div {
-            width: 100%;
-            height: 48px;
-            border: 1px solid #ced4da;
+            margin-top:16px;
+            text-align: center;
+            button {
+                background: $t-bk;
+                color:#fff;
+                font-size:16px;
+                padding: 12px 24px;
+                border-radius: 24px;
+            }
         }
     }
 }
 
 .container {
+
+    &__delivery .btn-more-wrap, &__buynowpaylater .btn-more-wrap {
+        padding: 180px 0 220px;
+        background: #33373a;
+        text-align: center;
+        .btn-more {
+            button {
+                font-weight: 700;
+                background: #d24816;
+                padding: 14px 28px 12px;
+                border-radius: 100px;
+                color: #fff;
+            }
+        }
+    }
+
+    &__insurance .btn-more-wrap, &__membership .btn-more-wrap, &__subscription .btn-more-wrap {
+        padding: 160px 0 160px;
+        background: $fv-gray-1;
+        text-align: center;
+        .btn-more {
+            button {
+                font-weight: 700;
+                background: #d24816;
+                padding: 14px 28px 12px;
+                border-radius: 100px;
+                color: #fff;
+            }
+        }
+    }
+
+    &__togetherplan {}
+    &__refurbish .btn-more-wrap, &__tradein .btn-more-wrap {
+        padding: 180px 0 220px;
+        background: $t-bk;
+        text-align: center;
+        .btn-more {
+            button {
+                font-weight: 700;
+                background: $t-bu;
+                padding: 14px 28px 12px;
+                border-radius: 100px;
+                color: #fff;
+            }
+        }
+    }
 
     &__buynowpaylater {
         .section__1 {
@@ -365,7 +460,7 @@ $t-gy-2: #f5f5f7;
             }
         }
         .section__6 {
-            padding: 53px 0 80px!important;
+            padding: 53px 0 32px!important;
             background-color: #fff!important;
         }
     }
@@ -562,8 +657,6 @@ $t-gy-2: #f5f5f7;
         }
     }
 
-    &__refurbish {}
-
     &__subscription {
         .section__1 {
             margin-top: 20px;
@@ -616,10 +709,179 @@ $t-gy-2: #f5f5f7;
 
     }
         
-    &__togetherplan {}
-    &__tradein {}
-    
-    &__buynowpaylater .section__4, &__delivery .section__6 {
+    &__togetherplan {
+
+    }
+
+    &__refurbish {
+        .section__1 {
+            margin-bottom: 64px;
+            padding: 10px 0 0;
+            height: 32px;
+            background: $t-bk;
+            .img__1 {
+                margin:0 auto;
+                width:48px;
+                height:12px;
+            }
+        }
+        .section__2 {
+            padding: 0 24px;
+            .p__1 {
+                color:$t-bu;
+                font-size:17px;
+            }
+            .p__2 {
+                margin: 8px 0 16px;
+                font-size: 34px;
+                line-height:1.4;
+            }
+            .p__3 {
+                font-size:17px;
+                line-height:1.7;
+                word-break: keep-all;
+                strong {}
+            }
+        }
+        .section__3 {
+            background: $t-gy-2;
+        }
+        .section__4 {
+            .div__10 {
+                padding: 64px 24px 48px;
+                background: $t-bk;
+                &::after {
+                    @extend %clearfix;
+                }
+                p {
+                    margin-bottom: 40px;
+                    color: $t-wt;
+                    font-size:24px;
+                }
+                .div__11 {
+                    float:left;
+                    width:50%;
+                    margin-bottom: 16px;
+                    .div__12 {
+                        margin:0 auto 10px;
+                        width: 80px;
+                        height: 80px;
+                        background: $t-bu;
+                        border-radius: 80px;
+                    }
+                }
+            }
+        }
+    }
+
+    &__tradein {
+        .section__1 {
+            margin-bottom: 64px;
+            padding: 10px 0 0;
+            height: 32px;
+            background: $t-bk;
+            .img__1 {
+                margin:0 auto;
+                width:48px;
+                height:12px;
+            }
+        }
+        .section__2 {
+            padding: 0 24px;
+            .p__1 {
+                color:$t-bu;
+                font-size:17px;
+            }
+            .p__2 {
+                margin: 8px 0 16px;
+                font-size: 34px;
+                line-height:1.4;
+            }
+            .p__3 {
+                font-size:17px;
+                line-height:1.7;
+                word-break: keep-all;
+            }
+        }
+        .section__3 {
+
+        }
+        .section__4 {
+            padding: 0 24px;
+            .p__1 {
+                margin: 0 0 16px;
+                font-size: 26px;
+                line-height:1.5;
+            }
+            .p__2 {
+                font-size:17px;
+                line-height:1.7;
+                word-break: keep-all;
+            }
+        }
+        .section__5 {
+            margin: 40px 0 0;
+            padding: 32px 24px 40px;
+            background: $t-bk;
+            color: $t-wt;
+            .div__1 {margin-bottom:16px}
+            .div__1::after, .div__2::after {
+                @extend %clearfix;
+            }
+            .span__1 {
+                float:left;
+                width:33.3%;
+                text-align: center;
+                font-size:13px;
+            }
+            .span__2 {
+                float:left;
+                width: 33.3%;
+                height: 48px;
+                text-align: center;
+                font-size: 15px;
+                line-height:26px;
+            }
+            .lh-48 {line-height:50px}
+            .line {
+                display:block;
+                height:1px;
+                background: $t-wt;
+                margin: 16px 0;
+            }
+        }
+        .section__6 {}
+        .section__7 {}
+    }
+    &__refurbish .section__4, &__tradein .section__7 {
+        .div__1 {
+            background: url(/img/test8/delivery/5.jpg) center center / cover no-repeat;
+            >p {
+                padding-top: 56px;
+                font-size: 20px!important;
+                line-height: 30px!important;
+            }
+        }
+        .div__2 {
+            padding:40px 24px 36px!important;
+            background:$fv-gray-7!important;
+            border-bottom: 38px solid $t-bk!important;
+            .num {
+                top:-18px!important;
+                width:36px!important;
+                height:36px!important;
+                line-height: 38px!important;
+                background: $t-bu!important;
+            }
+            .p__1 {font-size:16px!important}
+            .p__2 {
+                word-break: keep-all;
+                font-size:13px!important;
+                font-weight:400!important;
+            }
+        }
+    }
+    &__refurbish .section__4, &__tradein .section__7, &__buynowpaylater .section__4, &__delivery .section__6 {
         text-align: center;
         color:#fff;
         .div__1 {
@@ -654,7 +916,7 @@ $t-gy-2: #f5f5f7;
                 font-weight:500;
                 line-height:170%;
             }
-            &.last {border-bottom:none}
+            &.last {border-bottom:none!important}
         }
     }
     
@@ -691,7 +953,7 @@ $t-gy-2: #f5f5f7;
     }
 
     &__insurance .section__6, &__membership .section__6, &__subscription .section__4 {
-        padding: 81px 0 80px;
+        padding: 81px 0 32px;
         background: rgba(229, 229, 229, 0.2);
         .card {
             margin: 0 auto;
@@ -718,15 +980,6 @@ $t-gy-2: #f5f5f7;
                     background: #d24816;
                 }
             }
-        }
-    }
-
-    &__btn-more-wrap {
-        .btn-more {
-            width: 100px;
-            height: 80px;
-            background: #1d1d1f;
-            color: #fff;
         }
     }
 }

@@ -14,70 +14,96 @@ const FloevTradeIn = () => {
 	}
 
 	return (
-		<Layout title="플로브 무제한 안경 구독">
+		<Layout title="플로브 반납보상">
 
 			<div className="page__outer">
 				<div className="page__inner">
 
 					<div className="container">
 
-						{/* container__subscription */}
-						<div className="container__subscription">
+						{/* container__tradein */}
+						<div className="container__tradein">
 
 							{/* section__1 */}
 							<div className="section section__1">
-								<div className="img__1"><img src="/img/test8/subscription/1.png" alt="" /></div>
-								<h2>무제한 안경 구독</h2>
-								<p>안경, 더 이상 고민하지 말고 교환하세요.</p>
-								<p><strong>플로브 안경 구독 서비스</strong></p>
+								<div className="img__1"><img src="/img/test8/tradein/1.jpg" alt=""/></div>
 							</div>
 
 							{/* section__2 */}
 							<div className="section section__2">
-								<div className="img__2"><img src="/img/test8/subscription/2.png" alt="" /></div>
+								<p className="p__1"><strong>플로브 반납보상</strong></p>
+								<p className="p__2"><strong>안경 반납하고 <br/>현금 돌려받으세요.</strong></p>
+								<p className="p__3">플로브에서 구매한 안경을 반납하면 새 안경 구매 시 사용할 수 있는 크레딧 또는 현금으로 구매금액에 최대 35%를 돌려받을 수 있어요. 아니면 렌즈를 교환하거나, 주변 지인에게 크레딧을 양도할 수도 있어요. </p>
 							</div>
 
 							{/* section__3 */}
 							<div className="section section__3">
-								<div className="img__3"><img src="/img/test8/subscription/3.png" alt="" /></div>
-								<ul className="desc-list">
-									<li className="desc-item">
-										<p className="desc-item__p1">어울리는 안경만<br />쉽게 추천받고</p>
-										<div className="img__4"><img src="/img/test8/subscription/4.png" alt="" /></div>
-										<p className="desc-item__p2">플로브 라운지에서<br />안경 카운셀러와 함께<br />나만의 안경 추천받기</p>
-									</li>
-									<li className="desc-item">
-										<p className="desc-item__p1">가격 부담 없이<br />구독 가격만 결제</p>
-										<div className="img__4"><img src="/img/test8/subscription/4.png" alt="" /></div>
-										<p className="desc-item__p2">마음에 드는 안경<br />고르고 구독 신청하면?<br />구독 가격만 결제!</p>
-									</li>
-									<li className="desc-item">
-										<p className="desc-item__p1">시력건강 무료<br />정기 체크는 덤</p>
-										<div className="img__4"><img src="/img/test8/subscription/4.png" alt="" /></div>
-										<p className="desc-item__p2">항상 나의 시력에<br />딱 맞는 렌즈로 교환!<br />쉽게 눈을 관리해요</p>
-									</li>
-								</ul>
-								<div className="img__5"><img src="/img/test8/subscription/5.png" alt="" /></div>
+								이미지1
 							</div>
 
 							{/* section__4 */}
 							<div className="section section__4">
-								<div className="card">
-									<p className="card__p1">플로브에서 구독할 수 있는 <strong>안경테</strong>는?</p>
-									<div className="img__6"><img src="/img/test8/subscription/6.png" alt="" /></div>
-									<p className="card__p2">애쉬크로프트부터 ic!베를린까지<br />나에게 어울리면서 퀄리티까지<br />보장되는 플로브 취급 26개 브랜드<br />(평균 안경테 가격 10~70만원대)</p>
+								<p className="p__1"><strong>원하는 만큼 착용한 안경,<br/>반납하고 구매금액의<br/>35%까지 보상받아요.</strong></p>
+								<p className="p__2">플로브에서 구매한 안경을 반납하면 사용 기간과 테의 상태에 따라 크레딧 또는 현금으로 최대 35%까지 보상해드려요.</p>
+							</div>
+
+							{/* section__5 */}
+							<div className="section section__5">
+								<div className="div__1">
+									<span className="span__1">사용기간</span>
+									<span className="span__1">예상 크레딧</span>
+									<span className="span__1">예상 현금</span>
 								</div>
-								<div className="card">
-									<p className="card__p1">플로브에서 구독할 수 있는 <strong>안경테</strong>는?</p>
-									<div className="img__6"><img src="/img/test8/subscription/7.png" alt="" /></div>
-									<p className="card__p2">애쉬크로프트부터 ic!베를린까지<br />나에게 어울리면서 퀄리티까지<br />보장되는 플로브 취급 26개 브랜드<br />(평균 안경테 가격 10~70만원대)</p>
+								<div className="div__2">
+									<span className="span__2 lh-48">~ 6개월 미만</span>
+									<span className="span__2 lh-48">최대 35%</span>
+									<span className="span__2 lh-48">최대 30%</span>
+								</div>
+								<div className="line"></div>
+								<div className="div__2">
+									<span className="span__2">6개월 이상<br/>~ 12개월 미만</span>
+									<span className="span__2 lh-48">최대 25%</span>
+									<span className="span__2 lh-48">최대 20%</span>
+								</div>
+								<div className="line"></div>
+								<div className="div__2">
+									<span className="span__2">12개월 이상<br/>~ 18개월 미만</span>
+									<span className="span__2 lh-48">최대 15%</span>
+									<span className="span__2 lh-48">최대 10%</span>
+								</div>
+							</div>
+
+							{/* section__6 */}
+							<div className="section section__6">
+								예시 이미지
+							</div>
+
+							{/* section__7 */}
+							<div className="section section__7">
+								<div className="div__1">
+									<p><strong>플로브 반납보상 서비스와<br/>슬기로운 안경생활</strong></p>
+								</div>
+								<div className="div__2">
+									<div className="num"><strong>1</strong></div>
+									<p className="p__1"><strong>매번 여분 안경테가 늘어나<br/>처치 곤란하신가요?</strong></p>
+									<p className="p__2">일상생활은 1~2개의 여분 안경으로도 충분해요. 앞으로는 다양한 반납 보상 혜택으로 안경을 구매해보세요.</p>
+								</div>
+								<div className="div__2">
+									<div className="num"><strong>2</strong></div>
+									<p className="p__1"><strong>눈 건강을 위해<br/>12~18개월의 안경 주기를 추천해요.</strong></p>
+									<p className="p__2">안경 렌즈는 햇빛, 열, 스크레치의 원인으로  손상되요. 고급 렌즈보단 나에게 잘 맞는 렌즈를 자주 교체하는 게 좋아요. 플로브 반납 보상 서비스로 안경 교체의 부담을 줄여드릴게요.</p>
+								</div>
+								<div className="div__2 last">
+									<div className="num"><strong>3</strong></div>
+									<p className="p__1"><strong>부담없이 현금으로 돌려받으세요.</strong></p>
+									<p className="p__2">고객에게 좋고, 플로브도 반납받은 안경테를 다양한 방식으로 활용해요. 플로브 자체 공정을 거치는 리퍼비쉬 제품 또는 플로브 크루 교육에 사용될 예정이에요.</p>
 								</div>
 							</div>
 
 							{/* btn-more-wrap */}
 							<div className="btn-more-wrap">
 								<div className="btn-more">
-									<button onClick={(e) => showModal(e, 'modal3')}>더 알아보기</button>
+									<button onClick={(e) => showModal(e, 'modal3')}>플로브 반납보상 더 알아보기</button>
 								</div>
 							</div>
 						</div>

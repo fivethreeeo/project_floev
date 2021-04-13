@@ -22,7 +22,7 @@ const FloevMembership = () => {
 
 						{/* container__membership */}
 						<div className="container__membership">
-							
+
 							{/* section__1 */}
 							<div className="section section__1">
 								<div className="img__1"><img src="/img/test8/membership/1.jpg" alt=""/></div>
@@ -104,7 +104,7 @@ const FloevMembership = () => {
 							{/* btn-more-wrap */}
 							<div className="btn-more-wrap">
 								<div className="btn-more">
-									<button onClick={(e) => showModal(e, 'modal3')}>더 알아보기</button>
+									<button onClick={(e) => showModal(e, 'modal3')}>플로브 멤버십 더 알아보기</button>
 								</div>
 							</div>
 						</div>

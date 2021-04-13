@@ -121,7 +121,7 @@ const FloevBuyNowPayLater = () => {
 							{/* btn-more-wrap */}
 							<div className="btn-more-wrap">
 								<div className="btn-more">
-									<button onClick={(e) => showModal(e, 'modal3')}>더 알아보기</button>
+									<button onClick={(e) => showModal(e, 'modal3')}>플로브 약정구매 더 알아보기</button>
 								</div>
 							</div>
 						</div>
