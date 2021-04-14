@@ -104,7 +104,7 @@ const FloevMembership = () => {
               {/* btn-more-wrap */}
               <div className="btn-more-wrap">
                 <div className="btn-more">
-                  <button onClick={(e) => showModal(e, 'modal3')}>플로브 멤버십 더 알아보기</button>
+                  <button className="tn-0054" onClick={(e) => showModal(e, 'modal3')}>멤버십 더 알아보기</button>
                 </div>
               </div>
             </div>

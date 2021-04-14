@@ -77,7 +77,7 @@ const FloevSubscription = () => {
               {/* btn-more-wrap */}
               <div className="btn-more-wrap">
                 <div className="btn-more">
-                  <button onClick={(e) => showModal(e, 'modal3')}>플로브 안경 구독 더 알아보기</button>
+                  <button className="tn-0056" onClick={(e) => showModal(e, 'modal3')}>안경 구독 더 알아보기</button>
                 </div>
               </div>
             </div>

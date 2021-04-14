@@ -110,7 +110,7 @@ const FloevDelivery = () => {
               {/* btn-more-wrap */}
               <div className="btn-more-wrap">
                 <div className="btn-more">
-                  <button onClick={(e) => showModal(e, 'modal3')}>플로브 새벽피팅 더 알아보기</button>
+                  <button className="tn-0052" onClick={(e) => showModal(e, 'modal3')}>새벽피팅 더 알아보기</button>
                 </div>
               </div>
             </div>

@@ -124,7 +124,7 @@ const FloevRefurbish = () => {
               {/* btn-more-wrap */}
               <div className="btn-more-wrap">
                 <div className="btn-more">
-                  <button onClick={(e) => showModal(e, 'modal3')}>플로브 리퍼비쉬 더 알아보기</button>
+                  <button className="tn-0055" onClick={(e) => showModal(e, 'modal3')}>리퍼비쉬 더 알아보기</button>
                 </div>
               </div>
             </div>

@@ -78,7 +78,7 @@ const FloevInsurance = () => {
               {/* btn-more-wrap */}
               <div className="btn-more-wrap">
                 <div className="btn-more">
-                  <button onClick={(e) => showModal(e, 'modal3')}>플로브 단순변심보상 더 알아보기</button>
+                  <button className="tn-0053" onClick={(e) => showModal(e, 'modal3')}>단순변심보상 더 알아보기</button>
                 </div>
               </div>
             </div>
