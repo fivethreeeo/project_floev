@@ -18,8 +18,7 @@ const EventPage = () => {
           <div className="desc1"><div><span>스타일가이드togo?</span>나를 위해 추천된 안경테와 추천 스타일 키워드가 담긴 종이에요. 안경을 더 쉽고 즐겁게 선택할 수 있는 나만의 안경 추천 해설지라고 할 수 있어요!</div></div>
           <div className="title2">혜택</div>
           <div className="desc2">
-            <p>1. 구매자 대상 라운지에서 <span className="color__yellow">3만원 즉시 할인</span></p>
-            <p>2. 추첨을 통해 <span className="color__yellow">플로브 크레딧 20만원 제공</span><br /></p>
+            <p>구매자 대상 라운지에서 <span className="color__yellow">3만원 즉시 할인</span></p>
             <p>*구매/비구매 고객 모두 포함</p>
           </div>
           <div className="title3">참여방법</div>
@@ -27,22 +26,8 @@ const EventPage = () => {
             <p>1. 스타일가이드togo를 찍는다!</p>
             <p>2. 필수 해시태그와 함께 개인 인스타그램에 업로드한다.<br /></p>
             <p>*필수 해시태그 :<br /><strong>#FindYourFloev #안경추천서비스 #플로브</strong></p>
-            <br />
-            <div>이벤트 기간 : 2021년 3월 17일 (수)~ 4월 11일 (일)</div>
-            <div>당첨자 발표 : 2021년 4월 16일(금) 예정<br />(플로브 인스타그램 공지)</div>
-            <div>당첨자 경품 : 플로브 크레딧 20만원 (2명)</div>
           </div>
-          <div className="hr_outer_2"><div className="hr"></div></div>
-          <div className="h6">
-            <strong>세부사항</strong>
-            <br />*크레딧은 타인에게 양도하실 수 있습니다.
-              <br />*크레딧의 유효기간은 2021년 12월 31일입니다.
-              <br />*크레딧 사용시 다른 할인 이벤트와 중복 적용이 불가합니다.
-              <br />*크레딧 적립을 위해 당첨된 고객분들의 개인 정보 수집을 요청할 수 있습니다.
-              <br />*전체 공개 계정만 참여 가능합니다. (비공개계정 참여 불가)
-              <br />*부정한 방법으로 참여할 시에 당첨이 취소될 수 있습니다.
-              <br />*당첨된 게시물은 마케팅 용도로 활용될 수 있습니다.
-            </div>
+
         </div>
 
         <style jsx>{`
@@ -62,7 +47,7 @@ const EventPage = () => {
           .desc1 div{padding:11px 12px 9px;font-size:12px;text-align:left;background:rgba(0,0,0,0.3);border-radius:8px}
           .desc1 span {font-weight:700;display:block;padding-bottom:4px;}
           .title2 {margin:40px auto 16px;padding:7px 0 5px;width:56px;border-radius:20px;font-size:12px;font-weight:bold;background:rgba(51,52,58,0.9)}
-          .desc2 {margin:0 auto;width:320px;text-align:left;font-weight:500}
+          .desc2 {text-align:center;margin:0 auto;width:320px;font-weight:500}
           .desc2 p {font-size:16px;line-height:1.8}
           .desc2 p:last-child {font-weight:400;font-size:14px;margin-top:-3px}
           .title3 {margin:40px auto 16px;padding:7px 0 5px;width:80px;border-radius:20px;font-size:12px;font-weight:bold;background:rgba(51,52,58,0.9)}
