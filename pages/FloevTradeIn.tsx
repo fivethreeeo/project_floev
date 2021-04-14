@@ -37,7 +37,7 @@ const FloevTradeIn = () => {
               </div>
 
               {/* section__3 */}
-              <div className="section section__3"><div className="img__2"><img src="/img/test8/tradein/2.jpg" alt=""/></div></div>
+              <div className="section section__3"><div className="img__2"><img src="/img/test8/tradein/2.jpg" alt="" /></div></div>
 
               {/* section__4 */}
               <div className="section section__4">
@@ -72,34 +72,34 @@ const FloevTradeIn = () => {
               </div>
 
               {/* section__6 */}
-			<div className="section section__6">
-				<div className="div__1">구매할 때</div>
-				<div className="item">
-					<div className="img__3"><img src="/img/test8/item__3.jpg" alt=""/></div>
-					<p className="p__1"><strong>아이씨 베를린</strong></p>
-					<p className="p__2">OROSHI BK</p>
-					<div className="line"></div>
-					<p className="p__3">68 <span className="won">만원</span></p>
-				</div>
-				<div className="img__4"><img src="img/test8/tradein/arrow.png" alt=""/></div>
-				<div className="div__2">6개월 후</div>
-				<div className="card-wrap">
-					<div className="card__or">OR</div>
-					<div className="card card__1">
-						<span className="span__1">크레딧</span>
-						<span className="span__4">만원</span>
-						<span className="span__3">23.8</span>
-						<span className="span__2">35%</span>
-					</div>
-					<div className="card card__2">
-						<span className="span__1">현금</span>
-						<span className="span__4">만원</span>
-						<span className="span__3">20.4</span>
-						<span className="span__2">30%</span>
-					</div>
-				</div>
-				<div className="div__3">크레딧 또는 현금으로<br/>보상을 선택해보세요!</div>
-			</div>
+              <div className="section section__6">
+                <div className="div__1">구매할 때</div>
+                <div className="item">
+                  <div className="img__3"><img src="/img/test8/item__3.jpg" alt="" /></div>
+                  <p className="p__1"><strong>아이씨 베를린</strong></p>
+                  <p className="p__2">OROSHI BK</p>
+                  <div className="line"></div>
+                  <p className="p__3">68 <span className="won">만원</span></p>
+                </div>
+                <div className="img__4"><img src="img/test8/tradein/arrow.png" alt="" /></div>
+                <div className="div__2">6개월 후</div>
+                <div className="card-wrap">
+                  <div className="card__or">OR</div>
+                  <div className="card card__1">
+                    <span className="span__1">크레딧</span>
+                    <span className="span__4">만원</span>
+                    <span className="span__3">23.8</span>
+                    <span className="span__2">35%</span>
+                  </div>
+                  <div className="card card__2">
+                    <span className="span__1">현금</span>
+                    <span className="span__4">만원</span>
+                    <span className="span__3">20.4</span>
+                    <span className="span__2">30%</span>
+                  </div>
+                </div>
+                <div className="div__3">크레딧 또는 현금으로<br />보상을 선택해보세요!</div>
+              </div>
 
               {/* section__7 */}
               <div className="section section__7">
@@ -137,7 +137,7 @@ const FloevTradeIn = () => {
       <EmailModal
         visible={modal3}
         onCancel={() => setModal3(false)}
-        newService={NEW_SERVICE.TRADEIN}
+        newService={NEW_SERVICE.TRADE_IN}
       />
     </Layout>
 
