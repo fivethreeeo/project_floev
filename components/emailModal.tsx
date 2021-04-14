@@ -23,7 +23,7 @@ const EmailModal = (props: EmailModal) => {
     setEmail(e.target.value)
 
     const regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-    if (regExp.test(email)) {
+    if (regExp.test(e.target.value)) {
       setValidEmail(true)
     } else {
       setValidEmail(false)
