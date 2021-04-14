@@ -82,19 +82,19 @@ const FloevRefurbish = () => {
                 <div className="div__10">
                   <p><strong>플로브 리퍼비쉬 제품이<br />특별한 이유</strong></p>
                   <div className="div__11">
-                    <div className="div__12"><img src="/img/test8/refurbish/11.jpg" alt=""/></div>
+                    <div className="div__12 n1"></div>
                     <div className="div__13">소모품 및<br />파츠 교체</div>
                   </div>
                   <div className="div__11">
-                    <div className="div__12"><img src="/img/test8/refurbish/12.jpg" alt=""/></div>
+                    <div className="div__12 n2"></div>
                     <div className="div__13">특수세척 및<br />폴리싱</div>
                   </div>
                   <div className="div__11">
-                    <div className="div__12"><img src="/img/test8/refurbish/13.jpg" alt=""/></div>
+                    <div className="div__12 n3"></div>
                     <div className="div__13">1년 무상 보증<br />및 케어 서비스</div>
                   </div>
                   <div className="div__11">
-                    <div className="div__12"><img src="/img/test8/refurbish/14.jpg" alt=""/></div>
+                    <div className="div__12 n4"></div>
                     <div className="div__13">50% 이상<br />할인된 가격</div>
                   </div>
 
