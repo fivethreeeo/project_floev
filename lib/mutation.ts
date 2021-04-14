@@ -194,3 +194,11 @@ export const SIGN_IN_USER = gql`
     }
   }
 `
+
+export const HANDLE_NEW_SERVICE = gql`
+  mutation handleNewService($email: String!, $newService: String!) {
+    handleNewService(email: $email, newService: $newService)
+  }
+`
+
+
