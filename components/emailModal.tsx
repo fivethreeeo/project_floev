@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Modal } from "antd"
+import { Modal, Collapse } from "antd"
 import { useMutation } from "@apollo/client"
 import { HANDLE_NEW_SERVICE } from "../lib/mutation"
 import { initializeHatchery, recordEvent, postData } from "../lib/hatchery"
@@ -7,6 +7,7 @@ import { drone, getNewServiceName } from "../lib/constants"
 import { useRouter } from "next/router"
 
 const EmailModal = (props: EmailModal) => {
+  const { Panel } = Collapse;
   const [email, setEmail] = useState<string>('')
   const [validEmail, setValidEmail] = useState<boolean>(true)
   const [completed, setCompleted] = useState<boolean>(false)
@@ -101,9 +102,16 @@ const EmailModal = (props: EmailModal) => {
               <button className="email-form__btn-box__submit" type="submit" onClick={handleSubmit} tabIndex={2}>이메일로 론칭 소식 받기</button>
             </div>
             <div className="desc__2">
-              *신청하신 페이지의 서비스는 실제 론칭시 조건이 달라질 수 있습니다.<br />
-                            *수집된 이메일은 서비스 론칭 소식 최초 안내 1회의 목적으로 사용 뒤 폐기됩니다.
-                        </div>
+              <Collapse ghost>
+                <Panel header="이메일 정보 제공에 동의합니다." key="1">
+                  <p><strong>제공받는자</strong> : (주)씨에이치스퀘어, 스티비 주식회사</p>
+                  <p><strong>제공항목</strong> : 필수 - 이메일주소</p>
+                  <p><strong>이용목적</strong> : (주)씨에이치스퀘어 서비스 신청 및 이용 관련 고지 및 안내, 이메일 전송</p>
+                  <p><strong>보유 및 이용기간</strong> : 안내된 서비스 개시시점 이후 3개월까지 보관하며 관련 법령에 의해 보관이 필요한 경우에는 해당 기간 만큼 보관함. 안내된  서비스가 개인정보 제3자 제공 동의 이후 12개월 내에 개시되지 않는 경우 제공 동의 이후 12개월까지 보관함.정보 주체는 위 개인정보 제3자 제공동의를 거부할 권리가 있습니다. 단, 동의하지 않을 경우 서비스 이용 및 관련 고지가 제한됩니다.</p>
+
+                </Panel>
+              </Collapse>
+            </div>
           </div>
         ) : (
           <div className="complete-m">
