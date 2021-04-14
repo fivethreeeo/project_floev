@@ -3,7 +3,7 @@ import Layout from '../layout/DefaultLayout'
 import EmailModal from '../components/emailModal'
 import { NEW_SERVICE } from '../lib/constants'
 
-const FloevTradeIn = () => {
+const FloevRefurbish = () => {
   const [modal3, setModal3] = useState<boolean>(false)
 
   function showModal(e: React.MouseEvent<HTMLButtonElement, MouseEvent>, modal: string) {
@@ -38,8 +38,44 @@ const FloevTradeIn = () => {
 
               {/* section__3 */}
               <div className="section section__3">
-                추천제품
-							</div>
+				<p className="p__1"><strong>추천제품</strong></p>
+				<div className="item">
+					<div className="img__2"><img src="/img/test8/refurbish/2.jpg" alt=""/></div>
+					<p className="p__1"><strong>타르트 옵티컬</strong></p>
+					<p className="p__2">ARNEL HERITAGE A1</p>
+					<div className="tag__wrap">
+						<div className="tag tag__1">60% 할인</div>
+						<div className="tag tag__2">5개월</div>
+					</div>
+					<div className="line"></div>
+					<p className="p__3">14.4 <span className="won">만원</span></p>
+					<p className="p__4">36.0 <span className="won">만원</span></p>
+				</div>
+				<div className="item">
+					<div className="img__2"><img src="/img/test8/refurbish/3.jpg" alt=""/></div>
+					<p className="p__1">타르트 옵티컬</p>
+					<p className="p__2">ARNEL HERITAGE A3</p>
+					<div className="tag__wrap">
+						<div className="tag tag__1">70% 할인</div>
+						<div className="tag tag__2">8개월</div>
+					</div>
+					<div className="line"></div>
+					<p className="p__3">10.8 <span className="won">만원</span></p>
+					<p className="p__4">36.0 <span className="won">만원</span></p>
+				</div>
+				<div className="item">
+					<div className="img__2"><img src="/img/test8/refurbish/4.jpg" alt=""/></div>
+					<p className="p__1">아이씨 베를린</p>
+					<p className="p__2">OROSHI BK</p>
+					<div className="tag__wrap">
+						<div className="tag tag__1">50% 할인</div>
+						<div className="tag tag__2">11개월</div>
+					</div>
+					<div className="line"></div>
+					<p className="p__3">34 <span className="won">만원</span></p>
+					<p className="p__4">68 <span className="won">만원</span></p>
+				</div>
+			</div>
 
               {/* section__4 */}
               <div className="section section__4">
@@ -106,4 +142,4 @@ const FloevTradeIn = () => {
   )
 }
 
-export default FloevTradeIn
+export default FloevRefurbish
