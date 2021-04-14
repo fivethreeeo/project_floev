@@ -1,7 +1,10 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Modal } from "antd"
 import { useMutation } from "@apollo/client"
 import { HANDLE_NEW_SERVICE } from "../lib/mutation"
+import { initializeHatchery, recordEvent, postData } from "../lib/hatchery"
+import { drone, getNewServiceName } from "../lib/constants"
+import { useRouter } from "next/router"
 
 const EmailModal = (props: EmailModal) => {
   const [email, setEmail] = useState<string>('')
@@ -18,6 +21,34 @@ const EmailModal = (props: EmailModal) => {
       console.error("submit email error: " + err.message)
     }
   });
+  const router = useRouter()
+  const [hatchery, setHatchery] = useState<Hatchery>(drone)
+  const utm = {
+    utm_source: router.query.utm_source,
+    utm_medium: router.query.utm_medium,
+    utm_campaign: router.query.utm_medium,
+    utm_term: router.query.utm_term,
+    utm_content: router.query.utm_content
+  }
+  const newServiceName = getNewServiceName(props.newService)
+
+  useEffect(() => {
+    const createHatchery = async () => {
+      const newHatchery: Hatchery = await initializeHatchery()
+      setHatchery(newHatchery)
+
+      const loadEvent = "Loaded " + newServiceName + " page"
+      recordEvent(postData(newHatchery, loadEvent, utm))
+    }
+    createHatchery()
+  }, [])
+
+  useEffect(() => {
+    if (props.visible) {
+      const ctaEvent = newServiceName + " CTA 클릭"
+      recordEvent(postData(hatchery, ctaEvent))
+    }
+  }, [props.visible])
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value)
@@ -31,6 +62,8 @@ const EmailModal = (props: EmailModal) => {
   }
 
   function handleCancel() {
+    const cancelEvent = newServiceName + " 모달닫기"
+    recordEvent(postData(hatchery, cancelEvent))
     setEmail('')
     setValidEmail(true)
     setCompleted(false)
@@ -39,6 +72,8 @@ const EmailModal = (props: EmailModal) => {
 
   async function handleSubmit() {
     if (email.length > 0 && validEmail) {
+      const registerEvent = newServiceName + " 신청"
+      recordEvent(postData(hatchery, registerEvent))
       handleNewService()
     }
   }

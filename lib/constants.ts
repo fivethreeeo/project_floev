@@ -105,3 +105,15 @@ export const NEW_SERVICE = {
   TOGETHER_PLAN: "TOGETHER_PLAN",
   TRADEIN: "TRADE_IN"
 }
+
+const NEW_SERVICE_ARRAY = ["BUY_NOW_PAY_LATER", "DELIVERY", "INSURANCE", "MEMBERSHIP", "REFURBISH", "SUBSCRIPTION", "TOGETHER_PLAN", "TRADE_IN"]
+
+const NEW_SERVICE_NAME = ["약정구매", "택배점검", "파손보험", "멤버십", "리퍼비시", "구독", "결합할인", "단순변심보장"]
+
+export function getNewServiceName(newService: string) {
+  const isThatService = (element: string) => element === newService
+  const index = NEW_SERVICE_ARRAY.findIndex(isThatService)
+  const newServiceName = NEW_SERVICE_NAME[index]
+  return newServiceName
+}
+
