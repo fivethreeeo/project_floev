@@ -37,7 +37,7 @@ const FloevTradeIn = () => {
               </div>
 
               {/* section__3 */}
-              <div className="section section__3"><div className="img__2"><img src="" alt=""/></div></div>
+              <div className="section section__3"><div className="img__2"><img src="/img/test8/tradein/2.jpg" alt=""/></div></div>
 
               {/* section__4 */}
               <div className="section section__4">
@@ -75,7 +75,7 @@ const FloevTradeIn = () => {
 			<div className="section section__6">
 				<div className="div__1">구매할 때</div>
 				<div className="item">
-					<div className="img__3"><img src="/img/test8/refurbish/4.jpg" alt=""/></div>
+					<div className="img__3"><img src="/img/test8/item__3.jpg" alt=""/></div>
 					<p className="p__1"><strong>아이씨 베를린</strong></p>
 					<p className="p__2">OROSHI BK</p>
 					<div className="line"></div>

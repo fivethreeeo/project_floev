@@ -67,7 +67,7 @@ const FloevTogetherPlan = () => {
               {/* btn-more-wrap */}
               <div className="btn-more-wrap">
                 <div className="btn-more">
-                  <button onClick={(e) => showModal(e, 'modal3')}>플로브 반납보상 더 알아보기</button>
+                  <button onClick={(e) => showModal(e, 'modal3')}>플로브 투게더 플랜 더 알아보기</button>
                 </div>
               </div>
             </div>
