@@ -4,7 +4,7 @@ import { ApolloProvider } from '@apollo/client'
 import { useApollo } from '../lib/apolloClient'
 
 import 'antd/dist/antd.css'
-import '../public/scss/main.scss?20210225'
+import '../public/scss/main.scss?20210409'
 
 function FloevFrontApp({ Component, pageProps }: AppProps) {
 
