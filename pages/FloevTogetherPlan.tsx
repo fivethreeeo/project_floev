@@ -15,7 +15,9 @@ const FloevTogetherPlan = () => {
 
   return (
     <Layout title="플로브 투게더 플랜">
+      <div className="eraser">
 
+      </div>
       <div className="page__outer">
         <div className="page__inner">
 
