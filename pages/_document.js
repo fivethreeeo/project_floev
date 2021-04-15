@@ -63,6 +63,15 @@ class MyDocument extends Document {
                 {'GTM-K2ZP9MN':true});
               `}} />
           <script src="https://www.googleoptimize.com/optimize.js?id=GTM-K2ZP9MN"></script>
+          {/* Global site tag (gtag.js) - Google Ads: 738487034 */}
+          <script async src="https://www.googletagmanager.com/gtag/js?id=AW-738487034" />
+          <script dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-738487034');
+            `}} />
         </Head>
         <body>
           <Main />
