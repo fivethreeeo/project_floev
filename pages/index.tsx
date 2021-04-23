@@ -169,8 +169,8 @@ const IndexPage = (props: {
 
               <div className="event-desc">
                 <span className="event-tag">이벤트</span>
-                <span className="event-text"><strong>3만원 할인에</strong></span>
-                <strong><span className="event-strong-m-only">3만원 할인에 </span>20만원 크레딧까지 &#xE001;</strong>
+                <span className="event-text"><strong></strong></span>
+                <strong><span className="event-strong-m-only"></span>3만원 할인 이벤트 &#xE001;</strong>
               </div>
             </a>
           </div>
