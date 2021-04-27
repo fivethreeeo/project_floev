@@ -62,7 +62,7 @@ export default function Q10Photo(props: SurveyProps) {
     return (<>
         <div className="q-wrap q10">
             {photoTitle()}
-            <div className="q-wrap__question-sub">얼굴의 사이즈와 눈 사이 거리, 균형감을 체크해요.<br />지금 쓰는 안경과 내 불편함의 원인을 체크해요.<br />나의 이미지에 맞는 안경을 더 정확하게 추천해요.</div>
+            <div className="q-wrap__question-sub">얼굴의 사이즈와 눈 사이 거리, 균형감을 체크해요.<br />지금 쓰는 안경과 내 불편함의 원인을 체크해요.<br />나의 이미지에 맞는 안경을 더 정확하게 추천해요.<br/>(선택사항)</div>
             <div className="q-wrap__answer-wrap">
                 <div className="q-wrap__upload-wrap">
                     <Upload
@@ -90,10 +90,13 @@ export default function Q10Photo(props: SurveyProps) {
             </div>
             <div className="q-wrap__btn-wrap">
                 <button className="q-wrap__btn q-wrap__btn-prev tn-0021" type="button" disabled={props.currentStep !== props.max ? false : true} onClick={() => props.onPrev(EVENT.SURVEY.Q10.PREV)}>이전</button>
+                <button className="q-wrap__btn q-wrap__btn-next tn-0020" type="button" onClick={handleClickNext}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>
+                {/*
                 {photoFileList.length === 0 ? (
                     <button className="q-wrap__btn q-wrap__btn-next q-wrap__btn-next--disabled" type="button"><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>) :
                     (<button className="q-wrap__btn q-wrap__btn-next tn-0020" type="button" onClick={handleClickNext}><span>다음</span> <img src="/img/survey/ic-arrows-right.png" alt="" /></button>)
                 }
+                */}
             </div>
         </div>
     </>)
