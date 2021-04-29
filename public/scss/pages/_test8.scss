@@ -1,6 +1,6 @@
 // 테스트 용 변수 설정
 $t-wt: #fff;
-$t-bu: #3a54f5;
+$t-bu: #d24816;
 $t-bk: #1d1d1f;
 $t-gy-1: #f7f7f7;
 $t-gy-2: #f5f5f7;
@@ -940,6 +940,9 @@ $t-gy-2: #f5f5f7;
         }
     }
     &__tradein {
+        .btn-more-wrap {
+            z-index:6000!important;
+        }
         .section__6 {
             background: $t-gy-2;
             padding: 48px 24px 88px;
@@ -1123,13 +1126,13 @@ $t-gy-2: #f5f5f7;
             }
             .span__1 {
                 float:left;
-                width:33.3%;
+                width:50%;
                 text-align: center;
                 font-size:13px;
             }
             .span__2 {
                 float:left;
-                width: 33.3%;
+                width: 50%;
                 height: 48px;
                 text-align: center;
                 font-size: 15px;
@@ -1139,7 +1142,7 @@ $t-gy-2: #f5f5f7;
             .big {
                 font-size: 17px;
                 font-weight:700;
-                color: #579AFF;
+                color: #d24816;
             }
             .line {
                 display:block;
@@ -1324,3 +1327,4 @@ $t-gy-2: #f5f5f7;
         }
     }
 }
+

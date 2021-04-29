@@ -53,7 +53,7 @@ export default function Q9_5Prefer(props: SurveyProps) {
                     value={prefer} onChange={(e) => handleChangePrefer(e)}>
                 </textarea>
                 <Upload
-                    // action="https://image.floev.com/upload"
+                    // action="https://floev.com/api/upload"
                     name="upload-image"
                     listType="picture-card"
                     fileList={preferFileList}

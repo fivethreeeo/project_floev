@@ -62,11 +62,11 @@ export default function Q10Photo(props: SurveyProps) {
     return (<>
         <div className="q-wrap q10">
             {photoTitle()}
-            <div className="q-wrap__question-sub">얼굴의 사이즈와 눈 사이 거리, 균형감을 체크해요.<br />지금 쓰는 안경과 내 불편함의 원인을 체크해요.<br />나의 이미지에 맞는 안경을 더 정확하게 추천해요.<br/>(선택사항)</div>
+            <div className="q-wrap__question-sub">얼굴의 사이즈와 눈 사이 거리, 균형감을 체크해요.<br />지금 쓰는 안경과 내 불편함의 원인을 체크해요.<br />나의 이미지에 맞는 안경을 더 정확하게 추천해요.<br />(선택사항)</div>
             <div className="q-wrap__answer-wrap">
                 <div className="q-wrap__upload-wrap">
                     <Upload
-                        // action="https://image.floev.com/upload"
+                        // action="https://floev.com/api/upload"
                         name="upload-image"
                         listType="picture-card"
                         fileList={photoFileList}
