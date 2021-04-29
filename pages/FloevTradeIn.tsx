@@ -1,17 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Layout from '../layout/DefaultLayout'
-import EmailModal from '../components/emailModal'
-import { NEW_SERVICE } from '../lib/constants'
 
 const FloevTradeIn = () => {
-  const [modal3, setModal3] = useState<boolean>(false)
-
-  function showModal(e: React.MouseEvent<HTMLButtonElement, MouseEvent>, modal: string) {
-    e.preventDefault(); // 修复 Android 上点击穿透
-    if (modal === 'modal3') {
-      setModal3(true)
-    }
-  }
 
   return (
     <Layout title="플로브 반납보상">
@@ -134,11 +124,6 @@ const FloevTradeIn = () => {
         </div>
       </div>
 
-      <EmailModal
-        visible={modal3}
-        onCancel={() => setModal3(false)}
-        newService={NEW_SERVICE.TRADE_IN}
-      />
     </Layout>
 
   )
