@@ -4,7 +4,7 @@ import SurveyHeader from '../../layout/SurveyHeader'
 import Layout from '../../layout/DefaultLayout'
 import moment from 'moment'
 import { CUSTOMER, HASWORN, drone, EVENT } from '../../lib/constants'
-import { initializeHatchery, recordEvent, postData } from '../../lib/hatcheryTemp'
+import { initializeHatchery, recordEvent, postData } from '../../lib/hatchery'
 
 import Q0Start from './q0Start'
 import Q1Customer from './q1Customer'

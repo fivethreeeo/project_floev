@@ -9,9 +9,9 @@ import { CHECKUP_USER_SIMPLE } from '../lib/query'
 import { createApolloClient } from '../lib/apolloClient'
 import { resetSurvey } from '../utils/surveyUtils'
 import ServiceTab from '../components/index/serviceTab'
-import { initializeHatchery, recordEvent, postData } from '../lib/hatcheryTemp'
+import { initializeHatchery, recordEvent, postData } from '../lib/hatchery'
 import { drone, EVENT } from '../lib/constants'
-import { HatcheryImpl } from '../lib/hatcheryTemp'
+import { HatcheryImpl } from '../lib/hatchery'
 
 const IndexPage = (props: {
   user: User

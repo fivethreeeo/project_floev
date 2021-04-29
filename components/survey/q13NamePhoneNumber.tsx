@@ -10,7 +10,7 @@ import { resetSurvey } from '../../utils/surveyUtils'
 import { MAKE_SURVEY_PURCHASE_REQUEST } from '../../lib/mutation'
 import { SHA256 } from '../../utils/SHA256'
 import { EVENT, ZERG } from '../../lib/constants'
-import { createNew, eggTo, HatcheryImpl, postData, recordEvent } from '../../lib/hatcheryTemp'
+import { createNew, eggTo, HatcheryImpl, postData, recordEvent } from '../../lib/hatchery'
 
 const IMAGE_ADMIN_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://imageadmin.floev.com' : 'http://localhost:3034'
 
