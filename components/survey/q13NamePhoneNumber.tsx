@@ -12,7 +12,6 @@ import { SHA256 } from '../../utils/SHA256'
 import { recordEvent, postData, eggTo, createCreature } from '../../lib/hatchery'
 import { EVENT, ZERG } from '../../lib/constants'
 
-const IMAGE_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://image.floev.com' : 'http://localhost:3033'
 const IMAGE_ADMIN_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://imageadmin.floev.com' : 'http://localhost:3034'
 
 export default function Q12NamePhoneNumber(props: SurveyProps) {
@@ -242,7 +241,7 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
                 formData.append("upload-image", file, photoFileNameList[i])
             }
             // TODO await 제거
-            await axios.post(IMAGE_SERVER_URL + '/upload', formData, {
+            await axios.post('/api/upload', formData, {
                 headers: { "content-type": "multipart/form-data" }
             }).then(res => {
                 console.log(res.status)
@@ -259,7 +258,7 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
                 formData.append("upload-image", file, preferFileNameList[i])
             }
             // TODO await 제거
-            await axios.post(IMAGE_SERVER_URL + '/upload', formData, {
+            await axios.post('/api/upload', formData, {
                 headers: { "content-type": "multipart/form-data" }
             }).then(res => {
                 console.log(res.status)
