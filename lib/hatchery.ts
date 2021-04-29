@@ -236,6 +236,7 @@ export function createCreature() {
 }
 
 export function lavaTo(egg: Hatchery) {
+  // 라바에서 에그로 birth, gender, status update -> 브라우저 캐시 저장, 서버 DB 저장
   egg.status = ZERG.EGG
   setStatus(egg.status)
   axios.post(REQUEST_URL + '/hatchery/lava/egg', egg)

@@ -49,7 +49,23 @@ export async function recordEvent(postData: PostData) {
     })
 }
 
-function createLava() {
+
+
+function updateLaveTo(egg: HatcheryImpl) {
+  axios.put(REQUEST_URL + '/hatchery/lava/egg', egg)
+    .then(() => {
+      process.env.NODE_ENV === 'development'
+        ? console.log("  updateLaveTo(egg) SUCCESS") : ''
+    }).catch(err => console.error("  updateLaveTo(egg) Error: " + err.message))
+}
+
+export function lavaTo(egg: HatcheryImpl) {
+  cacheToBrowser(egg)
+  updateLaveTo(egg)
+  return egg
+}
+
+function getLava() {
   const deviceId = cuid() + "D"
   const userId = null
   const hatcheryId = cuid() + "H"
@@ -64,25 +80,6 @@ function createLava() {
     birth, gender, name, phoneNumber)
 }
 
-function initializeSessionWith(sessionId: number) {
-  sessionStorage.setItem('_sid', String(sessionId))
-  sessionStorage.setItem('current_event', '0')
-}
-
-function cacheToBrowserWithNewSession(hatchery: HatcheryImpl) {
-  localStorage.setItem('hatchery', JSON.stringify(hatchery))
-  initializeSessionWith(hatchery.currentSessionId)
-}
-
-function buildNew(hatchery: HatcheryImpl) {
-  axios.post(REQUEST_URL + '/hatchery/new', hatchery)
-    .then(() => {
-      process.env.NODE_ENV === 'development'
-        ? console.log("  buildNew(hatchery) SUCCESS") : ''
-    }).catch(err => {
-      console.error("  buildNew(hatchery) Error: " + err.message)
-    })
-}
 function updateCurrentSessionIdIn(hatchery: HatcheryImpl) {
   axios.put(REQUEST_URL + '/hatchery/current-session-id', hatchery)
     .then(() => {
@@ -93,20 +90,49 @@ function updateCurrentSessionIdIn(hatchery: HatcheryImpl) {
     })
 }
 
+function saveNew(hatchery: HatcheryImpl) {
+  axios.post(REQUEST_URL + '/hatchery/new', hatchery)
+    .then(() => {
+      process.env.NODE_ENV === 'development'
+        ? console.log("  buildNew(" + hatchery.status + ") SUCCESS") : ''
+    }).catch(err => {
+      console.error("  buildNew(" + hatchery.status + ") Error: " + err.message)
+    })
+}
+
+function initializeSessionWith(sessionId: number) {
+  sessionStorage.setItem('_sid', String(sessionId))
+  sessionStorage.setItem('current_event', '0')
+}
+
+function cacheToBrowser(hatchery: HatcheryImpl) {
+  localStorage.setItem('hatchery', JSON.stringify(hatchery))
+}
+
+function cacheToBrowserWithNewSession(hatchery: HatcheryImpl) {
+  cacheToBrowser(hatchery)
+  initializeSessionWith(hatchery.currentSessionId)
+}
+
+export function createNew(hatchery: HatcheryImpl) {
+  cacheToBrowserWithNewSession(hatchery)
+  saveNew(hatchery)
+  return hatchery
+}
+
 export async function initializeHatchery() {
-  let hatchery: HatcheryImpl = createLava()
+  let hatchery: HatcheryImpl
   const _hatchery = localStorage.getItem('hatchery')
   if (!_hatchery) {
-    cacheToBrowserWithNewSession(hatchery)
-    buildNew(hatchery)
-  } else if (_hatchery) {
+    hatchery = createNew(getLava())
+  } else {
+    hatchery = JSON.parse(_hatchery)
     const _sid = sessionStorage.getItem('_sid')
     if (!_sid) {
-      hatchery = JSON.parse(_hatchery)
       hatchery.currentSessionId = hatchery.currentSessionId + 1
       cacheToBrowserWithNewSession(hatchery)
       updateCurrentSessionIdIn(hatchery)
-    } else { /* session id가 있으면 nothing to do */ }
+    }
   }
   return hatchery
 }
