@@ -8,7 +8,7 @@ const cors = Cors({
   origin: '*'
 })
 
-const STORAGE_DESTINATION = process.env.USER === "dev1"
+const STORAGE_DESTINATION = process.env.NODE_ENV === "production"
   ? "/home/dev1/upload"
   : "/Users/2langk/Desktop/"
 
@@ -16,7 +16,7 @@ const STORAGE_DESTINATION = process.env.USER === "dev1"
 const storage = multer.diskStorage({
   destination: STORAGE_DESTINATION,
   filename: function (_: any, file: any, cb: any) {
-    cb(null, Date.now() + file.originalname.split(".")[0] + path.extname(file.originalname))
+    cb(null, file.originalname.split(".")[0] + path.extname(file.originalname))
   }
 })
 
