@@ -940,6 +940,9 @@ $t-gy-2: #f5f5f7;
         }
     }
     &__tradein {
+        .btn-more-wrap {
+            z-index:6000!important;
+        }
         .section__6 {
             background: $t-gy-2;
             padding: 48px 24px 88px;
@@ -1324,3 +1327,4 @@ $t-gy-2: #f5f5f7;
         }
     }
 }
+
