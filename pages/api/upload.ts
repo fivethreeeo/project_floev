@@ -3,7 +3,6 @@ import Cors from 'cors'
 import multer from 'multer';
 import path from "path";
 
-// Initializing the cors middleware
 const cors = Cors({
   methods: ['GET', 'HEAD', 'POST'],
   origin: '*'
@@ -50,8 +49,8 @@ export default async (req: NextApiRequestWithFormData, res: NextApiResponse) => 
   await runMiddleware(req, res, cors)
   await runMiddleware(req, res, upload.single('upload-image'))
 
-  console.log(req.file.path)
-  res.send(req.file.path)
+  console.log(req.file?.path)
+  res.send(req.file?.path)
   res.status(204).end()
 }
 
