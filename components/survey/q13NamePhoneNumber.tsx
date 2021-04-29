@@ -9,9 +9,8 @@ import moment from 'moment'
 import { resetSurvey } from '../../utils/surveyUtils'
 import { MAKE_SURVEY_PURCHASE_REQUEST } from '../../lib/mutation'
 import { SHA256 } from '../../utils/SHA256'
-import { eggTo, createCreature } from '../../lib/hatchery'
 import { EVENT, ZERG } from '../../lib/constants'
-import { postData, recordEvent } from '../../lib/hatcheryTemp'
+import { createNew, eggTo, HatcheryImpl, postData, recordEvent } from '../../lib/hatcheryTemp'
 
 const IMAGE_ADMIN_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://imageadmin.floev.com' : 'http://localhost:3034'
 
@@ -19,7 +18,7 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
   const router = useRouter()
   const [name, setName] = useState<string>(props.oldAnswers.name)
   const [phoneNumber, setPhoneNumber] = useState<string>(props.oldAnswers.phoneNumber)
-  const oldPhoneNumber = localStorage.getItem('floev[phoneNumber]') ?? ''
+  const oldPhoneNumber = JSON.parse(localStorage.getItem('hatchery') ?? '').phoneNumber
   const [isPhoneNumber, setIsPhoneNumber] = useState<boolean>(false)
   const [authNumber, setAuthNumber] = useState<string>('')
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
@@ -80,15 +79,17 @@ export default function Q12NamePhoneNumber(props: SurveyProps) {
         naverPixelComplete()
 
         const userId = data.makeSurveyPurchaseRequest.user.id
-        let creature: Hatchery = props.hatchery
+        let creature: HatcheryImpl = props.hatchery
         creature.userId = userId
         creature.name = name
         creature.phoneNumber = phoneNumber
-        localStorage.setItem('_uid', userId)
+
         if (props.hatchery.status === ZERG.EGG) {
+          creature.status = ZERG.CREATURE
           creature = eggTo(creature)
         } else if (oldPhoneNumber !== phoneNumber) {
-          creature = createCreature()
+          creature.status = ZERG.CREATURE
+          creature = createNew(creature)
         }
         recordEvent(postData(creature, EVENT.SURVEY.Q13.FINISH))
         router.replace('/complete')

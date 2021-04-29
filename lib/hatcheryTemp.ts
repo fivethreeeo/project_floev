@@ -12,7 +12,6 @@ const REQUEST_URL = process.env.NODE_ENV === 'development'
 
 function getCurrentSessionId() {
   return parseInt(sessionStorage.getItem('_sid') ?? '0')
-  /* _sid가 0이 될 수 없으나 Type check pass 위해 삽입함 */
 }
 function getCurrentEventId() {
   const currentEventId = parseInt(sessionStorage.getItem('current_event') ?? '0') + 1
@@ -49,7 +48,19 @@ export async function recordEvent(postData: PostData) {
     })
 }
 
+function updateEggTo(creature: HatcheryImpl) {
+  axios.put(REQUEST_URL + '/hatchery/egg/creature', creature)
+    .then(() => {
+      process.env.NODE_ENV === 'development'
+        ? console.log("  updateEggTo(creature) SUCCESS") : ''
+    }).catch(err => console.error("  updateEggTo(creature) Error: " + err.message))
+}
 
+export function eggTo(creature: HatcheryImpl) {
+  cacheLocalStorage(creature)
+  updateEggTo(creature)
+  return creature
+}
 
 function updateLaveTo(egg: HatcheryImpl) {
   axios.put(REQUEST_URL + '/hatchery/lava/egg', egg)
@@ -60,7 +71,7 @@ function updateLaveTo(egg: HatcheryImpl) {
 }
 
 export function lavaTo(egg: HatcheryImpl) {
-  cacheToBrowser(egg)
+  cacheLocalStorage(egg)
   updateLaveTo(egg)
   return egg
 }
@@ -75,8 +86,35 @@ function getLava() {
   const gender = null
   const name = null
   const phoneNumber = null
-  return new HatcheryImpl(deviceId, userId, hatcheryId,
-    status, currentSessionId,
+  return new HatcheryImpl(deviceId, userId, hatcheryId, status, currentSessionId,
+    birth, gender, name, phoneNumber)
+}
+
+function getEggFrom(hatchery: HatcheryImpl) {
+  const deviceId = hatchery.deviceId
+  const userId = null
+  const hatcheryId = cuid() + "H"
+  const status = ZERG.EGG
+  const currentSessionId = 1
+  const birth = hatchery.birth
+  const gender = hatchery.gender
+  const name = null
+  const phoneNumber = null
+  return new HatcheryImpl(deviceId, userId, hatcheryId, status, currentSessionId,
+    birth, gender, name, phoneNumber)
+}
+
+function getCreatureFrom(hatchery: HatcheryImpl) {
+  const deviceId = hatchery.deviceId
+  const userId = hatchery.userId
+  const hatcheryId = cuid() + "H"
+  const status = ZERG.CREATURE
+  const currentSessionId = 1
+  const birth = hatchery.birth
+  const gender = hatchery.gender
+  const name = hatchery.name
+  const phoneNumber = hatchery.phoneNumber
+  return new HatcheryImpl(deviceId, userId, hatcheryId, status, currentSessionId,
     birth, gender, name, phoneNumber)
 }
 
@@ -94,28 +132,35 @@ function saveNew(hatchery: HatcheryImpl) {
   axios.post(REQUEST_URL + '/hatchery/new', hatchery)
     .then(() => {
       process.env.NODE_ENV === 'development'
-        ? console.log("  buildNew(" + hatchery.status + ") SUCCESS") : ''
+        ? console.log("  saveNew(" + hatchery.status + ") SUCCESS") : ''
     }).catch(err => {
-      console.error("  buildNew(" + hatchery.status + ") Error: " + err.message)
+      console.error("  saveNew(" + hatchery.status + ") Error: " + err.message)
     })
 }
 
-function initializeSessionWith(sessionId: number) {
+function cacheSessionStorage(sessionId: number) {
   sessionStorage.setItem('_sid', String(sessionId))
   sessionStorage.setItem('current_event', '0')
 }
 
-function cacheToBrowser(hatchery: HatcheryImpl) {
+function cacheLocalStorage(hatchery: HatcheryImpl) {
   localStorage.setItem('hatchery', JSON.stringify(hatchery))
 }
 
-function cacheToBrowserWithNewSession(hatchery: HatcheryImpl) {
-  cacheToBrowser(hatchery)
-  initializeSessionWith(hatchery.currentSessionId)
+function cache(hatchery: HatcheryImpl) {
+  cacheLocalStorage(hatchery)
+  cacheSessionStorage(hatchery.currentSessionId)
 }
 
 export function createNew(hatchery: HatcheryImpl) {
-  cacheToBrowserWithNewSession(hatchery)
+  if (hatchery.status === ZERG.LAVA) {
+    hatchery = hatchery
+  } else if (hatchery.status === ZERG.EGG) {
+    hatchery = getEggFrom(hatchery)
+  } else if (hatchery.status === ZERG.CREATURE) {
+    hatchery = getCreatureFrom(hatchery)
+  }
+  cache(hatchery)
   saveNew(hatchery)
   return hatchery
 }
@@ -130,7 +175,7 @@ export async function initializeHatchery() {
     const _sid = sessionStorage.getItem('_sid')
     if (!_sid) {
       hatchery.currentSessionId = hatchery.currentSessionId + 1
-      cacheToBrowserWithNewSession(hatchery)
+      cache(hatchery)
       updateCurrentSessionIdIn(hatchery)
     }
   }

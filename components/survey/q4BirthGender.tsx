@@ -5,8 +5,6 @@ import { lavaTo, createNew } from '../../lib/hatcheryTemp'
 export default function Q4BirthGender(props: SurveyProps) {
   const [birth, setBirth] = useState<number>(props.oldAnswers.birth)
   const [gender, setGender] = useState<string>(props.oldAnswers.gender)
-  // const oldBirth = parseInt(localStorage.getItem('floev[birth]') ?? '-1')
-  // const oldGender = localStorage.getItem('floev[gender]') ?? ''
   const oldBirth = JSON.parse(localStorage.getItem('hatchery') ?? '').birth
   const oldGender = JSON.parse(localStorage.getItem('hatchery') ?? '').gender
 
@@ -49,6 +47,7 @@ export default function Q4BirthGender(props: SurveyProps) {
       egg.status = ZERG.EGG
       egg = lavaTo(egg)
     } else if (oldBirth !== egg.birth || oldGender !== egg.gender) {
+      egg.status = ZERG.EGG
       egg = createNew(egg)
     } else { /* egg, creature 상태에서는 변화 없음 */ }
     props.updateHatchery(egg)
