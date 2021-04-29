@@ -1,34 +1,33 @@
 interface Hatchery {
-    deviceId: string
-    userId: string | null
-    hatcheryId: string
-    status: string
-    currentSessionId: number
-    birth: number | null
-    gender: string | null
-    name: string | null
-    phoneNumber: string | null
+  deviceId: string
+  userId: string | null
+  hatcheryId: string
+  status: string
+  currentSessionId: number
+  birth: number | null
+  gender: string | null
+  name: string | null
+  phoneNumber: string | null
 }
 
 interface HatcheryEvent {
-    sessionId: number
-    eventId: number
-    eventName: string
-    eventTimestamp: string
-    status: string
+  sessionId: number
+  eventId: number
+  eventName: string
+  eventTimestamp: string
 }
 
 interface Utm {
-    utm_source: string | string[] | undefined
-    utm_medium: string | string[] | undefined
-    utm_campaign: string | string[] | undefined
-    utm_term: string | string[] | undefined
-    utm_content: string | string[] | undefined
+  utm_source: string | string[] | undefined
+  utm_medium: string | string[] | undefined
+  utm_campaign: string | string[] | undefined
+  utm_term: string | string[] | undefined
+  utm_content: string | string[] | undefined
 }
 
 interface PostData {
-    hatchery: Hatchery
-    event: HatcheryEvent
-    device: any
-    utm: Utm
+  hatchery: Hatchery
+  event: HatcheryEvent
+  device: any
+  utm: Utm
 }
