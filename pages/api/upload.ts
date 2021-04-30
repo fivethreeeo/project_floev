@@ -42,15 +42,23 @@ type NextApiRequestWithFormData = NextApiRequest & {
 }
 
 export default async (req: NextApiRequestWithFormData, res: NextApiResponse) => {
+  console.log('START: /api/upload ');
+
   if (req.method !== 'POST') {
     return res.status(400).send({ message: 'Only POST requests allowed' })
   }
 
-  await runMiddleware(req, res, cors)
-  await runMiddleware(req, res, upload.single('upload-image'))
+  try {
+    await runMiddleware(req, res, cors)
+    await runMiddleware(req, res, upload.single('upload-image'))
 
-  console.log(req.file?.path)
-  res.send(req.file?.path)
+    res.send(req.file.path)
+    console.log(`   Success: upload image at ${req.file.path}`)
+  } catch (err) {
+    console.error(`   ERROR: upload image ${err.message}`)
+  }
+
+  console.log('END: /api/upload');
   res.status(204).end()
 }
 
