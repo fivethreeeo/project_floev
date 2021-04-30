@@ -90,7 +90,7 @@ const FloevTradeIn = () => {
               </div>
 
               {/* section__7 */}
-              <div className="section section__7">
+              <div className="section section__7" style={{paddingBottom:'52px'}}>
                 <div className="div__1">
                   <p><strong>플로브 반납보상 서비스와<br />슬기로운 안경생활</strong></p>
                 </div>
@@ -116,7 +116,7 @@ const FloevTradeIn = () => {
 
               <div className="btn-more-wrap" style={{position:'fixed', bottom:'0', background:'none', padding:'0 0 0 0',width:'100%',maxWidth:'414px'}}>
                 <div className="btn-more">
-                  <a className="tn-0058" style={{display:'block',color:'white',fontSize:'17px',lineHeight:'48px',width:'100%',height:'48px',background:'#d24816',borderRadius:'0'}}>반납보상 신청하기</a>
+                  <a className="tn-0058" style={{display:'block',color:'white',fontSize:'17px',lineHeight:'54px',width:'100%',height:'52px',background:'#d24816',borderRadius:'0'}}>반납보상 신청하기</a>
                 </div>
               </div>
             </div>
