@@ -9,8 +9,11 @@ import { CHECKUP_USER_SIMPLE } from '../lib/query'
 import { createApolloClient } from '../lib/apolloClient'
 import { resetSurvey } from '../utils/surveyUtils'
 import ServiceTab from '../components/index/serviceTab'
-import { initializeHatchery, recordEvent, postData } from '../lib/hatchery'
-import { drone, EVENT } from '../lib/constants'
+import { drone } from '../lib/hatchery/constants'
+import { initializeHatchery } from '../lib/hatchery/hatchery'
+import HatcheryImpl from '../lib/hatchery/HatcheryImpl'
+import { recordEvent, postData } from '../lib/hatchery/event'
+import { EVENT } from '../lib/hatchery/constants'
 
 const IndexPage = (props: {
   user: User
@@ -29,7 +32,7 @@ const IndexPage = (props: {
 
   useEffect(() => {
     const createHatchery = async () => {
-      const newHatchery: Hatchery = await initializeHatchery()
+      const newHatchery: HatcheryImpl = await initializeHatchery()
       setHatchery(newHatchery)
       recordEvent(postData(newHatchery, EVENT.INDEX.PAGE, utm))
     }
