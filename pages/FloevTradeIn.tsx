@@ -116,7 +116,7 @@ const FloevTradeIn = () => {
 
               <div className="btn-more-wrap" style={{position:'fixed', bottom:'0', background:'none', padding:'0 0 0 0',width:'100%',maxWidth:'414px'}}>
                 <div className="btn-more">
-                  <a className="tn-0058" style={{display:'block',color:'white',fontSize:'17px',lineHeight:'54px',width:'100%',height:'52px',background:'#d24816',borderRadius:'0'}}>반납보상 신청하기</a>
+                  <a href="https://floevcontact.typeform.com/to/aS597QFV" target="_blank" className="tn-0058" style={{display:'block',color:'white',fontSize:'17px',lineHeight:'54px',width:'100%',height:'52px',background:'#d24816',borderRadius:'0'}}>반납보상 신청하기</a>
                 </div>
               </div>
             </div>
