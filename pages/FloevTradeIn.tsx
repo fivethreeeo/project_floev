@@ -66,25 +66,32 @@ const FloevTradeIn = () => {
                   <p className="p__2">OROSHI BK</p>
                   <div className="line"></div>
                   <p className="p__3">68 <span className="won">만원</span></p>
+                  <p style={{fontSize:'13px',color:'#666'}}>*구매금액은 고객별로 다를 수 있습니다.</p>
                 </div>
                 <div className="img__4"><img src="img/test8/tradein/arrow.png" alt="" /></div>
-                <div className="div__2">6개월 후</div>
                 <div className="card-wrap">
                   {/*<div className="card__or">OR</div>*/}
                   <div className="card card__1">
+                    <div className="div__2">6개월 이내 반납시</div>
                     <span className="span__1">크레딧</span>
                     <span className="span__4" style={{color: '#d24816'}}>만원</span>
-                    <span className="span__3" style={{color: '#d24816'}}>17</span>
+                    <span className="span__3" style={{color: '#d24816'}}>17.0</span>
                     <span className="span__2">25%</span>
                   </div>
-                  {/*
-                  <div className="card card__2">
-                    <span className="span__1">현금</span>
-                    <span className="span__4">만원</span>
-                    <span className="span__3">20.4</span>
-                    <span className="span__2">30%</span>
+                  <div className="card card__1">
+                    <div className="div__2">6~12개월 사이 반납시</div>
+                    <span className="span__1">크레딧</span>
+                    <span className="span__4" style={{color: '#d24816'}}>만원</span>
+                    <span className="span__3" style={{color: '#d24816'}}>13.6</span>
+                    <span className="span__2">20%</span>
                   </div>
-                  */}
+                  <div className="card card__1">
+                    <div className="div__2">12~18개월 사이 반납시</div>
+                    <span className="span__1">크레딧</span>
+                    <span className="span__4" style={{color: '#d24816'}}>만원</span>
+                    <span className="span__3" style={{color: '#d24816'}}>10.2</span>
+                    <span className="span__2">15%</span>
+                  </div>
                 </div>
                 {/*<div className="div__3">크레딧 또는 현금으로<br />보상을 선택해보세요!</div>*/}
               </div>
