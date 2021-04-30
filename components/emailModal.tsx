@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react"
 import { Modal, Collapse } from "antd"
 import { useMutation } from "@apollo/client"
 import { HANDLE_NEW_SERVICE } from "../lib/mutation"
-import { initializeHatchery, recordEvent, postData } from "../lib/hatchery"
-import { drone, getNewServiceName } from "../lib/constants"
+import { initializeHatchery } from "../lib/hatchery/hatchery"
+import { getNewServiceName } from "../lib/constants"
 import { useRouter } from "next/router"
+import { drone } from "../lib/hatchery/constants"
+import { recordEvent, postData } from "../lib/hatchery/event"
 
 const EmailModal = (props: EmailModal) => {
   const { Panel } = Collapse;

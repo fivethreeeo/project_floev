@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { EVENT, ZERG } from '../../lib/constants'
-import { lavaTo, createNew } from '../../lib/hatchery'
+import { EVENT, ZERG } from '../../lib/hatchery/constants'
+import { lavaTo, createNew } from '../../lib/hatchery/hatchery'
 
 export default function Q4BirthGender(props: SurveyProps) {
   const [birth, setBirth] = useState<number>(props.oldAnswers.birth)
