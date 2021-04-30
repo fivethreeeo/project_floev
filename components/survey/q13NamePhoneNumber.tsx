@@ -9,8 +9,10 @@ import moment from 'moment'
 import { resetSurvey } from '../../utils/surveyUtils'
 import { MAKE_SURVEY_PURCHASE_REQUEST } from '../../lib/mutation'
 import { SHA256 } from '../../utils/SHA256'
-import { EVENT, ZERG } from '../../lib/constants'
-import { createNew, eggTo, HatcheryImpl, postData, recordEvent } from '../../lib/hatchery'
+import { EVENT, ZERG } from '../../lib/hatchery/constants'
+import { createNew, eggTo } from '../../lib/hatchery/hatchery'
+import { postData, recordEvent } from '../../lib/hatchery/event'
+import HatcheryImpl from '../../lib/hatchery/HatcheryImpl'
 
 const IMAGE_ADMIN_SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://imageadmin.floev.com' : 'http://localhost:3034'
 

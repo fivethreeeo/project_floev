@@ -1,52 +1,7 @@
 import axios from "axios"
 import cuid from "cuid"
-import moment from "moment"
-import { utmInit, ZERG } from './constants'
-import DeviceDetector from 'device-detector-js'
-const deviceDetector = new DeviceDetector();
-
-const REQUEST_URL = process.env.NODE_ENV === 'development'
-  // ? 'https://htest.floev.kr'
-  ? 'http://localhost:3035'
-  : 'https://hatchery.floev.kr'
-
-function getCurrentSessionId() {
-  return parseInt(sessionStorage.getItem('_sid') ?? '0')
-}
-function getCurrentEventId() {
-  const currentEventId = parseInt(sessionStorage.getItem('current_event') ?? '0') + 1
-  sessionStorage.setItem('current_event', String(currentEventId))
-  return currentEventId
-}
-
-function createEventData(eventName: string) {
-  return {
-    sessionId: getCurrentSessionId(),
-    eventId: getCurrentEventId(),
-    eventName: eventName,
-    eventTimestamp: moment().format("YYYY-MM-DDTHH:mm:ss.SSSSSS"),
-  }
-}
-
-export const postData = (hatchery: Hatchery, eventName: string, utm: Utm = utmInit) => {
-  return {
-    hatchery: hatchery,
-    event: createEventData(eventName),
-    device: deviceDetector.parse(navigator.userAgent),
-    utm: utm
-  }
-}
-
-export async function recordEvent(postData: PostData) {
-  await axios.post(REQUEST_URL + '/event', postData)
-    .then(() => {
-      process.env.NODE_ENV === 'development'
-        ? console.log("Record " + postData.event.eventName + " SUCCESS")
-        : ''
-    }).catch(err => {
-      console.error("Record " + postData.event.eventName + " Error: " + err.message)
-    })
-}
+import { REQUEST_URL, ZERG } from './constants'
+import HatcheryImpl from './HatcheryImpl'
 
 function updateEggTo(creature: HatcheryImpl) {
   axios.put(REQUEST_URL + '/hatchery/egg/creature', creature)
@@ -180,31 +135,4 @@ export async function initializeHatchery() {
     }
   }
   return hatchery
-}
-
-export class HatcheryImpl implements Hatchery {
-  deviceId: string
-  userId: string | null
-  hatcheryId: string
-  status: string
-  currentSessionId: number
-  birth: number | null
-  gender: string | null
-  name: string | null
-  phoneNumber: string | null
-  constructor(deviceId: string, userId: string | null, hatcheryId: string,
-    status: string, currentSessionId: number,
-    birth: number | null, gender: string | null,
-    name: string | null, phoneNumber: string | null
-  ) {
-    this.deviceId = deviceId
-    this.userId = userId
-    this.hatcheryId = hatcheryId
-    this.status = status
-    this.currentSessionId = currentSessionId
-    this.birth = birth
-    this.gender = gender
-    this.name = name
-    this.phoneNumber = phoneNumber
-  }
 }
