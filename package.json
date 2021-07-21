@@ -1,5 +1,4 @@
 {
-  "homepage": "https://mansaout.github.io/project_floev/",
   "name": "floev_front",
   "version": "1.0.0",
   "author": "sanscreate",
@@ -10,9 +9,7 @@
     "type-check": "tsc",
     "analyze": "cross-env ANALYZE=true next build",
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
-    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
-    "deploy": "gh-pages -d src",
-    "predeploy": "npm run src"
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
     "@apollo/client": "^3.3.6",
